@@ -1,0 +1,22 @@
+html
+	height: 100%
+
+.App
+	position: relative
+	max-width: 1440px
+	margin: 0 auto
+	margin-top: 71px
+	&.-payment
+		padding-bottom: 78px
+		min-height: calc(100vh - 71px)
+		+sm()
+			margin-top: 71px
+		+xs()
+			min-height: calc(100vh - 71px)
+			padding-bottom: 108px
+			// border: solid 1px red
+	+sm()
+		width: auto
+		max-width: 1024px
+		margin-top: 60px
+	+xs()

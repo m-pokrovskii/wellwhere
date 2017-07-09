@@ -1,0 +1,90 @@
+.HeaderWrap
+	position: fixed
+	z-index: 3
+	left: 0
+	right: 0
+	top: 0
+	&.-absolute
+		position: absolute
+.Header
+	max-width: 1440px
+	margin: 0 auto
+	background: #fff
+	display: flex
+	height: 71px
+	align-items: center
+	border-bottom: solid 1px #EEEEEE
+	&__search
+		margin: 0 auto
+		flex-grow: 1
+		position: relative
+
+	&__input-search
+		background: url('../img/search-mini-icon.svg') no-repeat 42px 50%
+		width: 100%
+		height: 70px
+		padding-left: 70px
+		border-left: 1px solid #E0E0E0
+		font-size: 14px
+
+	&__sm-opener
+		position: absolute
+		left: 10px
+
+	&__logo
+		width: 288px
+		height: 71px
+		background: url('../img/logo.svg') no-repeat 40px 50%
+		+sm
+			margin: 0 auto
+			width: 180px
+			height: 36px
+			background: url('../img/logo.svg') no-repeat 0 0
+
+	&__loginLink
+		padding: 0 33px 0 26px
+		a
+			text-decoration: none
+			color: #000
+			font: 16px "Avenir-Medium"
+			color: #000000
+			&:hover
+				text-decoration: underline
+
+.Header__right
+	border-left: solid 1px #EFEFEF
+	height: 71px
+	display: flex
+	align-items: center
+	padding: 0 0 0 40px
+	+xs()
+		display: none
+
+.Header.-md,
+	+sm
+		display: none
+
+.Header.-sm
+	height: 60px
+	+mdm
+		display: none
+	+sm
+		display: flex
+
+
+.HeaderTitle
+	font: 20px "Avenir-Medium"
+	color: #000
+
+.App.-payment .Header.-md,
+.App.-partnership .Header.-md
+	display: flex
+	.Header__logo
+		+sm()
+			margin: 0
+			width: 288px
+			height: 71px
+			background: url('../img/logo.svg') no-repeat 40px 50%
+		+xs()
+			width: 100%
+			background-position: 50% 50%

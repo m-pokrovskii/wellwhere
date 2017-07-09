@@ -1,0 +1,76 @@
+.GymRating > .icon
+	margin-right: 3px !important
+	background: none !important
+	+sm()
+		margin-right: 1px !important
+	&::before
+		content: "" !important
+		display: block
+		width: 20px
+		height: 20px
+		background: url('../img/star-empty.svg') no-repeat !important
+		background-size: 20px 20px
+		+sm()
+			width: 16px
+			height: 16px
+			background-size: 16px 16px !important
+
+.GymRating.-white > .icon
+	&::before
+    background-image: url('../img/star-white-empty.svg') !important
+
+
+.GymRating > .icon.active
+		&::before
+			background-image: url('../img/star-full.svg') !important
+			+sm()
+				width: 16px
+				height: 16px
+				background-size: 16px 16px !important
+
+.GymRating.-white > .icon.active
+  &::before
+    background-image: url('../img/star-white-full.svg') !important
+
+.GymRating > .icon.selected
+		&::before
+			background-image: url('../img/star-full-selected.svg') !important
+			+sm()
+				width: 16px
+				height: 16px
+				background-size: 16px 16px !important
+
+.GymRating.-white > .icon.selected
+  background-image: url('../img/star-white-empty.svg') !important
+
+// favarite
+
+.GymFavorite
+	width: 24px
+	height: 24px
+
+.GymFavorite > .icon
+	background: none !important
+	&::before
+		content: "" !important
+		display: block
+		width: 24px
+		height: 24px
+		background-image: url('../img/icon-heart.svg') !important
+		background-size: 24px 24px
+
+
+.GymFavorite > .icon.active
+		&::before
+			background-image: url('../img/icon-heart-full.svg') !important
+
+.GymFavorite > .icon.selected
+		&::before
+			background-image: url('../img/icon-heart-full.svg') !important
+
+
+.SignlePage__hero-favorite > .icon
+	&::before
+		width: 40px
+		height: 40px
+		background-size: 40px 40px

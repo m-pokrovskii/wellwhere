@@ -1,0 +1,122 @@
+.SmOpener
+	width: 25px
+	height: 17px
+	position: relative
+	transform: rotate(0deg)
+	transition: .5s ease-in-out
+	cursor: pointer
+	span
+		position: absolute
+		display: block
+		height: 1px
+		width: 100%
+		background: #979797
+		border-radius: 9px
+		opacity: 1
+		left: 0
+		transform: rotate(0deg)
+		transition: .25s ease-in-out
+		&:nth-child(1)
+			top: 0px
+		&:nth-child(2), &:nth-child(3)
+			top: 6px
+		&:nth-child(4)
+			top: 12px
+
+.SmOpener.open
+	span:nth-child(1)
+		top: 1px
+		width: 0%
+		left: 50%
+	span:nth-child(2)
+		transform: rotate(45deg)
+	span:nth-child(3)
+		transform: rotate(-45deg)
+	span:nth-child(4)
+		top: 1px
+		width: 0%
+		left: 50%
+
+.SmMenu
+  display: none
+  position: absolute
+  top: 60px
+  z-index: 2
+  width: 320px
+  background: #fff
+  padding: 20px 53px 16px 16px
+  border: solid 1px #EFEFEF
+
+
+.SmMenu__menu1,
+.SmMenu__menu2
+	font-size: 16px
+	padding-bottom: 10px
+	margin-bottom: 10px
+	border-bottom: solid 1px #EFEFEF
+
+	a
+		color: #6E6868
+		&.active
+			color: #FF4040
+
+.SmMenu__socials
+	display: flex
+	justify-content: flex-end
+	align-items: center
+
+.SmMenu__socialsItem
+	margin-left: 5px
+
+
+.SmMenu__user
+	display: flex
+	align-items: center
+	margin-bottom: 30px
+
+.SmMenu__userAvatar
+	width: 55px
+	height: 55px
+	background-size: cover
+	background-position: 50% 50%
+	margin-right: 10px
+
+.SmMenu__userTitle
+	font: 14px 'Avenir-Heavy'
+	margin-bottom: 1px
+
+.SmMenu__userDesc
+	font-size: 10px
+	color: #6E6868
+
+
+.SmMenu__search
+	padding-bottom: 15px
+	border-bottom: solid 1px #EFEFEF
+	margin-bottom: 10px
+
+.SmMenu__searchForm
+	display: flex
+
+.SmMenu__searchLabel
+	margin-bottom: 11px
+	display: block
+
+.SmMenu__searchField
+	border: solid 1px #EFEFEF
+	height: 31px
+	width: 210px
+	border-right: none
+	padding-left: 7px
+	color: #6E6868
+	font-size: 11px
+	border-radius: 5px 0 0 5px
+
+
+	&::placeholder
+		font-size: 10px
+
+.SmMenu__searchButton
+	width: 31px
+	height: 31px
+	background: url('../img/search-mini-icon-mobile.svg') #3BCEAC no-repeat 50% 50%

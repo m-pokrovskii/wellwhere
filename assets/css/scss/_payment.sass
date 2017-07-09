@@ -1,0 +1,543 @@
+.PaymentPage
+  padding-top: 50px
+  +sm()
+    padding-top: 31px
+  +xs()
+    padding-top: 9px
+
+  .PaymentSteps
+    margin: 0 auto 50px auto
+    +xs()
+      margin-bottom: 12px
+
+.PaymentSteps
+  width: 620px
+  display: flex
+  justify-content: space-between
+  +sm()
+    width: 500px
+  +xs()
+    width: 293px
+
+
+
+  .PaymentSteps__step
+    display: flex
+    align-items: center
+    flex-direction: column
+    background: #fff
+    &:last-child .PaymentSteps__step-number::after
+      display: none
+
+  .PaymentSteps__step-number
+    position: relative
+    display: flex
+    align-items: center
+    justify-content: center
+    background: #FFF
+    border: solid 1px #FF4040
+    color: #FF4040
+    width: 60px
+    height: 60px
+    font: 20px Arial,sans-serif
+    border-radius: 50%
+    margin-bottom: 6px
+    &::after
+      content: ''
+      display: block
+      position: absolute
+      width: 212px
+      height: 1px
+      background: #FF4040
+      top: 50%
+      left: 100%
+      +xs()
+        width: 100px
+    +sm()
+      width: 47px
+      height: 47px
+    +xs()
+      width: 26px
+      height: 26px
+      font-size: 12px
+
+  .PaymentSteps__step.-active
+    .PaymentSteps__step-number
+      background: #FF4040
+      color: #fff
+
+  .PaymentSteps__step-desc
+    color: #6E6868
+    +xs()
+      font-size: 10px
+
+.PaymentForm
+  width: 547px
+  margin: 0 auto
+  padding: 26px 74px 58px 74px
+  border: solid 1px #E0E0E0
+  +xs()
+    width: 100%
+    padding: 20px 20px 20px 20px
+
+  .PaymentForm__title
+    font: 20px "Avenir-Medium"
+    text-align: center
+    margin-bottom: 51px
+    +xs()
+      margin-bottom: 20px
+
+  .PaymentForm__fields
+
+  .PaymentForm__row
+    margin-bottom: 15px
+    input[type="text"]
+      width: 100%
+      border: solid 1px #9B9B9B
+      height: 35px
+      padding: 0 0 0 13px
+      font: 16px "Avenir-Medium"
+      color: #000
+      border-radius: 6px
+      +xs()
+        font-size: 10px
+      &::placeholder
+        font: 16px "Avenir-Medium"
+        +sm()
+          font: 10px "Avenir-Book"
+    input[type="checkbox"]
+      margin-right: 5px
+      display: inline-block
+    .PaymentForm__label-checkbox
+      color: #6E6868
+      +xs()
+        font-size: 10px
+    .PaymentForm__submit-button
+      display: flex
+      align-items: center
+      justify-content: center
+      font: 20px "Avenir-Medium"
+      background: #FF4040
+      color: #fff
+      margin-top: 20px
+      width: 100%
+      height: 50px
+      border-radius: 6px
+      +xs()
+        font-size: 14px
+        height: 35px
+
+.PaymentPage__mobile-header-link
+  display: none
+  +xs()
+    display: block
+
+
+.PaymentTitle
+  display: none
+  font: 14px "Avenir-Medium"
+  +xs()
+    display: block
+    text-align: center
+    margin-bottom: 14px
+
+
+// Cards
+.PaymentCards
+  padding: 0 58px 10px 57px
+  +xs()
+    padding: 0 10px 10px 10px
+
+.PaymentCardsList
+
+.PaymentCardsItem
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  flex-shrink: 0
+  flex-grow: 0
+  padding: 39px 96px 39px 27px
+  border: solid 1px #E0E0E0
+  margin-bottom: 20px
+  +sm()
+    padding-right: 49px
+  +xs()
+    padding: 30px 10px 10px 14px
+
+  &__logo
+    width: 94px
+    margin-right: 26px
+    +xs()
+      width: 56px
+    img
+      width: 100%
+
+  &__body
+    margin-right: auto
+    img
+      width: 100%
+
+  &__title
+    font: 28px "Avenir-Heavy"
+    +sm()
+      font-size: 22px
+    +xs()
+      font-size: 18px
+
+  &__modifier
+    +xs()
+      font-size: 12px
+
+  &__buttonBlock
+    margin-top: 27px
+    width: 100%
+    text-align: right
+
+  &__button
+    display: inline-flex
+    background: #FF4040
+    justify-content: center
+    align-items: center
+    width: 162px
+    height: 50px
+    border-radius: 3px
+    color: #fff
+    font: 20px "Avenir-Black"
+    +sm()
+      width: 140px
+      height: 30px
+      font-size: 14px
+
+
+.PaymentAddCard
+  padding: 39px 96px 39px 27px
+  border: solid 1px #E0E0E0
+  +xs()
+    padding: 30px 10px 30px 14px
+
+  .PaymentAddCard__activator
+    display: flex
+    align-items: center
+    font: 28px "Avenir-Heavy"
+    cursor: pointer
+    +sm()
+      font-size: 22px
+    +xs()
+      font-size: 18px
+
+
+.PaymentAddNewCardForm
+  display: block
+  width: 380px
+  margin-top: 33px
+  &.-hide
+    display: none
+  &.-show
+    display: block
+  +xs()
+    width: 100%
+    padding-left: 7px
+    padding-right: 19px
+
+.PaymentAddNewCardForm__headline
+  display: inline-flex
+  align-items: flex-end
+  border-bottom: solid 1px #EFEFEF
+  padding-bottom: 11px
+  margin-bottom: 18px
+
+.PaymentAddNewCardForm__cards-image
+  margin-right: 13px
+  width: 135px
+  height: 29px
+
+.PaymentAddNewCardForm__title
+  font: 14px "Avenir-Heavy"
+
+
+.PaymentAddNewCardForm__form
+
+.PaymentAddNewCardForm__row
+  margin-bottom: 20px
+  display: flex
+  flex-wrap: wrap
+  +xs()
+    margin-bottom: 0
+
+.PaymentAddNewCardForm__field
+  margin-right: 20px
+  &:last-child
+    margin-right: 0
+  +xs()
+    margin-right: 0
+    margin-bottom: 15px
+
+
+.PaymentAddNewCardForm__label
+  display: block
+  color: #9B9B9B
+  margin-bottom: 5px
+  +xs()
+    font-size: 12px
+
+.PaymentAddNewCardForm__input-text
+  width: 180px
+  height: 25px
+  border: solid 1px #E0E0E0
+  padding: 0 10px
+  border-radius: 3px
+  background: #fff
+  color: #9B9B9B
+
+.PaymentAddNewCardForm__select.ui.dropdown
+  width: 85px
+  height: 25px
+  font-size: 9px
+  margin-right: 6px
+  &:last-child
+    margin-right: 0
+  .default.text,
+  .text
+    color: #E0E0E0
+    font-size: 10px !important
+  .dropdown.icon
+    position: absolute
+    margin: 0 !important
+    padding: 0 !important
+    top: auto !important
+    right: 4px !important
+    bottom: 8px !important
+  .menu > .item
+    font-size: 11px !important
+    padding: 5px !important
+
+.PaymentAddNewCardForm__buttonBlock
+  display: flex
+  justify-content: flex-end
+  width: 380px
+  +xs()
+    display: block
+    width: 100%
+    margin-top: 10px
+
+.PaymentAddNewCardForm__button
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  background: #FF4040
+  color: #fff
+  width: 180px
+  height: 25px
+  border-radius: 3px
+
+// Basket
+.PaymentBasket
+  padding: 0 58px 0 57px
+  overflow: hidden
+  +xs()
+    padding: 0 10px
+
+.PaymentBasketList
+  margin-bottom: 94px
+  +sm()
+    margin-bottom: 20px
+
+.PaymentBasketListItem
+  position: relative
+  display: flex
+  flex-wrap: wrap
+  border: solid 1px #E0E0E0
+  padding: 20px 56px 20px 21px
+  +sm()
+    padding: 20px
+  +xs()
+    padding: 15px
+
+.PaymentBasketListItem__image
+  width: 250px
+  margin-right: 27px
+  +sm()
+    width: 150px
+    margin-right: 20px
+  +xs()
+    width: 100%
+    margin-right: 0
+    margin-bottom: 10px
+
+  img
+    display: block
+    width: 100%
+
+
+.PaymentBasketListItem__body
+  margin-right: auto
+  +xs()
+    width: 60%
+
+.PaymentBasketListItem__title
+  font: 36px "Avenir-Heavy"
+  +sm()
+    font-size: 24px
+  +xs()
+    font-size: 18px
+
+.PaymentBasketListItem__entries
+  color: #FF4040
+  font: 28px "Avenir-Heavy"
+  +sm()
+    font-size: 16px
+  +xs()
+    font-size: 14px
+
+.PaymentBasketListItem__date
+  color: #6E6868
+  +sm()
+    font-size: 12px
+  +xs()
+    font-size: 10px
+
+.PaymentBasketListItem__price
+  align-self: flex-end
+  font: 28px "Avenir-Heavy"
+  +sm()
+    font-size: 24px
+  +xs()
+    font-size: 18px
+
+.PaymentBasketListItem__close
+  position: absolute
+  top: 22px
+  right: 23px
+  display: block
+  background: url('../img/icon-error.svg') no-repeat
+  width: 39px
+  height: 39px
+  +sm()
+    top: 10px
+    right: 10px
+    width: 20px
+    height: 20px
+  +xs()
+    display: none
+
+.PaymentTotal
+  background: #EEE
+  padding: 10px 14px 25px 22px
+  width: 520px
+  float: right
+  +sm()
+    float: none
+    width: 100%
+
+
+.PaymentTotal__title
+  font: 20px "Avenir-Medium"
+  margin-bottom: 17px
+  +xs()
+    margin-bottom: 10px
+
+.PaymentTotal__card
+  display: flex
+  align-items: center
+  padding-bottom: 11px
+  border-bottom: solid 1px #979797
+  margin-bottom: 8px
+
+  .PaymentTotal__card-image
+    width: 65px
+    margin-right: 18px
+    img
+      display: block
+      width: 100%
+
+  .PaymentTotal__card-title
+    font: 14px "Avenir-Heavy"
+
+
+.PaymentTotal__container-price
+  display: flex
+  margin-bottom: 10px
+  +sm()
+    margin-bottom: 20px
+
+.PaymentTotal__price-text
+  margin-right: auto
+
+.PaymentTotal__total-text
+  font: 28px "Avenir-Heavy"
+  +sm()
+    font-size: 20px
+  +xs()
+    font-size: 16px
+
+.PaymentTotal__tva-text
+  font: 14px "Avenir-Heavy"
+  +sm()
+    font-size: 12px
+  +xs()
+    font-size: 10px
+
+.PaymentTotal__price
+  font: 28px "Avenir-Heavy"
+  +sm()
+    font-size: 20px
+  +xs()
+    font-size: 16px
+
+
+.PaymentTotal__button
+  font: 20px "Avenir-Black"
+  background: #FF4040
+  color: #fff
+  display: flex
+  width: 100%
+  height: 55px
+  justify-content: center
+  align-items: center
+  +sm()
+    font-size: 18px
+    height: 50px
+
+.PaymentBasketListItem__remove.-xs
+  display: none
+  +xs()
+    cursor: pointer
+    margin-top: 10px
+    display: block
+    width: 100%
+    text-align: center
+    border: solid 1px #E0E0E0
+    padding: 10px
+    color: #000
+    border-radius: 5px
+    font: 14px "Avenir-Heavy"
+    &:hover,
+    &:active
+      background: #FF4040
+      color: #fff
+
+
+.PaymentComplete
+  position: relative
+  height: 50vh
+
+.PaymentCompleteContent
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  display: flex
+  flex-direction: column
+  align-items: center
+  .PaymentComplete__icon-done
+    +css-lock(50, 77, 767, 1440, 'width')
+    margin-bottom: 10px
+  .PaymentComplete__text-thanks
+    font-family: "Avenir-Heavy"
+    text-align: center
+    white-space: nowrap
+    +css-lock(18, 36, 767, 1440, 'font-size')
+  .PaymentComplete__link-show-pass
+    font-family: "Avenir-Medium"
+    +css-lock(14, 20, 767, 1440, 'font-size')
+    text-align: center

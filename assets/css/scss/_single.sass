@@ -1,0 +1,324 @@
+.SinglePage
+
+.SignlePage__hero
+  position: relative
+  width: 100%
+  height: 580px
+  +sm()
+    height: 405px
+    margin-bottom: 25px
+.SinglePage__hero-image
+  width: 100%
+  height: 100%
+  background-repeat: no-repeat
+  background-position: 50% 50%
+  background-size: cover
+.SignlePage__hero-favorite
+  position: absolute
+  right: 32px
+  bottom: 28px
+  width: 40px
+  height: 40px
+  +sm
+    right: 19px
+    bottom: 14px
+
+.SinglePage__content-container
+  padding: 0 57px
+  +sm()
+    padding: 0
+
+.SignlePage__headline
+  position: relative
+  padding:  23px 0 27px 287px
+  margin: 0 -57px 26px -57px
+  border-bottom: solid 1px #E0E0E0
+  background: #fff
+  +sm()
+    margin: 0 0 0 0
+    padding: 0 0 10px 17px
+    border-bottom: none
+  &.ui.sticky.fixed.top
+    margin-left: 0
+    margin-right: 0
+  &.ui.sticky.fixed.top + .SignlePage__columns_container
+    margin-top: 169px
+
+  .SignlePage__headline-title
+    font: 48px 'Avenir-Heavy'
+    +sm()
+      font-size: 26px
+    +xs()
+      font-size: 28px
+
+.SinglePage__headling-meta
+  display: flex
+  align-items: center
+  margin-right: 51px
+  +xs()
+    flex-wrap: wrap
+
+  .SinglePage__headling-meta-address
+    font: 20px "Avenir-Medium"
+    margin-right: 11px
+    margin-bottom: 3px
+    +sm()
+      font-size: 16px
+      margin-right: auto
+    +xs()
+      font-size: 14px
+      width: 100%
+
+  .SinglePage__headling-meta-rating
+    +sm()
+      position: relative
+      top: -28px
+    +xs()
+      top: 0
+
+.SignlePage__columns_container
+  display: flex
+
+.SignlePage__sidebar.-left
+  width: 229px
+  padding-right: 86px
+  +sm()
+    display: none
+
+.SignlePage__sidebar.-center
+  position: relative
+  width: 805px
+  padding-right: 86px
+  +sm()
+    width: 100%
+    padding-right: 0
+
+.PriceBlock
+  position: absolute
+  top: -100px
+  left: 100%
+  +sm()
+    position: static
+    min-height: 0 !important
+  .ui.sticky
+    width: 290px
+    height: 400px
+    min-height: 400px !important
+    border: solid 1px #E0E0E0
+    background: #fff
+    +sm()
+      width: 100%
+      height: auto !important
+      min-height: 0 !important
+      padding-bottom: 25px
+      border: none
+      border-bottom: solid 1px #E0E0E0
+    +xs()
+      padding-bottom: 30px
+
+  .PriceBlock__title
+    font: 28px 'Avenir-Heavy'
+    padding: 15px 26px 20px 26px
+    +sm()
+      font-size: 26px
+      padding: 15px 26px 20px 17px
+    +xs()
+      font-size: 20px
+
+  .PriceBlock__price-list
+    margin-bottom: 55px
+    +xs()
+      margin-bottom: 0
+
+  .PriceBlock__row
+    display: flex
+    height: 62px
+    padding: 0 26px
+    align-items: center
+    border-bottom: solid 1px #EFEFEF
+    cursor: pointer
+    label
+      cursor: pointer
+    +sm()
+      padding: 0 26px 0 17px
+
+  .PriceBlock__ticket
+    margin-right: auto
+    font: 14px "Avenir-Heavy"
+
+  .PriceBlock__price
+    font: 20px "Avenir-Medium"
+    text-transform: uppercase
+
+  .PriceBlock__buy-button
+    padding: 0 26px
+    +sm()
+      padding: 0
+
+  .PriceBlock__button
+    cursor: pointer
+    width: 234px
+    height: 35px
+    font-size: 14px
+    background: #FF4040
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 5px
+    color: #fff
+    +sm()
+      width: 100%
+      height: 50px
+      font: 18px "Avenir-Black"
+      border-radius: 0
+
+.ContentMenu
+  font: 16px 'Avenir-Heavy'
+  li
+    cursor: pointer
+    a
+      color: #000
+      &.current
+        color: #FF4040
+
+
+.SingleMainContent
+  .ui.accordion
+    .title
+      display: none
+      font: 22px "Avenir-Heavy"
+      padding: 0 15px 15px 15px
+      margin: 13px 0
+      background: url(../img/triangle-bottom.svg) no-repeat
+      background-position: right 15px top 12px
+      border-bottom: solid 1px #E0E0E0
+      &.active
+        padding-bottom: 0
+        background: url(../img/triangle-top.svg) 100% 10px no-repeat
+        background-position: right 15px top 10px
+        border-bottom: none
+      +sm()
+        display: block
+      +xs()
+        font-size: 18px
+    .content
+      padding: 0 !important
+      +sm()
+        padding: 0 15px !important
+        border-bottom: solid 1px #E0E0E0
+
+.SingleMainContent__description
+  color: #6E6868
+  padding-bottom: 20px
+  margin-bottom: 25px
+  +sm()
+    font-size: 12px
+    margin-bottom: 0
+  +xs()
+    font-size: 10px
+  p
+    margin-bottom: 15px
+    &:last-child
+      margin-bottom: 0
+
+.SingleMainContent__photos
+  display: flex
+  flex-wrap: wrap
+  padding-bottom: 3px
+  margin-bottom: 22px
+  a
+    margin-right: 22px
+    margin-bottom: 22px
+  img
+    display: block
+
+.SingleMainContent__photos-modal
+  img
+    width: 100%
+    height: 100%
+
+
+.SingleMainContent__additional-details
+  font: 14px 'Avenir-Heavy'
+  margin-bottom: 25px
+  padding-bottom: 20px
+
+.SingleMainContent__map
+  margin-bottom: 25px
+  padding-bottom: 25px
+
+
+.SingleMainContent__comments
+
+.Comments
+  margin-bottom: 71px
+  +xs()
+    margin-bottom: 40px
+  .Comments__header
+    display: flex
+    margin-bottom: 50px
+  .Comments__comments-amount
+    font: 14px "Avenir-Heavy"
+    margin-right: 16px
+  .Comments__item
+    margin-bottom: 40px
+  .Comments__load-more
+    text-align: right
+    font: 14px 'Avenir-Heavy'
+  .Comments__load-more-text
+    cursor: pointer
+    padding-right: 24px
+    background: url(../img/triangle-bottom.svg) 100% 50% no-repeat
+
+
+.Comment
+  display: flex
+  +xs()
+    flex-direction: column
+  .Comment__meta
+    margin-right: 56px
+    +xs()
+      display: flex
+      align-items: center
+      margin-right: 0
+      margin-bottom: 15px
+  .Comment__avatar
+    width: 60px
+    height: 60px
+    background-size: cover
+    background-position: 50% 50%
+    margin-bottom: 9px
+    +xs()
+      margin-bottom: 0
+      margin-right: 20px
+  .Comment__name
+    font: 14px "Avenir-Heavy"
+  .Comment__title
+    font: 20px "Avenir-Medium"
+    +xs()
+      font-size: 18px
+      margin-bottom: 10px
+  .Comment__description
+    color: #6E6868
+    font-size: 14px
+    +xs()
+      font-size: 12px
+    p
+      margin-bottom: 20px
+      &:last-child
+        margin: 0
+  .Comment__read-more
+    display: inline
+    color: #FF4040
+    height: 100px
+
+  .Comment__description-short
+    display: block
+
+  .Comment__description-long
+    display: none
+
+
+
+.Comment__description.-show-more .Comment__read-more
+  display: inline

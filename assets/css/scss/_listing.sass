@@ -1,0 +1,236 @@
+.ListingFilter
+  position: fixed
+  top: 71px
+  z-index: 2
+  background: #fff
+  border-bottom: solid 1px #EEEEEE
+  padding: 0 35px
+  width: 100%
+  height: 50px
+  display: flex
+  align-items: center
+  display: flex
+  +sm()
+    top: 60px
+  +xs()
+    padding: 0 21px 0 15px
+
+  .ListingFilter__trigger
+    font-size: 16px
+    line-height: 1
+    padding-right: 17px
+    color: #000
+    cursor: pointer
+    margin-right: 20px
+    background: url('../img/arrow-bottom.svg') no-repeat 100% 60%
+    +xs()
+      font-size: 14px
+      margin-right: auto
+    &.-open
+      background: url('../img/arrow-top.svg') no-repeat 100% 60%
+
+  .ListingFilter__trigger-map
+    display: none
+    align-items: center
+    cursor: pointer
+    &-icon
+      margin-right: 4px
+    &-text
+      font: 14px 'Avenir-Medium'
+    +sm()
+      display: flex
+
+.ListingContent
+  display: flex
+  margin-top: 124px
+
+.ListingItems
+  padding: 35px 60px 15px 27px
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
+  width: 809px
+  +sm()
+    width: 100%
+    padding: 23px
+  +xs()
+    padding: 14px
+
+.ListingItem
+  width: 345px
+  height: 315px
+  border: solid 1px #E0E0E0
+  margin-bottom: 20px
+  +sm()
+    lost-column: 1/2
+  +xs()
+    lost-column: 1/1
+
+  .ListingItem__preview
+    position: relative
+    margin-bottom: 7px
+    width: 100%
+    height: 210px
+    overflow: hidden
+    background-size: cover
+    background-position: 50% 50%
+
+
+  .ListingItem__favorite
+    position: absolute
+    bottom: 9px
+    right: 7px
+
+
+  .ListingItem__previewRating
+    position: absolute
+    bottom: 9px
+    left: 8px
+    display: flex
+
+  .ListingItem__previewRatingStars
+    margin-right: 8px
+
+  .ListingItem__previewRatingText
+    color: #fff
+    font-size: 16px
+
+
+.ListingItem__title
+  font: 16px "Avenir-Medium"
+  margin-left: 8px
+  margin-bottom: 15px
+  a
+    color: #000
+
+
+.ListingItem__listEnrties
+  display: flex
+
+  .ListingItem__entry
+    width: 33%
+    text-align: center
+    padding: 0 15px
+    border-right: solid 1px #E0E0E0
+    &:last-child
+      border-right: none
+
+
+  .ListingItem__entryTitle
+    color: #6E6868
+    font-size: 14px
+    margin-bottom: 3px
+
+  .ListingItem__entryPrice
+    font: 14px 'Avenir-Heavy'
+
+
+.ListingMaps
+  position: absolute
+  right: 0
+  width: 634px
+  height: 100%
+  +sm()
+    display: none
+    position: fixed
+    width: 100%
+    height: 100%
+    top: 110px
+    padding: 0 23px
+  +xs()
+    padding: 0 13px
+
+
+.ListingMaps__m
+  position: fixed
+  width: 634px
+  top: auto
+  height: 100%
+  +sm()
+    width: 100%
+
+
+
+.ListingPagination
+  width: 100%
+
+
+.ListingFilter__menu
+  position: absolute
+  top: 100%
+  left: 20px
+  border: solid 1px #E0E0E0
+  background: #fff
+  padding: 18px 32px 14px 16px
+  border-radius: 3px
+  display: none
+  width: 285px
+  +sm()
+    left: 0
+  label
+    display: block
+    color: #6E6868 !important
+    font-size: 14px
+    margin-bottom: 3px
+    user-select: none
+    cursor: pointer !important
+  input[type="checkbox"]
+    margin-right: 8px
+
+.ListingFilter__fieldset
+  margin-bottom: 15px
+
+.ListingFilter__fieldsetTitle
+  font: 14px 'Avenir-Medium'
+  margin-bottom: 10px
+
+.ListingFilter__column1
+  float: left
+  width: 139px
+
+.ListingFilter__column2
+  float: left
+  width: calc(100% - 139px)
+
+.ListingFilter__menuReset
+  display: inline-block
+  margin-top: 10px
+  margin-bottom: 30px
+  color: #3BCEAC
+
+.ListingFilter__menuFooter
+  clear: both
+  text-align: right
+
+.ListingFilter__button
+  display: inline-block
+  border: none
+  border-radius: 3px
+  line-height: 38px
+  padding: 0
+  width: 149px
+  height: 38px
+  color: #fff
+  background: #FF4040
+  font-size: 14px
+
+
+.ListingFilter
+  .ui.selection.dropdown
+    font-size: 14px
+    min-width: 92px
+    min-height: 24px
+    padding: 4px 0 0 7px
+  .ui.dropdown .menu > .item
+    font-size: 14px
+    padding: 0.5rem 1rem !important
+  .ui.checkbox
+    font-size: 14px
+  .ui.selection.dropdown,
+  .ui.selection.dropdown:focus,
+  .ui.selection.active.dropdown,
+  .ui.selection.active.dropdown:hover
+    border-color: #000
+  .ui.selection.active.dropdown:hover .menu,
+  .ui.selection.active.dropdown .menu
+    border-color: #000

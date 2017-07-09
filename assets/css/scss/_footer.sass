@@ -1,0 +1,103 @@
+.Footer
+	position: relative
+	border-top: solid 1px #eee
+	display: flex
+	padding: 0 57px
+	align-items: center
+	height: 78px
+	+sm()
+		flex-direction: column
+		height: 108px
+	.Footer__socials
+		margin-right: auto
+		+sm()
+			margin-right: 0
+			margin-top: 20px
+			margin-bottom: 29px
+		+xs()
+			margin-bottom: 10px
+	.Footer__socialsItem
+		display: block
+		float: left
+		margin-right: 25px
+		+sm()
+			width: 35px
+			float: left
+			margin-right: 20px
+		+xs()
+			width: 25px
+		img
+			display: block
+			width: 100%
+	.Footer__copyright
+		color: #6E6868
+		float: right
+		+sm()
+			font-size: 10px
+			color: #6E6868
+		+xs()
+
+
+.Footer.-payment
+	position: absolute
+	width: 100%
+	bottom: 0
+	border-top: 0
+	+sm()
+		height: 45px
+		flex-direction: row
+		padding: 0 20px 0 20px
+	+xs()
+		height: 115px
+		padding: 20px 13px 0 13px
+		align-items: flex-start
+		flex-wrap: wrap
+
+.Footer__logo
+	display: none
+	+sm()
+		display: block
+		margin-top: 24px
+
+.Footer__pages
+	margin-right: auto
+	+sm()
+		display: none
+	.Footer__page
+		display: inline-block
+		margin-right: 15px
+		a
+			color: #6E6868
+			&:hover
+				color: #ff4141
+		&:last-child
+			margin-right: 0
+
+
+.Footer__phone
+	margin-right: auto
+	+xs()
+		margin-bottom: 23px
+	.Footer__phone-text
+		padding-left: 23px
+		font-size: 14px
+		background: url('../img/icon-phone.svg') 0 50% no-repeat
+
+.Footer__payment-links
+	+xs()
+		display: flex
+		width: 100%
+		align-items: flex-end
+		flex-direction: column
+	li
+		margin-right: 15px
+		display: inline-block
+		+xs()
+			margin-right: 0
+		&:last-child
+			margin-right: 0
+	a
+		font: 16px "Avenir-Medium"
+		color: #000
+		+xs()
+			font-size: 14px

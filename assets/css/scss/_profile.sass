@@ -1,0 +1,393 @@
+.ProfilePage
+  padding: 80px 57px
+  overflow: hidden
+  +sm()
+    padding: 50px 20px
+  +xs()
+    padding: 0 0
+
+.ProfilePage__aside
+  width: 290px
+  float: left
+  +sm()
+    width: 200px
+  +xs()
+    display: none
+
+.ProfilePage__content
+  margin-left: 290px
+  +sm()
+    margin-left: 250px
+  +xs()
+    margin-left: 0
+
+
+.Profile__avatar
+  width: 155px
+  height: 155px
+  border-radius: 50%
+  background-position: 50% 50%
+  background-size: cover
+  margin-bottom: 29px
+  overflow: hidden
+  &:hover .Profile__avatar-hover
+    display: block
+
+.Profile__avatar-hover
+  display: none
+  position: relative
+  width: 100%
+  height: 100%
+  background: rgba(0, 0, 0, 0.4)
+  &::after
+    content: ''
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translateY(-50%)
+    background: #9B9B9B
+    width: 1px
+    height: 59px
+
+  .Profile__avatar-change
+    position: absolute
+    top: 65px
+    left: 35px
+
+  .Profile__avatar-delete
+    position: absolute
+    top: 65px
+    right: 35px
+
+.Profile__user-name
+  font: 28px "Avenir-Heavy"
+
+.Profile__user-desc
+  color: #6E6868
+  font-size: 14px
+  margin-bottom: 20px
+
+.ProfileMenu
+  a
+    color: #000
+    font: 20px "Avenir-Medium"
+    &.active
+      color: #FF4040
+
+.ProfileProfile
+  width: 630px
+  border: solid 1px #E0E0E0
+  padding: 28px 14px
+  +sm()
+    width: 100%
+  +xs()
+    width: 100%
+    border: none
+
+.ProfileProfile__headline
+  font: 36px "Avenir-Heavy"
+  margin-bottom: 10px
+
+.ProfileProfile__form
+  fieldset
+    margin-bottom: 27px
+    label
+      display: block
+      float: left
+      width: 176px
+      font: 16px "Avenir-Medium"
+      +xs()
+        float: none
+        margin-bottom: 5px
+    .ui.input
+      +xs()
+        display: flex
+      input
+        width: 235px
+        font-size: 14px
+        color: #6E6868
+        +xs()
+          display: flex
+          width: 100%
+
+.ProfileProfile__form-date
+  display: inline-block
+  .ui.compact.selection.dropdown
+
+.ProfileProfile__form-btns
+  margin-left: 176px
+  +xs()
+    margin-left: 0
+
+.ProfileProfile__btn-cancel,
+.ProfileProfile__btn-accept
+  display: inline-flex
+  justify-content: center
+  align-items: center
+  font-size: 12px
+  border-radius: 5px
+  width: 170px
+  color: #fff
+  height: 38px
+  +sm()
+    display: flex
+    margin-bottom: 10px
+  +xs()
+    width: 100%
+    margin-bottom: 10px
+
+.ProfileProfile__btn-cancel
+  background: #FF4040
+.ProfileProfile__btn-accept
+  background: #3BCEAC
+
+//
+
+.ProfilPass
+  width: 922px
+  border: solid 1px #E0E0E0
+  padding: 28px 14px
+  display: none
+  +sm()
+    width: 100%
+
+.ProfilPass__headline
+  font: 36px "Avenir-Heavy"
+  margin-bottom: 5px
+
+.ProfilPass__description
+  font-size: 14px
+  color: #6E6868
+  margin-bottom: 31px
+
+.PassLists
+  margin-left: 60px
+  +sm()
+    margin-left: 0
+
+.PassList
+  &.-available
+    margin-bottom: 100px
+
+.PassList__headline
+  margin-bottom: 17px
+  font: 20px "Avenir-Medium"
+
+.PassRow
+  display: flex
+  color: #6E6868
+  margin-bottom: 12px
+  +sm()
+    display: block
+    border: solid 1px #E0E0E0
+    padding: 10px
+  &.-head
+    font: 14px "Avenir-Heavy"
+    color: #000
+    +sm()
+      display: none
+  &:last-child
+    margin-bottom: 0
+  div
+    flex-grow: 0
+    flex-shrink: 0
+    +sm()
+      display: block
+      width: 100% !important
+
+  .PassRow__icon
+    width: 34px
+    +sm()
+      display: none
+
+  .PassRow__title
+    width: 144px
+    +sm()
+      font: 20px "Avenir-Heavy"
+      margin-bottom: 5px
+
+  .PassRow__date
+    width: 116px
+    +sm()
+      color: #a9a9a9
+      font-size: 13px
+
+  .PassRow__entries
+    width: 121px
+    +sm()
+      width: 100px
+      color: #a9a9a9
+
+  .PassRow__available-entries
+    width: 209px
+    +sm()
+      width: 103px
+      color: #a9a9a9
+      margin-bottom: 10px
+
+  .PassRow__button
+
+.Pass__btn
+  color: #fff
+  background: #FF4040
+  width: 100px
+  height: 22px
+  display: flex
+  align-items: center
+  justify-content: center
+  font-size: 14px
+  line-height: 0
+  border-radius: 5px
+  +sm()
+    width: 30%
+    height: 30px
+
+.ProfileComments
+  display: none
+
+.ProfileComments__list
+  display: flex
+ 	flex-wrap: wrap
+
+.ProfileComments__item
+  padding: 9px 10px 0 14px
+  width: 346px
+  height: 300px
+  border: solid 1px #E0E0E0
+  margin-right: 34px
+  margin-bottom: 50px
+  &:nth-child(2n)
+    margin-right: 0
+  +sm()
+    width: 100%
+    margin-right: 0
+    margin-bottom: 20px
+  +xs()
+    width: 100%
+    margin-right: 0
+    border: none
+    border-bottom: solid 1px #E0E0E0
+    &:last-child
+      border: none
+
+
+
+.ProfileComments__wrap-type-date
+  color: #6E6868
+  font-size: 14px
+  overflow: hidden
+
+.ProfileComments__type
+  float: left
+
+.ProfileComments__date
+  float: right
+
+.ProfileComments__title
+  font: 20px "Avenir-Medium"
+  margin-bottom: 7px
+
+.ProfileComments__note
+  color: #6E6868
+  margin-bottom: 6px
+
+.ProfileComments__rating
+	margin-bottom: 12px
+
+.ProfileComments__commentaire
+  color: #6E6868
+  margin-bottom: 12px
+
+.ProfileComments__comment-title
+  font: 14px "Avenir-Heavy"
+
+.ProfileComments__comment-description
+  color: #6E6868
+
+.ProfileComments__loadMore
+  text-align: right
+  width: 726px
+  +sm()
+    width: 615px
+
+.ProfileComments__loadMore-link
+	color: #6E6868
+	padding-right: 20px
+	background: url(../img/triangle-bottom.svg) no-repeat 100% 50%
+
+
+.ProfileFavorite
+  display: none
+
+.FavoriteList
+  display: flex
+  flex-wrap: wrap
+  .FavoriteListItem
+    margin-right: 33px
+    margin-bottom: 50px
+    &:nth-child(2n)
+      margin-right: 0
+    +sm()
+      width: 100%
+      margin-right: 0
+      margin-bottom: 20px
+    +xs()
+      margin-right: 0
+
+.FavoriteListItem
+  display: block
+  width: 346px
+  height: 300px
+  border: solid 1px #E0E0E0
+  &:last-child
+    border: none
+  +xs()
+    border: none
+    border-bottom: solid 1px #E0E0E0
+    width: 100%
+
+
+
+.FavoriteListItem__image
+  position: relative
+  display: block
+  margin-bottom: 10px
+  width: 100%
+  height: 235px
+  background-size: cover
+  background-position: 50% 50%
+
+.FavoriteListItem__content
+  position: relative
+  padding: 0 14px 0 14px
+
+.FavoriteListItem__category
+  color: #6E6868
+
+.FavoriteListItem__title
+  font: 20px "Avenir-Medium"
+  a
+    color: #000
+
+.FavoriteListItem__favorite
+  position: absolute
+  right: 10px
+  bottom: 12px
+
+
+.FavoriteListItem__rating
+  position: absolute
+  bottom: 5px
+  right: 0
+
+
+.ProfileFavorite__loadMore
+  text-align: right
+  width: 726px
+  +sm()
+    width: 615px
+
+.ProfileFavorite__loadMore-link
+	color: #6E6868
+	padding-right: 20px
+	background: url(../img/triangle-bottom.svg) no-repeat 100% 50%
