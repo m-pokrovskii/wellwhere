@@ -3,8 +3,8 @@ $('.SliderGyms').slick({
   slidesToScroll: 1,
   infinite: true,
   appendArrows: $('.SliderContainer'),
-  nextArrow: '<img class="SliderGyms__nextArrow" src="img/arrow.svg" alt="">',
-  prevArrow: '<img class="SliderGyms__prevArrow" src="img/arrow.svg" alt="">',
+  nextArrow: '<img class="SliderGyms__nextArrow" src="'+data.url+'/assets/img/arrow.svg" alt="">',
+  prevArrow: '<img class="SliderGyms__prevArrow" src=".'+data.url+'/assets/img/arrow.svg" alt="">',
   responsive: [
       {
         breakpoint: 1025,

@@ -80,8 +80,11 @@ $('.ui.accordion').accordion({
 
 $('ui.modal').modal('setting', 'transition', 'scale');
 
-if (typeof $.fn.pluginname !== 'undefined') {
+if (typeof $.fn.fancybox !== 'undefined') {
   $("[data-fancybox]").fancybox({
+      clickContent : function( current, event ) {
+      		return false;
+    	},
   		buttons: [
         'thumbs',
         'close'
@@ -91,9 +94,9 @@ if (typeof $.fn.pluginname !== 'undefined') {
 
 
 $('.PriceBlock__row').on('click', function() {
-  let checkbox = $(this).find('input[type=checkbox]');
-  let checkboxCurrentValue = checkbox.prop("checked");
-  checkbox.prop( 'checked', !checkboxCurrentValue );
+  let radio = $(this).find('input[type=radio]');
+  let radioCurrentValue = radio.prop("checked");
+  radio.prop( 'checked', !radioCurrentValue );
 });
 
 

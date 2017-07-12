@@ -1,92 +1,24 @@
-<div class="HomeSection -recomended">
-  <h2 class="HomeSection__headline">Recommandé</h2>
-  <div class="SliderContainer">
-    <div class="WrapSliderGyms">
-      <div class="HomeSection__slider SliderGyms">
-        <div class="SliderGyms__slide">
-          <div class="GymListigItem">
-            <div class="GymListigItem__image">
-              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/tmp-gym-1.png" alt="Gym Title">
-            </div>
-            <div class="GymListigItem__title">
-              Wellwhere Fitness 1
-            </div>
-            <div class="GymListigItem__rating">
-              <div class="ui star rating GymRating" data-rating="3"></div>
-            </div>
-          </div>
-        </div>
-        <div class="SliderGyms__slide">
-          <div class="GymListigItem">
-            <div class="GymListigItem__image">
-              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/tmp-gym-1.png" alt="Gym Title">
-            </div>
-            <div class="GymListigItem__title">
-              Wellwhere Fitness 1
-            </div>
-            <div class="GymListigItem__rating">
-              <div class="ui star rating GymRating" data-rating="3"></div>
-            </div>
-          </div>
-        </div>
-        <div class="SliderGyms__slide">
-          <div class="GymListigItem">
-            <div class="GymListigItem__image">
-              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/tmp-gym-1.png" alt="Gym Title">
-            </div>
-            <div class="GymListigItem__title">
-              Wellwhere Fitness 1
-            </div>
-            <div class="GymListigItem__rating">
-              <div class="ui star rating GymRating" data-rating="3"></div>
-            </div>
-          </div>
-        </div>
-        <div class="SliderGyms__slide">
-          <div class="GymListigItem">
-            <div class="GymListigItem__image">
-              <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/tmp-gym-1.png" alt="Gym Title">
-            </div>
-            <div class="GymListigItem__title">
-              Wellwhere Fitness 1
-            </div>
-            <div class="GymListigItem__rating">
-              <div class="ui star rating GymRating" data-rating="3"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<?php
+  // TODO. Remove 'hide_empty' => false on production.
+  $activites = get_terms('activity', array(
+    'hide_empty' => false
+  ));
+  $menu_items = wp_get_nav_menu_items('Home Menu');
+ ?>
+<?php get_template_part('templates/home-slider') ?>
 <div class="HomeSection -activites">
   <h2 class="HomeSection__headline">Vos activités préférées</h2>
   <ul class="ActivitesList">
-      <li class="ActivitesList__item" style="background-image: url(<?php echo get_stylesheet_directory_uri() ?>/assets/img/category-img-cardio.png);">
-        <a class="ActivitesList__itemTitle" href="#">
-          <span>Cardio</span>
-        </a>
-      </li>
-      <li class="ActivitesList__item" style="background-image: url(<?php echo get_stylesheet_directory_uri() ?>/assets/img/category-img-kettlebell.png);">
-        <a class="ActivitesList__itemTitle" href="#">
-          <span>Kettlebell</span>
-        </a>
-      </li>
-      <li class="ActivitesList__item" style="background-image: url(<?php echo get_stylesheet_directory_uri() ?>/assets/img/category-img-poids-libres.png);">
-        <a class="ActivitesList__itemTitle" href="#">
-          <span>Poids Libres</span>
-        </a>
-      </li>
-      <li class="ActivitesList__item -long" style="background-image: url(<?php echo get_stylesheet_directory_uri() ?>/assets/img/category-img-yoga.png);">
-        <a class="ActivitesList__itemTitle" href="#">
-          <span>Yoga</span>
-        </a>
-      </li>
-      <li class="ActivitesList__item" style="background-image: url(<?php echo get_stylesheet_directory_uri() ?>/assets/img/category-img-heavy-ropes.png);">
-        <a class="ActivitesList__itemTitle" href="#">
-          <span>Heavy Ropes</span>
-        </a>
-      </li>
+      <?php foreach ($activites as $activity): ?>
+        <?php
+          $image = get_field('activity_image', $activity);
+        ?>
+        <li class="ActivitesList__item" style="background-image: url(<?php echo $image['sizes']['activity'] ?>);">
+          <a class="ActivitesList__itemTitle" href="<?php echo get_term_link($activity, 'activity') ?>">
+            <span><?php echo $activity->name ?></span>
+          </a>
+        </li>
+      <?php endforeach; ?>
   </ul>
 </div>
 <div class="HomeSection -partnerships">
@@ -102,11 +34,13 @@
 </div>
 <div class="HomeSection -misc">
   <ul class="MiscMenuList">
-    <li><a href="#">MON COMPTE</a></li>
-    <li><a href="#">A PROPOS</a></li>
-    <li><a href="#">OFFRE ENTREPRISES</a></li>
-    <li><a href="#">FAQ</a></li>
-    <li><a href="#">CONDITIONS GENERALES</a></li>
+    <?php foreach ($menu_items as $menu_item): ?>
+      <li>
+        <a href="<?php echo $menu_item->url ?>">
+          <?php echo $menu_item->title ?>
+        </a>
+      </li>
+    <?php endforeach; ?>
   </ul>
   <div class="MiscNewsletter">
     <label class="MiscNewsletter__emailFieldLabel" for="newsletterEmailField">

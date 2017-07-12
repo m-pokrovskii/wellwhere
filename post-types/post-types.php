@@ -21,7 +21,7 @@ function gym_init() {
 		'hierarchical'      => false,
 		'show_ui'           => true,
 		'show_in_nav_menus' => true,
-		'supports'          => array( 'title', 'editor' ),
+		'supports'          => array( 'title', 'editor', 'thumbnail', 'comments' ),
 		'has_archive'       => true,
 		'rewrite'           => true,
 		'query_var'         => true,

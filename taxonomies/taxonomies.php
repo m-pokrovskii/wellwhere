@@ -1,0 +1,153 @@
+<?php
+
+function taxonomies_init() {
+	register_taxonomy( 'activity', array( 'gym' ), array(
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_in_nav_menus' => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => true,
+		'capabilities'      => array(
+			'manage_terms'  => 'edit_posts',
+			'edit_terms'    => 'edit_posts',
+			'delete_terms'  => 'edit_posts',
+			'assign_terms'  => 'edit_posts'
+		),
+		'labels'            => array(
+			'name'                       => __( 'Activities', 'wellwhere' ),
+			'singular_name'              => _x( 'Activity', 'taxonomy general name', 'wellwhere' ),
+			'search_items'               => __( 'Search activities', 'wellwhere' ),
+			'popular_items'              => __( 'Popular activities', 'wellwhere' ),
+			'all_items'                  => __( 'All activities', 'wellwhere' ),
+			'parent_item'                => __( 'Parent activity', 'wellwhere' ),
+			'parent_item_colon'          => __( 'Parent activity:', 'wellwhere' ),
+			'edit_item'                  => __( 'Edit activity', 'wellwhere' ),
+			'update_item'                => __( 'Update activity', 'wellwhere' ),
+			'add_new_item'               => __( 'New activity', 'wellwhere' ),
+			'new_item_name'              => __( 'New activity', 'wellwhere' ),
+			'separate_items_with_commas' => __( 'Separate activities with commas', 'wellwhere' ),
+			'add_or_remove_items'        => __( 'Add or remove activities', 'wellwhere' ),
+			'choose_from_most_used'      => __( 'Choose from the most used activities', 'wellwhere' ),
+			'not_found'                  => __( 'No activities found.', 'wellwhere' ),
+			'menu_name'                  => __( 'Activities', 'wellwhere' ),
+		),
+		'show_in_rest'      => true,
+		'rest_base'         => 'activity',
+		'rest_controller_class' => 'WP_REST_Terms_Controller',
+	) );
+
+	register_taxonomy( 'city', array( 'gym' ), array(
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_in_nav_menus' => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => true,
+		'capabilities'      => array(
+			'manage_terms'  => 'edit_posts',
+			'edit_terms'    => 'edit_posts',
+			'delete_terms'  => 'edit_posts',
+			'assign_terms'  => 'edit_posts'
+		),
+		'labels'            => array(
+			'name'                       => __( 'Cities', 'wellwhere' ),
+			'singular_name'              => _x( 'City', 'taxonomy general name', 'wellwhere' ),
+			'search_items'               => __( 'Search cities', 'wellwhere' ),
+			'popular_items'              => __( 'Popular cities', 'wellwhere' ),
+			'all_items'                  => __( 'All cities', 'wellwhere' ),
+			'parent_item'                => __( 'Parent city', 'wellwhere' ),
+			'parent_item_colon'          => __( 'Parent city:', 'wellwhere' ),
+			'edit_item'                  => __( 'Edit city', 'wellwhere' ),
+			'update_item'                => __( 'Update city', 'wellwhere' ),
+			'add_new_item'               => __( 'New city', 'wellwhere' ),
+			'new_item_name'              => __( 'New city', 'wellwhere' ),
+			'separate_items_with_commas' => __( 'Separate cities with commas', 'wellwhere' ),
+			'add_or_remove_items'        => __( 'Add or remove cities', 'wellwhere' ),
+			'choose_from_most_used'      => __( 'Choose from the most used cities', 'wellwhere' ),
+			'not_found'                  => __( 'No activities found.', 'wellwhere' ),
+			'menu_name'                  => __( 'Cities', 'wellwhere' ),
+		),
+		'show_in_rest'      => true,
+		'rest_base'         => 'city',
+		'rest_controller_class' => 'WP_REST_Terms_Controller',
+	) );
+
+	register_taxonomy( 'zip', array( 'gym' ), array(
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_in_nav_menus' => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => true,
+		'capabilities'      => array(
+			'manage_terms'  => 'edit_posts',
+			'edit_terms'    => 'edit_posts',
+			'delete_terms'  => 'edit_posts',
+			'assign_terms'  => 'edit_posts'
+		),
+		'labels'            => array(
+			'name'                       => __( 'Zip', 'wellwhere' ),
+			'singular_name'              => _x( 'Zip', 'taxonomy general name', 'wellwhere' ),
+			'search_items'               => __( 'Search zips', 'wellwhere' ),
+			'popular_items'              => __( 'Popular zips', 'wellwhere' ),
+			'all_items'                  => __( 'All zips', 'wellwhere' ),
+			'parent_item'                => __( 'Parent zip', 'wellwhere' ),
+			'parent_item_colon'          => __( 'Parent zip:', 'wellwhere' ),
+			'edit_item'                  => __( 'Edit zip', 'wellwhere' ),
+			'update_item'                => __( 'Update zip', 'wellwhere' ),
+			'add_new_item'               => __( 'New zip', 'wellwhere' ),
+			'new_item_name'              => __( 'New area', 'wellwhere' ),
+			'separate_items_with_commas' => __( 'Separate zips with commas', 'wellwhere' ),
+			'add_or_remove_items'        => __( 'Add or remove zips', 'wellwhere' ),
+			'choose_from_most_used'      => __( 'Choose from the most used zips', 'wellwhere' ),
+			'not_found'                  => __( 'No zips found.', 'wellwhere' ),
+			'menu_name'                  => __( 'Zip', 'wellwhere' ),
+		),
+		'show_in_rest'      => true,
+		'rest_base'         => 'zip',
+		'rest_controller_class' => 'WP_REST_Terms_Controller',
+	) );
+
+	register_taxonomy( 'canton', array( 'gym' ), array(
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_in_nav_menus' => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => true,
+		'capabilities'      => array(
+			'manage_terms'  => 'edit_posts',
+			'edit_terms'    => 'edit_posts',
+			'delete_terms'  => 'edit_posts',
+			'assign_terms'  => 'edit_posts'
+		),
+		'labels'            => array(
+			'name'                       => __( 'Canton', 'wellwhere' ),
+			'singular_name'              => _x( 'Canton', 'taxonomy general name', 'wellwhere' ),
+			'search_items'               => __( 'Search cantons', 'wellwhere' ),
+			'popular_items'              => __( 'Popular cantons', 'wellwhere' ),
+			'all_items'                  => __( 'All cantons', 'wellwhere' ),
+			'parent_item'                => __( 'Parent canton', 'wellwhere' ),
+			'parent_item_colon'          => __( 'Parent canton:', 'wellwhere' ),
+			'edit_item'                  => __( 'Edit canton', 'wellwhere' ),
+			'update_item'                => __( 'Update canton', 'wellwhere' ),
+			'add_new_item'               => __( 'New canton', 'wellwhere' ),
+			'new_item_name'              => __( 'New canton', 'wellwhere' ),
+			'separate_items_with_commas' => __( 'Separate cantons with commas', 'wellwhere' ),
+			'add_or_remove_items'        => __( 'Add or remove cantons', 'wellwhere' ),
+			'choose_from_most_used'      => __( 'Choose from the most used cantons', 'wellwhere' ),
+			'not_found'                  => __( 'No cantons found.', 'wellwhere' ),
+			'menu_name'                  => __( 'Canton', 'wellwhere' ),
+		),
+		'show_in_rest'      => true,
+		'rest_base'         => 'a',
+		'rest_controller_class' => 'WP_REST_Terms_Controller',
+	) );
+
+}
+add_action( 'init', 'taxonomies_init' );

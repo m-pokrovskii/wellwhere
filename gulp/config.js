@@ -1,7 +1,7 @@
 var util = require('gulp-util');
 
 var production = util.env.production || util.env.prod || false;
-var destPath = 'build';
+var destPath = './';
 
 var config = {
     env       : 'development',
@@ -30,12 +30,12 @@ var config = {
     },
     dest: {
         root : './',
-        // html : destPath,
+        php  : destPath,
         css  : destPath + 'assets/css',
         js   : destPath + 'assets/js',
-        // img  : destPath + '/img',
-        // fonts: destPath + '/fonts',
-        // lib  : destPath + '/lib'
+        img  : destPath + 'assets/img',
+        fonts: destPath + 'assets/fonts',
+        lib  : destPath + 'assets/lib'
     },
 
     setEnv: function(env) {

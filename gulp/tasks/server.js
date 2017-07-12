@@ -8,15 +8,17 @@ var config = require('../config');
 
 gulp.task('server', function() {
     server.init({
-        server: {
-            baseDir: !config.production ? [config.dest.root, config.src.root] : config.dest.root,
-            directory: false,
-            serveStaticOptions: {
-                extensions: ['html']
-            }
-        },
+        proxy: "wellwhere.lm",
+        host: "wellwhere.lm",
+        // server: {
+        //     baseDir: !config.production ? [config.dest.root, config.src.root] : config.dest.root,
+        //     directory: false,
+        //     serveStaticOptions: {
+        //         extensions: ['html']
+        //     }
+        // },
         files: [
-            config.dest.html + '/*.html',
+            config.dest.php + '**/*.php',
             config.dest.css + '/*.css',
             config.dest.img + '/**/*'
         ],
@@ -27,8 +29,10 @@ gulp.task('server', function() {
         open: Boolean(util.env.open),
         notify: false,
         ghostMode: false,
-        online: Boolean(util.env.tunnel),
-        tunnel: util.env.tunnel || null
+        cors: true
+        // online: Boolean(util.env.tunnel),
+        // injectChanges: true,
+        // tunnel: util.env.tunnel || null
     });
 });
 

@@ -1,7 +1,7 @@
 <div class="HeaderWrap">
   <div class="Header -md">
-    <div class="Header__logo"></div>
-    <div class="Header__search">
+    <a href="/" class="Header__logo"></a>
+    <div class="Header__search ui right icon loading">
       <input
       class="Header__input-search prompt"
       placeholder="Où voulez-vous vous entraîner?"
@@ -39,8 +39,11 @@
       <div class="SmMenu__search">
         <label class="SmMenu__searchLabel" for="SmMenu__searchField">Rechercher</label>
         <div class="SmMenu__searchForm">
-          <input class="SmMenu__searchField"  placeholder="Où voulez-vous vous entrainer ?" type="text" name="SmMenu__searchField" value="">
+          <input class="SmMenu__searchField prompt"  placeholder="Où voulez-vous vous entrainer ?" type="text" name="SmMenu__searchField" value="">
           <button type="button" class="SmMenu__searchButton" name="SmMenu__searchButton"></button>
+        </div>
+        <div class="ui fluid loading search">
+          <div class="results"></div>
         </div>
       </div>
       <ul class="SmMenu__menu1">

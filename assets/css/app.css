@@ -1,2 +1,4044 @@
-.disable-select{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;vertical-align:baseline}fieldset,img{margin:0;padding:0;vertical-align:baseline}html{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;box-sizing:border-box;height:100%}a img,fieldset,img{border:none}input[type=email],input[type=tel],input[type=text],textarea{-webkit-appearance:none}.PriceBlock .PriceBlock__row label,button,input[type=submit]{cursor:pointer}button::-moz-focus-inner,input[type=submit]::-moz-focus-inner{padding:0;border:0}textarea{overflow:auto}button,input{margin:0;padding:0;border:0}a,a:focus,button,div,h1,h2,h3,h4,h5,h6,input,select,span,textarea{outline:none}ol,ul{list-style-type:none}table{border-spacing:0;border-collapse:collapse;width:100%}*,:after,:before{box-sizing:inherit}@font-face{font-family:'Avenir-Black';src:url(../fonts/Avenir-Black.eot);src:url(../fonts/Avenir-Black.woff2) format("woff2"),url(../fonts/Avenir-Black.woff) format("woff"),url(../fonts/Avenir-Black.ttf) format("truetype"),url(../fonts/Avenir-Black.svg#Avenir-Black) format("svg"),url(../fonts/Avenir-Black.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-BlackOblique';src:url(../fonts/Avenir-BlackOblique.eot);src:url(../fonts/Avenir-BlackOblique.woff2) format("woff2"),url(../fonts/Avenir-BlackOblique.woff) format("woff"),url(../fonts/Avenir-BlackOblique.ttf) format("truetype"),url(../fonts/Avenir-BlackOblique.svg#Avenir-BlackOblique) format("svg"),url(../fonts/Avenir-BlackOblique.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-Book';src:url(../fonts/Avenir-Book.eot);src:url(../fonts/Avenir-Book.woff2) format("woff2"),url(../fonts/Avenir-Book.woff) format("woff"),url(../fonts/Avenir-Book.ttf) format("truetype"),url(../fonts/Avenir-Book.svg#Avenir-Book) format("svg"),url(../fonts/Avenir-Book.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-BookOblique';src:url(../fonts/Avenir-BookOblique.eot);src:url(../fonts/Avenir-BookOblique.woff2) format("woff2"),url(../fonts/Avenir-BookOblique.woff) format("woff"),url(../fonts/Avenir-BookOblique.ttf) format("truetype"),url(../fonts/Avenir-BookOblique.svg#Avenir-BookOblique) format("svg"),url(../fonts/Avenir-BookOblique.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-Heavy';src:url(../fonts/Avenir-Heavy.eot);src:url(../fonts/Avenir-Heavy.woff2) format("woff2"),url(../fonts/Avenir-Heavy.woff) format("woff"),url(../fonts/Avenir-Heavy.ttf) format("truetype"),url(../fonts/Avenir-Heavy.svg#Avenir-Heavy) format("svg"),url(../fonts/Avenir-Heavy.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-HeavyOblique';src:url(../fonts/Avenir-HeavyOblique.eot);src:url(../fonts/Avenir-HeavyOblique.woff2) format("woff2"),url(../fonts/Avenir-HeavyOblique.woff) format("woff"),url(../fonts/Avenir-HeavyOblique.ttf) format("truetype"),url(../fonts/Avenir-HeavyOblique.svg#Avenir-HeavyOblique) format("svg"),url(../fonts/Avenir-HeavyOblique.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-Light';src:url(../fonts/Avenir-Light.eot);src:url(../fonts/Avenir-Light.woff2) format("woff2"),url(../fonts/Avenir-Light.woff) format("woff"),url(../fonts/Avenir-Light.ttf) format("truetype"),url(../fonts/Avenir-Light.svg#Avenir-Light) format("svg"),url(../fonts/Avenir-Light.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-LightOblique';src:url(../fonts/Avenir-LightOblique.eot);src:url(../fonts/Avenir-LightOblique.woff2) format("woff2"),url(../fonts/Avenir-LightOblique.woff) format("woff"),url(../fonts/Avenir-LightOblique.ttf) format("truetype"),url(../fonts/Avenir-LightOblique.svg#Avenir-LightOblique) format("svg"),url(../fonts/Avenir-LightOblique.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-Medium';src:url(../fonts/Avenir-Medium.eot);src:url(../fonts/Avenir-Medium.woff2) format("woff2"),url(../fonts/Avenir-Medium.woff) format("woff"),url(../fonts/Avenir-Medium.ttf) format("truetype"),url(../fonts/Avenir-Medium.svg#Avenir-Medium) format("svg"),url(../fonts/Avenir-Medium.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-MediumOblique';src:url(../fonts/Avenir-MediumOblique.eot);src:url(../fonts/Avenir-MediumOblique.woff2) format("woff2"),url(../fonts/Avenir-MediumOblique.woff) format("woff"),url(../fonts/Avenir-MediumOblique.ttf) format("truetype"),url(../fonts/Avenir-MediumOblique.svg#Avenir-MediumOblique) format("svg"),url(../fonts/Avenir-MediumOblique.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-Oblique';src:url(../fonts/Avenir-Oblique.eot);src:url(../fonts/Avenir-Oblique.woff2) format("woff2"),url(../fonts/Avenir-Oblique.woff) format("woff"),url(../fonts/Avenir-Oblique.ttf) format("truetype"),url(../fonts/Avenir-Oblique.svg#Avenir-Oblique) format("svg"),url(../fonts/Avenir-Oblique.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'Avenir-Roman';src:url(../fonts/Avenir-Roman.eot);src:url(../fonts/Avenir-Roman.woff2) format("woff2"),url(../fonts/Avenir-Roman.woff) format("woff"),url(../fonts/Avenir-Roman.ttf) format("truetype"),url(../fonts/Avenir-Roman.svg#Avenir-Roman) format("svg"),url(../fonts/Avenir-Roman.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'KohinoorDevanagari-Bold';src:url(../fonts/KohinoorDevanagari-Bold.eot);src:url(../fonts/KohinoorDevanagari-Bold.woff2) format("woff2"),url(../fonts/KohinoorDevanagari-Bold.woff) format("woff"),url(../fonts/KohinoorDevanagari-Bold.ttf) format("truetype"),url(../fonts/KohinoorDevanagari-Bold.svg#KohinoorDevanagari-Bold) format("svg"),url(../fonts/KohinoorDevanagari-Bold.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'KohinoorDevanagari-Light';src:url(../fonts/KohinoorDevanagari-Light.eot);src:url(../fonts/KohinoorDevanagari-Light.woff2) format("woff2"),url(../fonts/KohinoorDevanagari-Light.woff) format("woff"),url(../fonts/KohinoorDevanagari-Light.ttf) format("truetype"),url(../fonts/KohinoorDevanagari-Light.svg#KohinoorDevanagari-Light) format("svg"),url(../fonts/KohinoorDevanagari-Light.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'KohinoorDevanagari-Medium';src:url(../fonts/KohinoorDevanagari-Medium.eot);src:url(../fonts/KohinoorDevanagari-Medium.woff2) format("woff2"),url(../fonts/KohinoorDevanagari-Medium.woff) format("woff"),url(../fonts/KohinoorDevanagari-Medium.ttf) format("truetype"),url(../fonts/KohinoorDevanagari-Medium.svg#KohinoorDevanagari-Medium) format("svg"),url(../fonts/KohinoorDevanagari-Medium.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'KohinoorDevanagari-Regular';src:url(../fonts/KohinoorDevanagari-Regular.eot);src:url(../fonts/KohinoorDevanagari-Regular.woff2) format("woff2"),url(../fonts/KohinoorDevanagari-Regular.woff) format("woff"),url(../fonts/KohinoorDevanagari-Regular.ttf) format("truetype"),url(../fonts/KohinoorDevanagari-Regular.svg#KohinoorDevanagari-Regular) format("svg"),url(../fonts/KohinoorDevanagari-Regular.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}@font-face{font-family:'KohinoorDevanagari-Semibold';src:url(../fonts/KohinoorDevanagari-Semibold.eot);src:url(../fonts/KohinoorDevanagari-Semibold.woff2) format("woff2"),url(../fonts/KohinoorDevanagari-Semibold.woff) format("woff"),url(../fonts/KohinoorDevanagari-Semibold.ttf) format("truetype"),url(../fonts/KohinoorDevanagari-Semibold.svg#KohinoorDevanagari-Semibold) format("svg"),url(../fonts/KohinoorDevanagari-Semibold.eot?#iefix) format("embedded-opentype");font-weight:400;font-style:normal}body{background:#fff;line-height:1.25;font:14px "Avenir-Book"}a{color:#ff4141;text-decoration:none}input::-webkit-input-placeholder{color:#e0e0e0;font:14px "Avenir"}input::-moz-placeholder{color:#e0e0e0;font:14px "Avenir"}input:-ms-input-placeholder{color:#e0e0e0;font:14px "Avenir"}input::placeholder{color:#e0e0e0;font:14px "Avenir"}.HeaderWrap{position:fixed;z-index:3;left:0;right:0;top:0}.HeaderWrap.-absolute{position:absolute}.Header{max-width:1440px;margin:0 auto;background:#fff;display:-ms-flexbox;display:flex;height:71px;-ms-flex-align:center;align-items:center;border-bottom:solid 1px #eee}.Header__search{margin:0 auto;-ms-flex-positive:1;flex-grow:1;position:relative}.Header__input-search{background:url(../img/search-mini-icon.svg) no-repeat 42px 50%;width:100%;height:70px;padding-left:70px;border-left:1px solid #e0e0e0;font-size:14px}.Header__sm-opener{position:absolute;left:10px}.Header__logo{width:288px;height:71px;background:url(../img/logo.svg) no-repeat 40px 50%}.Header__loginLink{padding:0 33px 0 26px}.Header__loginLink a{text-decoration:none;font:16px "Avenir-Medium";color:#000}.Header__loginLink a:hover{text-decoration:underline}.Header__right{border-left:solid 1px #efefef;height:71px;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;padding:0 0 0 40px}.Header.-sm{height:60px}.HeaderTitle{font:20px "Avenir-Medium";color:#000}.App.-partnership .Header.-md,.App.-payment .Header.-md{display:-ms-flexbox;display:flex}.SmOpener,.SmOpener span{-ms-transform:rotate(0deg);transform:rotate(0deg)}.SmOpener{cursor:pointer;width:25px;height:17px;position:relative;transition:.5s ease-in-out}.SmOpener span{position:absolute;display:block;height:1px;width:100%;background:#979797;border-radius:9px;opacity:1;left:0;transition:.25s ease-in-out}.SmOpener span:nth-child(1){top:0}.SmOpener span:nth-child(2),.SmOpener span:nth-child(3){top:6px}.SmOpener span:nth-child(4){top:12px}.SmOpener.open span:nth-child(1){top:1px;width:0%;left:50%}.SmOpener.open span:nth-child(2){-ms-transform:rotate(45deg);transform:rotate(45deg)}.SmOpener.open span:nth-child(3){-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.SmOpener.open span:nth-child(4){top:1px;width:0%;left:50%}.SmMenu{display:none;position:absolute;top:60px;z-index:2;width:320px;background:#fff;padding:20px 53px 16px 16px;border:solid 1px #efefef}.SmMenu__menu1,.SmMenu__menu2{font-size:16px;padding-bottom:10px;margin-bottom:10px;border-bottom:solid 1px #efefef}.SmMenu__menu1 a,.SmMenu__menu2 a{color:#6e6868}.ContentMenu li a.current,.SmMenu__menu1 a.active,.SmMenu__menu2 a.active{color:#ff4040}.SmMenu__socials{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;-ms-flex-align:center;align-items:center}.SmMenu__socialsItem{margin-left:5px}.SmMenu__user{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;margin-bottom:30px}.SmMenu__userAvatar{width:55px;height:55px;background-size:cover;background-position:50% 50%;margin-right:10px}.SmMenu__userTitle{font:14px 'Avenir-Heavy';margin-bottom:1px}.SmMenu__userDesc{font-size:10px;color:#6e6868}.SmMenu__search{padding-bottom:15px;border-bottom:solid 1px #efefef;margin-bottom:10px}.SmMenu__searchForm{display:-ms-flexbox;display:flex}.SmMenu__searchLabel{margin-bottom:11px;display:block}.SmMenu__searchField{border:solid 1px #efefef;height:31px;width:210px;border-right:none;padding-left:7px;color:#6e6868;font-size:11px;border-radius:5px 0 0 5px}.SmMenu__searchField::-webkit-input-placeholder{font-size:10px}.SmMenu__searchField::-moz-placeholder{font-size:10px}.SmMenu__searchField:-ms-input-placeholder{font-size:10px}.SmMenu__searchField::placeholder{font-size:10px}.SmMenu__searchButton{width:31px;height:31px;background:url(../img/search-mini-icon-mobile.svg) #3bceac no-repeat 50% 50%}.ButtonPartner{cursor:pointer;width:212px;height:45px;border:solid 1px red;color:#ff4141;text-transform:uppercase;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;background:#fff;font:16px "KohinoorDevanagari-Semibold";transition:all .3s}.ButtonPartner:hover{background:#ff4141;color:#fff}.Hero{position:relative;height:588px;background:url(../img/hero-image.png) no-repeat 50% 50%;background-size:cover}.Hero__search,.Hero__slogan{position:absolute;left:0;right:0;margin:0 auto}.Hero__slogan{color:#fff;font:48px/1.375 'Avenir-Heavy';text-align:center;width:924px;top:160px}.Hero__search{top:319px;width:682px}.HeroSearch__field{position:relative;margin-bottom:19px}.HeroSearch__field input{background:url(../img/search-mini-icon.svg) #fff no-repeat 12px 50%;width:100%;height:45px;border:solid 1px #e0e0e0;border-radius:5px;padding-left:40px}.HeroSearch__helper{text-align:center;color:#fff;font-size:14px}.HeroFeatures{display:-ms-flexbox;display:flex;width:100%;height:100px;background:#e0e0e0;margin-bottom:42px}.HeroFeatures__item{width:33.33%;padding:18px 42px 18px 0;border-right:solid 1px #fff;display:-ms-flexbox;display:flex}.HeroFeatures__item:last-child{border-right:none}.HeroFeatures__icon{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;padding:0 69px 0 55px}.HeroFeatures__icon img{width:55px}.HeroFeatures__title{font:25px 'Avenir-Heavy';line-height:.7;margin-bottom:5px}.HeroFeatures__desc{color:#868282}.HomeSection{margin-bottom:150px;padding:0 57px}.HomeSection__headline{margin-bottom:20px;font:36px "Avenir-Heavy"}.HomeSection.-activites{padding-bottom:100px;margin-bottom:50px;border-bottom:solid 1px #eee}.HomeSection.-partnerships,.HomeSection.-reviews{margin-bottom:53px;border-bottom:solid 1px #eee;padding-bottom:87px}.HomeSection.-partnerships{padding-bottom:41px;margin-bottom:48px}.HomeSection.-partnerships .HomeSection__headline{text-transform:uppercase;font:20px 'Avenir-Heavy';margin-bottom:13px}.HomeSection.-misc{display:-ms-flexbox;display:flex;margin-bottom:49px}.SliderContainer,.WrapSliderGyms{position:relative}.WrapSliderGyms{overflow:hidden}.SliderGyms{margin-right:-54px;display:none}.SliderGyms.slick-initialized{display:block}.SliderGyms__nextArrow{position:absolute;top:50%;right:-30px;-ms-transform:translateY(-50%);transform:translateY(-50%)}.SliderGyms__prevArrow{position:absolute;z-index:1;top:50%;left:-30px;-ms-transform:translateY(-50%) rotate(180deg);transform:translateY(-50%) rotate(180deg)}.GymListigItem{margin-right:54px}.GymListigItem__image{margin-bottom:21px;overflow:hidden}.GymListigItem__image img{width:100%}.GymListigItem__title{font:20px 'Avenir-Medium'}.ActivitesList{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.ActivitesList__item{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/3 - (55px - 55px*1/3));width:calc(100%*1/3 - (55px - 55px*1/3));position:relative;height:200px;margin-bottom:30px;background:50% 50% no-repeat;background-size:cover}.ActivitesList__item:nth-child(n){margin-right:55px;margin-left:0}.ActivitesList__item:last-child{margin-right:0}.ActivitesList__item:nth-child(3n){margin-right:0;margin-left:auto}.ActivitesList__itemTitle{position:absolute;height:100%;width:100%}.ActivitesList__itemTitle span{position:absolute;right:0;bottom:0;text-transform:uppercase;color:#fff;font:28px 'Avenir-Heavy'}.ReviewsList{display:-ms-flexbox;display:flex}.ReviewsListItem{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/2 - (10% - 10%*1/2));width:calc(100%*1/2 - (10% - 10%*1/2));float:left}.ReviewsListItem:nth-child(n){margin-right:10%;margin-left:0}.ReviewsListItem:last-child{margin-right:0}.ReviewsListItem:nth-child(2n){margin-right:0;margin-left:auto}.ReviewsListItem__image{float:left;width:180px;height:180px;border-radius:50%;background:no-repeat 50% 50%;background-size:cover;margin-right:50px}.ReviewsListItem__content{overflow:hidden}.ReviewsListItem__title{text-transform:uppercase;font:20px 'Avenir-Heavy';margin-bottom:8px}.ReviewsListItem__desc{font-size:14px;margin-bottom:12px;color:#6e6868}.HomePartnershipBlock{display:-ms-flexbox;display:flex}.HomePartnershipBlock__desc{width:703px;margin-right:auto;color:#6e6868}.MiscMenuList li{margin-bottom:4px}.MiscMenuList a{color:#6e6868;text-transform:uppercase}.MiscMenuList a:hover{color:#ff4141;text-decoration:underline}.MiscNewsletter{width:604px;margin-left:auto}.MiscNewsletter__emailFieldLabel{display:block;font:14px "Avenir-Heavy";margin-bottom:13px;text-transform:uppercase}.MiscNewsletter__emailField{width:437px;height:46px;border:solid 1px #e0e0e0;float:left;padding:0 10px}.MiscNewsletter__button{float:left;background:#e0e0e0;color:#fff;width:166px;height:46px}.GymRating>.icon{margin-right:3px!important}.GymRating>.icon::before{content:""!important;display:block;width:20px;height:20px;background:url(../img/star-empty.svg) no-repeat!important;background-size:20px 20px}.GymRating.-white>.icon.selected,.GymRating.-white>.icon::before{background-image:url(../img/star-white-empty.svg)!important}.GymRating>.icon.active::before{background-image:url(../img/star-full.svg)!important}.GymRating.-white>.icon.active::before{background-image:url(../img/star-white-full.svg)!important}.GymRating>.icon.selected::before{background-image:url(../img/star-full-selected.svg)!important}.GymFavorite{width:24px;height:24px}.GymFavorite>.icon,.GymRating>.icon{background:0 0!important}.GymFavorite>.icon::before{content:""!important;display:block;width:24px;height:24px;background-image:url(../img/icon-heart.svg)!important;background-size:24px 24px}.GymFavorite>.icon.active::before,.GymFavorite>.icon.selected::before{background-image:url(../img/icon-heart-full.svg)!important}.SignlePage__hero-favorite>.icon::before{width:40px;height:40px;background-size:40px 40px}.ListingFilter{position:fixed;top:71px;z-index:2;background:#fff;border-bottom:solid 1px #eee;padding:0 35px;width:100%;height:50px;-ms-flex-align:center;align-items:center}.ListingFilter .ListingFilter__trigger{font-size:16px;line-height:1;padding-right:17px;color:#000;cursor:pointer;margin-right:20px;background:url(../img/arrow-bottom.svg) no-repeat 100% 60%}.ListingFilter .ListingFilter__trigger.-open{background:url(../img/arrow-top.svg) no-repeat 100% 60%}.ListingFilter .ListingFilter__trigger-map{display:none;-ms-flex-align:center;align-items:center;cursor:pointer}.ListingFilter .ListingFilter__trigger-map-icon{margin-right:4px}.ListingFilter .ListingFilter__trigger-map-text{font:14px 'Avenir-Medium'}.ListingContent,.ListingFilter,.ListingItems{display:-ms-flexbox;display:flex}.ListingContent{margin-top:124px}.ListingItems{padding:35px 60px 15px 27px;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-pack:justify;justify-content:space-between;width:809px}.ListingItem{width:345px;height:315px;border:solid 1px #e0e0e0;margin-bottom:20px}.ListingItem .ListingItem__preview{position:relative;margin-bottom:7px;width:100%;height:210px;overflow:hidden;background-size:cover;background-position:50% 50%}.ListingItem .ListingItem__favorite{position:absolute;bottom:9px;right:7px}.ListingItem .ListingItem__previewRating{position:absolute;bottom:9px;left:8px;display:-ms-flexbox;display:flex}.ListingFilter__menu input[type=checkbox],.ListingItem .ListingItem__previewRatingStars{margin-right:8px}.ListingItem .ListingItem__previewRatingText{color:#fff;font-size:16px}.ListingItem__title{font:16px "Avenir-Medium";margin-left:8px;margin-bottom:15px}.ContentMenu li a,.ListingItem__title a{color:#000}.ListingItem__listEnrties{display:-ms-flexbox;display:flex}.ListingItem__listEnrties .ListingItem__entry{width:33%;text-align:center;padding:0 15px;border-right:solid 1px #e0e0e0}.ListingItem__listEnrties .ListingItem__entry:last-child{border-right:none}.ListingFilter__menu label,.ListingItem__listEnrties .ListingItem__entryTitle{color:#6e6868;font-size:14px;margin-bottom:3px}.ListingItem__listEnrties .ListingItem__entryPrice{font:14px 'Avenir-Heavy'}.ListingMaps{position:absolute;right:0;width:634px;height:100%}.ListingMaps__m{position:fixed;width:634px;top:auto;height:100%}.ListingPagination{width:100%}.ListingFilter__menu{position:absolute;top:100%;left:20px;border:solid 1px #e0e0e0;background:#fff;padding:18px 32px 14px 16px;border-radius:3px;display:none;width:285px}.ListingFilter__menu label{display:block;color:#6e6868!important;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:pointer!important}.ListingFilter__fieldset,.SingleMainContent__description p{margin-bottom:15px}.ListingFilter__fieldsetTitle{font:14px 'Avenir-Medium';margin-bottom:10px}.ListingFilter__column1{float:left;width:139px}.ListingFilter__column2{float:left;width:calc(100% - 139px)}.ListingFilter__menuReset{display:inline-block;margin-top:10px;margin-bottom:30px;color:#3bceac}.ListingFilter__menuFooter{clear:both;text-align:right}.ListingFilter__button{display:inline-block;border:none;border-radius:3px;line-height:38px;padding:0;width:149px;height:38px;color:#fff;background:#ff4040;font-size:14px}.ListingFilter .ui.selection.dropdown{font-size:14px;min-width:92px;min-height:24px;padding:4px 0 0 7px}.ListingFilter .ui.dropdown .menu>.item{font-size:14px;padding:.5rem 1rem!important}.ListingFilter .ui.checkbox{font-size:14px}.ListingFilter .ui.selection.active.dropdown,.ListingFilter .ui.selection.active.dropdown:hover,.ListingFilter .ui.selection.dropdown,.ListingFilter .ui.selection.dropdown:focus{border-color:#000}.ListingFilter .ui.selection.active.dropdown .menu,.ListingFilter .ui.selection.active.dropdown:hover .menu{border-color:#000}.SignlePage__hero{position:relative;width:100%;height:580px}.SinglePage__hero-image{width:100%;height:100%;background-repeat:no-repeat;background-position:50% 50%;background-size:cover}.SignlePage__hero-favorite{position:absolute;right:32px;bottom:28px;width:40px;height:40px}.SinglePage__content-container{padding:0 57px}.SignlePage__headline{position:relative;padding:23px 0 27px 287px;margin:0 -57px 26px;border-bottom:solid 1px #e0e0e0;background:#fff}.SignlePage__headline.ui.sticky.fixed.top{margin-left:0;margin-right:0}.SignlePage__headline.ui.sticky.fixed.top+.SignlePage__columns_container{margin-top:169px}.SignlePage__headline .SignlePage__headline-title{font:48px 'Avenir-Heavy'}.SinglePage__headling-meta{-ms-flex-align:center;align-items:center;margin-right:51px}.SinglePage__headling-meta .SinglePage__headling-meta-address{font:20px "Avenir-Medium";margin-right:11px;margin-bottom:3px}.SignlePage__columns_container,.SinglePage__headling-meta{display:-ms-flexbox;display:flex}.SignlePage__sidebar.-left{width:229px;padding-right:86px}.SignlePage__sidebar.-center{position:relative;width:805px;padding-right:86px}.PriceBlock{position:absolute;top:-100px;left:100%}.PriceBlock .ui.sticky{width:290px;height:400px;min-height:400px!important;border:solid 1px #e0e0e0;background:#fff}.PriceBlock .PriceBlock__title{font:28px 'Avenir-Heavy';padding:15px 26px 20px}.PriceBlock .PriceBlock__price-list{margin-bottom:55px}.PriceBlock .PriceBlock__row{display:-ms-flexbox;display:flex;height:62px;padding:0 26px;-ms-flex-align:center;align-items:center;border-bottom:solid 1px #efefef;cursor:pointer}.PriceBlock .PriceBlock__ticket{margin-right:auto;font:14px "Avenir-Heavy"}.PriceBlock .PriceBlock__price{font:20px "Avenir-Medium";text-transform:uppercase}.PriceBlock .PriceBlock__buy-button{padding:0 26px}.PriceBlock .PriceBlock__button{cursor:pointer;width:234px;height:35px;font-size:14px;background:#ff4040;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;border-radius:5px;color:#fff}.ContentMenu{font:16px 'Avenir-Heavy'}.ContentMenu li{cursor:pointer}.SingleMainContent .ui.accordion .title{display:none;font:22px "Avenir-Heavy";padding:0 15px 15px;margin:13px 0;background:url(../img/triangle-bottom.svg) no-repeat;background-position:right 15px top 12px;border-bottom:solid 1px #e0e0e0}.SingleMainContent .ui.accordion .title.active{padding-bottom:0;background:url(../img/triangle-top.svg) 100% 10px no-repeat;background-position:right 15px top 10px;border-bottom:none}.SingleMainContent .ui.accordion .content{padding:0!important}.SingleMainContent__description{color:#6e6868;padding-bottom:20px;margin-bottom:25px}.SingleMainContent__description p:last-child{margin-bottom:0}.SingleMainContent__photos{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;padding-bottom:3px;margin-bottom:22px}.SingleMainContent__photos a{margin-right:22px;margin-bottom:22px}.SingleMainContent__photos img{display:block}.SingleMainContent__photos-modal img{width:100%;height:100%}.SingleMainContent__additional-details{font:14px 'Avenir-Heavy';margin-bottom:25px;padding-bottom:20px}.SingleMainContent__map{margin-bottom:25px;padding-bottom:25px}.Comments{margin-bottom:71px}.Comments .Comments__header{display:-ms-flexbox;display:flex;margin-bottom:50px}.Comments .Comments__comments-amount{font:14px "Avenir-Heavy";margin-right:16px}.Comments .Comments__item{margin-bottom:40px}.Comments .Comments__load-more{text-align:right;font:14px 'Avenir-Heavy'}.Comments .Comments__load-more-text{cursor:pointer;padding-right:24px;background:url(../img/triangle-bottom.svg) 100% 50% no-repeat}.Comment{display:-ms-flexbox;display:flex}.Comment .Comment__meta{margin-right:56px}.Comment .Comment__avatar{width:60px;height:60px;background-size:cover;background-position:50% 50%;margin-bottom:9px}.Comment .Comment__name{font:14px "Avenir-Heavy"}.Comment .Comment__title{font:20px "Avenir-Medium"}.Comment .Comment__description{color:#6e6868;font-size:14px}.Comment .Comment__description p{margin-bottom:20px}.Comment .Comment__description p:last-child{margin:0}.Comment .Comment__read-more{display:inline;color:#ff4040;height:100px}.Comment .Comment__description-short{display:block}.Comment .Comment__description-long{display:none}.Comment__description.-show-more .Comment__read-more{display:inline}.ProfilePage{padding:80px 57px;overflow:hidden}.ProfilePage__aside{width:290px;float:left}.ProfilePage__content{margin-left:290px}.Profile__avatar{width:155px;height:155px;border-radius:50%;background-position:50% 50%;background-size:cover;margin-bottom:29px;overflow:hidden}.Profile__avatar:hover .Profile__avatar-hover{display:block}.Profile__avatar-hover{display:none;position:relative;width:100%;height:100%;background:rgba(0,0,0,.4)}.Profile__avatar-hover::after{content:'';position:absolute;top:50%;left:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);background:#9b9b9b;width:1px;height:59px}.Profile__avatar-hover .Profile__avatar-change{position:absolute;top:65px;left:35px}.Profile__avatar-hover .Profile__avatar-delete{position:absolute;top:65px;right:35px}.Profile__user-name{font:28px "Avenir-Heavy"}.Profile__user-desc{color:#6e6868;font-size:14px;margin-bottom:20px}.ProfileMenu a{color:#000;font:20px "Avenir-Medium"}.ProfileMenu a.active{color:#ff4040}.ProfileProfile{width:630px;border:solid 1px #e0e0e0;padding:28px 14px}.ProfileProfile__headline{font:36px "Avenir-Heavy";margin-bottom:10px}.ProfileProfile__form fieldset{margin-bottom:27px}.ProfileProfile__form fieldset label{display:block;float:left;width:176px;font:16px "Avenir-Medium"}.ProfileProfile__form fieldset .ui.input input{width:235px;font-size:14px;color:#6e6868}.ProfileProfile__form-date{display:inline-block}.ProfileProfile__form-btns{margin-left:176px}.ProfileProfile__btn-accept,.ProfileProfile__btn-cancel{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;font-size:12px;border-radius:5px;width:170px;color:#fff;height:38px}.ProfileProfile__btn-cancel{background:#ff4040}.ProfileProfile__btn-accept{background:#3bceac}.ProfilPass{width:922px;border:solid 1px #e0e0e0;padding:28px 14px;display:none}.ProfilPass__headline{font:36px "Avenir-Heavy";margin-bottom:5px}.ProfilPass__description{font-size:14px;color:#6e6868;margin-bottom:31px}.PassLists{margin-left:60px}.PassList.-available{margin-bottom:100px}.PassList__headline{margin-bottom:17px;font:20px "Avenir-Medium"}.PassRow{display:-ms-flexbox;display:flex;color:#6e6868;margin-bottom:12px}.PassRow.-head{font:14px "Avenir-Heavy";color:#000}.PassRow:last-child{margin-bottom:0}.PassRow div{-ms-flex-positive:0;flex-grow:0;-ms-flex-negative:0;flex-shrink:0}.PassRow .PassRow__icon{width:34px}.PassRow .PassRow__title{width:144px}.PassRow .PassRow__date{width:116px}.PassRow .PassRow__entries{width:121px}.PassRow .PassRow__available-entries{width:209px}.Pass__btn{color:#fff;background:#ff4040;width:100px;height:22px;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;font-size:14px;line-height:0;border-radius:5px}.ProfileComments{display:none}.ProfileComments__list{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.ProfileComments__item{padding:9px 10px 0 14px;width:346px;height:300px;border:solid 1px #e0e0e0;margin-right:34px;margin-bottom:50px}.FavoriteList .FavoriteListItem:nth-child(2n),.ProfileComments__item:nth-child(2n){margin-right:0}.ProfileComments__wrap-type-date{color:#6e6868;font-size:14px;overflow:hidden}.ProfileComments__type{float:left}.ProfileComments__date{float:right}.ProfileComments__title{font:20px "Avenir-Medium";margin-bottom:7px}.ProfileComments__note{color:#6e6868;margin-bottom:6px}.ProfileComments__rating{margin-bottom:12px}.ProfileComments__commentaire{color:#6e6868;margin-bottom:12px}.ProfileComments__comment-title{font:14px "Avenir-Heavy"}.ProfileComments__comment-description{color:#6e6868}.ProfileComments__loadMore{text-align:right;width:726px}.ProfileComments__loadMore-link{color:#6e6868;padding-right:20px;background:url(../img/triangle-bottom.svg) no-repeat 100% 50%}.ProfileFavorite{display:none}.FavoriteList{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.FavoriteList .FavoriteListItem{margin-right:33px;margin-bottom:50px}.FavoriteListItem{display:block;width:346px;height:300px;border:solid 1px #e0e0e0}.FavoriteListItem:last-child{border:none}.FavoriteListItem__image{position:relative;display:block;margin-bottom:10px;width:100%;height:235px;background-size:cover;background-position:50% 50%}.FavoriteListItem__content{position:relative;padding:0 14px}.FavoriteListItem__category{color:#6e6868}.FavoriteListItem__title{font:20px "Avenir-Medium"}.FavoriteListItem__title a{color:#000}.FavoriteListItem__favorite{position:absolute;right:10px;bottom:12px}.FavoriteListItem__rating{position:absolute;bottom:5px;right:0}.ProfileFavorite__loadMore{text-align:right;width:726px}.ProfileFavorite__loadMore-link{color:#6e6868;padding-right:20px;background:url(../img/triangle-bottom.svg) no-repeat 100% 50%}.PaymentPage{padding-top:50px}.PaymentPage .PaymentSteps{margin:0 auto 50px}.PaymentSteps{width:620px;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.PaymentSteps .PaymentSteps__step{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-direction:column;flex-direction:column;background:#fff}.PaymentSteps .PaymentSteps__step:last-child .PaymentSteps__step-number::after{display:none}.PaymentSteps .PaymentSteps__step-number{position:relative;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;background:#fff;border:solid 1px #ff4040;color:#ff4040;width:60px;height:60px;font:20px Arial,sans-serif;border-radius:50%;margin-bottom:6px}.PaymentSteps .PaymentSteps__step-number::after{content:'';display:block;position:absolute;width:212px;height:1px;background:#ff4040;top:50%;left:100%}.PaymentSteps .PaymentSteps__step.-active .PaymentSteps__step-number{background:#ff4040;color:#fff}.PaymentForm .PaymentForm__row .PaymentForm__label-checkbox,.PaymentSteps .PaymentSteps__step-desc{color:#6e6868}.PaymentForm{width:547px;margin:0 auto;padding:26px 74px 58px;border:solid 1px #e0e0e0}.PaymentForm .PaymentForm__title{font:20px "Avenir-Medium";text-align:center;margin-bottom:51px}.PaymentForm .PaymentForm__row{margin-bottom:15px}.PaymentForm .PaymentForm__row input[type=text]{width:100%;border:solid 1px #9b9b9b;height:35px;padding:0 0 0 13px;font:16px "Avenir-Medium";color:#000;border-radius:6px}.PaymentForm .PaymentForm__row input[type=text]::-webkit-input-placeholder{font:16px "Avenir-Medium"}.PaymentForm .PaymentForm__row input[type=text]::-moz-placeholder{font:16px "Avenir-Medium"}.PaymentForm .PaymentForm__row input[type=text]:-ms-input-placeholder{font:16px "Avenir-Medium"}.PaymentForm .PaymentForm__row input[type=text]::placeholder{font:16px "Avenir-Medium"}.PaymentForm .PaymentForm__row input[type=checkbox]{margin-right:5px;display:inline-block}.PaymentForm .PaymentForm__row .PaymentForm__submit-button{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;font:20px "Avenir-Medium";background:#ff4040;color:#fff;margin-top:20px;width:100%;height:50px;border-radius:6px}.PaymentPage__mobile-header-link{display:none}.PaymentTitle{display:none;font:14px "Avenir-Medium"}.PaymentCards{padding:0 58px 10px 57px}.PaymentCardsItem{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-negative:0;flex-shrink:0;-ms-flex-positive:0;flex-grow:0;padding:39px 96px 39px 27px;border:solid 1px #e0e0e0;margin-bottom:20px}.PaymentCardsItem__logo{width:94px;margin-right:26px}.PaymentCardsItem__body img,.PaymentCardsItem__logo img{width:100%}.PaymentCardsItem__body{margin-right:auto}.PaymentCardsItem__title{font:28px "Avenir-Heavy"}.PaymentCardsItem__buttonBlock{margin-top:27px;width:100%;text-align:right}.PaymentCardsItem__button{display:-ms-inline-flexbox;display:inline-flex;background:#ff4040;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;width:162px;height:50px;border-radius:3px;color:#fff;font:20px "Avenir-Black"}.PaymentAddCard{padding:39px 96px 39px 27px;border:solid 1px #e0e0e0}.PaymentAddCard .PaymentAddCard__activator{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;font:28px "Avenir-Heavy";cursor:pointer}.PaymentAddNewCardForm{display:block;width:380px;margin-top:33px}.PaymentAddNewCardForm.-hide{display:none}.PaymentAddNewCardForm.-show{display:block}.PaymentAddNewCardForm__headline{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:end;align-items:flex-end;border-bottom:solid 1px #efefef;padding-bottom:11px;margin-bottom:18px}.PaymentAddNewCardForm__cards-image{margin-right:13px;width:135px;height:29px}.PaymentAddNewCardForm__title{font:14px "Avenir-Heavy"}.PaymentAddNewCardForm__row{margin-bottom:20px;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.PaymentAddNewCardForm__field{margin-right:20px}.PaymentAddNewCardForm__field:last-child,.PaymentAddNewCardForm__select.ui.dropdown:last-child{margin-right:0}.PaymentAddNewCardForm__label{display:block;color:#9b9b9b;margin-bottom:5px}.PaymentAddNewCardForm__input-text{width:180px;height:25px;border:solid 1px #e0e0e0;padding:0 10px;border-radius:3px;background:#fff;color:#9b9b9b}.PaymentAddNewCardForm__select.ui.dropdown{width:85px;height:25px;font-size:9px;margin-right:6px}.PaymentAddNewCardForm__select.ui.dropdown .default.text,.PaymentAddNewCardForm__select.ui.dropdown .text{color:#e0e0e0;font-size:10px!important}.PaymentAddNewCardForm__select.ui.dropdown .dropdown.icon{position:absolute;margin:0!important;padding:0!important;top:auto!important;right:4px!important;bottom:8px!important}.PaymentAddNewCardForm__select.ui.dropdown .menu>.item{font-size:11px!important;padding:5px!important}.PaymentAddNewCardForm__buttonBlock{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;width:380px}.PaymentAddNewCardForm__button{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;background:#ff4040;color:#fff;width:180px;height:25px;border-radius:3px}.PaymentBasket{padding:0 58px 0 57px;overflow:hidden}.PaymentBasketList{margin-bottom:94px}.PaymentBasketListItem{position:relative;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;border:solid 1px #e0e0e0;padding:20px 56px 20px 21px}.PaymentBasketListItem__image{width:250px;margin-right:27px}.Footer .Footer__socialsItem img,.PaymentBasketListItem__image img,.PaymentTotal__card .PaymentTotal__card-image img{display:block;width:100%}.PaymentBasketListItem__body{margin-right:auto}.PaymentBasketListItem__title{font:36px "Avenir-Heavy"}.PaymentBasketListItem__entries{color:#ff4040;font:28px "Avenir-Heavy"}.PaymentBasketListItem__date{color:#6e6868}.PaymentBasketListItem__price{-ms-flex-item-align:end;align-self:flex-end;font:28px "Avenir-Heavy"}.PaymentBasketListItem__close{position:absolute;top:22px;right:23px;display:block;background:url(../img/icon-error.svg) no-repeat;width:39px;height:39px}.PaymentTotal{background:#eee;padding:10px 14px 25px 22px;width:520px;float:right}.PaymentTotal__title{font:20px "Avenir-Medium";margin-bottom:17px}.PaymentTotal__card{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;padding-bottom:11px;border-bottom:solid 1px #979797;margin-bottom:8px}.PaymentTotal__card .PaymentTotal__card-image{width:65px;margin-right:18px}.PaymentTotal__card .PaymentTotal__card-title{font:14px "Avenir-Heavy"}.PaymentTotal__container-price{display:-ms-flexbox;display:flex;margin-bottom:10px}.PaymentTotal__price-text{margin-right:auto}.PaymentTotal__total-text{font:28px "Avenir-Heavy"}.PaymentTotal__tva-text{font:14px "Avenir-Heavy"}.PaymentTotal__price{font:28px "Avenir-Heavy"}.PaymentTotal__button{font:20px "Avenir-Black";background:#ff4040;color:#fff;display:-ms-flexbox;display:flex;width:100%;height:55px;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center}.PartnershipValidator.-done.-hide,.PaymentBasketListItem__remove.-xs{display:none}.PaymentComplete{position:relative;height:50vh}.PaymentCompleteContent{position:absolute;top:50%;left:50%;-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-align:center;align-items:center}.PaymentCompleteContent .PaymentComplete__icon-done{width:77px;width:calc(50px + (77 - 50)*((100vw - 767px)/(1440 - 767)));margin-bottom:10px}.PaymentCompleteContent .PaymentComplete__text-thanks{font-family:"Avenir-Heavy";text-align:center;white-space:nowrap;font-size:36px;font-size:calc(18px + (36 - 18)*((100vw - 767px)/(1440 - 767)))}.PaymentCompleteContent .PaymentComplete__link-show-pass{font-family:"Avenir-Medium";font-size:20px;font-size:calc(14px + (20 - 14)*((100vw - 767px)/(1440 - 767)));text-align:center}.PartnershipPage{padding:29px 57px}.PartnershipValidator{text-align:center;background:#fff;border:solid 1px #e0e0e0;padding:40px 20px;margin-bottom:40px}.PartnershipValidator__title{font:36px "Avenir-Heavy"}.PartnershipValidator__desc{font-size:14px;margin-bottom:25px}.PartnershipValidator__form{overflow:hidden;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center}.PartnershipValidator__input-text{border:solid 1px #e0e0e0;font-size:12px;padding:7px 10px;width:338px}.PartnershipValidator__input-text::-webkit-input-placeholder{color:#e0e0e0}.PartnershipValidator__input-text::-moz-placeholder{color:#e0e0e0}.PartnershipValidator__input-text:-ms-input-placeholder{color:#e0e0e0}.PartnershipValidator__input-text::placeholder{color:#e0e0e0}.PartnershipValidator__input-submit{width:90px;text-align:center;background:#540d6e;padding:7px 10px;color:#fff}.PartnershipValidator.-done{display:none;background:#9ce5d4;border:solid 1px #3bceac}.PartnershipValidator.-done.-show{display:block}.PartnershipValidator.-done .PartnershipValidator__title{display:inline-block;padding-left:62px;background:url(../img/icon-pass-done.png) 0 10px no-repeat;margin-bottom:12px}.PartnershipValidator.-done .PartnershipValidator__info-title{font:14px "Avenir-Heavy";margin-bottom:5px}.PartnershipValidator.-done .PartnershipValidator__info-text{color:#6e6868}.PartnershipPage__content{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap}.PartnershipContact,.PartnershipHelp{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/2 - (55px - 55px*1/2));width:calc(100%*1/2 - (55px - 55px*1/2));border:solid 1px #e0e0e0;padding:25px}.PartnershipContact:nth-child(n),.PartnershipHelp:nth-child(n){margin-right:55px;margin-left:0}.Footer__pages .Footer__page:last-child,.Footer__payment-links li:last-child,.PartnershipContact:last-child,.PartnershipHelp:last-child{margin-right:0}.PartnershipContact:nth-child(0n),.PartnershipHelp:nth-child(0n){margin-right:0;margin-left:auto}.PartnershipHelp{background:#e0e0e0}.PartnershipHelp__item{margin-bottom:39px}.PartnershipHelp__title{font:28px "Avenir-Heavy";margin-bottom:4px}.PartnershipHelp__item-title{font:20px "Avenir-Heavy"}.PartnershipHelp__item-desc{color:#6e6868}.PartnershipContact__title{font:28px "Avenir-Heavy"}.PartnershipContact__desc{color:#6e6868;margin-bottom:44px}.PartnershipContact__row{margin-bottom:20px}.PartnershipContact__label{color:#6e6868}.PartnershipContact__contact-data{color:#ff4040}.PartnershipContact__contacts-title{font:20px "Avenir-Medium"}.Footer__pages .Footer__page a,.PartnershipContact__contacts-desc{color:#6e6868}.TextPage{padding:20px 50px;font-size:14px}.TextPage h1,.TextPage h2,.TextPage h3,.TextPage p{margin-bottom:.3em}.TextPage img{max-width:100%}.FaqPage{padding:20px 50px;width:50%}.FaqPage__title{font-family:"Avenir-Heavy";font-size:32px;font-size:calc(18px + (32 - 18)*((100vw - 320px)/(1440 - 320)));margin-bottom:.3em}.App,.Footer{position:relative}.App{max-width:1440px;margin:71px auto 0}.App.-payment{padding-bottom:78px;min-height:calc(100vh - 71px)}.Footer{border-top:solid 1px #eee;display:-ms-flexbox;display:flex;padding:0 57px;-ms-flex-align:center;align-items:center;height:78px}.Footer .Footer__socials{margin-right:auto}.Footer .Footer__socialsItem{display:block;float:left;margin-right:25px}.Footer .Footer__copyright{color:#6e6868;float:right}.Footer.-payment{position:absolute;width:100%;bottom:0;border-top:0}.Footer__logo{display:none}.Footer__pages,.Footer__phone{margin-right:auto}.Footer__pages .Footer__page{display:inline-block;margin-right:15px}.Footer__pages .Footer__page a:hover{color:#ff4141}.Footer__phone .Footer__phone-text{padding-left:23px;font-size:14px;background:url(../img/icon-phone.svg) 0 50% no-repeat}.Footer__payment-links li{margin-right:15px;display:inline-block}.Footer__payment-links a{font:16px "Avenir-Medium";color:#000}@media only screen and (min-width:1024px){.Header.-sm{display:none}}@media (min-width:1440px){.PaymentCompleteContent .PaymentComplete__icon-done{width:77px}.PaymentCompleteContent .PaymentComplete__text-thanks{font-size:36px}.PaymentCompleteContent .PaymentComplete__link-show-pass{font-size:20px}.FaqPage__title{font-size:32px}}@media only screen and (max-width:1024px){.Header.-md,.hide-sm{display:none}.Header__logo{margin:0 auto;width:180px;height:36px;background:url(../img/logo.svg) no-repeat 0 0}.Header.-sm{display:-ms-flexbox;display:flex}.App.-partnership .Header.-md .Header__logo,.App.-payment .Header.-md .Header__logo{margin:0;width:288px;height:71px;background:url(../img/logo.svg) no-repeat 40px 50%}.Hero{height:350px}.Hero__slogan{top:93px;width:477px;font-size:24px}.Hero__search{top:196px;width:240px}.HeroSearch__field input{height:25px;padding-left:21px;font-size:10px;background:url(../img/search-mini-icon.svg) #fff no-repeat 6px 50%;background-size:10px 12px}.HeroSearch__field input::-webkit-input-placeholder{font-size:10px}.HeroSearch__field input::-moz-placeholder{font-size:10px}.HeroSearch__field input:-ms-input-placeholder{font-size:10px}.HeroSearch__field input::placeholder{font-size:10px}.HeroFeatures{height:80px;margin-bottom:28px}.HeroFeatures__item{padding:14px 28px 0 0}.HeroFeatures__icon{-ms-flex-align:start;align-items:flex-start;padding:0 36px 0 28px}.HeroFeatures__icon img{width:27px}.HeroFeatures__title{font-size:14px}.HeroFeatures__desc{font-size:12px}.HomeSection{padding:0 15px;margin-bottom:40px}.HomeSection__headline{font-size:26px}.HomeSection.-activites{padding-bottom:28px;margin-bottom:17px}.HomeSection.-partnerships{margin-bottom:20px}.HomeSection.-partnerships .HomeSection__headline{font-size:14px;margin-bottom:0}.SliderGyms{margin-right:0}.GymListigItem{margin-right:0;padding:0 15px}.GymListigItem__image{margin-bottom:15px}.GymListigItem__title{font-size:14px}.ActivitesList__item{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/1);width:calc(100%*1/1);margin-bottom:20px}.ActivitesList__item.-long:nth-child(n),.ActivitesList__item:nth-child(n){margin-right:0;margin-left:0}.ActivitesList__item.-long:last-child,.ActivitesList__item:last-child{margin-right:0}.ActivitesList__item.-long:nth-child(0n),.ActivitesList__item:nth-child(0n){margin-right:0;margin-left:auto}.ActivitesList__item:last-child{margin-bottom:0}.ActivitesList__item.-long{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/1);width:calc(100%*1/1)}.HomePartnershipBlock__desc{font-size:12px;width:497px}.MiscNewsletter{width:260px}.MiscNewsletter__emailFieldLabel{font-size:12px}.MiscNewsletter__button,.MiscNewsletter__emailField{width:190px;height:25px;font-size:10px}.MiscNewsletter__button{width:69px}.GymRating>.icon{margin-right:1px!important}.GymRating>.icon.active::before,.GymRating>.icon.selected::before,.GymRating>.icon::before{width:16px;height:16px;background-size:16px 16px!important}.ListingFilter{top:60px}.ListingFilter .ListingFilter__trigger-map{display:-ms-flexbox;display:flex}.ListingItems{width:100%;padding:23px}.ListingItem{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/2 - (30px - 30px*1/2));width:calc(100%*1/2 - (30px - 30px*1/2))}.ListingItem:nth-child(n){margin-right:30px;margin-left:0}.ListingItem:last-child{margin-right:0}.ListingItem:nth-child(2n){margin-right:0;margin-left:auto}.ListingMaps{display:none;position:fixed;width:100%;height:100%;top:110px;padding:0 23px}.ListingMaps__m{width:100%}.ListingFilter__menu{left:0}.SignlePage__hero{height:405px;margin-bottom:25px}.SignlePage__hero-favorite{right:19px;bottom:14px}.SinglePage__content-container{padding:0}.SignlePage__headline{margin:0;padding:0 0 10px 17px;border-bottom:none}.SignlePage__headline .SignlePage__headline-title{font-size:26px}.SinglePage__headling-meta .SinglePage__headling-meta-address{font-size:16px;margin-right:auto}.SinglePage__headling-meta .SinglePage__headling-meta-rating{position:relative;top:-28px}.SignlePage__sidebar.-left{display:none}.SignlePage__sidebar.-center{width:100%;padding-right:0}.PriceBlock{position:static;min-height:0!important}.PriceBlock .ui.sticky{width:100%;height:auto!important;min-height:0!important;padding-bottom:25px;border:none;border-bottom:solid 1px #e0e0e0}.PriceBlock .PriceBlock__title{font-size:26px;padding:15px 26px 20px 17px}.PriceBlock .PriceBlock__row{padding:0 26px 0 17px}.PriceBlock .PriceBlock__buy-button{padding:0}.PriceBlock .PriceBlock__button{width:100%;height:50px;font:18px "Avenir-Black";border-radius:0}.PassRow div,.SingleMainContent .ui.accordion .title{display:block}.SingleMainContent .ui.accordion .content{padding:0 15px!important;border-bottom:solid 1px #e0e0e0}.SingleMainContent__description{font-size:12px;margin-bottom:0}.ProfilePage{padding:50px 20px}.ProfilePage__aside{width:200px}.ProfilePage__content{margin-left:250px}.ProfileProfile{width:100%}.ProfileProfile__btn-accept,.ProfileProfile__btn-cancel{display:-ms-flexbox;display:flex;margin-bottom:10px}.ProfilPass{width:100%}.PassLists{margin-left:0}.PassRow{display:block;border:solid 1px #e0e0e0;padding:10px}.PassRow .PassRow__icon,.PassRow.-head{display:none}.PassRow div{width:100%!important}.PassRow .PassRow__title{font:20px "Avenir-Heavy";margin-bottom:5px}.PassRow .PassRow__date{color:#a9a9a9;font-size:13px}.PassRow .PassRow__entries{width:100px;color:#a9a9a9}.PassRow .PassRow__available-entries{width:103px;color:#a9a9a9;margin-bottom:10px}.Pass__btn{width:30%;height:30px}.FavoriteList .FavoriteListItem,.ProfileComments__item{width:100%;margin-right:0;margin-bottom:20px}.ProfileComments__loadMore,.ProfileFavorite__loadMore{width:615px}.PaymentPage{padding-top:31px}.PaymentSteps{width:500px}.PaymentSteps .PaymentSteps__step-number{width:47px;height:47px}.PaymentForm .PaymentForm__row input[type=text]::-webkit-input-placeholder{font:10px "Avenir-Book"}.PaymentForm .PaymentForm__row input[type=text]::-moz-placeholder{font:10px "Avenir-Book"}.PaymentForm .PaymentForm__row input[type=text]:-ms-input-placeholder{font:10px "Avenir-Book"}.PaymentForm .PaymentForm__row input[type=text]::placeholder{font:10px "Avenir-Book"}.PaymentCardsItem{padding-right:49px}.PaymentAddCard .PaymentAddCard__activator,.PaymentCardsItem__title{font-size:22px}.PaymentCardsItem__button{width:140px;height:30px;font-size:14px}.PaymentBasketList{margin-bottom:20px}.PaymentBasketListItem{padding:20px}.PaymentBasketListItem__image{width:150px;margin-right:20px}.PaymentBasketListItem__title{font-size:24px}.PaymentBasketListItem__entries{font-size:16px}.PaymentBasketListItem__date{font-size:12px}.PaymentBasketListItem__price{font-size:24px}.PaymentBasketListItem__close{top:10px;right:10px;width:20px;height:20px}.PaymentTotal{float:none;width:100%}.PaymentTotal__container-price{margin-bottom:20px}.PaymentTotal__total-text{font-size:20px}.PaymentTotal__tva-text{font-size:12px}.PaymentTotal__price{font-size:20px}.PaymentTotal__button{font-size:18px;height:50px}.PartnershipPage{padding:29px}.PartnershipValidator{margin-bottom:20px}.PartnershipContact,.PartnershipHelp{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/2 - (20px - 20px*1/2));width:calc(100%*1/2 - (20px - 20px*1/2))}.PartnershipContact:nth-child(n),.PartnershipHelp:nth-child(n){margin-right:20px;margin-left:0}.PartnershipContact:last-child,.PartnershipHelp:last-child{margin-right:0}.PartnershipContact:nth-child(0n),.PartnershipHelp:nth-child(0n){margin-right:0;margin-left:auto}.App,.FaqPage{width:auto}.App.-payment{margin-top:71px}.App{max-width:1024px;margin-top:60px}.Footer{-ms-flex-direction:column;flex-direction:column;height:108px}.Footer .Footer__socials{margin-right:0;margin-top:20px;margin-bottom:29px}.Footer .Footer__socialsItem{width:35px;float:left;margin-right:20px}.Footer .Footer__copyright{font-size:10px;color:#6e6868}.Footer.-payment{height:45px;-ms-flex-direction:row;flex-direction:row;padding:0 20px}.Footer__logo{display:block;margin-top:24px}.Footer__pages{display:none}}@media only screen and (max-width:767px){.Header__right{display:none}.App.-partnership .Header.-md .Header__logo,.App.-payment .Header.-md .Header__logo{width:100%;background-position:50% 50%}.Hero__slogan{width:90%;top:98px}.Hero__search{top:227px}.HeroFeatures{background:#fff;-ms-flex-direction:column;flex-direction:column;height:auto}.HeroFeatures__item{width:100%;border-bottom:solid 1px #e0e0e0;border-right:none;padding-top:25px;padding-bottom:18px}.ActivitesList__itemTitle span,.HomeSection__headline{font-size:20px}.HomeSection.-activites{padding-bottom:110px;margin-bottom:17px}.HomeSection.-misc{-ms-flex-direction:column;flex-direction:column}.GymListigItem{padding:0 10px}.ActivitesList__item{height:143px}.HomePartnershipBlock{-ms-flex-direction:column;flex-direction:column}.HomePartnershipBlock__desc{width:100%;font-size:10px;margin-bottom:20px}.HomePartnershipBlock .ButtonPartner{width:167px;font-size:14px;height:41px}.MiscMenuList{margin-bottom:14px}.MiscNewsletter{width:100%}.MiscNewsletter__emailFieldLabel{margin-bottom:5px}.ListingFilter{padding:0 21px 0 15px}.ListingFilter .ListingFilter__trigger{font-size:14px;margin-right:auto}.ListingItems{padding:14px}.ListingItem{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/1 - (30px - 30px*1/1));width:calc(100%*1/1 - (30px - 30px*1/1))}.ListingItem:last-child{margin-right:0}.ListingItem:nth-child(n){margin-right:0;margin-left:auto}.ListingMaps{padding:0 13px}.SignlePage__headline .SignlePage__headline-title{font-size:28px}.SinglePage__headling-meta{-ms-flex-wrap:wrap;flex-wrap:wrap}.SinglePage__headling-meta .SinglePage__headling-meta-address{font-size:14px;width:100%}.SinglePage__headling-meta .SinglePage__headling-meta-rating{top:0}.PriceBlock .ui.sticky{padding-bottom:30px}.PriceBlock .PriceBlock__title{font-size:20px}.PriceBlock .PriceBlock__price-list{margin-bottom:0}.SingleMainContent .ui.accordion .title{font-size:18px}.SingleMainContent__description{font-size:10px}.Comments{margin-bottom:40px}.Comment{-ms-flex-direction:column;flex-direction:column}.Comment .Comment__meta{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;margin-right:0;margin-bottom:15px}.Comment .Comment__avatar{margin-bottom:0;margin-right:20px}.Comment .Comment__title{font-size:18px;margin-bottom:10px}.Comment .Comment__description{font-size:12px}.ProfilePage{padding:0}.ProfilePage__aside{display:none}.ProfilePage__content{margin-left:0}.ProfileProfile{width:100%;border:none}.ProfileProfile__form fieldset label{float:none;margin-bottom:5px}.ProfileProfile__form fieldset .ui.input{display:-ms-flexbox;display:flex}.ProfileProfile__form fieldset .ui.input input{display:-ms-flexbox;display:flex;width:100%}.ProfileProfile__form-btns{margin-left:0}.ProfileProfile__btn-accept,.ProfileProfile__btn-cancel{width:100%;margin-bottom:10px}.ProfileComments__item{width:100%;margin-right:0;border:none;border-bottom:solid 1px #e0e0e0}.ProfileComments__item:last-child{border:none}.FavoriteList .FavoriteListItem,.Footer__payment-links li{margin-right:0}.FavoriteListItem{border:none;border-bottom:solid 1px #e0e0e0;width:100%}.PaymentPage{padding-top:9px}.PaymentPage .PaymentSteps{margin-bottom:12px}.PaymentSteps{width:293px}.PaymentSteps .PaymentSteps__step-number::after{width:100px}.PaymentSteps .PaymentSteps__step-number{width:26px;height:26px;font-size:12px}.PaymentForm .PaymentForm__row .PaymentForm__label-checkbox,.PaymentForm .PaymentForm__row input[type=text],.PaymentSteps .PaymentSteps__step-desc{font-size:10px}.PaymentForm{width:100%;padding:20px}.PaymentForm .PaymentForm__title{margin-bottom:20px}.PaymentForm .PaymentForm__row .PaymentForm__submit-button{font-size:14px;height:35px}.PaymentPage__mobile-header-link{display:block}.PaymentTitle{display:block;text-align:center;margin-bottom:14px}.PaymentCards{padding:0 10px 10px}.PaymentCardsItem{padding:30px 10px 10px 14px}.PaymentCardsItem__logo{width:56px}.PaymentAddCard .PaymentAddCard__activator,.PaymentCardsItem__title{font-size:18px}.PaymentCardsItem__modifier{font-size:12px}.PaymentAddCard{padding:30px 10px 30px 14px}.PaymentAddNewCardForm{width:100%;padding-left:7px;padding-right:19px}.PaymentAddNewCardForm__row{margin-bottom:0}.PaymentAddNewCardForm__field{margin-right:0;margin-bottom:15px}.PaymentAddNewCardForm__label{font-size:12px}.PaymentAddNewCardForm__buttonBlock,.PaymentBasketListItem__remove.-xs{display:block;width:100%;margin-top:10px}.PaymentBasket{padding:0 10px}.PaymentBasketListItem{padding:15px}.PaymentBasketListItem__image{width:100%;margin-right:0;margin-bottom:10px}.PaymentBasketListItem__body{width:60%}.PaymentBasketListItem__title{font-size:18px}.Footer__payment-links a,.PaymentBasketListItem__entries{font-size:14px}.PaymentBasketListItem__date{font-size:10px}.PaymentBasketListItem__price{font-size:18px}.PaymentBasketListItem__close{display:none}.PaymentTotal__title{margin-bottom:10px}.PaymentTotal__total-text{font-size:16px}.PaymentTotal__tva-text{font-size:10px}.PaymentTotal__price{font-size:16px}.PaymentBasketListItem__remove.-xs{cursor:pointer;text-align:center;border:solid 1px #e0e0e0;padding:10px;color:#000;border-radius:5px;font:14px "Avenir-Heavy"}.PaymentBasketListItem__remove.-xs:active,.PaymentBasketListItem__remove.-xs:hover{background:#ff4040;color:#fff}.PartnershipPage{padding:0}.PartnershipValidator{padding:60px 20px;margin-bottom:0;border:none;border-bottom:solid 1px #e0e0e0}.PartnershipContact,.PartnershipHelp{flex-grow:0;flex-shrink:0;flex-basis:calc(100%*1/1 - (30px - 30px*1/1));width:calc(100%*1/1 - (30px - 30px*1/1));border:none}.PartnershipContact:last-child,.PartnershipHelp:last-child{margin-right:0}.PartnershipContact:nth-child(n),.PartnershipHelp:nth-child(n){margin-right:0;margin-left:auto}.PartnershipHelp__title{font-size:20px;margin-bottom:10px}.PartnershipHelp__item-title{font-size:16px;margin-bottom:5px}.PartnershipContact__title{font-size:20px;margin-bottom:10px}.PartnershipContact__contacts-title{font-size:16px;margin-bottom:5px}.FaqPage,.TextPage{padding:20px}.App.-payment{min-height:calc(100vh - 71px);padding-bottom:108px}.Footer .Footer__socials{margin-bottom:10px}.Footer .Footer__socialsItem{width:25px}.Footer.-payment{height:115px;padding:20px 13px 0;-ms-flex-align:start;align-items:flex-start;-ms-flex-wrap:wrap;flex-wrap:wrap}.Footer__phone{margin-bottom:23px}.Footer__payment-links{display:-ms-flexbox;display:flex;width:100%;-ms-flex-align:end;align-items:flex-end;-ms-flex-direction:column;flex-direction:column}}@media (max-width:767px){.PaymentCompleteContent .PaymentComplete__icon-done{width:50px}.PaymentCompleteContent .PaymentComplete__text-thanks{font-size:18px}.PaymentCompleteContent .PaymentComplete__link-show-pass{font-size:14px}}@media (max-width:320px){.FaqPage__title{font-size:18px}}
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5,
+h6, p, blockquote, pre, a, abbr, acronym, address, big,
+cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small,
+strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt,
+dd, ol, ul, li, fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td, article, aside, canvas, details,
+embed, figure, figcaption, footer, header, hgroup, menu, nav,
+output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+img, fieldset, a img {
+  border: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  -webkit-appearance: none;
+}
+
+input[type="submit"],
+button {
+  cursor: pointer;
+}
+
+input[type="submit"]::-moz-focus-inner,
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+input, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+div, input, textarea, select, button,
+h1, h2, h3, h4, h5, h6, a, span, a:focus {
+  outline: none;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@font-face {
+  font-family: 'Avenir-Black';
+  src: url("../fonts/Avenir-Black.eot");
+  src: url("../fonts/Avenir-Black.woff2") format("woff2"), url("../fonts/Avenir-Black.woff") format("woff"), url("../fonts/Avenir-Black.ttf") format("truetype"), url("../fonts/Avenir-Black.svg#Avenir-Black") format("svg"), url("../fonts/Avenir-Black.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-BlackOblique';
+  src: url("../fonts/Avenir-BlackOblique.eot");
+  src: url("../fonts/Avenir-BlackOblique.woff2") format("woff2"), url("../fonts/Avenir-BlackOblique.woff") format("woff"), url("../fonts/Avenir-BlackOblique.ttf") format("truetype"), url("../fonts/Avenir-BlackOblique.svg#Avenir-BlackOblique") format("svg"), url("../fonts/Avenir-BlackOblique.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Book';
+  src: url("../fonts/Avenir-Book.eot");
+  src: url("../fonts/Avenir-Book.woff2") format("woff2"), url("../fonts/Avenir-Book.woff") format("woff"), url("../fonts/Avenir-Book.ttf") format("truetype"), url("../fonts/Avenir-Book.svg#Avenir-Book") format("svg"), url("../fonts/Avenir-Book.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-BookOblique';
+  src: url("../fonts/Avenir-BookOblique.eot");
+  src: url("../fonts/Avenir-BookOblique.woff2") format("woff2"), url("../fonts/Avenir-BookOblique.woff") format("woff"), url("../fonts/Avenir-BookOblique.ttf") format("truetype"), url("../fonts/Avenir-BookOblique.svg#Avenir-BookOblique") format("svg"), url("../fonts/Avenir-BookOblique.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Heavy';
+  src: url("../fonts/Avenir-Heavy.eot");
+  src: url("../fonts/Avenir-Heavy.woff2") format("woff2"), url("../fonts/Avenir-Heavy.woff") format("woff"), url("../fonts/Avenir-Heavy.ttf") format("truetype"), url("../fonts/Avenir-Heavy.svg#Avenir-Heavy") format("svg"), url("../fonts/Avenir-Heavy.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-HeavyOblique';
+  src: url("../fonts/Avenir-HeavyOblique.eot");
+  src: url("../fonts/Avenir-HeavyOblique.woff2") format("woff2"), url("../fonts/Avenir-HeavyOblique.woff") format("woff"), url("../fonts/Avenir-HeavyOblique.ttf") format("truetype"), url("../fonts/Avenir-HeavyOblique.svg#Avenir-HeavyOblique") format("svg"), url("../fonts/Avenir-HeavyOblique.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Light';
+  src: url("../fonts/Avenir-Light.eot");
+  src: url("../fonts/Avenir-Light.woff2") format("woff2"), url("../fonts/Avenir-Light.woff") format("woff"), url("../fonts/Avenir-Light.ttf") format("truetype"), url("../fonts/Avenir-Light.svg#Avenir-Light") format("svg"), url("../fonts/Avenir-Light.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-LightOblique';
+  src: url("../fonts/Avenir-LightOblique.eot");
+  src: url("../fonts/Avenir-LightOblique.woff2") format("woff2"), url("../fonts/Avenir-LightOblique.woff") format("woff"), url("../fonts/Avenir-LightOblique.ttf") format("truetype"), url("../fonts/Avenir-LightOblique.svg#Avenir-LightOblique") format("svg"), url("../fonts/Avenir-LightOblique.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Medium';
+  src: url("../fonts/Avenir-Medium.eot");
+  src: url("../fonts/Avenir-Medium.woff2") format("woff2"), url("../fonts/Avenir-Medium.woff") format("woff"), url("../fonts/Avenir-Medium.ttf") format("truetype"), url("../fonts/Avenir-Medium.svg#Avenir-Medium") format("svg"), url("../fonts/Avenir-Medium.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-MediumOblique';
+  src: url("../fonts/Avenir-MediumOblique.eot");
+  src: url("../fonts/Avenir-MediumOblique.woff2") format("woff2"), url("../fonts/Avenir-MediumOblique.woff") format("woff"), url("../fonts/Avenir-MediumOblique.ttf") format("truetype"), url("../fonts/Avenir-MediumOblique.svg#Avenir-MediumOblique") format("svg"), url("../fonts/Avenir-MediumOblique.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Oblique';
+  src: url("../fonts/Avenir-Oblique.eot");
+  src: url("../fonts/Avenir-Oblique.woff2") format("woff2"), url("../fonts/Avenir-Oblique.woff") format("woff"), url("../fonts/Avenir-Oblique.ttf") format("truetype"), url("../fonts/Avenir-Oblique.svg#Avenir-Oblique") format("svg"), url("../fonts/Avenir-Oblique.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir-Roman';
+  src: url("../fonts/Avenir-Roman.eot");
+  src: url("../fonts/Avenir-Roman.woff2") format("woff2"), url("../fonts/Avenir-Roman.woff") format("woff"), url("../fonts/Avenir-Roman.ttf") format("truetype"), url("../fonts/Avenir-Roman.svg#Avenir-Roman") format("svg"), url("../fonts/Avenir-Roman.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KohinoorDevanagari-Bold';
+  src: url("../fonts/KohinoorDevanagari-Bold.eot");
+  src: url("../fonts/KohinoorDevanagari-Bold.woff2") format("woff2"), url("../fonts/KohinoorDevanagari-Bold.woff") format("woff"), url("../fonts/KohinoorDevanagari-Bold.ttf") format("truetype"), url("../fonts/KohinoorDevanagari-Bold.svg#KohinoorDevanagari-Bold") format("svg"), url("../fonts/KohinoorDevanagari-Bold.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KohinoorDevanagari-Light';
+  src: url("../fonts/KohinoorDevanagari-Light.eot");
+  src: url("../fonts/KohinoorDevanagari-Light.woff2") format("woff2"), url("../fonts/KohinoorDevanagari-Light.woff") format("woff"), url("../fonts/KohinoorDevanagari-Light.ttf") format("truetype"), url("../fonts/KohinoorDevanagari-Light.svg#KohinoorDevanagari-Light") format("svg"), url("../fonts/KohinoorDevanagari-Light.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KohinoorDevanagari-Medium';
+  src: url("../fonts/KohinoorDevanagari-Medium.eot");
+  src: url("../fonts/KohinoorDevanagari-Medium.woff2") format("woff2"), url("../fonts/KohinoorDevanagari-Medium.woff") format("woff"), url("../fonts/KohinoorDevanagari-Medium.ttf") format("truetype"), url("../fonts/KohinoorDevanagari-Medium.svg#KohinoorDevanagari-Medium") format("svg"), url("../fonts/KohinoorDevanagari-Medium.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KohinoorDevanagari-Regular';
+  src: url("../fonts/KohinoorDevanagari-Regular.eot");
+  src: url("../fonts/KohinoorDevanagari-Regular.woff2") format("woff2"), url("../fonts/KohinoorDevanagari-Regular.woff") format("woff"), url("../fonts/KohinoorDevanagari-Regular.ttf") format("truetype"), url("../fonts/KohinoorDevanagari-Regular.svg#KohinoorDevanagari-Regular") format("svg"), url("../fonts/KohinoorDevanagari-Regular.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KohinoorDevanagari-Semibold';
+  src: url("../fonts/KohinoorDevanagari-Semibold.eot");
+  src: url("../fonts/KohinoorDevanagari-Semibold.woff2") format("woff2"), url("../fonts/KohinoorDevanagari-Semibold.woff") format("woff"), url("../fonts/KohinoorDevanagari-Semibold.ttf") format("truetype"), url("../fonts/KohinoorDevanagari-Semibold.svg#KohinoorDevanagari-Semibold") format("svg"), url("../fonts/KohinoorDevanagari-Semibold.eot?#iefix") format("embedded-opentype");
+  font-weight: normal;
+  font-style: normal;
+}body {
+  background: #FFF;
+  line-height: 1.25;
+  font: 14px "Avenir-Book";
+}
+
+a {
+  color: #ff4141;
+  text-decoration: none;
+}
+
+input::-webkit-input-placeholder {
+  color: #E0E0E0;
+  font: 14px "Avenir";
+}
+
+input::-moz-placeholder {
+  color: #E0E0E0;
+  font: 14px "Avenir";
+}
+
+input:-ms-input-placeholder {
+  color: #E0E0E0;
+  font: 14px "Avenir";
+}
+
+input::placeholder {
+  color: #E0E0E0;
+  font: 14px "Avenir";
+}
+
+.HeaderWrap {
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.HeaderWrap.-absolute {
+  position: absolute;
+}
+
+.Header {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #fff;
+  display: -ms-flexbox;
+  display: flex;
+  height: 71px;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: solid 1px #EEEEEE;
+}
+
+.Header__search {
+  margin: 0 auto;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  position: relative;
+}
+
+.Header__input-search {
+  background: url("../img/search-mini-icon.svg") no-repeat 42px 50%;
+  width: 100%;
+  height: 70px;
+  padding-left: 70px;
+  border-left: 1px solid #E0E0E0;
+  font-size: 14px;
+}
+
+.Header__sm-opener {
+  position: absolute;
+  left: 10px;
+}
+
+.Header__logo {
+  width: 288px;
+  height: 71px;
+  background: url("../img/logo.svg") no-repeat 40px 50%;
+}
+
+.Header__loginLink {
+  padding: 0 33px 0 26px;
+}
+
+.Header__loginLink a {
+  text-decoration: none;
+  color: #000;
+  font: 16px "Avenir-Medium";
+  color: #000000;
+}
+
+.Header__loginLink a:hover {
+  text-decoration: underline;
+}
+
+.Header__right {
+  border-left: solid 1px #EFEFEF;
+  height: 71px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 0 0 40px;
+}
+
+.Header.-sm {
+  height: 60px;
+}
+
+.HeaderTitle {
+  font: 20px "Avenir-Medium";
+  color: #000;
+}
+
+.App.-payment .Header.-md,
+.App.-partnership .Header.-md {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.SmOpener {
+  width: 25px;
+  height: 17px;
+  position: relative;
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+.SmOpener span {
+  position: absolute;
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: #979797;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.SmOpener span:nth-child(1) {
+  top: 0px;
+}
+
+.SmOpener span:nth-child(2), .SmOpener span:nth-child(3) {
+  top: 6px;
+}
+
+.SmOpener span:nth-child(4) {
+  top: 12px;
+}
+
+.SmOpener.open span:nth-child(1) {
+  top: 1px;
+  width: 0%;
+  left: 50%;
+}
+
+.SmOpener.open span:nth-child(2) {
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.SmOpener.open span:nth-child(3) {
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.SmOpener.open span:nth-child(4) {
+  top: 1px;
+  width: 0%;
+  left: 50%;
+}
+
+.SmMenu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  z-index: 2;
+  width: 320px;
+  background: #fff;
+  padding: 20px 53px 16px 16px;
+  border: solid 1px #EFEFEF;
+}
+
+.SmMenu__menu1,
+.SmMenu__menu2 {
+  font-size: 16px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: solid 1px #EFEFEF;
+}
+
+.SmMenu__menu1 a,
+.SmMenu__menu2 a {
+  color: #6E6868;
+}
+
+.SmMenu__menu1 a.active,
+.SmMenu__menu2 a.active {
+  color: #FF4040;
+}
+
+.SmMenu__socials {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.SmMenu__socialsItem {
+  margin-left: 5px;
+}
+
+.SmMenu__user {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.SmMenu__userAvatar {
+  width: 55px;
+  height: 55px;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-right: 10px;
+}
+
+.SmMenu__userTitle {
+  font: 14px 'Avenir-Heavy';
+  margin-bottom: 1px;
+}
+
+.SmMenu__userDesc {
+  font-size: 10px;
+  color: #6E6868;
+}
+
+.SmMenu__search {
+  padding-bottom: 15px;
+  border-bottom: solid 1px #EFEFEF;
+  margin-bottom: 10px;
+}
+
+.SmMenu__search .ui.search {
+  font-size: 0.8em;
+}
+
+.SmMenu__searchForm {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.SmMenu__searchLabel {
+  margin-bottom: 11px;
+  display: block;
+}
+
+.SmMenu__searchField {
+  border: solid 1px #EFEFEF;
+  height: 31px;
+  width: 210px;
+  border-right: none;
+  padding-left: 7px;
+  color: #6E6868;
+  font-size: 11px;
+  border-radius: 5px 0 0 5px;
+}
+
+.SmMenu__searchField::-webkit-input-placeholder {
+  font-size: 10px;
+}
+
+.SmMenu__searchField::-moz-placeholder {
+  font-size: 10px;
+}
+
+.SmMenu__searchField:-ms-input-placeholder {
+  font-size: 10px;
+}
+
+.SmMenu__searchField::placeholder {
+  font-size: 10px;
+}
+
+.SmMenu__searchButton {
+  width: 31px;
+  height: 31px;
+  background: url("../img/search-mini-icon-mobile.svg") #3BCEAC no-repeat 50% 50%;
+}
+
+.ButtonPartner {
+  cursor: pointer;
+  width: 212px;
+  height: 45px;
+  border: solid 1px red;
+  color: #ff4141;
+  text-transform: uppercase;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #fff;
+  font: 16px "KohinoorDevanagari-Semibold";
+  transition: all 0.3s;
+}
+
+.ButtonPartner:hover {
+  background: #ff4141;
+  color: #FFF;
+}
+
+.Hero {
+  position: relative;
+  height: 588px;
+  background: url("../img/hero-image.png") no-repeat 50% 50%;
+  background-size: cover;
+}
+
+.Hero__slogan {
+  position: absolute;
+  width: 924px;
+  top: 160px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  color: #fff;
+  font: 48px / 1.375 'Avenir-Heavy';
+  text-align: center;
+}
+
+.Hero__search {
+  position: absolute;
+  top: 319px;
+  left: 0;
+  right: 0;
+  width: 682px;
+  margin: 0 auto;
+}
+
+.HeroSearch__field {
+  position: relative;
+  margin-bottom: 19px;
+}
+
+.HeroSearch__field input {
+  background: url("../img/search-mini-icon.svg") #fff no-repeat 12px 50%;
+  width: 100%;
+  height: 45px;
+  border: solid 1px #e0e0e0;
+  border-radius: 5px;
+  padding-left: 40px;
+  font-size: 14px;
+}
+
+.HeroSearch__helper {
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}
+
+.HeroFeatures {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100px;
+  background: #E0E0E0;
+  margin-bottom: 42px;
+}
+
+.HeroFeatures__item {
+  width: 33.33%;
+  padding: 18px 42px 18px 0;
+  border-right: solid 1px #fff;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.HeroFeatures__item:last-child {
+  border-right: none;
+}
+
+.HeroFeatures__icon {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 69px 0 55px;
+}
+
+.HeroFeatures__icon img {
+  width: 55px;
+}
+
+.HeroFeatures__title {
+  font: 25px 'Avenir-Heavy';
+  line-height: 0.7;
+  margin-bottom: 5px;
+}
+
+.HeroFeatures__desc {
+  color: #868282;
+}
+
+.HomeSection {
+  margin-bottom: 150px;
+  padding: 0 57px;
+}
+
+.HomeSection__headline {
+  margin-bottom: 20px;
+  font: 36px "Avenir-Heavy";
+}
+
+.HomeSection.-activites {
+  padding-bottom: 100px;
+  margin-bottom: 50px;
+  border-bottom: solid 1px #eee;
+}
+
+.HomeSection.-reviews {
+  margin-bottom: 53px;
+  border-bottom: solid 1px #eee;
+  padding-bottom: 87px;
+}
+
+.HomeSection.-partnerships {
+  border-bottom: solid 1px #eee;
+  padding-bottom: 41px;
+  margin-bottom: 48px;
+}
+
+.HomeSection.-partnerships .HomeSection__headline {
+  text-transform: uppercase;
+  font: 20px 'Avenir-Heavy';
+  margin-bottom: 13px;
+}
+
+.HomeSection.-misc {
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 49px;
+}
+
+.SliderContainer {
+  position: relative;
+}
+
+.WrapSliderGyms {
+  position: relative;
+  overflow: hidden;
+}
+
+.SliderGyms {
+  margin-right: -54px;
+  display: none;
+}
+
+.SliderGyms.slick-initialized {
+  display: block;
+}
+
+.SliderGyms__nextArrow {
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.SliderGyms__prevArrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: -30px;
+  -ms-transform: translateY(-50%) rotate(180deg);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.GymListigItem {
+  margin-right: 54px;
+}
+
+.GymListigItem__image {
+  margin-bottom: 21px;
+  overflow: hidden;
+}
+
+.GymListigItem__image img {
+  width: 100%;
+}
+
+.GymListigItem__title {
+  font: 20px 'Avenir-Medium';
+}
+
+.GymListigItem__title a {
+  color: #000;
+}
+
+.ActivitesList {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.ActivitesList__item {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(100% * 1/3 - (55px - 55px * 1/3));
+  width: calc(100% * 1/3 - (55px - 55px * 1/3));
+  position: relative;
+  height: 200px;
+  margin-bottom: 30px;
+  background: 50% 50% no-repeat;
+  background-size: cover;
+}
+
+.ActivitesList__item:nth-child(1n) {
+  margin-right: 55px;
+  margin-left: 0;
+}
+
+.ActivitesList__item:last-child {
+  margin-right: 0;
+}
+
+.ActivitesList__item:nth-child(3n) {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.ActivitesList__itemTitle {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.ActivitesList__itemTitle span {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  text-transform: uppercase;
+  color: #fff;
+  font: 28px 'Avenir-Heavy';
+}
+
+.ReviewsList {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReviewsListItem {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(100% * 1/2 - (10% - 10% * 1/2));
+  width: calc(100% * 1/2 - (10% - 10% * 1/2));
+  float: left;
+}
+
+.ReviewsListItem:nth-child(1n) {
+  margin-right: 10%;
+  margin-left: 0;
+}
+
+.ReviewsListItem:last-child {
+  margin-right: 0;
+}
+
+.ReviewsListItem:nth-child(2n) {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.ReviewsListItem__image {
+  float: left;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: no-repeat 50% 50%;
+  background-size: cover;
+  margin-right: 50px;
+}
+
+.ReviewsListItem__content {
+  overflow: hidden;
+}
+
+.ReviewsListItem__title {
+  text-transform: uppercase;
+  font-family: 'Avenir-Heavy';
+  font: 20px 'Avenir-Heavy';
+  margin-bottom: 8px;
+}
+
+.ReviewsListItem__desc {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #6E6868;
+}
+
+.HomePartnershipBlock {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.HomePartnershipBlock__desc {
+  width: 703px;
+  margin-right: auto;
+  color: #6E6868;
+}
+
+.MiscMenuList li {
+  margin-bottom: 4px;
+}
+
+.MiscMenuList a {
+  color: #6E6868;
+  text-transform: uppercase;
+}
+
+.MiscMenuList a:hover {
+  color: #ff4141;
+  text-decoration: underline;
+}
+
+.MiscNewsletter {
+  width: 604px;
+  margin-left: auto;
+}
+
+.MiscNewsletter__emailFieldLabel {
+  display: block;
+  font: 14px "Avenir-Heavy";
+  margin-bottom: 13px;
+  text-transform: uppercase;
+}
+
+.MiscNewsletter__emailField {
+  width: 437px;
+  height: 46px;
+  border: solid 1px #E0E0E0;
+  float: left;
+  padding: 0 10px;
+}
+
+.MiscNewsletter__button {
+  float: left;
+  background: #E0E0E0;
+  color: #fff;
+  width: 166px;
+  height: 46px;
+}
+
+.GymRating > .icon {
+  margin-right: 3px !important;
+  background: none !important;
+}
+
+.GymRating > .icon::before {
+  content: "" !important;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url("../img/star-empty.svg") no-repeat !important;
+  background-size: 20px 20px;
+}
+
+.GymRating.-white > .icon::before {
+  background-image: url("../img/star-white-empty.svg") !important;
+}
+
+.GymRating > .icon.active::before {
+  background-image: url("../img/star-full.svg") !important;
+}
+
+.GymRating.-white > .icon.active::before {
+  background-image: url("../img/star-white-full.svg") !important;
+}
+
+.GymRating > .icon.selected::before {
+  background-image: url("../img/star-full-selected.svg") !important;
+}
+
+.GymRating.-white > .icon.selected {
+  background-image: url("../img/star-white-empty.svg") !important;
+}
+
+.GymFavorite {
+  width: 24px;
+  height: 24px;
+}
+
+.GymFavorite > .icon {
+  background: none !important;
+}
+
+.GymFavorite > .icon::before {
+  content: "" !important;
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-image: url("../img/icon-heart.svg") !important;
+  background-size: 24px 24px;
+}
+
+.GymFavorite > .icon.active::before {
+  background-image: url("../img/icon-heart-full.svg") !important;
+}
+
+.GymFavorite > .icon.selected::before {
+  background-image: url("../img/icon-heart-full.svg") !important;
+}
+
+.SignlePage__hero-favorite > .icon::before {
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+}
+
+.ListingFilter {
+  position: fixed;
+  top: 71px;
+  z-index: 2;
+  background: #fff;
+  border-bottom: solid 1px #EEEEEE;
+  padding: 0 35px;
+  width: 100%;
+  height: 50px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  display: flex;
+}
+
+.ListingFilter .ListingFilter__trigger {
+  font-size: 16px;
+  line-height: 1;
+  padding-right: 17px;
+  color: #000;
+  cursor: pointer;
+  margin-right: 20px;
+  background: url("../img/arrow-bottom.svg") no-repeat 100% 60%;
+}
+
+.ListingFilter .ListingFilter__trigger.-open {
+  background: url("../img/arrow-top.svg") no-repeat 100% 60%;
+}
+
+.ListingFilter .ListingFilter__trigger-map {
+  display: none;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ListingFilter .ListingFilter__trigger-map-icon {
+  margin-right: 4px;
+}
+
+.ListingFilter .ListingFilter__trigger-map-text {
+  font: 14px 'Avenir-Medium';
+}
+
+.ListingContent {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 121px;
+}
+
+.ListingItems {
+  padding: 35px 60px 15px 27px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 809px;
+}
+
+.ListingItem {
+  width: 345px;
+  height: 315px;
+  border: solid 1px #E0E0E0;
+  margin-bottom: 20px;
+}
+
+.ListingItem .ListingItem__preview {
+  display: block;
+  position: relative;
+  margin-bottom: 7px;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.ListingItem .ListingItem__preview .ListingItem__preview-link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.ListingItem .ListingItem__favorite {
+  position: absolute;
+  bottom: 9px;
+  right: 7px;
+}
+
+.ListingItem .ListingItem__previewRating {
+  position: absolute;
+  bottom: 9px;
+  left: 8px;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ListingItem .ListingItem__previewRatingStars {
+  margin-right: 8px;
+}
+
+.ListingItem .ListingItem__previewRatingText {
+  color: #fff;
+  font-size: 16px;
+}
+
+.ListingItem__title {
+  font: 16px "Avenir-Medium";
+  margin-left: 8px;
+  margin-bottom: 15px;
+}
+
+.ListingItem__title a {
+  color: #000;
+}
+
+.ListingItem__listEnrties {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ListingItem__listEnrties .ListingItem__entry {
+  width: 33%;
+  text-align: center;
+  padding: 0 15px;
+  border-right: solid 1px #E0E0E0;
+}
+
+.ListingItem__listEnrties .ListingItem__entry:last-child {
+  border-right: none;
+}
+
+.ListingItem__listEnrties .ListingItem__entryTitle {
+  color: #6E6868;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.ListingItem__listEnrties .ListingItem__entryPrice {
+  font: 14px 'Avenir-Heavy';
+}
+
+.ListingMaps {
+  position: absolute;
+  right: 0;
+  width: 634px;
+  height: 100%;
+}
+
+.ListingMaps__m {
+  position: fixed !important;
+  width: 634px;
+  overflow: hidden;
+  top: 120px;
+  bottom: 0;
+}
+
+.ListingPagination {
+  width: 100%;
+}
+
+.ListingPagination ul.page-numbers {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border: solid 1px #E0E0E0;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.ListingPagination ul.page-numbers li:last-child a {
+  border: none;
+}
+
+.ListingPagination ul.page-numbers a, .ListingPagination ul.page-numbers span {
+  min-width: 3em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0.8em;
+  color: #000;
+  border-right: solid 1px #E0E0E0;
+}
+
+.ListingPagination ul.page-numbers span {
+  background: #f3f2f2;
+}
+
+.ListingFilter__menu {
+  position: absolute;
+  top: 100%;
+  left: 20px;
+  border: solid 1px #E0E0E0;
+  background: #fff;
+  padding: 18px 32px 14px 16px;
+  border-radius: 3px;
+  display: none;
+  width: 285px;
+}
+
+.ListingFilter__menu label {
+  display: block;
+  color: #6E6868 !important;
+  font-size: 14px;
+  margin-bottom: 3px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer !important;
+}
+
+.ListingFilter__menu input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.ListingFilter__fieldset {
+  margin-bottom: 15px;
+}
+
+.ListingFilter__fieldsetTitle {
+  font: 14px 'Avenir-Medium';
+  margin-bottom: 10px;
+}
+
+.ListingFilter__column1 {
+  float: left;
+  width: 139px;
+}
+
+.ListingFilter__column2 {
+  float: left;
+  width: calc(100% - 139px);
+}
+
+.ListingFilter__menuReset {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  color: #3BCEAC;
+}
+
+.ListingFilter__menuFooter {
+  clear: both;
+  text-align: right;
+}
+
+.ListingFilter__button {
+  display: inline-block;
+  border: none;
+  border-radius: 3px;
+  line-height: 38px;
+  padding: 0;
+  width: 149px;
+  height: 38px;
+  color: #fff;
+  background: #FF4040;
+  font-size: 14px;
+}
+
+.ListingFilter .ui.selection.dropdown {
+  font-size: 14px;
+  min-width: 92px;
+  min-height: 24px;
+  padding: 4px 0 0 7px;
+}
+
+.ListingFilter .ui.dropdown .menu > .item {
+  font-size: 14px;
+  padding: 0.5rem 1rem !important;
+}
+
+.ListingFilter .ui.checkbox {
+  font-size: 14px;
+}
+
+.ListingFilter .ui.selection.dropdown,
+.ListingFilter .ui.selection.dropdown:focus,
+.ListingFilter .ui.selection.active.dropdown,
+.ListingFilter .ui.selection.active.dropdown:hover {
+  border-color: #000;
+}
+
+.ListingFilter .ui.selection.active.dropdown:hover .menu,
+.ListingFilter .ui.selection.active.dropdown .menu {
+  border-color: #000;
+}
+
+.SignlePage__hero {
+  position: relative;
+  width: 100%;
+  height: 580px;
+}
+
+.SinglePage__hero-image {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.SignlePage__hero-favorite {
+  position: absolute;
+  right: 32px;
+  bottom: 28px;
+  width: 40px;
+  height: 40px;
+}
+
+.SinglePage__content-container {
+  padding: 0 57px;
+}
+
+.SignlePage__headline {
+  position: relative;
+  padding: 23px 0 27px 287px;
+  margin: 0 -57px 26px -57px;
+  border-bottom: solid 1px #E0E0E0;
+  background: #fff;
+}
+
+.SignlePage__headline.ui.sticky.fixed.top {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.SignlePage__headline.ui.sticky.fixed.top + .SignlePage__columns_container {
+  margin-top: 169px;
+}
+
+.SignlePage__headline .SignlePage__headline-title {
+  font: 48px 'Avenir-Heavy';
+}
+
+.SinglePage__headling-meta {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 51px;
+}
+
+.SinglePage__headling-meta .SinglePage__headling-meta-address {
+  font: 20px "Avenir-Medium";
+  margin-right: 11px;
+  margin-bottom: 3px;
+}
+
+.SignlePage__columns_container {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.SignlePage__sidebar.-left {
+  width: 229px;
+  padding-right: 86px;
+}
+
+.SignlePage__sidebar.-center {
+  position: relative;
+  width: 805px;
+  padding-right: 86px;
+}
+
+.PriceBlock {
+  position: absolute;
+  top: -100px;
+  left: 100%;
+}
+
+.PriceBlock .ui.sticky {
+  width: 290px;
+  padding-bottom: 56px;
+  min-height: 400px !important;
+  border: solid 1px #E0E0E0;
+  background: #fff;
+}
+
+.PriceBlock .PriceBlock__title {
+  font: 28px 'Avenir-Heavy';
+  padding: 15px 26px 20px 26px;
+}
+
+.PriceBlock .PriceBlock__price-list {
+  margin-bottom: 55px;
+}
+
+.PriceBlock .PriceBlock__row {
+  display: -ms-flexbox;
+  display: flex;
+  height: 62px;
+  padding: 0 26px;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: solid 1px #EFEFEF;
+  cursor: pointer;
+}
+
+.PriceBlock .PriceBlock__row label {
+  cursor: pointer;
+}
+
+.PriceBlock .PriceBlock__ticket {
+  margin-right: auto;
+  font: 14px "Avenir-Heavy";
+}
+
+.PriceBlock .PriceBlock__price {
+  font: 20px "Avenir-Medium";
+  text-transform: uppercase;
+}
+
+.PriceBlock .PriceBlock__buy-button {
+  padding: 0 26px;
+}
+
+.PriceBlock .PriceBlock__button {
+  cursor: pointer;
+  width: 234px;
+  height: 35px;
+  font-size: 14px;
+  background: #FF4040;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.ContentMenu {
+  font: 16px 'Avenir-Heavy';
+}
+
+.ContentMenu li {
+  cursor: pointer;
+}
+
+.ContentMenu li a {
+  color: #000;
+}
+
+.ContentMenu li a.current {
+  color: #FF4040;
+}
+
+.SingleMainContent .ui.accordion .title {
+  display: none;
+  font: 22px "Avenir-Heavy";
+  padding: 0 15px 15px 15px;
+  margin: 13px 0;
+  background: url(../img/triangle-bottom.svg) no-repeat;
+  background-position: right 15px top 12px;
+  border-bottom: solid 1px #E0E0E0;
+}
+
+.SingleMainContent .ui.accordion .title.active {
+  padding-bottom: 0;
+  background: url(../img/triangle-top.svg) 100% 10px no-repeat;
+  background-position: right 15px top 10px;
+  border-bottom: none;
+}
+
+.SingleMainContent .ui.accordion .content {
+  padding: 0 !important;
+}
+
+.SingleMainContent__description {
+  color: #6E6868;
+  padding-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.SingleMainContent__description p {
+  margin-bottom: 15px;
+}
+
+.SingleMainContent__description p:last-child {
+  margin-bottom: 0;
+}
+
+.SingleMainContent__photos {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-bottom: 3px;
+  margin-bottom: 22px;
+}
+
+.SingleMainContent__photos a {
+  margin-right: 22px;
+  margin-bottom: 22px;
+}
+
+.SingleMainContent__photos img {
+  display: block;
+}
+
+.SingleMainContent__photos-modal img {
+  width: 100%;
+  height: 100%;
+}
+
+.SingleMainContent__additional-details {
+  font: 14px 'Avenir-Heavy';
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+}
+
+.SingleMainContent__map {
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  height: 460px;
+}
+
+.Comments {
+  margin-bottom: 71px;
+}
+
+.Comments .Comments__header {
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 50px;
+}
+
+.Comments .Comments__comments-amount {
+  font: 14px "Avenir-Heavy";
+  margin-right: 16px;
+}
+
+.Comments .Comments__item {
+  margin-bottom: 40px;
+}
+
+.Comments .Comments__load-more {
+  text-align: right;
+  font: 14px 'Avenir-Heavy';
+}
+
+.Comments .Comments__load-more-text {
+  cursor: pointer;
+  padding-right: 24px;
+  background: url(../img/triangle-bottom.svg) 100% 50% no-repeat;
+}
+
+.Comment {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Comment .Comment__meta {
+  margin-right: 56px;
+}
+
+.Comment .Comment__avatar {
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-bottom: 9px;
+}
+
+.Comment .Comment__name {
+  font: 14px "Avenir-Heavy";
+}
+
+.Comment .Comment__title {
+  font: 20px "Avenir-Medium";
+}
+
+.Comment .Comment__description {
+  color: #6E6868;
+  font-size: 14px;
+}
+
+.Comment .Comment__description p {
+  margin-bottom: 20px;
+}
+
+.Comment .Comment__description p:last-child {
+  margin: 0;
+}
+
+.Comment .Comment__read-more {
+  display: inline;
+  color: #FF4040;
+  height: 100px;
+}
+
+.Comment .Comment__description-short {
+  display: block;
+}
+
+.Comment .Comment__description-long {
+  display: none;
+}
+
+.Comment__description.-show-more .Comment__read-more {
+  display: inline;
+}
+
+.ProfilePage {
+  padding: 80px 57px;
+  overflow: hidden;
+}
+
+.ProfilePage__aside {
+  width: 290px;
+  float: left;
+}
+
+.ProfilePage__content {
+  margin-left: 290px;
+}
+
+.Profile__avatar {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  background-position: 50% 50%;
+  background-size: cover;
+  margin-bottom: 29px;
+  overflow: hidden;
+}
+
+.Profile__avatar:hover .Profile__avatar-hover {
+  display: block;
+}
+
+.Profile__avatar-hover {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.Profile__avatar-hover::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background: #9B9B9B;
+  width: 1px;
+  height: 59px;
+}
+
+.Profile__avatar-hover .Profile__avatar-change {
+  position: absolute;
+  top: 65px;
+  left: 35px;
+}
+
+.Profile__avatar-hover .Profile__avatar-delete {
+  position: absolute;
+  top: 65px;
+  right: 35px;
+}
+
+.Profile__user-name {
+  font: 28px "Avenir-Heavy";
+}
+
+.Profile__user-desc {
+  color: #6E6868;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.ProfileMenu a {
+  color: #000;
+  font: 20px "Avenir-Medium";
+}
+
+.ProfileMenu a.active {
+  color: #FF4040;
+}
+
+.ProfileProfile {
+  width: 630px;
+  border: solid 1px #E0E0E0;
+  padding: 28px 14px;
+}
+
+.ProfileProfile__headline {
+  font: 36px "Avenir-Heavy";
+  margin-bottom: 10px;
+}
+
+.ProfileProfile__form fieldset {
+  margin-bottom: 27px;
+}
+
+.ProfileProfile__form fieldset label {
+  display: block;
+  float: left;
+  width: 176px;
+  font: 16px "Avenir-Medium";
+}
+
+.ProfileProfile__form fieldset .ui.input input {
+  width: 235px;
+  font-size: 14px;
+  color: #6E6868;
+}
+
+.ProfileProfile__form-date {
+  display: inline-block;
+}
+
+.ProfileProfile__form-btns {
+  margin-left: 176px;
+}
+
+.ProfileProfile__btn-cancel,
+.ProfileProfile__btn-accept {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 12px;
+  border-radius: 5px;
+  width: 170px;
+  color: #fff;
+  height: 38px;
+}
+
+.ProfileProfile__btn-cancel {
+  background: #FF4040;
+}
+
+.ProfileProfile__btn-accept {
+  background: #3BCEAC;
+}
+
+.ProfilPass {
+  width: 922px;
+  border: solid 1px #E0E0E0;
+  padding: 28px 14px;
+  display: none;
+}
+
+.ProfilPass__headline {
+  font: 36px "Avenir-Heavy";
+  margin-bottom: 5px;
+}
+
+.ProfilPass__description {
+  font-size: 14px;
+  color: #6E6868;
+  margin-bottom: 31px;
+}
+
+.PassLists {
+  margin-left: 60px;
+}
+
+.PassList.-available {
+  margin-bottom: 100px;
+}
+
+.PassList__headline {
+  margin-bottom: 17px;
+  font: 20px "Avenir-Medium";
+}
+
+.PassRow {
+  display: -ms-flexbox;
+  display: flex;
+  color: #6E6868;
+  margin-bottom: 12px;
+}
+
+.PassRow.-head {
+  font: 14px "Avenir-Heavy";
+  color: #000;
+}
+
+.PassRow:last-child {
+  margin-bottom: 0;
+}
+
+.PassRow div {
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.PassRow .PassRow__icon {
+  width: 34px;
+}
+
+.PassRow .PassRow__title {
+  width: 144px;
+}
+
+.PassRow .PassRow__date {
+  width: 116px;
+}
+
+.PassRow .PassRow__entries {
+  width: 121px;
+}
+
+.PassRow .PassRow__available-entries {
+  width: 209px;
+}
+
+.Pass__btn {
+  color: #fff;
+  background: #FF4040;
+  width: 100px;
+  height: 22px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 0;
+  border-radius: 5px;
+}
+
+.ProfileComments {
+  display: none;
+}
+
+.ProfileComments__list {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.ProfileComments__item {
+  padding: 9px 10px 0 14px;
+  width: 346px;
+  height: 300px;
+  border: solid 1px #E0E0E0;
+  margin-right: 34px;
+  margin-bottom: 50px;
+}
+
+.ProfileComments__item:nth-child(2n) {
+  margin-right: 0;
+}
+
+.ProfileComments__wrap-type-date {
+  color: #6E6868;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.ProfileComments__type {
+  float: left;
+}
+
+.ProfileComments__date {
+  float: right;
+}
+
+.ProfileComments__title {
+  font: 20px "Avenir-Medium";
+  margin-bottom: 7px;
+}
+
+.ProfileComments__note {
+  color: #6E6868;
+  margin-bottom: 6px;
+}
+
+.ProfileComments__rating {
+  margin-bottom: 12px;
+}
+
+.ProfileComments__commentaire {
+  color: #6E6868;
+  margin-bottom: 12px;
+}
+
+.ProfileComments__comment-title {
+  font: 14px "Avenir-Heavy";
+}
+
+.ProfileComments__comment-description {
+  color: #6E6868;
+}
+
+.ProfileComments__loadMore {
+  text-align: right;
+  width: 726px;
+}
+
+.ProfileComments__loadMore-link {
+  color: #6E6868;
+  padding-right: 20px;
+  background: url(../img/triangle-bottom.svg) no-repeat 100% 50%;
+}
+
+.ProfileFavorite {
+  display: none;
+}
+
+.FavoriteList {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.FavoriteList .FavoriteListItem {
+  margin-right: 33px;
+  margin-bottom: 50px;
+}
+
+.FavoriteList .FavoriteListItem:nth-child(2n) {
+  margin-right: 0;
+}
+
+.FavoriteListItem {
+  display: block;
+  width: 346px;
+  height: 300px;
+  border: solid 1px #E0E0E0;
+}
+
+.FavoriteListItem:last-child {
+  border: none;
+}
+
+.FavoriteListItem__image {
+  position: relative;
+  display: block;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 235px;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.FavoriteListItem__content {
+  position: relative;
+  padding: 0 14px 0 14px;
+}
+
+.FavoriteListItem__category {
+  color: #6E6868;
+}
+
+.FavoriteListItem__title {
+  font: 20px "Avenir-Medium";
+}
+
+.FavoriteListItem__title a {
+  color: #000;
+}
+
+.FavoriteListItem__favorite {
+  position: absolute;
+  right: 10px;
+  bottom: 12px;
+}
+
+.FavoriteListItem__rating {
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+}
+
+.ProfileFavorite__loadMore {
+  text-align: right;
+  width: 726px;
+}
+
+.ProfileFavorite__loadMore-link {
+  color: #6E6868;
+  padding-right: 20px;
+  background: url(../img/triangle-bottom.svg) no-repeat 100% 50%;
+}
+
+.PaymentPage {
+  padding-top: 50px;
+}
+
+.PaymentPage .PaymentSteps {
+  margin: 0 auto 50px auto;
+}
+
+.PaymentSteps {
+  width: 620px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.PaymentSteps .PaymentSteps__step {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background: #fff;
+}
+
+.PaymentSteps .PaymentSteps__step:last-child .PaymentSteps__step-number::after {
+  display: none;
+}
+
+.PaymentSteps .PaymentSteps__step-number {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #FFF;
+  border: solid 1px #FF4040;
+  color: #FF4040;
+  width: 60px;
+  height: 60px;
+  font: 20px Arial,sans-serif;
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+
+.PaymentSteps .PaymentSteps__step-number::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 212px;
+  height: 1px;
+  background: #FF4040;
+  top: 50%;
+  left: 100%;
+}
+
+.PaymentSteps .PaymentSteps__step.-active .PaymentSteps__step-number {
+  background: #FF4040;
+  color: #fff;
+}
+
+.PaymentSteps .PaymentSteps__step-desc {
+  color: #6E6868;
+}
+
+.PaymentForm {
+  width: 547px;
+  margin: 0 auto;
+  padding: 26px 74px 58px 74px;
+  border: solid 1px #E0E0E0;
+}
+
+.PaymentForm .PaymentForm__title {
+  font: 20px "Avenir-Medium";
+  text-align: center;
+  margin-bottom: 51px;
+}
+
+.PaymentForm .PaymentForm__row {
+  margin-bottom: 15px;
+}
+
+.PaymentForm .PaymentForm__row input[type="text"] {
+  width: 100%;
+  border: solid 1px #9B9B9B;
+  height: 35px;
+  padding: 0 0 0 13px;
+  font: 16px "Avenir-Medium";
+  color: #000;
+  border-radius: 6px;
+}
+
+.PaymentForm .PaymentForm__row input[type="text"]::-webkit-input-placeholder {
+  font: 16px "Avenir-Medium";
+}
+
+.PaymentForm .PaymentForm__row input[type="text"]::-moz-placeholder {
+  font: 16px "Avenir-Medium";
+}
+
+.PaymentForm .PaymentForm__row input[type="text"]:-ms-input-placeholder {
+  font: 16px "Avenir-Medium";
+}
+
+.PaymentForm .PaymentForm__row input[type="text"]::placeholder {
+  font: 16px "Avenir-Medium";
+}
+
+.PaymentForm .PaymentForm__row input[type="checkbox"] {
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.PaymentForm .PaymentForm__row .PaymentForm__label-checkbox {
+  color: #6E6868;
+}
+
+.PaymentForm .PaymentForm__row .PaymentForm__submit-button {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font: 20px "Avenir-Medium";
+  background: #FF4040;
+  color: #fff;
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+}
+
+.PaymentPage__mobile-header-link {
+  display: none;
+}
+
+.PaymentTitle {
+  display: none;
+  font: 14px "Avenir-Medium";
+}
+
+.PaymentCards {
+  padding: 0 58px 10px 57px;
+}
+
+.PaymentCardsItem {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  padding: 39px 96px 39px 27px;
+  border: solid 1px #E0E0E0;
+  margin-bottom: 20px;
+}
+
+.PaymentCardsItem__logo {
+  width: 94px;
+  margin-right: 26px;
+}
+
+.PaymentCardsItem__logo img {
+  width: 100%;
+}
+
+.PaymentCardsItem__body {
+  margin-right: auto;
+}
+
+.PaymentCardsItem__body img {
+  width: 100%;
+}
+
+.PaymentCardsItem__title {
+  font: 28px "Avenir-Heavy";
+}
+
+.PaymentCardsItem__buttonBlock {
+  margin-top: 27px;
+  width: 100%;
+  text-align: right;
+}
+
+.PaymentCardsItem__button {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background: #FF4040;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 162px;
+  height: 50px;
+  border-radius: 3px;
+  color: #fff;
+  font: 20px "Avenir-Black";
+}
+
+.PaymentAddCard {
+  padding: 39px 96px 39px 27px;
+  border: solid 1px #E0E0E0;
+}
+
+.PaymentAddCard .PaymentAddCard__activator {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  font: 28px "Avenir-Heavy";
+  cursor: pointer;
+}
+
+.PaymentAddNewCardForm {
+  display: block;
+  width: 380px;
+  margin-top: 33px;
+}
+
+.PaymentAddNewCardForm.-hide {
+  display: none;
+}
+
+.PaymentAddNewCardForm.-show {
+  display: block;
+}
+
+.PaymentAddNewCardForm__headline {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  border-bottom: solid 1px #EFEFEF;
+  padding-bottom: 11px;
+  margin-bottom: 18px;
+}
+
+.PaymentAddNewCardForm__cards-image {
+  margin-right: 13px;
+  width: 135px;
+  height: 29px;
+}
+
+.PaymentAddNewCardForm__title {
+  font: 14px "Avenir-Heavy";
+}
+
+.PaymentAddNewCardForm__row {
+  margin-bottom: 20px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.PaymentAddNewCardForm__field {
+  margin-right: 20px;
+}
+
+.PaymentAddNewCardForm__field:last-child {
+  margin-right: 0;
+}
+
+.PaymentAddNewCardForm__label {
+  display: block;
+  color: #9B9B9B;
+  margin-bottom: 5px;
+}
+
+.PaymentAddNewCardForm__input-text {
+  width: 180px;
+  height: 25px;
+  border: solid 1px #E0E0E0;
+  padding: 0 10px;
+  border-radius: 3px;
+  background: #fff;
+  color: #9B9B9B;
+}
+
+.PaymentAddNewCardForm__select.ui.dropdown {
+  width: 85px;
+  height: 25px;
+  font-size: 9px;
+  margin-right: 6px;
+}
+
+.PaymentAddNewCardForm__select.ui.dropdown:last-child {
+  margin-right: 0;
+}
+
+.PaymentAddNewCardForm__select.ui.dropdown .default.text,
+.PaymentAddNewCardForm__select.ui.dropdown .text {
+  color: #E0E0E0;
+  font-size: 10px !important;
+}
+
+.PaymentAddNewCardForm__select.ui.dropdown .dropdown.icon {
+  position: absolute;
+  margin: 0 !important;
+  padding: 0 !important;
+  top: auto !important;
+  right: 4px !important;
+  bottom: 8px !important;
+}
+
+.PaymentAddNewCardForm__select.ui.dropdown .menu > .item {
+  font-size: 11px !important;
+  padding: 5px !important;
+}
+
+.PaymentAddNewCardForm__buttonBlock {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  width: 380px;
+}
+
+.PaymentAddNewCardForm__button {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #FF4040;
+  color: #fff;
+  width: 180px;
+  height: 25px;
+  border-radius: 3px;
+}
+
+.PaymentBasket {
+  padding: 0 58px 0 57px;
+  overflow: hidden;
+}
+
+.PaymentBasketList {
+  margin-bottom: 94px;
+}
+
+.PaymentBasketListItem {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  border: solid 1px #E0E0E0;
+  padding: 20px 56px 20px 21px;
+}
+
+.PaymentBasketListItem__image {
+  width: 250px;
+  margin-right: 27px;
+}
+
+.PaymentBasketListItem__image img {
+  display: block;
+  width: 100%;
+}
+
+.PaymentBasketListItem__body {
+  margin-right: auto;
+}
+
+.PaymentBasketListItem__title {
+  font: 36px "Avenir-Heavy";
+}
+
+.PaymentBasketListItem__entries {
+  color: #FF4040;
+  font: 28px "Avenir-Heavy";
+}
+
+.PaymentBasketListItem__date {
+  color: #6E6868;
+}
+
+.PaymentBasketListItem__price {
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  font: 28px "Avenir-Heavy";
+}
+
+.PaymentBasketListItem__close {
+  position: absolute;
+  top: 22px;
+  right: 23px;
+  display: block;
+  background: url("../img/icon-error.svg") no-repeat;
+  width: 39px;
+  height: 39px;
+}
+
+.PaymentTotal {
+  background: #EEE;
+  padding: 10px 14px 25px 22px;
+  width: 520px;
+  float: right;
+}
+
+.PaymentTotal__title {
+  font: 20px "Avenir-Medium";
+  margin-bottom: 17px;
+}
+
+.PaymentTotal__card {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-bottom: 11px;
+  border-bottom: solid 1px #979797;
+  margin-bottom: 8px;
+}
+
+.PaymentTotal__card .PaymentTotal__card-image {
+  width: 65px;
+  margin-right: 18px;
+}
+
+.PaymentTotal__card .PaymentTotal__card-image img {
+  display: block;
+  width: 100%;
+}
+
+.PaymentTotal__card .PaymentTotal__card-title {
+  font: 14px "Avenir-Heavy";
+}
+
+.PaymentTotal__container-price {
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.PaymentTotal__price-text {
+  margin-right: auto;
+}
+
+.PaymentTotal__total-text {
+  font: 28px "Avenir-Heavy";
+}
+
+.PaymentTotal__tva-text {
+  font: 14px "Avenir-Heavy";
+}
+
+.PaymentTotal__price {
+  font: 28px "Avenir-Heavy";
+}
+
+.PaymentTotal__button {
+  font: 20px "Avenir-Black";
+  background: #FF4040;
+  color: #fff;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 55px;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.PaymentBasketListItem__remove.-xs {
+  display: none;
+}
+
+.PaymentComplete {
+  position: relative;
+  height: 50vh;
+}
+
+.PaymentCompleteContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.PaymentCompleteContent .PaymentComplete__icon-done {
+  width: 77px;
+  width: calc(50px + (77 - 50) * ((100vw - 767px) / (1440 - 767)));
+  margin-bottom: 10px;
+}
+
+.PaymentCompleteContent .PaymentComplete__text-thanks {
+  font-family: "Avenir-Heavy";
+  text-align: center;
+  white-space: nowrap;
+  font-size: 36px;
+  font-size: calc(18px + (36 - 18) * ((100vw - 767px) / (1440 - 767)));
+}
+
+.PaymentCompleteContent .PaymentComplete__link-show-pass {
+  font-family: "Avenir-Medium";
+  font-size: 20px;
+  font-size: calc(14px + (20 - 14) * ((100vw - 767px) / (1440 - 767)));
+  text-align: center;
+}
+
+.PartnershipPage {
+  padding: 29px 57px;
+}
+
+.PartnershipValidator {
+  text-align: center;
+  background: #fff;
+  border: solid 1px #E0E0E0;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+}
+
+.PartnershipValidator__title {
+  font: 36px "Avenir-Heavy";
+}
+
+.PartnershipValidator__desc {
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.PartnershipValidator__form {
+  overflow: hidden;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.PartnershipValidator__input-text {
+  border: solid 1px #E0E0E0;
+  font-size: 12px;
+  padding: 7px 10px;
+  width: 338px;
+}
+
+.PartnershipValidator__input-text::-webkit-input-placeholder {
+  color: #E0E0E0;
+}
+
+.PartnershipValidator__input-text::-moz-placeholder {
+  color: #E0E0E0;
+}
+
+.PartnershipValidator__input-text:-ms-input-placeholder {
+  color: #E0E0E0;
+}
+
+.PartnershipValidator__input-text::placeholder {
+  color: #E0E0E0;
+}
+
+.PartnershipValidator__input-submit {
+  width: 90px;
+  text-align: center;
+  background: #540D6E;
+  padding: 7px 10px;
+  color: #fff;
+}
+
+.PartnershipValidator.-done {
+  display: none;
+  background: #9CE5D4;
+  border: solid 1px #3BCEAC;
+}
+
+.PartnershipValidator.-done.-hide {
+  display: none;
+}
+
+.PartnershipValidator.-done.-show {
+  display: block;
+}
+
+.PartnershipValidator.-done .PartnershipValidator__title {
+  display: inline-block;
+  padding-left: 62px;
+  background: url("../img/icon-pass-done.png") 0 10px no-repeat;
+  margin-bottom: 12px;
+}
+
+.PartnershipValidator.-done .PartnershipValidator__info-title {
+  font: 14px "Avenir-Heavy";
+  margin-bottom: 5px;
+}
+
+.PartnershipValidator.-done .PartnershipValidator__info-text {
+  color: #6E6868;
+}
+
+.PartnershipPage__content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.PartnershipHelp,
+.PartnershipContact {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(100% * 1/2 - (55px - 55px * 1/2));
+  width: calc(100% * 1/2 - (55px - 55px * 1/2));
+  border: solid 1px #E0E0E0;
+  padding: 25px;
+}
+
+.PartnershipHelp:nth-child(1n),
+.PartnershipContact:nth-child(1n) {
+  margin-right: 55px;
+  margin-left: 0;
+}
+
+.PartnershipHelp:last-child,
+.PartnershipContact:last-child {
+  margin-right: 0;
+}
+
+.PartnershipHelp:nth-child(0n),
+.PartnershipContact:nth-child(0n) {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.PartnershipHelp {
+  background: #E0E0E0;
+}
+
+.PartnershipHelp__item {
+  margin-bottom: 39px;
+}
+
+.PartnershipHelp__title {
+  font: 28px "Avenir-Heavy";
+  margin-bottom: 4px;
+}
+
+.PartnershipHelp__item-title {
+  font: 20px "Avenir-Heavy";
+}
+
+.PartnershipHelp__item-desc {
+  color: #6E6868;
+}
+
+.PartnershipContact__title {
+  font: 28px "Avenir-Heavy";
+}
+
+.PartnershipContact__desc {
+  color: #6E6868;
+  margin-bottom: 44px;
+}
+
+.PartnershipContact__row {
+  margin-bottom: 20px;
+}
+
+.PartnershipContact__label {
+  color: #6E6868;
+}
+
+.PartnershipContact__contact-data {
+  color: #FF4040;
+}
+
+.PartnershipContact__contacts-title {
+  font: 20px "Avenir-Medium";
+}
+
+.PartnershipContact__contacts-desc {
+  color: #6E6868;
+}
+
+.TextPage {
+  padding: 20px 50px;
+  font-size: 14px;
+}
+
+.TextPage h1 {
+  margin-bottom: 0.3em;
+}
+
+.TextPage h2 {
+  margin-bottom: 0.3em;
+}
+
+.TextPage h3 {
+  margin-bottom: 0.3em;
+}
+
+.TextPage p {
+  margin-bottom: 0.3em;
+}
+
+.TextPage img {
+  max-width: 100%;
+}
+
+.FaqPage {
+  padding: 20px 50px;
+  width: 50%;
+}
+
+.FaqPage__title {
+  font-family: "Avenir-Heavy";
+  font-size: 32px;
+  font-size: calc(18px + (32 - 18) * ((100vw - 320px) / (1440 - 320)));
+  margin-bottom: 0.3em;
+}
+
+html {
+  height: 100%;
+}
+
+.App {
+  position: relative;
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-top: 71px;
+}
+
+.App.-payment {
+  padding-bottom: 78px;
+  min-height: calc(100vh - 71px);
+}
+
+.Footer {
+  position: relative;
+  border-top: solid 1px #eee;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 57px;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 78px;
+}
+
+.Footer .Footer__socials {
+  margin-right: auto;
+}
+
+.Footer .Footer__socialsItem {
+  display: block;
+  float: left;
+  margin-right: 25px;
+}
+
+.Footer .Footer__socialsItem img {
+  display: block;
+  width: 100%;
+}
+
+.Footer .Footer__copyright {
+  color: #6E6868;
+  float: right;
+}
+
+.Footer.-payment {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  border-top: 0;
+}
+
+.Footer__logo {
+  display: none;
+}
+
+.Footer__pages {
+  margin-right: auto;
+}
+
+.Footer__pages .Footer__page {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.Footer__pages .Footer__page a {
+  color: #6E6868;
+}
+
+.Footer__pages .Footer__page a:hover {
+  color: #ff4141;
+}
+
+.Footer__pages .Footer__page:last-child {
+  margin-right: 0;
+}
+
+.Footer__phone {
+  margin-right: auto;
+}
+
+.Footer__phone .Footer__phone-text {
+  padding-left: 23px;
+  font-size: 14px;
+  background: url("../img/icon-phone.svg") 0 50% no-repeat;
+}
+
+.Footer__payment-links li {
+  margin-right: 15px;
+  display: inline-block;
+}
+
+.Footer__payment-links li:last-child {
+  margin-right: 0;
+}
+
+.Footer__payment-links a {
+  font: 16px "Avenir-Medium";
+  color: #000;
+}
+
+@media only screen and (min-width: 1024px) {
+
+  .Header.-sm {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+
+  .PaymentCompleteContent .PaymentComplete__icon-done {
+    width: 77px;
+  }
+
+  .PaymentCompleteContent .PaymentComplete__text-thanks {
+    font-size: 36px;
+  }
+
+  .PaymentCompleteContent .PaymentComplete__link-show-pass {
+    font-size: 20px;
+  }
+
+  .FaqPage__title {
+    font-size: 32px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+
+  .hide-sm {
+    display: none;
+  }
+
+  .Header__logo {
+    margin: 0 auto;
+    width: 180px;
+    height: 36px;
+    background: url("../img/logo.svg") no-repeat 0 0;
+  }
+
+  .Header.-md {
+    display: none;
+  }
+
+  .Header.-sm {
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .App.-payment .Header.-md .Header__logo,
+  .App.-partnership .Header.-md .Header__logo {
+    margin: 0;
+    width: 288px;
+    height: 71px;
+    background: url("../img/logo.svg") no-repeat 40px 50%;
+  }
+
+  .Hero {
+    height: 350px;
+  }
+
+  .Hero__slogan {
+    top: 93px;
+    width: 477px;
+    font-size: 24px;
+  }
+
+  .Hero__search {
+    top: 196px;
+    width: 240px;
+  }
+
+  .HeroSearch__field input {
+    height: 25px;
+    padding-left: 21px;
+    font-size: 10px;
+    background: url("../img/search-mini-icon.svg") #fff no-repeat 6px 50%;
+    background-size: 10px 12px;
+  }
+
+  .HeroSearch__field input::-webkit-input-placeholder {
+    font-size: 10px;
+  }
+
+  .HeroSearch__field input::-moz-placeholder {
+    font-size: 10px;
+  }
+
+  .HeroSearch__field input:-ms-input-placeholder {
+    font-size: 10px;
+  }
+
+  .HeroSearch__field input::placeholder {
+    font-size: 10px;
+  }
+
+  .HeroFeatures {
+    height: 80px;
+    margin-bottom: 28px;
+  }
+
+  .HeroFeatures__item {
+    padding: 14px 28px 0 0;
+  }
+
+  .HeroFeatures__icon {
+    -ms-flex-align: start;
+    align-items: flex-start;
+    padding: 0 36px 0 28px;
+  }
+
+  .HeroFeatures__icon img {
+    width: 27px;
+  }
+
+  .HeroFeatures__title {
+    font-size: 14px;
+  }
+
+  .HeroFeatures__desc {
+    font-size: 12px;
+  }
+
+  .HomeSection {
+    padding: 0 15px;
+    margin-bottom: 40px;
+  }
+
+  .HomeSection__headline {
+    font-size: 26px;
+  }
+
+  .HomeSection.-activites {
+    padding-bottom: 28px;
+    margin-bottom: 17px;
+  }
+
+  .HomeSection.-partnerships {
+    margin-bottom: 20px;
+  }
+
+  .HomeSection.-partnerships .HomeSection__headline {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  .SliderGyms {
+    margin-right: 0;
+  }
+
+  .GymListigItem {
+    margin-right: 0;
+    padding: 0 15px;
+  }
+
+  .GymListigItem__image {
+    margin-bottom: 15px;
+  }
+
+  .GymListigItem__title {
+    font-size: 14px;
+  }
+
+  .ActivitesList__item {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(100% * 1/1);
+    width: calc(100% * 1/1);
+    margin-bottom: 20px;
+  }
+
+  .ActivitesList__item:nth-child(1n) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .ActivitesList__item:last-child {
+    margin-right: 0;
+  }
+
+  .ActivitesList__item:nth-child(0n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .ActivitesList__item:last-child {
+    margin-bottom: 0;
+  }
+
+  .ActivitesList__item.-long {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(100% * 1/1);
+    width: calc(100% * 1/1);
+  }
+
+  .ActivitesList__item.-long:nth-child(1n) {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .ActivitesList__item.-long:last-child {
+    margin-right: 0;
+  }
+
+  .ActivitesList__item.-long:nth-child(0n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .HomePartnershipBlock__desc {
+    font-size: 12px;
+    width: 497px;
+  }
+
+  .MiscNewsletter {
+    width: 260px;
+  }
+
+  .MiscNewsletter__emailFieldLabel {
+    font-size: 12px;
+  }
+
+  .MiscNewsletter__emailField {
+    width: 190px;
+    height: 25px;
+    font-size: 10px;
+  }
+
+  .MiscNewsletter__button {
+    width: 69px;
+    height: 25px;
+    font-size: 10px;
+  }
+
+  .GymRating > .icon {
+    margin-right: 1px !important;
+  }
+
+  .GymRating > .icon::before {
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px !important;
+  }
+
+  .GymRating > .icon.active::before {
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px !important;
+  }
+
+  .GymRating > .icon.selected::before {
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px !important;
+  }
+
+  .ListingFilter {
+    top: 60px;
+  }
+
+  .ListingFilter .ListingFilter__trigger-map {
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .ListingItems {
+    width: 100%;
+    padding: 23px;
+  }
+
+  .ListingItem {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(100% * 1/2 - (30px - 30px * 1/2));
+    width: calc(100% * 1/2 - (30px - 30px * 1/2));
+  }
+
+  .ListingItem:nth-child(1n) {
+    margin-right: 30px;
+    margin-left: 0;
+  }
+
+  .ListingItem:last-child {
+    margin-right: 0;
+  }
+
+  .ListingItem:nth-child(2n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .ListingMaps {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 110px;
+    padding: 0 23px;
+  }
+
+  .ListingMaps__m {
+    top: auto;
+    width: 100%;
+  }
+
+  .ListingFilter__menu {
+    left: 0;
+  }
+
+  .SignlePage__hero {
+    height: 405px;
+    margin-bottom: 25px;
+  }
+
+  .SignlePage__hero-favorite {
+    right: 19px;
+    bottom: 14px;
+  }
+
+  .SinglePage__content-container {
+    padding: 0;
+  }
+
+  .SignlePage__headline {
+    margin: 0 0 0 0;
+    padding: 0 0 10px 17px;
+    border-bottom: none;
+  }
+
+  .SignlePage__headline .SignlePage__headline-title {
+    font-size: 26px;
+  }
+
+  .SinglePage__headling-meta .SinglePage__headling-meta-address {
+    font-size: 16px;
+    margin-right: auto;
+  }
+
+  .SinglePage__headling-meta .SinglePage__headling-meta-rating {
+    position: relative;
+    top: -28px;
+  }
+
+  .SignlePage__sidebar.-left {
+    display: none;
+  }
+
+  .SignlePage__sidebar.-center {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .PriceBlock {
+    position: static;
+    min-height: 0 !important;
+  }
+
+  .PriceBlock .ui.sticky {
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    padding-bottom: 25px;
+    border: none;
+    border-bottom: solid 1px #E0E0E0;
+  }
+
+  .PriceBlock .PriceBlock__title {
+    font-size: 26px;
+    padding: 15px 26px 20px 17px;
+  }
+
+  .PriceBlock .PriceBlock__row {
+    padding: 0 26px 0 17px;
+  }
+
+  .PriceBlock .PriceBlock__buy-button {
+    padding: 0;
+  }
+
+  .PriceBlock .PriceBlock__button {
+    width: 100%;
+    height: 50px;
+    font: 18px "Avenir-Black";
+    border-radius: 0;
+  }
+
+  .SingleMainContent .ui.accordion .title {
+    display: block;
+  }
+
+  .SingleMainContent .ui.accordion .content {
+    padding: 0 15px !important;
+    border-bottom: solid 1px #E0E0E0;
+  }
+
+  .SingleMainContent__description {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+
+  .ProfilePage {
+    padding: 50px 20px;
+  }
+
+  .ProfilePage__aside {
+    width: 200px;
+  }
+
+  .ProfilePage__content {
+    margin-left: 250px;
+  }
+
+  .ProfileProfile {
+    width: 100%;
+  }
+
+  .ProfileProfile__btn-cancel,
+  .ProfileProfile__btn-accept {
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .ProfilPass {
+    width: 100%;
+  }
+
+  .PassLists {
+    margin-left: 0;
+  }
+
+  .PassRow {
+    display: block;
+    border: solid 1px #E0E0E0;
+    padding: 10px;
+  }
+
+  .PassRow.-head {
+    display: none;
+  }
+
+  .PassRow div {
+    display: block;
+    width: 100% !important;
+  }
+
+  .PassRow .PassRow__icon {
+    display: none;
+  }
+
+  .PassRow .PassRow__title {
+    font: 20px "Avenir-Heavy";
+    margin-bottom: 5px;
+  }
+
+  .PassRow .PassRow__date {
+    color: #a9a9a9;
+    font-size: 13px;
+  }
+
+  .PassRow .PassRow__entries {
+    width: 100px;
+    color: #a9a9a9;
+  }
+
+  .PassRow .PassRow__available-entries {
+    width: 103px;
+    color: #a9a9a9;
+    margin-bottom: 10px;
+  }
+
+  .Pass__btn {
+    width: 30%;
+    height: 30px;
+  }
+
+  .ProfileComments__item {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .ProfileComments__loadMore {
+    width: 615px;
+  }
+
+  .FavoriteList .FavoriteListItem {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .ProfileFavorite__loadMore {
+    width: 615px;
+  }
+
+  .PaymentPage {
+    padding-top: 31px;
+  }
+
+  .PaymentSteps {
+    width: 500px;
+  }
+
+  .PaymentSteps .PaymentSteps__step-number {
+    width: 47px;
+    height: 47px;
+  }
+
+  .PaymentForm .PaymentForm__row input[type="text"]::-webkit-input-placeholder {
+    font: 10px "Avenir-Book";
+  }
+
+  .PaymentForm .PaymentForm__row input[type="text"]::-moz-placeholder {
+    font: 10px "Avenir-Book";
+  }
+
+  .PaymentForm .PaymentForm__row input[type="text"]:-ms-input-placeholder {
+    font: 10px "Avenir-Book";
+  }
+
+  .PaymentForm .PaymentForm__row input[type="text"]::placeholder {
+    font: 10px "Avenir-Book";
+  }
+
+  .PaymentCardsItem {
+    padding-right: 49px;
+  }
+
+  .PaymentCardsItem__title {
+    font-size: 22px;
+  }
+
+  .PaymentCardsItem__button {
+    width: 140px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .PaymentAddCard .PaymentAddCard__activator {
+    font-size: 22px;
+  }
+
+  .PaymentBasketList {
+    margin-bottom: 20px;
+  }
+
+  .PaymentBasketListItem {
+    padding: 20px;
+  }
+
+  .PaymentBasketListItem__image {
+    width: 150px;
+    margin-right: 20px;
+  }
+
+  .PaymentBasketListItem__title {
+    font-size: 24px;
+  }
+
+  .PaymentBasketListItem__entries {
+    font-size: 16px;
+  }
+
+  .PaymentBasketListItem__date {
+    font-size: 12px;
+  }
+
+  .PaymentBasketListItem__price {
+    font-size: 24px;
+  }
+
+  .PaymentBasketListItem__close {
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .PaymentTotal {
+    float: none;
+    width: 100%;
+  }
+
+  .PaymentTotal__container-price {
+    margin-bottom: 20px;
+  }
+
+  .PaymentTotal__total-text {
+    font-size: 20px;
+  }
+
+  .PaymentTotal__tva-text {
+    font-size: 12px;
+  }
+
+  .PaymentTotal__price {
+    font-size: 20px;
+  }
+
+  .PaymentTotal__button {
+    font-size: 18px;
+    height: 50px;
+  }
+
+  .PartnershipPage {
+    padding: 29px 29px;
+  }
+
+  .PartnershipValidator {
+    margin-bottom: 20px;
+  }
+
+  .PartnershipHelp,
+  .PartnershipContact {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(100% * 1/2 - (20px - 20px * 1/2));
+    width: calc(100% * 1/2 - (20px - 20px * 1/2));
+  }
+
+  .PartnershipHelp:nth-child(1n),
+  .PartnershipContact:nth-child(1n) {
+    margin-right: 20px;
+    margin-left: 0;
+  }
+
+  .PartnershipHelp:last-child,
+  .PartnershipContact:last-child {
+    margin-right: 0;
+  }
+
+  .PartnershipHelp:nth-child(0n),
+  .PartnershipContact:nth-child(0n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .FaqPage {
+    width: auto;
+  }
+
+  .App.-payment {
+    margin-top: 71px;
+  }
+
+  .App {
+    width: auto;
+    max-width: 1024px;
+    margin-top: 60px;
+  }
+
+  .Footer {
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 108px;
+  }
+
+  .Footer .Footer__socials {
+    margin-right: 0;
+    margin-top: 20px;
+    margin-bottom: 29px;
+  }
+
+  .Footer .Footer__socialsItem {
+    width: 35px;
+    float: left;
+    margin-right: 20px;
+  }
+
+  .Footer .Footer__copyright {
+    font-size: 10px;
+    color: #6E6868;
+  }
+
+  .Footer.-payment {
+    height: 45px;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 0 20px 0 20px;
+  }
+
+  .Footer__logo {
+    display: block;
+    margin-top: 24px;
+  }
+
+  .Footer__pages {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+  .Header__right {
+    display: none;
+  }
+
+  .App.-payment .Header.-md .Header__logo,
+  .App.-partnership .Header.-md .Header__logo {
+    width: 100%;
+    background-position: 50% 50%;
+  }
+
+  .Hero__slogan {
+    width: 90%;
+    top: 98px;
+  }
+
+  .Hero__search {
+    top: 227px;
+  }
+
+  .HeroFeatures {
+    background: #fff;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .HeroFeatures__item {
+    width: 100%;
+    border-bottom: solid 1px #E0E0E0;
+    border-right: none;
+    padding-top: 25px;
+    padding-bottom: 18px;
+  }
+
+  .HomeSection__headline {
+    font-size: 20px;
+  }
+
+  .HomeSection.-activites {
+    padding-bottom: 110px;
+    margin-bottom: 17px;
+  }
+
+  .HomeSection.-misc {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .GymListigItem {
+    padding: 0 10px;
+  }
+
+  .ActivitesList__item {
+    height: 143px;
+  }
+
+  .ActivitesList__itemTitle span {
+    font-size: 20px;
+  }
+
+  .HomePartnershipBlock {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .HomePartnershipBlock__desc {
+    width: 100%;
+    font-size: 10px;
+    margin-bottom: 20px;
+  }
+
+  .HomePartnershipBlock .ButtonPartner {
+    width: 167px;
+    font-size: 14px;
+    height: 41px;
+  }
+
+  .MiscMenuList {
+    margin-bottom: 14px;
+  }
+
+  .MiscNewsletter {
+    width: 100%;
+  }
+
+  .MiscNewsletter__emailFieldLabel {
+    margin-bottom: 5px;
+  }
+
+  .ListingFilter {
+    padding: 0 21px 0 15px;
+  }
+
+  .ListingFilter .ListingFilter__trigger {
+    font-size: 14px;
+    margin-right: auto;
+  }
+
+  .ListingItems {
+    padding: 14px;
+  }
+
+  .ListingItem {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(100% * 1/1 - (30px - 30px * 1/1));
+    width: calc(100% * 1/1 - (30px - 30px * 1/1));
+  }
+
+  .ListingItem:nth-child(1n) {
+    margin-right: 30px;
+    margin-left: 0;
+  }
+
+  .ListingItem:last-child {
+    margin-right: 0;
+  }
+
+  .ListingItem:nth-child(1n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .ListingMaps {
+    padding: 0 13px;
+  }
+
+  .SignlePage__headline .SignlePage__headline-title {
+    font-size: 28px;
+  }
+
+  .SinglePage__headling-meta {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .SinglePage__headling-meta .SinglePage__headling-meta-address {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .SinglePage__headling-meta .SinglePage__headling-meta-rating {
+    top: 0;
+  }
+
+  .PriceBlock .ui.sticky {
+    padding-bottom: 30px;
+  }
+
+  .PriceBlock .PriceBlock__title {
+    font-size: 20px;
+  }
+
+  .PriceBlock .PriceBlock__price-list {
+    margin-bottom: 0;
+  }
+
+  .SingleMainContent .ui.accordion .title {
+    font-size: 18px;
+  }
+
+  .SingleMainContent__description {
+    font-size: 10px;
+  }
+
+  .Comments {
+    margin-bottom: 40px;
+  }
+
+  .Comment {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .Comment .Comment__meta {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .Comment .Comment__avatar {
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .Comment .Comment__title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .Comment .Comment__description {
+    font-size: 12px;
+  }
+
+  .ProfilePage {
+    padding: 0 0;
+  }
+
+  .ProfilePage__aside {
+    display: none;
+  }
+
+  .ProfilePage__content {
+    margin-left: 0;
+  }
+
+  .ProfileProfile {
+    width: 100%;
+    border: none;
+  }
+
+  .ProfileProfile__form fieldset label {
+    float: none;
+    margin-bottom: 5px;
+  }
+
+  .ProfileProfile__form fieldset .ui.input {
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .ProfileProfile__form fieldset .ui.input input {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+  }
+
+  .ProfileProfile__form-btns {
+    margin-left: 0;
+  }
+
+  .ProfileProfile__btn-cancel,
+  .ProfileProfile__btn-accept {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .ProfileComments__item {
+    width: 100%;
+    margin-right: 0;
+    border: none;
+    border-bottom: solid 1px #E0E0E0;
+  }
+
+  .ProfileComments__item:last-child {
+    border: none;
+  }
+
+  .FavoriteList .FavoriteListItem {
+    margin-right: 0;
+  }
+
+  .FavoriteListItem {
+    border: none;
+    border-bottom: solid 1px #E0E0E0;
+    width: 100%;
+  }
+
+  .PaymentPage {
+    padding-top: 9px;
+  }
+
+  .PaymentPage .PaymentSteps {
+    margin-bottom: 12px;
+  }
+
+  .PaymentSteps {
+    width: 293px;
+  }
+
+  .PaymentSteps .PaymentSteps__step-number::after {
+    width: 100px;
+  }
+
+  .PaymentSteps .PaymentSteps__step-number {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+
+  .PaymentSteps .PaymentSteps__step-desc {
+    font-size: 10px;
+  }
+
+  .PaymentForm {
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+  }
+
+  .PaymentForm .PaymentForm__title {
+    margin-bottom: 20px;
+  }
+
+  .PaymentForm .PaymentForm__row input[type="text"] {
+    font-size: 10px;
+  }
+
+  .PaymentForm .PaymentForm__row .PaymentForm__label-checkbox {
+    font-size: 10px;
+  }
+
+  .PaymentForm .PaymentForm__row .PaymentForm__submit-button {
+    font-size: 14px;
+    height: 35px;
+  }
+
+  .PaymentPage__mobile-header-link {
+    display: block;
+  }
+
+  .PaymentTitle {
+    display: block;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .PaymentCards {
+    padding: 0 10px 10px 10px;
+  }
+
+  .PaymentCardsItem {
+    padding: 30px 10px 10px 14px;
+  }
+
+  .PaymentCardsItem__logo {
+    width: 56px;
+  }
+
+  .PaymentCardsItem__title {
+    font-size: 18px;
+  }
+
+  .PaymentCardsItem__modifier {
+    font-size: 12px;
+  }
+
+  .PaymentAddCard {
+    padding: 30px 10px 30px 14px;
+  }
+
+  .PaymentAddCard .PaymentAddCard__activator {
+    font-size: 18px;
+  }
+
+  .PaymentAddNewCardForm {
+    width: 100%;
+    padding-left: 7px;
+    padding-right: 19px;
+  }
+
+  .PaymentAddNewCardForm__row {
+    margin-bottom: 0;
+  }
+
+  .PaymentAddNewCardForm__field {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .PaymentAddNewCardForm__label {
+    font-size: 12px;
+  }
+
+  .PaymentAddNewCardForm__buttonBlock {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .PaymentBasket {
+    padding: 0 10px;
+  }
+
+  .PaymentBasketListItem {
+    padding: 15px;
+  }
+
+  .PaymentBasketListItem__image {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .PaymentBasketListItem__body {
+    width: 60%;
+  }
+
+  .PaymentBasketListItem__title {
+    font-size: 18px;
+  }
+
+  .PaymentBasketListItem__entries {
+    font-size: 14px;
+  }
+
+  .PaymentBasketListItem__date {
+    font-size: 10px;
+  }
+
+  .PaymentBasketListItem__price {
+    font-size: 18px;
+  }
+
+  .PaymentBasketListItem__close {
+    display: none;
+  }
+
+  .PaymentTotal__title {
+    margin-bottom: 10px;
+  }
+
+  .PaymentTotal__total-text {
+    font-size: 16px;
+  }
+
+  .PaymentTotal__tva-text {
+    font-size: 10px;
+  }
+
+  .PaymentTotal__price {
+    font-size: 16px;
+  }
+
+  .PaymentBasketListItem__remove.-xs {
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    border: solid 1px #E0E0E0;
+    padding: 10px;
+    color: #000;
+    border-radius: 5px;
+    font: 14px "Avenir-Heavy";
+  }
+
+  .PaymentBasketListItem__remove.-xs:hover, .PaymentBasketListItem__remove.-xs:active {
+    background: #FF4040;
+    color: #fff;
+  }
+
+  .PartnershipPage {
+    padding: 0;
+  }
+
+  .PartnershipValidator {
+    padding: 60px 20px;
+    margin-bottom: 0;
+    border: none;
+    border-bottom: solid 1px #E0E0E0;
+  }
+
+  .PartnershipHelp,
+  .PartnershipContact {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: calc(100% * 1/1 - (30px - 30px * 1/1));
+    width: calc(100% * 1/1 - (30px - 30px * 1/1));
+    border: none;
+  }
+
+  .PartnershipHelp:nth-child(1n),
+  .PartnershipContact:nth-child(1n) {
+    margin-right: 30px;
+    margin-left: 0;
+  }
+
+  .PartnershipHelp:last-child,
+  .PartnershipContact:last-child {
+    margin-right: 0;
+  }
+
+  .PartnershipHelp:nth-child(1n),
+  .PartnershipContact:nth-child(1n) {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  .PartnershipHelp__title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .PartnershipHelp__item-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .PartnershipContact__title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .PartnershipContact__contacts-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .TextPage {
+    padding: 20px;
+  }
+
+  .FaqPage {
+    padding: 20px;
+  }
+
+  .App.-payment {
+    min-height: calc(100vh - 71px);
+    padding-bottom: 108px;
+  }
+
+  .Footer .Footer__socials {
+    margin-bottom: 10px;
+  }
+
+  .Footer .Footer__socialsItem {
+    width: 25px;
+  }
+
+  .Footer.-payment {
+    height: 115px;
+    padding: 20px 13px 0 13px;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .Footer__phone {
+    margin-bottom: 23px;
+  }
+
+  .Footer__payment-links {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .Footer__payment-links li {
+    margin-right: 0;
+  }
+
+  .Footer__payment-links a {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .PaymentCompleteContent .PaymentComplete__icon-done {
+    width: 50px;
+  }
+
+  .PaymentCompleteContent .PaymentComplete__text-thanks {
+    font-size: 18px;
+  }
+
+  .PaymentCompleteContent .PaymentComplete__link-show-pass {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .FaqPage__title {
+    font-size: 18px;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */
