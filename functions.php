@@ -1,14 +1,8 @@
 <?php
 	// TODO. Remove before production
 	flush_rewrite_rules();
-	require('inc/search.php');
-
-	function dump($v) {
-		echo '<pre>';
-			print_r($v);
-		echo '</pre>';
-	}
-
+	require 'inc/search.php';
+	require 'inc/helpers.php';
 	require 'post-types/post-types.php';
 	require 'taxonomies/taxonomies.php';
 
@@ -96,6 +90,11 @@
 			'url' => get_stylesheet_directory_uri(),
 			'adminAjax' => admin_url( 'admin-ajax.php' )
 		));
+		if ( is_singular() || is_tax() ) {
+			wp_localize_script('app', 'mapData', array(
+				'styles' => get_field('map_styles', 'option'),
+			));
+		}
 	}
 	add_action( 'wp_enqueue_scripts', 'wellwhere_scripts' );
 

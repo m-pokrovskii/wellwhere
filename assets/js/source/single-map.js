@@ -2,6 +2,7 @@ const GM = (function($) {
   let map;
   const singleMap = $('.wellwhere-map');
   const clusterIcon = singleMap.attr('data-cluster-icon');
+  const mapStyles = JSON.parse(mapData.styles);
   function init() {
       singleMap.each(function(){
         map = new_map( $(this) );
@@ -16,8 +17,8 @@ const GM = (function($) {
       mapTypeId	: google.maps.MapTypeId.ROADMAP,
       scrollwheel: false,
       streetViewControl: false,
-      mapTypeControl: false
-      // disableDefaultUI: true
+      mapTypeControl: false,
+      styles: mapStyles
     };
 
 

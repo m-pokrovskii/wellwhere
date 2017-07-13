@@ -139,6 +139,7 @@ var GM = function ($) {
   var map = void 0;
   var singleMap = $('.wellwhere-map');
   var clusterIcon = singleMap.attr('data-cluster-icon');
+  var mapStyles = JSON.parse(mapData.styles);
   function init() {
     singleMap.each(function () {
       map = new_map($(this));
@@ -153,8 +154,8 @@ var GM = function ($) {
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       scrollwheel: false,
       streetViewControl: false,
-      mapTypeControl: false
-      // disableDefaultUI: true
+      mapTypeControl: false,
+      styles: mapStyles
     };
 
     // create map
@@ -257,7 +258,7 @@ $('.SliderGyms').slick({
   infinite: true,
   appendArrows: $('.SliderContainer'),
   nextArrow: '<img class="SliderGyms__nextArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
-  prevArrow: '<img class="SliderGyms__prevArrow" src=".' + data.url + '/assets/img/arrow.svg" alt="">',
+  prevArrow: '<img class="SliderGyms__prevArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
   responsive: [{
     breakpoint: 1025,
     settings: {
@@ -354,7 +355,7 @@ $('.ListingFilter__trigger').on('click', function () {
 });
 
 $('[data-action=listing-switch-map]').on('click', function () {
-  $('.ListingMaps').toggle();
+  $('.ListingMaps').toggleClass('-visible');
 });
 
 $('.ui.accordion').accordion({

@@ -132,20 +132,15 @@
 
 .ListingMaps
   position: absolute
-  // top: -3px
   right: 0
   width: 634px
   height: 100%
   +sm()
-    display: none
-    position: fixed
-    width: 100%
-    height: 100%
-    top: 110px
-    padding: 0 23px
-  +xs()
-    padding: 0 13px
+    visibility: hidden
 
+.ListingMaps.-visible
+  +sm()
+    visibility: visible
 
 .ListingMaps__m
   position: fixed !important
@@ -154,8 +149,14 @@
   top: 120px
   bottom: 0
   +sm()
-    top: auto
-    width: 100%
+    top: 110px
+    left: 23px
+    right: 23px
+    bottom: 0
+    width: auto
+  +xs()
+    left: 13px
+    right: 13px
 
 
 

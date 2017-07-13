@@ -12,7 +12,7 @@
         <div class="results"></div>
       </div>
     </div>
-    <a class="Header__ButtonPartner ButtonPartner">DEVENIR PARTENAIRE</a>
+    <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="Header__ButtonPartner ButtonPartner">DEVENIR PARTENAIRE</a>
     <div class="Header__loginLink">
       <a href="#">M'identifer</a>
     </div>
@@ -69,6 +69,6 @@
         </li>
       </ul>
     </div>
-    <div class="Header__logo"></div>
+    <a href="/" class="Header__logo"></a>
   </div>
 </div>

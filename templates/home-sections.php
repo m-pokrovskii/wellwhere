@@ -28,7 +28,7 @@
       Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste.
     </div>
     <div class="HomePartnershipBlock__button">
-      <button class="ButtonPartner">ESPACE PARTENAIRE</button>
+      <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="ButtonPartner">ESPACE PARTENAIRE</a>
     </div>
   </div>
 </div>

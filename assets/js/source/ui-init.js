@@ -71,7 +71,7 @@ $('.ListingFilter__trigger').on('click', function() {
 
 
 $('[data-action=listing-switch-map]').on('click', function() {
-  $('.ListingMaps').toggle();
+  $('.ListingMaps').toggleClass('-visible')
 })
 
 $('.ui.accordion').accordion({

@@ -145,7 +145,44 @@ function taxonomies_init() {
 			'menu_name'                  => __( 'Canton', 'wellwhere' ),
 		),
 		'show_in_rest'      => true,
-		'rest_base'         => 'a',
+		'rest_base'         => 'canton',
+		'rest_controller_class' => 'WP_REST_Terms_Controller',
+	) );
+
+	register_taxonomy( 'age', array( 'gym' ), array(
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_in_nav_menus' => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'query_var'         => true,
+		'rewrite'           => true,
+		'capabilities'      => array(
+			'manage_terms'  => 'edit_posts',
+			'edit_terms'    => 'edit_posts',
+			'delete_terms'  => 'edit_posts',
+			'assign_terms'  => 'edit_posts'
+		),
+		'labels'            => array(
+			'name'                       => __( 'Age', 'wellwhere' ),
+			'singular_name'              => _x( 'Age', 'taxonomy general name', 'wellwhere' ),
+			'search_items'               => __( 'Search ages', 'wellwhere' ),
+			'popular_items'              => __( 'Popular ages', 'wellwhere' ),
+			'all_items'                  => __( 'All ages', 'wellwhere' ),
+			'parent_item'                => __( 'Parent age', 'wellwhere' ),
+			'parent_item_colon'          => __( 'Parent age:', 'wellwhere' ),
+			'edit_item'                  => __( 'Edit age', 'wellwhere' ),
+			'update_item'                => __( 'Update age', 'wellwhere' ),
+			'add_new_item'               => __( 'New age', 'wellwhere' ),
+			'new_item_name'              => __( 'New age', 'wellwhere' ),
+			'separate_items_with_commas' => __( 'Separate ages with commas', 'wellwhere' ),
+			'add_or_remove_items'        => __( 'Add or remove ages', 'wellwhere' ),
+			'choose_from_most_used'      => __( 'Choose from the most used ages', 'wellwhere' ),
+			'not_found'                  => __( 'No ages found.', 'wellwhere' ),
+			'menu_name'                  => __( 'Age', 'wellwhere' ),
+		),
+		'show_in_rest'      => true,
+		'rest_base'         => 'age',
 		'rest_controller_class' => 'WP_REST_Terms_Controller',
 	) );
 

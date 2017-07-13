@@ -1,20 +1,16 @@
+<?php
+  $menu_items = wp_get_nav_menu_items('Single Footer Menu');
+ ?>
 <div class="Footer -single">
   <div class="Footer__logo">
     <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo.svg" alt=""></a>
   </div>
   <ul class="Footer__pages">
-    <li class="Footer__page">
-      <a href="#">Accueil</a>
-    </li>
-    <li class="Footer__page">
-      <a href="#">A propos</a>
-    </li>
-    <li class="Footer__page">
-      <a href="#">FAQ</a>
-    </li>
-    <li class="Footer__page">
-      <a href="#">Conditions générales</a>
-    </li>
+    <?php foreach ($menu_items as $menu_item): ?>
+      <li class="Footer__page">
+        <a href="<?php echo $menu_item->url ?>"><?php echo $menu_item->title ?></a>
+      </li>
+    <?php endforeach; ?>
   </ul>
   <div class="Footer__copyright">
     &copy; 2017 Wellwhere Tous droits reservés.
