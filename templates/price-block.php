@@ -1,4 +1,11 @@
-<form action="<?php echo get_permalink(83) ?>" class="PriceBlock">
+<?php
+  $payment_link = page_link_by_file('page-payment-step-2.php')
+ ?>
+<form
+  data-redirect="<?php echo $payment_link ?>"
+  data-add-basket-form action="<?php echo $payment_link ?>"
+  method="POST"
+  class="PriceBlock">
   <div class="ui sticky">
     <div class="PriceBlock__title">
       Notre offre
@@ -6,11 +13,14 @@
     <div class="PriceBlock__price-list">
       <input type="hidden" name="gym_id" value="<?php echo $post->ID ?>">
       <?php if ( have_rows('gym_tickets') ): ?>
+        <?php $i = 0 ?>
         <?php while ( have_rows('gym_tickets') ) : the_row() ?>
           <?php
-            $i++;
             $ticket_title = get_sub_field('gym_ticket_title');
             $ticket_price = get_sub_field('gym_ticket_price');
+            $ticket_value = get_sub_field('gym_ticket_value');
+            $ticket_period = get_sub_field('gym_ticket_period');
+            $ticket_available_for = get_sub_field('gym_ticket_available_for');
            ?>
           <div class="PriceBlock__row">
             <div class="PriceBlock__ticket ui radio checkbox">
@@ -18,7 +28,7 @@
                 type="radio"
                 name="ticket_id"
                 value="<?php echo $i ?>"
-                <?php if ($i === 1): ?>
+                <?php if ($i === 0): ?>
                   <?php echo 'checked' ?>
                 <?php endif; ?>>
               <label for="ticket-<?php echo $i ?>">
@@ -29,11 +39,12 @@
               CHF <?php echo $ticket_price; ?>.-
             </div>
           </div>
+          <?php $i++ ?>
         <?php endwhile; ?>
       <?php endif; ?>
     </div>
     <div class="PriceBlock__buy-button">
-      <button type="submit" class="PriceBlock__button">Choisir ce Pass</button>
+      <button data-add-basket type="submit" class="PriceBlock__button">Choisir ce Pass</button>
     </div>
   </div>
 </form>

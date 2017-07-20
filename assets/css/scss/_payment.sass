@@ -189,15 +189,17 @@
       font-size: 12px
 
   &__buttonBlock
-    margin-top: 27px
-    width: 100%
-    text-align: right
+    +xs()
+      margin-top: 27px
+      width: 100%
+      text-align: right
+
+  &__button-form
+    display: inline-block
 
   &__button
-    display: inline-flex
+    display: inline-block
     background: #FF4040
-    justify-content: center
-    align-items: center
     width: 162px
     height: 50px
     border-radius: 3px
@@ -228,7 +230,6 @@
 
 .PaymentAddNewCardForm
   display: block
-  width: 380px
   margin-top: 33px
   &.-hide
     display: none
@@ -341,6 +342,11 @@
   margin-bottom: 94px
   +sm()
     margin-bottom: 20px
+
+.PaymentBasketEmpty
+  margin-top: 10%
+  text-align: center
+  +css-lock(20, 40, 767, 1440, 'font-size', 'px')
 
 .PaymentBasketListItem
   position: relative
@@ -494,6 +500,7 @@
   height: 55px
   justify-content: center
   align-items: center
+  cursor: pointer
   +sm()
     font-size: 18px
     height: 50px

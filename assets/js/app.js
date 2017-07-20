@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "assets/js/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -87,33 +87,6 @@ function toggleMobileMenu(e) {
 "use strict";
 
 
-// const content = [
-//   { title: 'Andorra', zip: '12411', description: 'zip: 12411'  },
-//   { title: 'United Arab Emirates', zip: '012' },
-//   { title: 'Afghanistan' },
-//   { title: 'Antigua' },
-//   { title: 'Anguilla' },
-//   { title: 'Albania' },
-//   { title: 'Armenia' },
-//   { title: 'Netherlands Antilles' },
-//   { title: 'Angola' },
-//   { title: 'Argentina' },
-//   { title: 'American Samoa' },
-//   { title: 'Austria' },
-//   { title: 'Australia' },
-//   { title: 'Aruba' },
-//   { title: 'Aland Islands' },
-//   { title: 'Azerbaijan' },
-//   { title: 'Bosnia' },
-//   { title: 'Barbados' },
-//   { title: 'Bangladesh' },
-//   { title: 'Belgium' },
-//   { title: 'Burkina Faso' },
-//   { title: 'Bulgaria' },
-//   { title: 'Bahrain' },
-//   { title: 'Burundi' }
-//   // etc
-// ];
 var url = data.adminAjax + '?action=search&q={query}';
 $('.HeroSearch__field, .Header__search, .SmMenu__search').search({
   apiSettings: {
@@ -284,6 +257,177 @@ $('.SliderGyms').slick({
 
 "use strict";
 
+
+var StripeModule = function ($) {
+  var userId = data.userId;
+  function stripeForm() {
+    if ($('#card-element').length === 0) {
+      return false;
+    }
+    // Create a Stripe client
+    var stripe = Stripe('pk_test_G6LDMUdv0HThh4NSY4ZEY0fw');
+
+    // Create an instance of Elements
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    // Create an instance of the card Element
+    var card = elements.create('card', { style: style, hidePostalCode: true });
+
+    // Add an instance of the card Element into the `card-element` <div>
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener('change', function (event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    // Handle form submission
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function (result) {
+        if (result.error) {
+          // Inform the user if there was an error
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server
+          saveToken(result.token);
+        }
+      });
+    });
+  }
+
+  function saveToken(token) {
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'save_card',
+        stripe_token: token,
+        user_id: userId
+      }
+    }).done(function (result) {
+      NProgress.done();
+      window.location.reload();
+    }).fail(function (e) {
+      console.error(e);
+      NProgress.done();
+    });
+  }
+
+  function chargeSource(e) {
+    e.preventDefault();
+    var card_id = $("[data-card-id]").attr('data-card-id');
+    var redirectUrl = $(this).attr('data-redirect');
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'charge_source',
+        card_id: card_id,
+        user_id: userId
+      }
+    }).done(function (result) {
+      if (result.success) {
+        window.location.replace(redirectUrl);
+        NProgress.done();
+      }
+    }).fail(function (e) {
+      console.error(e);
+      NProgress.done();
+    });
+  }
+
+  function removeCard(e) {
+    e.preventDefault();
+    var card_id = $(this).parents('[data-card-id]').attr('data-card-id');
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'remove_card',
+        card_id: card_id
+      }
+    }).done(function (result) {
+      if (result.success) {
+        console.log(result);
+        window.location.reload();
+        NProgress.done();
+      } else {
+        console.log(result);
+        NProgress.done();
+      }
+    }).fail(function (e) {
+      console.error(e);
+      NProgress.done();
+    });
+  }
+
+  function handlers() {
+    $('body').on('click', '[data-charge]', chargeSource);
+    $('body').on('click', '[data-card-remove]', removeCard);
+  }
+
+  function init() {
+    stripeForm();
+    handlers();
+  }
+
+  return {
+    init: init
+  };
+}(jQuery);
+
+StripeModule.init();
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+$.fn.serializeObject = function () {
+  var o = {};
+  var a = this.serializeArray();
+  $.each(a, function () {
+    if (o[this.name] !== undefined) {
+      if (!o[this.name].push) {
+        o[this.name] = [o[this.name]];
+      }
+      o[this.name].push(this.value || '');
+    } else {
+      o[this.name] = this.value || '';
+    }
+  });
+  return o;
+};
 
 var SinglePageFixed = function ($) {
   var header = $('.HeaderWrap');
@@ -622,18 +766,18 @@ var PaymentCard = function ($) {
       addNewCard.toggle();
     });
 
-    form.on('submit', function (e) {
-      e.preventDefault();
-      var cardItemclone = cardItem.clone();
-      var data = $(this).serializeArray();
-      cardItemclone.find('.PaymentCardsItem__title').text(data[0].value);
-      $('.PaymentCardsList').append(cardItemclone);
-    });
-
-    submit.on('click', function (e) {
-      e.preventDefault();
-      form.submit();
-    });
+    // form.on('submit', function(e) {
+    //   e.preventDefault();
+    //   const cardItemclone = cardItem.clone();
+    //   const data = $(this).serializeArray();
+    //   cardItemclone.find('.PaymentCardsItem__title').text(data[0].value);
+    //   $('.PaymentCardsList').append(cardItemclone);
+    // })
+    //
+    // submit.on('click', function(e) {
+    //   e.preventDefault();
+    //   form.submit();
+    // })
   }
   return {
     init: init
@@ -664,8 +808,100 @@ var CheckPass = function () {
 }();
 CheckPass.init();
 
+var AjaxGlobalHandlers = function () {
+  var doc = $(document);
+
+  function init() {
+    configure();
+    handlers();
+  }
+
+  function configure() {
+    NProgress.configure({
+      trickleSpeed: 100,
+      showSpinner: false
+    });
+  }
+
+  function handlers() {
+    doc.on('ajaxStart', function () {
+      NProgress.start();
+    });
+
+    doc.on('ajaxComplete', function () {
+      NProgress.done();
+    });
+  }
+
+  return {
+    init: init
+  };
+}();
+AjaxGlobalHandlers.init();
+
+var Basket = function () {
+  var addBasketButton = $('[data-add-basket]');
+  var removeBasketButton = $('[data-remove-basket]');
+  var addBasketForm = $('[data-add-basket-form]');
+  var redirectUrl = $('[data-add-basket-form]').attr('data-redirect');
+
+  function init() {
+    handlers();
+  }
+
+  function handlers() {
+    addBasketButton.on('click', add);
+    removeBasketButton.on('click', remove);
+  }
+
+  function add(e) {
+    e.preventDefault();
+    var basketData = addBasketForm.serializeObject();
+    basketData.action = 'add_basket';
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: basketData
+    }).done(function (r) {
+      if (r.success) {
+        NProgress.done();
+        window.location = redirectUrl;
+      } else {
+        console.log(r.data.message);
+      }
+    }).fail(function () {
+      // console.log("error");
+    });
+  }
+
+  function remove(e) {
+    e.preventDefault();
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'remove_basket'
+      }
+    }).done(function (r) {
+      if (r.success) {
+        NProgress.done();
+        window.location.reload();
+      } else {
+        console.log(r);
+      }
+    }).fail(function () {
+      // console.log("error");
+    });
+  }
+
+  return {
+    init: init
+  };
+}();
+Basket.init();
+
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -673,11 +909,13 @@ CheckPass.init();
 
 __webpack_require__(1);
 
-__webpack_require__(4);
+__webpack_require__(5);
 
 __webpack_require__(3);
 
 __webpack_require__(2);
+
+__webpack_require__(4);
 
 __webpack_require__(0);
 

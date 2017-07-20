@@ -8,9 +8,9 @@
 		<div class="PaymentTitle"><?php the_title() ?></div>
 		<div class="PaymentComplete">
       <div class="PaymentCompleteContent">
-        <img class="PaymentComplete__icon-done" src="img/icon-done.png" alt="">
+        <img class="PaymentComplete__icon-done" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/icon-done.png" alt="">
         <div class="PaymentComplete__text-thanks">Merci pour votre achat!</div>
-        <a class="PaymentComplete__link-show-pass">Voir mes pass.</a>
+        <a href="" class="PaymentComplete__link-show-pass">Voir mes pass.</a>
       </div>
     </div>
 	</div>

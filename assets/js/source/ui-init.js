@@ -1,3 +1,19 @@
+$.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
 const SinglePageFixed = (function($) {
   const header = $('.HeaderWrap');
   const title = $('.SignlePage__headline');
@@ -368,18 +384,18 @@ const PaymentCard = (function($) {
       addNewCard.toggle();
     });
 
-    form.on('submit', function(e) {
-      e.preventDefault();
-      const cardItemclone = cardItem.clone();
-      const data = $(this).serializeArray();
-      cardItemclone.find('.PaymentCardsItem__title').text(data[0].value);
-      $('.PaymentCardsList').append(cardItemclone);
-    })
-
-    submit.on('click', function(e) {
-      e.preventDefault();
-      form.submit();
-    })
+    // form.on('submit', function(e) {
+    //   e.preventDefault();
+    //   const cardItemclone = cardItem.clone();
+    //   const data = $(this).serializeArray();
+    //   cardItemclone.find('.PaymentCardsItem__title').text(data[0].value);
+    //   $('.PaymentCardsList').append(cardItemclone);
+    // })
+    //
+    // submit.on('click', function(e) {
+    //   e.preventDefault();
+    //   form.submit();
+    // })
   }
   return {
     init: init
@@ -411,3 +427,101 @@ const CheckPass = (function() {
 
 }());
 CheckPass.init()
+
+
+const AjaxGlobalHandlers = (function() {
+  const doc = $(document);
+
+  function init() {
+    configure();
+    handlers();
+  }
+
+  function configure() {
+    NProgress.configure({
+      trickleSpeed: 100,
+      showSpinner: false
+    });
+  }
+
+  function handlers() {
+    doc.on('ajaxStart', function() {
+      NProgress.start();
+    });
+
+    doc.on('ajaxComplete', function() {
+      NProgress.done();
+    });
+  }
+
+  return {
+    init: init
+  }
+}());
+AjaxGlobalHandlers.init()
+
+const Basket = (function() {
+    const addBasketButton = $('[data-add-basket]');
+    const removeBasketButton = $('[data-remove-basket]');
+    const addBasketForm = $('[data-add-basket-form]');
+    const redirectUrl = $('[data-add-basket-form]').attr('data-redirect');
+
+    function init() {
+      handlers();
+    }
+
+    function handlers() {
+      addBasketButton.on('click', add);
+      removeBasketButton.on('click', remove);
+    }
+
+    function add(e) {
+      e.preventDefault()
+      const basketData = addBasketForm.serializeObject();
+      basketData.action = 'add_basket';
+      $.ajax({
+        url: data.adminAjax,
+        type: 'POST',
+        data: basketData,
+      })
+      .done(function( r ) {
+        if ( r.success ) {
+          NProgress.done();
+          window.location = redirectUrl;
+        } else {
+          console.log(r.data.message);
+        }
+
+      })
+      .fail(function() {
+        // console.log("error");
+      })
+    }
+
+    function remove(e) {
+      e.preventDefault()
+      $.ajax({
+        url: data.adminAjax,
+        type: 'POST',
+        data: {
+          action: 'remove_basket'
+        },
+      })
+      .done(function( r ) {
+        if ( r.success ) {
+          NProgress.done();
+          window.location.reload();
+        } else {
+          console.log(r);
+        }
+      })
+      .fail(function() {
+        // console.log("error");
+      })
+    }
+
+    return {
+      init: init
+    }
+}());
+Basket.init();

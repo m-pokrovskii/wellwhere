@@ -8,90 +8,74 @@
 		<div class="PaymentTitle"><?php the_title() ?></div>
 		<?php get_template_part( 'templates/payment-steps' ); ?>
 		<div class="PaymentCards">
+			<!-- TODO. Ajax -->
     	<ul class="PaymentCardsList">
-    		<li class="PaymentCardsItem">
-    			<div class="PaymentCardsItem__logo">
-    				<img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-mastercard.png" alt="">
-    			</div>
-    			<div class="PaymentCardsItem__body">
-    				<div class="PaymentCardsItem__title">
-    					Mastercard ****0923
-    				</div>
-    				<a href="#" class="PaymentCardsItem__modifier">
-    					modifier
-    				</a>
-    			</div>
-    			<div class="PaymentCardsItem__buttonBlock">
-    				<a href="#" class="PaymentCardsItem__button">séléctionner</a>
-    			</div>
-    		</li>
+				<?php
+					$cards = get_posts(array(
+						'post_type' => 'card',
+						'posts_per_page' => "-1",
+						'meta_key' => 'user_id',
+						'meta_value' => get_current_user_id()
+					));
+				?>
+				<?php foreach ($cards as $card): ?>
+					<?php
+						$brand = get_post_meta($card->ID, 'brand', true);
+						$brand_image = get_card_image($brand);
+					 ?>
+					<li data-card-id="<?php echo $card->ID ?>" class="PaymentCardsItem">
+	    			<div class="PaymentCardsItem__logo">
+	    				<img src="<?php echo $brand_image ?>" alt="<?php echo $brand ?>">
+	    			</div>
+	    			<div class="PaymentCardsItem__body">
+	    				<div class="PaymentCardsItem__title">
+	    					<?php echo $card->post_title ?>
+	    				</div>
+	    				<a
+								data-card-modify
+								href=""
+								class="PaymentCardsItem__modifier">
+								modifier
+							</a>
+	    			</div>
+	    			<div class="PaymentCardsItem__buttonBlock">
+							<form class="PaymentCardsItem__button-form" action="<?php echo page_link_by_file('page-payment-step-3.php') ?>" method="post">
+								<input type="hidden" name="card_id" value="<?php echo $card->ID ?>">
+								<button type="submit" class="PaymentCardsItem__button -select">
+									séléctionner
+								</button>
+							</form>
+							<button
+								data-card-remove
+								href="#"
+								class="PaymentCardsItem__button -remove">
+								remove
+							</button>
+	    			</div>
+	    		</li>
+				<?php endforeach; ?>
     	</ul>
 			<div class="PaymentAddCard">
 				<div class="PaymentAddCard__activator">
 					+ Ajouter un mode de paiement
 				</div>
-				<div class="PaymentAddNewCardForm -hide">
+				<div class="PaymentAddNewCardForm -hide -show">
 					<div class="PaymentAddNewCardForm__headline">
 						<img class="PaymentAddNewCardForm__cards-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-cards.png" alt="">
 						<div class="PaymentAddNewCardForm__title">Carte de crédit</div>
 					</div>
-					<form action="#" class="PaymentAddNewCardForm__form">
-						<div class="PaymentAddNewCardForm__row">
-							<div class="PaymentAddNewCardForm__field">
-								<label class="PaymentAddNewCardForm__label" for="card-number">Numéro de carte</label>
-								<input
-									type="text"
-									class="PaymentAddNewCardForm__input-text"
-									name="card-number"
-									id="card-number"
-									value="99999999"
-								>
-							</div>
-							<div class="PaymentAddNewCardForm__field">
-								<label class="PaymentAddNewCardForm__label" for="card-owner">Titulaire de la carte</label>
-								<input
-								type="text"
-								class="PaymentAddNewCardForm__input-text"
-								name="card-owner"
-								id="card-owner"
-								value="Neo Anderson"
-								>
-							</div>
-						</div>
-						<div class="PaymentAddNewCardForm__row">
-							<div class="PaymentAddNewCardForm__field">
-								<label class="PaymentAddNewCardForm__label" for="">Date d’expiration</label>
-								<div class="PaymentAddNewCardForm__select ui compact selection dropdown">
-									<input type="hidden" value="1" name="card-month">
-									<img class="dropdown icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/arrrow-bottom-gray.svg" alt="">
-									<div class="default text">MM</div>
-									<div class="menu">
-										<div class="item" data-value="1">01</div>
-										<div class="item" data-value="2">02</div>
-										<div class="item" data-value="2">03</div>
-									</div>
-								</div>
-								<div class="PaymentAddNewCardForm__select ui compact selection dropdown">
-									<input type="hidden" value="4" name="card-year">
-									<img class="dropdown icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/arrrow-bottom-gray.svg" alt="">
-									<div class="default text">YY</div>
-									<div class="menu">
-										<div class="item" data-value="1">20</div>
-										<div class="item" data-value="2">19</div>
-										<div class="item" data-value="3">18</div>
-										<div class="item" data-value="4">17</div>
-									</div>
-								</div>
-							</div>
-							<div class="PaymentAddNewCardForm__field">
-								<label class="PaymentAddNewCardForm__label" for="card-code">Code de sécurité</label>
-								<input type="password" id="card-code" name="card-code" value="999" class="PaymentAddNewCardForm__input-text">
-							</div>
-						</div>
-						<div class="PaymentAddNewCardForm__row">
-							<div class="PaymentAddNewCardForm__buttonBlock">
-								<a class="PaymentAddNewCardForm__button" href="#">+ Ajouter</a>
-							</div>
+					<form class="StripeForm" action="/charge" method="post" id="payment-form">
+						<div class="StripeForm__fields">
+							<div class="StripeForm__element">
+						    <div class="StripeForm__card-element" id="card-element">
+						      <!-- a Stripe Element will be inserted here. -->
+						    </div>
+						    <!-- Used to display form errors -->
+						    <div class="StripeForm__errors" id="card-errors" role="alert"></div>
+						  </div>
+						  <div class="StripeForm__button-block">
+						  	<button class="StripeForm__button">Ajouter</button>
+						  </div>
 						</div>
 					</form>
 				</div>

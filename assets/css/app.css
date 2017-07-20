@@ -2125,20 +2125,13 @@ input::placeholder {
   font: 28px "Avenir-Heavy";
 }
 
-.PaymentCardsItem__buttonBlock {
-  margin-top: 27px;
-  width: 100%;
-  text-align: right;
+.PaymentCardsItem__button-form {
+  display: inline-block;
 }
 
 .PaymentCardsItem__button {
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: inline-block;
   background: #FF4040;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center;
   width: 162px;
   height: 50px;
   border-radius: 3px;
@@ -2162,7 +2155,6 @@ input::placeholder {
 
 .PaymentAddNewCardForm {
   display: block;
-  width: 380px;
   margin-top: 33px;
 }
 
@@ -2288,6 +2280,13 @@ input::placeholder {
   margin-bottom: 94px;
 }
 
+.PaymentBasketEmpty {
+  margin-top: 10%;
+  text-align: center;
+  font-size: 40px;
+  font-size: calc(20px + (40 - 20) * ((100vw - 767px) / (1440 - 767)));
+}
+
 .PaymentBasketListItem {
   position: relative;
   display: -ms-flexbox;
@@ -2411,6 +2410,7 @@ input::placeholder {
   justify-content: center;
   -ms-flex-align: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .PaymentBasketListItem__remove.-xs {
@@ -2684,6 +2684,67 @@ input::placeholder {
   margin-bottom: 0.3em;
 }
 
+.StripeForm__fields {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.StripeForm__element {
+  margin-right: 20px;
+  position: relative;
+}
+
+.StripeForm__button-block {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.StripeForm__button {
+  display: inline-block;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: #FF4040;
+  color: #fff;
+  font-size: 14px;
+  padding: 0 40px;
+  height: 42px;
+  white-space: nowrap;
+  border-radius: 3px;
+}
+
+.StripeForm__errors {
+  margin-top: 10px;
+  color: #fa755a;
+}
+
+.StripeElement {
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #E0E0E0;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeForm .StripeElement {
+  width: 354px;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
 html {
   height: 100%;
 }
@@ -2795,6 +2856,10 @@ html {
 }
 
 @media (min-width: 1440px) {
+
+  .PaymentBasketEmpty {
+    font-size: 40px;
+  }
 
   .PaymentCompleteContent .PaymentComplete__icon-done {
     width: 77px;
@@ -3823,6 +3888,12 @@ html {
     font-size: 12px;
   }
 
+  .PaymentCardsItem__buttonBlock {
+    margin-top: 27px;
+    width: 100%;
+    text-align: right;
+  }
+
   .PaymentAddCard {
     padding: 30px 10px 30px 14px;
   }
@@ -4039,6 +4110,10 @@ html {
 }
 
 @media (max-width: 767px) {
+
+  .PaymentBasketEmpty {
+    font-size: 20px;
+  }
 
   .PaymentCompleteContent .PaymentComplete__icon-done {
     width: 50px;
