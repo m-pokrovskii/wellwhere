@@ -1,5 +1,5 @@
 <?php
-	// Template Name: Payment Page Step 3
+	// Template Name: Payment Confirm 
 ?>
 <?php
 	if ( !is_user_logged_in() ) {
@@ -33,18 +33,6 @@
 	<?php get_template_part('templates/payment-header') ?>
 	<div class="PaymentPage">
 		<div class="PaymentTitle"><?php the_title() ?></div>
-		<?php
-			function create_pdf() {
-				$mpdf = new mPDF('utf-8', 'A4');
-				$template = file_get_contents( get_stylesheet_directory_uri() .'/templates/pass-pdf-template.php', 2);
-				$mpdf->showImageErrors = true;
-				$mpdf->WriteHTML($template);
-				$mpdf->Output( __DIR__. '/my_filename.pdf','F' );
-			}
-			echo get_bloginfo('stylesheet_url');
-			// create_pdf()
-
-		 ?>
 		<?php get_template_part( 'templates/payment-steps' ); ?>
 		<div class="PaymentBasket">
     	<div class="PaymentBasketList">
@@ -79,7 +67,11 @@
 	        <div class="PaymentTotal__title">Mode de paiement</div>
 	        <div class="PaymentTotal__card">
 	          <div class="PaymentTotal__card-image">
-	            <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-mastercard.png" alt="">
+							<?php
+								$brand = get_post_meta($card->ID, 'brand', true);
+								$brand_image = get_card_image($brand);
+							 ?>
+	            <img src="<?php echo $brand_image ?>" alt="">
 	          </div>
 	          <div class="PaymentTotal__card-title"><?php echo $card->post_title ?></div>
 	        </div>

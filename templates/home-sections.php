@@ -1,5 +1,4 @@
 <?php
-  // TODO. Remove 'hide_empty' => false on production.
   $activites = get_terms('activity', array(
     'hide_empty' => false
   ));
@@ -7,6 +6,9 @@
  ?>
 <?php get_template_part('templates/home-slider') ?>
 <div class="HomeSection -activites">
+
+  <?php get_template_part('templates/auth-template') ?>
+
   <h2 class="HomeSection__headline">Vos activités préférées</h2>
   <ul class="ActivitesList">
       <?php foreach ($activites as $activity): ?>

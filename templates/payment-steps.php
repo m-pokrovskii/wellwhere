@@ -2,18 +2,13 @@
 	global $post;
 	$steps = array(
 		'step_1' => array (
-			'template' => 'page-payment-step-1.php',
-			'number' => '1',
-			'desc' => 'identification',
-		),
-		'step_2' => array (
 			'template' => 'page-payment-step-2.php',
-			'number' => '2',
+			'number' => '1',
 			'desc' => 'mode de paiement',
 		),
-		'step_3' => array (
+		'step_2' => array (
 			'template' => 'page-payment-step-3.php',
-			'number' => '3',
+			'number' => '2',
 			'desc' => 'confirmation',
 		),
 	);

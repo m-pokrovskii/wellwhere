@@ -353,9 +353,10 @@ var StripeModule = function ($) {
         card_id: card_id,
         user_id: userId
       }
-    }).done(function (result) {
-      if (result.success) {
-        window.location.replace(redirectUrl);
+    }).done(function (r) {
+      console.log(r);
+      if (r.success) {
+        window.location.replace(redirectUrl + '?pdf_filename=' + r.data.pdf_filename);
         NProgress.done();
       }
     }).fail(function (e) {
@@ -899,6 +900,89 @@ var Basket = function () {
   };
 }();
 Basket.init();
+
+var Auth = function ($) {
+  function init() {
+    $('body').on('submit', '.LoginForm', wpestate_login);
+    $('body').on('click', '.facebookloginsidebar_topbar', login_via_facebook);
+    $('body').on('click', '.googleloginsidebar_topbar', login_via_google_oauth);
+  }
+
+  function wpestate_login(e) {
+    e.preventDefault();
+    var login_user, login_pwd, security, ispop, ajaxurl;
+    login_user = $('#login_user').val();
+    login_pwd = $('#login_pwd').val();
+    security = $('#security-login').val();
+    ispop = $('#loginpop').val();
+    ajaxurl = data.adminAjax;
+
+    $('#login_message_area').empty().append('<div class="login-alert">' + data.login_loading + '</div>');
+    jQuery.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: ajaxurl,
+      data: {
+        'action': 'ajax_loginx_form',
+        'login_user': login_user,
+        'login_pwd': login_pwd,
+        'ispop': ispop,
+        'security-login': security
+      },
+      success: function success(data) {
+        $('#login_message_area').empty().append('<div class="login-alert">' + data.message + '<div>');
+        if (data.loggedin === true) {
+          window.location.reload();
+        }
+      },
+      error: function error(errorThrown) {
+        console.log(errorThrown);
+      }
+    });
+  }
+
+  function login_via_facebook(e) {
+    var login_type, ajaxurl;
+    ajaxurl = data.adminAjax;
+    login_type = 'facebook';
+    jQuery.ajax({
+      type: 'POST',
+      url: ajaxurl,
+      data: {
+        'action': 'wpestate_ajax_facebook_login',
+        'login_type': login_type
+      },
+      success: function success(data) {
+        window.location.href = data;
+      },
+      error: function error(errorThrown) {}
+    });
+  }
+
+  function login_via_google_oauth(e) {
+
+    var ajaxurl, login_type;
+    ajaxurl = data.adminAjax;
+
+    jQuery.ajax({
+      type: 'POST',
+      url: ajaxurl,
+      data: {
+        'action': 'wpestate_ajax_google_login_oauth'
+      },
+      success: function success(data) {
+        window.location.href = data;
+      },
+      error: function error(errorThrown) {}
+    }); //end ajax
+  }
+
+  return {
+    init: init
+  };
+}(jQuery);
+
+Auth.init();
 
 /***/ }),
 /* 6 */

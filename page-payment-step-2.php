@@ -1,6 +1,11 @@
 <?php
-	// Template Name: Payment Page Step 2
+	// Template Name: Payment Cards
 ?>
+<?php
+	if (!is_user_logged_in()) {
+		wp_redirect("/");
+	}
+ ?>
 <?php get_header(); ?>
 <div class="App -payment">
 	<?php get_template_part('templates/payment-header') ?>
@@ -31,12 +36,6 @@
 	    				<div class="PaymentCardsItem__title">
 	    					<?php echo $card->post_title ?>
 	    				</div>
-	    				<a
-								data-card-modify
-								href=""
-								class="PaymentCardsItem__modifier">
-								modifier
-							</a>
 	    			</div>
 	    			<div class="PaymentCardsItem__buttonBlock">
 							<form class="PaymentCardsItem__button-form" action="<?php echo page_link_by_file('page-payment-step-3.php') ?>" method="post">
@@ -65,6 +64,20 @@
 						<div class="PaymentAddNewCardForm__title">Carte de crédit</div>
 					</div>
 					<form class="StripeForm" action="/charge" method="post" id="payment-form">
+						<div class="StripeForm__fields">
+							<div class="StripeForm__element">
+						    <div class="StripeForm__card-element" id="card-element">
+						      <!-- a Stripe Element will be inserted here. -->
+						    </div>
+						    <!-- Used to display form errors -->
+						    <div class="StripeForm__errors" id="card-errors" role="alert"></div>
+						  </div>
+						  <div class="StripeForm__button-block">
+						  	<button class="StripeForm__button">Ajouter</button>
+						  </div>
+						</div>
+					</form>
+					<form class="StripeForm" action="/update" method="post" id="update-form">
 						<div class="StripeForm__fields">
 							<div class="StripeForm__element">
 						    <div class="StripeForm__card-element" id="card-element">

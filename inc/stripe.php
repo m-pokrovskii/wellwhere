@@ -56,6 +56,7 @@
 
     $card_id = $_POST['card_id'];
     $user_id = get_current_user_id();
+    $user_fullname = get_user_fullname( $user_id );
     $card = get_posts(array(
   		'p' => $card_id,
       'posts_per_page' => 1,
@@ -71,6 +72,7 @@
       $source_id = get_post_meta( $card->ID, 'id', true );
       $customer_id = get_user_meta($user_id, 'customer_id', true);
       $basket = get_user_meta($user_id, '_basket', true);
+      $ticket_pass = wp_generate_password( 7, false, false );
       if ( $customer_id & $source_id ) {
         try {
           $charge = \Stripe\Charge::create(array(
@@ -81,9 +83,20 @@
             "description" => "Ticket for " . $basket['basket_ticket_entries'] . " in gym " . $basket['basket_gym_title']
           ));
           if ( $charge ) {
-            create_ticket( $user_id, $basket );
+            $ticket_id = create_ticket( $user_id, $basket, $ticket_pass );
+            $pdf_filename = create_pdf(
+              $user_fullname,
+              $basket['basket_gym_title'],
+              $basket['basket_ticket_expire'],
+              $basket['basket_ticket_entries'],
+              $ticket_pass
+            );
+            assign_pdf_to_ticket($ticket_id, $pdf_filename);
+            send_ticket_to_user( $user_id, $ticket_id );
             clear_basket( $user_id );
-            wp_send_json_success();
+            wp_send_json_success( array(
+              'pdf_filename' => $pdf_filename
+            ) );
           }
 
         } catch (Exception $e) {

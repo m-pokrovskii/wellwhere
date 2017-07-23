@@ -1,12 +1,15 @@
 <?php
 	// TODO. Remove before production
-	flush_rewrite_rules();
+	#flush_rewrite_rules();
 
+	define( 'TICKETS_SITE_FOLDER', get_stylesheet_directory_uri() . '/tickets/' );
+	define( 'TICKETS_ABSOLUTE_FOLDER', get_template_directory() . '/tickets/' );
 	add_filter('rest_enabled', '_return_false');
 	add_filter('rest_jsonp_enabled', '_return_false');
 
 	require_once 'inc/mPDF-v6.1.0/vendor/autoload.php';
 	require 'inc/search.php';
+	require 'inc/auth.php';
 	require 'post-types/post-types.php';
 	require 'taxonomies/taxonomies.php';
 	require_once 'inc/stripe.php';

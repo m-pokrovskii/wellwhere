@@ -96,9 +96,10 @@ const StripeModule = (function($) {
         user_id: userId
       },
     })
-    .done(function( result ) {
-      if ( result.success ) {
-        window.location.replace(redirectUrl);
+    .done(function( r ) {
+      console.log(r);
+      if ( r.success ) {
+        window.location.replace( redirectUrl + '?pdf_filename=' + r.data.pdf_filename );
         NProgress.done();
       }
     })
@@ -134,6 +135,7 @@ const StripeModule = (function($) {
       NProgress.done();
     })
   }
+
 
   function handlers() {
     $('body').on('click', '[data-charge]', chargeSource);
