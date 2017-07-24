@@ -335,6 +335,29 @@ input::placeholder {
   display: flex;
 }
 
+.LoggedInUserDropdown a {
+  font-size: 14px;
+  text-decoration: none !important;
+}
+
+.LoggedInUserDropdown .menu {
+  font-size: 14px !important;
+}
+
+.LoggedInUserDropdown .LoggedInUserDropdown__user-name {
+  margin-right: 11px;
+  color: #6E6868;
+  font-size: 14px;
+}
+
+.LoggedInUserDropdown .LoggedInUserDropdown__avatar.ui.avatar.image {
+  margin-right: 0;
+  width: 45px;
+  height: 45px;
+  max-height: 45px;
+  border-radius: 50px;
+}
+
 .SmOpener {
   width: 25px;
   height: 17px;

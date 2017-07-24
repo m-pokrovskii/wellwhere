@@ -14,7 +14,32 @@
     </div>
     <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="Header__ButtonPartner ButtonPartner">DEVENIR PARTENAIRE</a>
     <div class="Header__loginLink">
-      <a href="#">M'identifer</a>
+      <?php if ( is_user_logged_in() ): ?>
+        <?php
+          $curruser = wp_get_current_user();
+          $avtar_url = get_avatar_url( $curruser->ID );
+         ?>
+        <div class="LoggedInUserDropdown ui text menu">
+            <div class="ui dropdown item">
+              <span class="LoggedInUserDropdown__user-name">
+                <?php echo "$curruser->first_name $curruser->last_name" ?>
+              </span>
+              <img class="LoggedInUserDropdown__avatar ui avatar image" src=" <?php echo $avtar_url ?>  ">
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <a href="#" class="item">Profil</a>
+                <a href="#" class="item">Commentaires</a>
+                <a href="#" class="item">Pass</a>
+                <a href="#" class="item">Favorits</a>
+                <a href="<?php echo wp_logout_url("/") ?>" class="item">
+                  <?php echo __('Logout', 'wellwhere') ?>
+                </a>
+              </div>
+            </div>
+          </div>
+      <?php else: ?>
+        <a href="#">M'identifer</a>
+      <?php endif; ?>
     </div>
   </div>
   <div class="Header -sm">

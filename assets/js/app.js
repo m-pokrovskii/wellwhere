@@ -904,8 +904,49 @@ Basket.init();
 var Auth = function ($) {
   function init() {
     $('body').on('submit', '.LoginForm', wpestate_login);
+    $('body').on('submit', '.RegForm', wpestate_register_user);
     $('body').on('click', '.facebookloginsidebar_topbar', login_via_facebook);
     $('body').on('click', '.googleloginsidebar_topbar', login_via_google_oauth);
+  }
+
+  function wpestate_register_user(e) {
+    e.preventDefault();
+    var user_login_register, user_email_register, user_pass, user_pass_retype, nonce, ajaxurl;
+    var user_first_name = void 0;
+    var user_last_name = void 0;
+
+    ajaxurl = data.adminAjax;
+    $('#register_message_area_topbar').empty().append('<div class="login-alert">Proccessing...</div>');
+
+    user_login_register = jQuery('#user_login_register').val();
+    user_email_register = jQuery('#user_email_register').val();
+    user_first_name = $('#user_first_name').val();
+    user_last_name = $('#user_last_name').val();
+    nonce = jQuery('#security-register-topbar').val();
+
+    jQuery.ajax({
+      type: 'POST',
+      url: ajaxurl,
+      data: {
+        'action': 'wpestate_ajax_register_user',
+        'user_login_register': user_login_register,
+        'user_email_register': user_email_register,
+        'user_pass': user_pass,
+        'user_pass_retype': user_pass_retype,
+        'security-register': nonce,
+        'user_first_name': user_first_name,
+        'user_last_name': user_last_name
+      },
+
+      success: function success(data) {
+        jQuery('#register_message_area').empty().append('<div class="login-alert">' + data + '</div>');
+        jQuery('#user_login_register').val('');
+        jQuery('#user_email_register').val('');
+        jQuery('#user_password').val('');
+        jQuery('#user_password_retype').val('');
+      },
+      error: function error(errorThrown) {}
+    });
   }
 
   function wpestate_login(e) {

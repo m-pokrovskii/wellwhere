@@ -1,34 +1,34 @@
 $.fn.serializeObject = function () {
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function () {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
+  var o = {};
+  var a = this.serializeArray();
+  $.each(a, function () {
+    if (o[this.name] !== undefined) {
+      if (!o[this.name].push) {
+        o[this.name] = [o[this.name]];
+      }
+      o[this.name].push(this.value || '');
+    } else {
+      o[this.name] = this.value || '';
+    }
+  });
+  return o;
 };
 
-const SinglePageFixed = (function($) {
+const SinglePageFixed = (function ($) {
   const header = $('.HeaderWrap');
   const title = $('.SignlePage__headline');
   const w = $(window);
 
   function init() {
-    if ( $(".App.-single").length == 0  ) { return };
+    if ($(".App.-single").length == 0) { return };
 
     doIt();
     w.on('resize', doIt);
   }
 
   function doIt() {
-    setTimeout(function() {
-      if ( window.innerWidth > 1024 ) {
+    setTimeout(function () {
+      if (window.innerWidth > 1024) {
         w.off('scroll.header').on('scroll.header', handleScroll)
       } else if (window.innerWidth <= 1024) {
         destroy();
@@ -47,7 +47,7 @@ const SinglePageFixed = (function($) {
     const titlePos = title.offset().top;
     const headerHeight = header.outerHeight();
     const scrollPos = w.scrollTop();
-    if ( scrollPos + headerHeight >= titlePos ) {
+    if (scrollPos + headerHeight >= titlePos) {
       header.addClass('-absolute');
       header.css({
         top: titlePos - (headerHeight * 2)
@@ -80,13 +80,13 @@ $('.GymFavorite').rating({
 $('.ui.dropdown').dropdown();
 
 
-$('.ListingFilter__trigger').on('click', function() {
+$('.ListingFilter__trigger').on('click', function () {
   $(this).toggleClass('-open')
   $('.ListingFilter__menu').toggle();
 })
 
 
-$('[data-action=listing-switch-map]').on('click', function() {
+$('[data-action=listing-switch-map]').on('click', function () {
   $('.ListingMaps').toggleClass('-visible')
 })
 
@@ -98,31 +98,31 @@ $('ui.modal').modal('setting', 'transition', 'scale');
 
 if (typeof $.fn.fancybox !== 'undefined') {
   $("[data-fancybox]").fancybox({
-      clickContent : function( current, event ) {
-      		return false;
-    	},
-  		buttons: [
-        'thumbs',
-        'close'
-      ]
-	});
+    clickContent: function (current, event) {
+      return false;
+    },
+    buttons: [
+      'thumbs',
+      'close'
+    ]
+  });
 }
 
 
-$('.PriceBlock__row').on('click', function() {
+$('.PriceBlock__row').on('click', function () {
   let radio = $(this).find('input[type=radio]');
   let radioCurrentValue = radio.prop("checked");
-  radio.prop( 'checked', !radioCurrentValue );
+  radio.prop('checked', !radioCurrentValue);
 });
 
 
-const ScrollMagic = (function() {
+const ScrollMagic = (function () {
 
 
 
 
   const doc = $(document);
-  const scrollPos =  $(document).scrollTop();
+  const scrollPos = $(document).scrollTop();
   const menuLinks = $('.ContentMenu li a');
   const activiClassName = 'current';
   const offset = 700;
@@ -139,30 +139,30 @@ const ScrollMagic = (function() {
     const refElement = $(targetId);
 
     $('html, body').animate({
-       scrollTop: refElement.offset().top - headOffset
-   }, 500);
+      scrollTop: refElement.offset().top - headOffset
+    }, 500);
   }
 
-  function onScroll(){
+  function onScroll() {
     var scrollPos = $(document).scrollTop();
     menuLinks.each(function () {
-        const curentLink = $(this);
-        const targetId = $(this).attr('href');
-        const refElement = $(targetId);
-        const lastLink = menuLinks[menuLinks.length -1 ];
+      const curentLink = $(this);
+      const targetId = $(this).attr('href');
+      const refElement = $(targetId);
+      const lastLink = menuLinks[menuLinks.length - 1];
 
-        // TODO: More precise calculaction
-        if ( refElement.position().top + offset <= scrollPos ) {
+      // TODO: More precise calculaction
+      if (refElement.position().top + offset <= scrollPos) {
+        menuLinks.removeClass(activiClassName);
+        curentLink.addClass(activiClassName);
+      }
+      else {
+        curentLink.removeClass(activiClassName);
+        if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
           menuLinks.removeClass(activiClassName);
           curentLink.addClass(activiClassName);
         }
-        else {
-          curentLink.removeClass(activiClassName);
-          if ( $(window).scrollTop() >= $(document).height() - $(window).height() ) {
-            menuLinks.removeClass(activiClassName);
-            curentLink.addClass(activiClassName);
-          }
-        }
+      }
     });
   }
 
@@ -175,10 +175,10 @@ const ScrollMagic = (function() {
 
 ScrollMagic.init();
 
-const Sticky = (function($) {
+const Sticky = (function ($) {
   let singleMenuSticky,
-      gymTitle,
-      priceBlock;
+    gymTitle,
+    priceBlock;
 
   function init() {
     $.fn.sticky.settings.silent = true;
@@ -217,22 +217,22 @@ const Sticky = (function($) {
     gymTitle
       .sticky('destroy')
       .attr('style', "")
-    ;
+      ;
 
     priceBlock
       .sticky('destroy')
       .attr('style', "")
-    ;
+      ;
 
     singleMenuSticky
       .sticky('destroy')
       .attr('style', "")
-    ;
+      ;
   }
 
   function doSticky() {
-    setTimeout(function() {
-      if ( window.innerWidth <= 1024 ) {
+    setTimeout(function () {
+      if (window.innerWidth <= 1024) {
         stickyDestory();
       } else {
         stickyInit();
@@ -251,37 +251,37 @@ Sticky.init();
 // });
 
 
-const ProfileSwitch = (function($) {
-  const menu =  $('.ProfileMenu');
-  const links =  $('.ProfileMenu a');
+const ProfileSwitch = (function ($) {
+  const menu = $('.ProfileMenu');
+  const links = $('.ProfileMenu a');
   let sections;
 
   function init() {
-      getSections()
-  		events();
-      onLoad();
+    getSections()
+    events();
+    onLoad();
   }
 
   function events() {
-  		links.on('click', function(e) {
-        e.preventDefault();
-        location.hash = this.hash
-      });
+    links.on('click', function (e) {
+      e.preventDefault();
+      location.hash = this.hash
+    });
 
-      $(window).on('hashchange', activate);
+    $(window).on('hashchange', activate);
   }
 
 
   function onLoad() {
-      if (!location.hash || !location.hash == "#" ) { return };
+    if (!location.hash || !location.hash == "#") { return };
 
-      activateLink();
-      activateSection();
+    activateLink();
+    activateSection();
   }
 
 
   function activate() {
-    if (!location.hash || !location.hash == "#" ) { return };
+    if (!location.hash || !location.hash == "#") { return };
 
     activateSection()
     activateLink()
@@ -313,10 +313,10 @@ const ProfileSwitch = (function($) {
   function getSections() {
     let idsArray = [];
     let idsString = "";
-    links.each(function( k, el ) {
+    links.each(function (k, el) {
       idsArray.push(el.hash);
     })
-    sections = $( idsArray.join() );
+    sections = $(idsArray.join());
   }
 
   return {
@@ -328,11 +328,11 @@ const ProfileSwitch = (function($) {
 ProfileSwitch.init();
 
 
-const ShowMore = (function() {
+const ShowMore = (function () {
   const showMoreLink = $('[data-show-more-link]')
 
   function init() {
-    showMoreLink.on('click', function(e) {
+    showMoreLink.on('click', function (e) {
       e.preventDefault();
       const showMoreContainer = $(this).parents('[data-show-more]');
       const short = showMoreContainer.find('.Comment__description-short');
@@ -352,12 +352,12 @@ const ShowMore = (function() {
 
 ShowMore.init();
 
-const SinglePageHeader = (function($) {
+const SinglePageHeader = (function ($) {
   const header = $('.Header.md');
 
   function init() {
-      if ( $(".App.-single").length == 0  ) { return };
-      $(window).on('scroll', switchFixed);
+    if ($(".App.-single").length == 0) { return };
+    $(window).on('scroll', switchFixed);
   }
 
   function switchFixed(e) {
@@ -372,7 +372,7 @@ const SinglePageHeader = (function($) {
 SinglePageHeader.init();
 
 
-const PaymentCard = (function($) {
+const PaymentCard = (function ($) {
   const activator = $('.PaymentAddCard__activator')
   const addNewCard = $('.PaymentAddNewCardForm')
   const form = $('.PaymentAddNewCardForm__form')
@@ -380,7 +380,7 @@ const PaymentCard = (function($) {
   const cardItem = $('.PaymentCardsItem').first();
 
   function init() {
-    activator.on('click', function() {
+    activator.on('click', function () {
       addNewCard.toggle();
     });
 
@@ -404,17 +404,17 @@ const PaymentCard = (function($) {
 PaymentCard.init()
 
 
-const CheckPass = (function() {
+const CheckPass = (function () {
   const checkPass = $('[data-check-pass]');
   const checkPassDone = $('[data-check-pass-done]');
   const checkPassForm = $('[data-check-pass-form]');
 
   function init() {
-    checkPassForm.on('submit', function(e) {
+    checkPassForm.on('submit', function (e) {
       e.preventDefault();
       checkPass.hide();
       checkPassDone.show();
-      setTimeout(function(){
+      setTimeout(function () {
         checkPass.show();
         checkPassDone.hide();
       }, 3000)
@@ -429,7 +429,7 @@ const CheckPass = (function() {
 CheckPass.init()
 
 
-const AjaxGlobalHandlers = (function() {
+const AjaxGlobalHandlers = (function () {
   const doc = $(document);
 
   function init() {
@@ -445,11 +445,11 @@ const AjaxGlobalHandlers = (function() {
   }
 
   function handlers() {
-    doc.on('ajaxStart', function() {
+    doc.on('ajaxStart', function () {
       NProgress.start();
     });
 
-    doc.on('ajaxComplete', function() {
+    doc.on('ajaxComplete', function () {
       NProgress.done();
     });
   }
@@ -460,32 +460,32 @@ const AjaxGlobalHandlers = (function() {
 }());
 AjaxGlobalHandlers.init()
 
-const Basket = (function() {
-    const addBasketButton = $('[data-add-basket]');
-    const removeBasketButton = $('[data-remove-basket]');
-    const addBasketForm = $('[data-add-basket-form]');
-    const redirectUrl = $('[data-add-basket-form]').attr('data-redirect');
+const Basket = (function () {
+  const addBasketButton = $('[data-add-basket]');
+  const removeBasketButton = $('[data-remove-basket]');
+  const addBasketForm = $('[data-add-basket-form]');
+  const redirectUrl = $('[data-add-basket-form]').attr('data-redirect');
 
-    function init() {
-      handlers();
-    }
+  function init() {
+    handlers();
+  }
 
-    function handlers() {
-      addBasketButton.on('click', add);
-      removeBasketButton.on('click', remove);
-    }
+  function handlers() {
+    addBasketButton.on('click', add);
+    removeBasketButton.on('click', remove);
+  }
 
-    function add(e) {
-      e.preventDefault()
-      const basketData = addBasketForm.serializeObject();
-      basketData.action = 'add_basket';
-      $.ajax({
-        url: data.adminAjax,
-        type: 'POST',
-        data: basketData,
-      })
-      .done(function( r ) {
-        if ( r.success ) {
+  function add(e) {
+    e.preventDefault()
+    const basketData = addBasketForm.serializeObject();
+    basketData.action = 'add_basket';
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: basketData,
+    })
+      .done(function (r) {
+        if (r.success) {
           NProgress.done();
           window.location = redirectUrl;
         } else {
@@ -493,45 +493,87 @@ const Basket = (function() {
         }
 
       })
-      .fail(function() {
+      .fail(function () {
         // console.log("error");
       })
-    }
+  }
 
-    function remove(e) {
-      e.preventDefault()
-      $.ajax({
-        url: data.adminAjax,
-        type: 'POST',
-        data: {
-          action: 'remove_basket'
-        },
-      })
-      .done(function( r ) {
-        if ( r.success ) {
+  function remove(e) {
+    e.preventDefault()
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'remove_basket'
+      },
+    })
+      .done(function (r) {
+        if (r.success) {
           NProgress.done();
           window.location.reload();
         } else {
           console.log(r);
         }
       })
-      .fail(function() {
+      .fail(function () {
         // console.log("error");
       })
-    }
+  }
 
-    return {
-      init: init
-    }
+  return {
+    init: init
+  }
 }());
 Basket.init();
 
 
-const Auth = (function($) {
+const Auth = (function ($) {
   function init() {
-    $('body').on('submit', '.LoginForm', wpestate_login );
-    $('body').on('click', '.facebookloginsidebar_topbar', login_via_facebook );
-    $('body').on('click', '.googleloginsidebar_topbar', login_via_google_oauth );
+    $('body').on('submit', '.LoginForm', wpestate_login);
+    $('body').on('submit', '.RegForm', wpestate_register_user);
+    $('body').on('click', '.facebookloginsidebar_topbar', login_via_facebook);
+    $('body').on('click', '.googleloginsidebar_topbar', login_via_google_oauth);
+  }
+
+  function wpestate_register_user(e) {
+    e.preventDefault();
+    var user_login_register, user_email_register, user_pass, user_pass_retype, nonce, ajaxurl;
+    let user_first_name;
+    let user_last_name;
+
+    ajaxurl = data.adminAjax;
+    $('#register_message_area_topbar').empty().append('<div class="login-alert">Proccessing...</div>');
+
+    user_login_register = jQuery('#user_login_register').val();
+    user_email_register = jQuery('#user_email_register').val();
+    user_first_name = $('#user_first_name').val();
+    user_last_name = $('#user_last_name').val();
+    nonce = jQuery('#security-register-topbar').val();
+
+    jQuery.ajax({
+      type: 'POST',
+      url: ajaxurl,
+      data: {
+        'action': 'wpestate_ajax_register_user',
+        'user_login_register': user_login_register,
+        'user_email_register': user_email_register,
+        'user_pass': user_pass,
+        'user_pass_retype': user_pass_retype,
+        'security-register': nonce,
+        'user_first_name': user_first_name,
+        'user_last_name': user_last_name,
+      },
+
+      success: function (data) {
+        jQuery('#register_message_area').empty().append('<div class="login-alert">' + data + '</div>');
+        jQuery('#user_login_register').val('');
+        jQuery('#user_email_register').val('');
+        jQuery('#user_password').val('');
+        jQuery('#user_password_retype').val('');
+      },
+      error: function (errorThrown) {
+      }
+    });
   }
 
   function wpestate_login(e) {
@@ -541,69 +583,69 @@ const Auth = (function($) {
     login_pwd = $('#login_pwd').val();
     security = $('#security-login').val();
     ispop = $('#loginpop').val();
-    ajaxurl =  data.adminAjax;
+    ajaxurl = data.adminAjax;
 
     $('#login_message_area').empty().append('<div class="login-alert">' + data.login_loading + '</div>');
     jQuery.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: ajaxurl,
-        data: {
-            'action'            :   'ajax_loginx_form',
-            'login_user'        :   login_user,
-            'login_pwd'         :   login_pwd,
-            'ispop'             :   ispop,
-            'security-login'    :   security
-        },
-        success: function (data) {
-            $('#login_message_area').empty().append('<div class="login-alert">' + data.message + '<div>');
-            if (data.loggedin === true) {
-                window.location.reload();
-            }
-        },
-        error: function (errorThrown) {
-          console.log(errorThrown);
+      type: 'POST',
+      dataType: 'json',
+      url: ajaxurl,
+      data: {
+        'action': 'ajax_loginx_form',
+        'login_user': login_user,
+        'login_pwd': login_pwd,
+        'ispop': ispop,
+        'security-login': security
+      },
+      success: function (data) {
+        $('#login_message_area').empty().append('<div class="login-alert">' + data.message + '<div>');
+        if (data.loggedin === true) {
+          window.location.reload();
         }
+      },
+      error: function (errorThrown) {
+        console.log(errorThrown);
+      }
     });
   }
 
   function login_via_facebook(e) {
-      var login_type, ajaxurl;
-      ajaxurl     =   data.adminAjax;
-      login_type  =   'facebook';
-      jQuery.ajax({
-        type: 'POST',
-        url: ajaxurl,
-        data: {
-          'action': 'wpestate_ajax_facebook_login',
-          'login_type': login_type,
-        },
-        success: function (data) {
-          window.location.href = data;
-        },
-        error: function (errorThrown) {
+    var login_type, ajaxurl;
+    ajaxurl = data.adminAjax;
+    login_type = 'facebook';
+    jQuery.ajax({
+      type: 'POST',
+      url: ajaxurl,
+      data: {
+        'action': 'wpestate_ajax_facebook_login',
+        'login_type': login_type,
+      },
+      success: function (data) {
+        window.location.href = data;
+      },
+      error: function (errorThrown) {
 
-        }
-      });
+      }
+    });
   }
 
   function login_via_google_oauth(e) {
 
-      var ajaxurl, login_type;
-      ajaxurl         =  data.adminAjax;
+    var ajaxurl, login_type;
+    ajaxurl = data.adminAjax;
 
-      jQuery.ajax({
-          type: 'POST',
-          url: ajaxurl,
-          data: {
-              'action'            :   'wpestate_ajax_google_login_oauth'
-          },
-          success: function (data) {
-              window.location.href = data;
-          },
-          error: function (errorThrown) {
-          }
-      });//end ajax
+    jQuery.ajax({
+      type: 'POST',
+      url: ajaxurl,
+      data: {
+        'action': 'wpestate_ajax_google_login_oauth'
+      },
+      success: function (data) {
+        window.location.href = data;
+      },
+      error: function (errorThrown) {
+      }
+    });//end ajax
   }
 
   return {

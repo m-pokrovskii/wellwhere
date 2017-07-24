@@ -1,7 +1,11 @@
 <?php
-  function dump($v) {
+  if ( ! current_user_can( 'manage_options' ) ) {
+    add_filter('show_admin_bar', '__return_false');
+  }
+  
+  function dump( $v ) {
     echo '<pre>';
-      print_r($v);
+      print_r( $v );
     echo '</pre>';
   }
 
@@ -110,9 +114,25 @@ function send_ticket_to_user( $user_id, $ticket_id ) {
   $subject = "Ticket from " . get_bloginfo('name');
   $message = "Your ticket " . $pdf_site_url;
   $attachments = array( $pdf_absolute_url );
+  $headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
 
-  $send =  wp_mail($to, $subject, $message, "", $attachments);
+  $send =  @wp_mail($to, $subject, $message, $headers, $attachments);
 }
+
+function send_user_credentials( $user_id, $user_password ) {
+  $user = new WP_User( $user_id );
+  $sitename = get_bloginfo('name');
+  $login = stripslashes ( $user->user_login );
+
+  $to = stripslashes( $user->user_email );
+  $subject = "[ $sitename ] Your username and password info";
+  $message .= "Login: " . $login . "\r\n";
+  $message .= "Password: " . $user_password . "\r\n";
+  $headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
+
+  $send =  @wp_mail($to, $subject, $message, $headers);
+}
+
 
 function create_onetime_nonce($action = -1) {
     $time = time();
