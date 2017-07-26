@@ -924,7 +924,6 @@ var Auth = function ($) {
   }
 
   function openModal(e) {
-    console.log('a');
     e.preventDefault();
     $('.ui.modal').modal('show');
   }

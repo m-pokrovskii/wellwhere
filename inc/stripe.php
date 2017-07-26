@@ -1,6 +1,6 @@
 <?php
-  require_once('stripe-php-5.1.1/init.php');
-
+  require_once( get_template_directory().'/vendor/autoload.php' );
+  
   $stripe = array(
     "secret_key"      => "sk_test_SvNhK8uzjHDcKV58Tbx72M1Y",
     "publishable_key" => "pk_test_G6LDMUdv0HThh4NSY4ZEY0fw"
