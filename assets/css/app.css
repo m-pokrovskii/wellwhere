@@ -952,7 +952,7 @@ input::placeholder {
   width: 24px;
   height: 24px;
   background-image: url("../img/icon-heart.svg") !important;
-  background-size: 24px 24px;
+  background-size: 24px 24px !important;
 }
 
 .GymFavorite > .icon.active::before {
@@ -966,7 +966,7 @@ input::placeholder {
 .SignlePage__hero-favorite > .icon::before {
   width: 40px;
   height: 40px;
-  background-size: 40px 40px;
+  background-size: 40px 40px !important;
 }
 
 .ListingFilter {

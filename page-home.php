@@ -1,7 +1,6 @@
 <?php
-  // Template Name: Home Page
+	// Template Name: Home Pag
 ?>
-
 <?php get_header(); ?>
 <div class="App">
 	<?php get_template_part('templates/header') ?>

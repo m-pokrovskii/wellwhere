@@ -430,6 +430,10 @@ $.fn.serializeObject = function () {
   return o;
 };
 
+if (window.location.hash == '#_=_') {
+  history.replaceState ? history.replaceState(null, null, window.location.href.split('#')[0]) : window.location.hash = '';
+}
+
 var SinglePageFixed = function ($) {
   var header = $('.HeaderWrap');
   var title = $('.SignlePage__headline');
@@ -902,99 +906,141 @@ var Basket = function () {
 Basket.init();
 
 var Auth = function ($) {
+  var loginForm = $('.LoginForm');
+  var regForm = $('.RegForm');
+  var forgotForm = $('.ForgotPassForm');
+  var facebookLogin = $('[data-login="facebook"]');
+  var googleLogin = $('[data-login="google"]');
+
   function init() {
-    $('body').on('submit', '.LoginForm', wpestate_login);
-    $('body').on('submit', '.RegForm', wpestate_register_user);
-    $('body').on('click', '.facebookloginsidebar_topbar', login_via_facebook);
-    $('body').on('click', '.googleloginsidebar_topbar', login_via_google_oauth);
+    validationsInit();
+    loginForm.on('submit', login);
+    regForm.on('submit', register_user);
+    forgotForm.on('submit', forgotPassword);
+    facebookLogin.on('click', login_via_facebook);
+    googleLogin.on('click', login_via_google_oauth);
   }
 
-  function wpestate_register_user(e) {
-    e.preventDefault();
-    var user_login_register, user_email_register, user_pass, user_pass_retype, nonce, ajaxurl;
-    var user_first_name = void 0;
-    var user_last_name = void 0;
+  function validationsInit() {
+    loginForm.form({
+      on: 'blur',
+      fields: {
+        login_email: 'email',
+        login_password: 'empty'
+      }
+    });
 
-    ajaxurl = data.adminAjax;
-    $('#register_message_area_topbar').empty().append('<div class="login-alert">Proccessing...</div>');
+    regForm.form({
+      on: 'blur',
+      fields: {
+        user_first_name: 'empty',
+        user_last_name: 'empty',
+        user_email_register: 'email'
+      }
+    });
 
-    user_login_register = jQuery('#user_login_register').val();
-    user_email_register = jQuery('#user_email_register').val();
-    user_first_name = $('#user_first_name').val();
-    user_last_name = $('#user_last_name').val();
-    nonce = jQuery('#security-register-topbar').val();
-
-    jQuery.ajax({
-      type: 'POST',
-      url: ajaxurl,
-      data: {
-        'action': 'wpestate_ajax_register_user',
-        'user_login_register': user_login_register,
-        'user_email_register': user_email_register,
-        'user_pass': user_pass,
-        'user_pass_retype': user_pass_retype,
-        'security-register': nonce,
-        'user_first_name': user_first_name,
-        'user_last_name': user_last_name
-      },
-
-      success: function success(data) {
-        jQuery('#register_message_area').empty().append('<div class="login-alert">' + data + '</div>');
-        jQuery('#user_login_register').val('');
-        jQuery('#user_email_register').val('');
-        jQuery('#user_password').val('');
-        jQuery('#user_password_retype').val('');
-      },
-      error: function error(errorThrown) {}
+    forgotForm.form({
+      on: 'blur',
+      fields: {
+        forgot_email: 'email'
+      }
     });
   }
 
-  function wpestate_login(e) {
+  function login(e) {
     e.preventDefault();
-    var login_user, login_pwd, security, ispop, ajaxurl;
-    login_user = $('#login_user').val();
-    login_pwd = $('#login_pwd').val();
-    security = $('#security-login').val();
-    ispop = $('#loginpop').val();
-    ajaxurl = data.adminAjax;
 
-    $('#login_message_area').empty().append('<div class="login-alert">' + data.login_loading + '</div>');
-    jQuery.ajax({
+    if (loginForm.form('is valid') === false) {
+      return false;
+    }
+
+    var loginFields = loginForm.serializeObject();
+    var login_email = loginFields.login_email;
+    var login_password = loginFields.login_password;
+    var security = loginFields.security_login;
+    var ajaxurl = data.adminAjax;
+
+    $.ajax({
       type: 'POST',
       dataType: 'json',
       url: ajaxurl,
       data: {
         'action': 'ajax_loginx_form',
-        'login_user': login_user,
-        'login_pwd': login_pwd,
-        'ispop': ispop,
-        'security-login': security
+        'login_email': login_email,
+        'login_password': login_password,
+        'security_login': security
       },
-      success: function success(data) {
-        $('#login_message_area').empty().append('<div class="login-alert">' + data.message + '<div>');
-        if (data.loggedin === true) {
+      success: function success(r) {
+        if (r.success) {
           window.location.reload();
+        } else {
+          loginForm.form("add errors", [r.data.message]);
         }
       },
-      error: function error(errorThrown) {
-        console.log(errorThrown);
+      error: function error(e) {
+        console.log(e);
+      }
+    });
+  }
+
+  function register_user(e) {
+    e.preventDefault();
+
+    if (regForm.form('is valid') === false) {
+      return false;
+    }
+
+    var regFields = regForm.serializeObject();
+
+    var user_first_name_register = regFields.user_first_name_register;
+    var user_last_name_register = regFields.user_last_name_register;
+    var user_email_register = regFields.user_email_register;
+    var ajaxurl = data.adminAjax;
+    var security_register = regFields.security_register;
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: ajaxurl,
+      data: {
+        'action': 'wpestate_ajax_register_user',
+        'security_register': security_register,
+        'user_first_name': user_first_name_register,
+        'user_last_name': user_last_name_register,
+        'user_email_register': user_email_register
+      },
+      success: function success(r) {
+        if (r.success) {
+          regForm.find('.ui.small.info.message').hide();
+          regForm.find('.ui.small.success.message').html(r.data.message);
+        } else {
+          regForm.form("add errors", [r.data.message]);
+        }
+      },
+      error: function error(e) {
+        console.log(e);
       }
     });
   }
 
   function login_via_facebook(e) {
-    var login_type, ajaxurl;
-    ajaxurl = data.adminAjax;
-    login_type = 'facebook';
+    e.preventDefault();
+
+    var ajaxurl = data.adminAjax;
+    var login_type = 'facebook';
     jQuery.ajax({
       type: 'POST',
       url: ajaxurl,
       data: {
-        'action': 'wpestate_ajax_facebook_login',
-        'login_type': login_type
+        'action': 'wpestate_ajax_facebook_login'
       },
-      success: function success(data) {
-        window.location.href = data;
+      success: function success(r) {
+        if (r.success) {
+          console.log(r);
+          window.location = r.data.url;
+        } else {
+          console.log(r);
+        }
       },
       error: function error(errorThrown) {}
     });
@@ -1016,6 +1062,41 @@ var Auth = function ($) {
       },
       error: function error(errorThrown) {}
     }); //end ajax
+  }
+
+  function forgotPassword(e) {
+    e.preventDefault();
+
+    if (forgotForm.form('is valid') === false) {
+      return false;
+    }
+
+    var forgotFields = forgotForm.serializeObject();
+    var forgot_email = forgotFields.forgot_email;
+    var securityforgot = forgotFields.security_forgot;
+    var ajaxurl = data.adminAjax;
+
+    jQuery.ajax({
+      type: 'POST',
+      url: ajaxurl,
+      data: {
+        'action': 'wpestate_ajax_forgot_pass',
+        'forgot_email': forgot_email,
+        'security-forgot': securityforgot
+      },
+
+      success: function success(r) {
+        if (r.success) {
+          forgotForm.find('.ui.small.success.message').html(r.data.message);
+        } else {
+          forgotForm.form("add errors", [r.data.message]);
+        }
+      },
+      error: function error(e) {
+        console.log(e);
+        forgotForm.form("add errors", [r.data.message]);
+      }
+    });
   }
 
   return {

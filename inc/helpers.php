@@ -2,7 +2,7 @@
   if ( ! current_user_can( 'manage_options' ) ) {
     add_filter('show_admin_bar', '__return_false');
   }
-  
+
   function dump( $v ) {
     echo '<pre>';
       print_r( $v );
@@ -122,12 +122,14 @@ function send_ticket_to_user( $user_id, $ticket_id ) {
 function send_user_credentials( $user_id, $user_password ) {
   $user = new WP_User( $user_id );
   $sitename = get_bloginfo('name');
-  $login = stripslashes ( $user->user_login );
+  $siteurl = get_bloginfo('url');
 
   $to = stripslashes( $user->user_email );
-  $subject = "[ $sitename ] Your username and password info";
-  $message .= "Login: " . $login . "\r\n";
-  $message .= "Password: " . $user_password . "\r\n";
+  $subject = "[ $sitename ] Your password info";
+  $message .= "Greetings " . $user->first_name . " " . $user->last_name .".\r\n";
+  $message .= "Thanks for registration." . "\r\n";
+  $message .= "Your password is: " . $user_password . "\r\n";
+  $message .= "$siteurl \r\n";
   $headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
 
   $send =  @wp_mail($to, $subject, $message, $headers);
