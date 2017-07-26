@@ -338,6 +338,7 @@
 			wp_set_current_user ( $u->ID );
 			wp_set_auth_cookie ( $u->ID, true );
 
+
 			if ( is_wp_error( $user_signon ) ){
 				// dump($user_signon->get_error_message());
 				wp_redirect( esc_url(home_url() ) ); exit();
