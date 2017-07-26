@@ -2,21 +2,6 @@
 	// Template Name: Payment Cards
 ?>
 <?php
-
-$stripe = array(
-	"secret_key"      => "sk_test_SvNhK8uzjHDcKV58Tbx72M1Y",
-	"publishable_key" => "pk_test_G6LDMUdv0HThh4NSY4ZEY0fw"
-);
-$a = \Stripe\Stripe::setApiKey($stripe['secret_key']);
-try {
-	$custumer = \Stripe\Customer::retrieve( "cus_B645wmbLhI7T87" );
-	dump($custumer);
-} catch (Exception $e) {
-	echo "string";
-}
-
-
-
 	if (!is_user_logged_in()) {
 		wp_redirect("/");
 	}
