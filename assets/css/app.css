@@ -2768,6 +2768,14 @@ input::placeholder {
   background-color: #fefde5 !important;
 }
 
+.ui.modal h3 {
+  margin-bottom: 10px;
+}
+
+.ui.modal form {
+  margin-bottom: 50px;
+}
+
 html {
   height: 100%;
 }

@@ -313,11 +313,14 @@
 	    if(isset($user['email'])){
 	        $email = $user['email'];
 	    }
+
+			$user_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+
 	    $identity_code = $secret.$user['id'];
 			if ( !email_exists( $email ) ) {
 				$user_id = wp_insert_user( array(
 					'user_login'    => $email,
-					'user_pass'     => $identity_code,
+					'user_pass'     => $user_password,
 					'user_email'    => $email,
 					'first_name'    => $user['first_name'],
 					'last_name'     => $user['last_name'],

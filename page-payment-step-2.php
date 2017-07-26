@@ -77,20 +77,6 @@
 						  </div>
 						</div>
 					</form>
-					<form class="StripeForm" action="/update" method="post" id="update-form">
-						<div class="StripeForm__fields">
-							<div class="StripeForm__element">
-						    <div class="StripeForm__card-element" id="card-element">
-						      <!-- a Stripe Element will be inserted here. -->
-						    </div>
-						    <!-- Used to display form errors -->
-						    <div class="StripeForm__errors" id="card-errors" role="alert"></div>
-						  </div>
-						  <div class="StripeForm__button-block">
-						  	<button class="StripeForm__button">Ajouter</button>
-						  </div>
-						</div>
-					</form>
 				</div>
 			</div>
     </div>

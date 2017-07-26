@@ -15,7 +15,7 @@ $.fn.serializeObject = function () {
 };
 
 if (window.location.hash == '#_=_'){
-    history.replaceState 
+    history.replaceState
         ? history.replaceState(null, null, window.location.href.split('#')[0])
         : window.location.hash = '';
 }
@@ -539,14 +539,22 @@ const Auth = (function ($) {
   const forgotForm = $('.ForgotPassForm');
   const facebookLogin = $('[data-login="facebook"]');
   const googleLogin = $('[data-login="google"]');
+  const openModalLink = $('[data-open-modal-auth]');
 
   function init() {
     validationsInit();
+    openModalLink.on('click', openModal);
     loginForm.on('submit', login);
     regForm.on('submit', register_user);
     forgotForm.on('submit', forgotPassword);
     facebookLogin.on('click', login_via_facebook);
     googleLogin.on('click', login_via_google_oauth);
+  }
+
+  function openModal(e) {
+    console.log('a');
+    e.preventDefault();
+    $('.ui.modal').modal('show');
   }
 
   function validationsInit() {

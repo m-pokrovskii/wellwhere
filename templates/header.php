@@ -38,7 +38,7 @@
             </div>
           </div>
       <?php else: ?>
-        <a href="#">M'identifer</a>
+        <a data-open-modal-auth href="">M'identifer</a>
       <?php endif; ?>
     </div>
   </div>

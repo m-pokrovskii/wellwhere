@@ -911,14 +911,22 @@ var Auth = function ($) {
   var forgotForm = $('.ForgotPassForm');
   var facebookLogin = $('[data-login="facebook"]');
   var googleLogin = $('[data-login="google"]');
+  var openModalLink = $('[data-open-modal-auth]');
 
   function init() {
     validationsInit();
+    openModalLink.on('click', openModal);
     loginForm.on('submit', login);
     regForm.on('submit', register_user);
     forgotForm.on('submit', forgotPassword);
     facebookLogin.on('click', login_via_facebook);
     googleLogin.on('click', login_via_google_oauth);
+  }
+
+  function openModal(e) {
+    console.log('a');
+    e.preventDefault();
+    $('.ui.modal').modal('show');
   }
 
   function validationsInit() {
