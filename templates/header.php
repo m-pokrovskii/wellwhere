@@ -31,7 +31,7 @@
                 <a href="#" class="item">Commentaires</a>
                 <a href="#" class="item">Pass</a>
                 <a href="#" class="item">Favorits</a>
-                <a href="<?php echo wp_logout_url("/") ?>" class="item">
+                <a href="<?php echo wp_logout_url( get_home_url() ) ?>" class="item">
                   <?php echo __('Logout', 'wellwhere') ?>
                 </a>
               </div>

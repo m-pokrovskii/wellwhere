@@ -3,8 +3,6 @@
 		$vsessionid = session_id();
 		if ( empty( $vsessionid ) ) { session_name( 'PHPSESSID' ); session_start(); }
 		facebook_login( $_GET );
-	} else if ( isset( $_GET['code'] ) ) {
-		google_oauth_login( $_GET );
 	}
 ?>
 <!doctype html>
@@ -18,3 +16,4 @@
 </head>
 <body>
 <?php get_template_part('templates/auth-modal') ?>
+<script src="https://apis.google.com/js/api.js"></script>

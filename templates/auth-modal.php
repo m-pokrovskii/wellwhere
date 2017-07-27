@@ -124,9 +124,5 @@
       </div>
     </form>
   </div>
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
 </div>
 <?php endif; ?>

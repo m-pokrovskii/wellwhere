@@ -1050,11 +1050,9 @@ var Auth = function ($) {
         'action': 'wpestate_ajax_facebook_login'
       },
       success: function success(r) {
+        console.log(r);
         if (r.success) {
-          console.log(r);
           window.location = r.data.url;
-        } else {
-          console.log(r);
         }
       },
       error: function error(errorThrown) {}
@@ -1062,21 +1060,45 @@ var Auth = function ($) {
   }
 
   function login_via_google_oauth(e) {
+    e.preventDefault();
+    gapi.load('client', function () {
+      gapi.client.init({
+        apiKey: data.google_api_key,
+        clientId: data.google_oauth_api,
+        scope: 'profile'
+      }).then(function () {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signIn({
+          scope: 'profile email'
+        }).then(function (r) {
+          var profile = auth2.currentUser.get().getBasicProfile();
+          var userData = {
+            googleId: profile.getId(),
+            fullName: profile.getName(),
+            firstName: profile.getGivenName(),
+            lastName: profile.getFamilyName(),
+            userEmail: profile.getEmail(),
+            imageUrl: profile.getImageUrl()
+          };
 
-    var ajaxurl, login_type;
-    ajaxurl = data.adminAjax;
-
-    jQuery.ajax({
-      type: 'POST',
-      url: ajaxurl,
-      data: {
-        'action': 'wpestate_ajax_google_login_oauth'
-      },
-      success: function success(data) {
-        window.location.href = data;
-      },
-      error: function error(errorThrown) {}
-    }); //end ajax
+          $.ajax({
+            url: data.adminAjax,
+            type: 'POST',
+            data: {
+              action: 'ajax_google_login_oauth',
+              userData: userData
+            }
+          }).done(function (r) {
+            console.log(r);
+            if (r.success) {
+              window.location.reload();
+            }
+          }).fail(function (e) {
+            console.log(e);
+          });
+        });
+      });
+    });
   }
 
   function forgotPassword(e) {

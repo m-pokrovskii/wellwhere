@@ -74,28 +74,37 @@
 
 
 
-	add_action( 'wp_ajax_nopriv_wpestate_ajax_google_login_oauth', 'wpestate_ajax_google_login_oauth' );
-	add_action( 'wp_ajax_wpestate_ajax_google_login_oauth', 'wpestate_ajax_google_login_oauth' );
+	add_action( 'wp_ajax_nopriv_ajax_google_login_oauth', 'ajax_google_login_oauth' );
+	add_action( 'wp_ajax_ajax_google_login_oauth', 'ajax_google_login_oauth' );
 
-	function wpestate_ajax_google_login_oauth(){
-			$google_client_id       =   esc_html ( get_option('wp_estate_google_oauth_api','') );
-			$google_client_secret   =   esc_html ( get_option('wp_estate_google_oauth_client_secret','') );
-			$google_redirect_url    =   get_dashboard_profile_link();
-			$google_developer_key   =   esc_html ( get_option('wp_estate_google_api_key','') );
+	function ajax_google_login_oauth(){
+		$new_user = array();
+		if ( !$_POST['userData'] ) {
+			wp_send_json_error(array('message' => 'No user data'));
+		}
 
-			require_once 'google/Google_Client.php';
-			require_once 'google/contrib/Google_Oauth2Service.php';
+		foreach ( $_POST['userData'] as $key => $value ) {
+			$new_user[ $key ] = $value;
+		}
 
-			$gClient = new Google_Client();
-			$gClient->setApplicationName('Login to WpResidence');
-			$gClient->setClientId($google_client_id);
-			$gClient->setClientSecret($google_client_secret);
-			$gClient->setRedirectUri($google_redirect_url);
-			$gClient->setDeveloperKey($google_developer_key);
-			$gClient->setScopes('email');
-			$google_oauthV2 = new Google_Oauth2Service($gClient);
-			print $authUrl = ($gClient->createAuthUrl());
-			die();
+		$user_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+
+		if ( !email_exists( $google_user_email ) ) {
+			$user_id = wp_insert_user( array(
+				'user_login'    => $new_user['userEmail'],
+				'user_pass'     => $user_password,
+				'user_email'    => $new_user['userEmail'],
+				'first_name'    => $new_user['firstName'],
+				'last_name'     => $new_user['lastName'],
+				'user_nicename' => $new_user['fullName']
+			));
+		}
+
+		$u = get_user_by('email', $new_user['userEmail'] );
+		wp_clear_auth_cookie();
+		wp_set_current_user ( $u->ID );
+		wp_set_auth_cookie ( $u->ID, true );
+		wp_send_json_success();
 	}
 
 
@@ -340,14 +349,6 @@
 			wp_clear_auth_cookie();
 			wp_set_current_user ( $u->ID );
 			wp_set_auth_cookie ( $u->ID, true );
-
-
-			if ( is_wp_error( $user_signon ) ){
-				// dump($user_signon->get_error_message());
-				wp_redirect( esc_url(home_url() ) ); exit();
-			} else {
-					// TODO. Redirect to specific url
-					wp_redirect( esc_url(home_url() ) ); exit();
-			}
+			wp_redirect( esc_url( get_permalink() ) );
 	}
 ?>

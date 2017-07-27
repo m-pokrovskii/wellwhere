@@ -57,7 +57,7 @@
 
 
 	function my_acf_init() {
-		acf_update_setting('google_api_key', 'AIzaSyAtItTsEwFHGmNjVyjR-HMFLjTLZW-jGv8');
+		acf_update_setting('google_api_key', get_field('google_api_key', 'option'));
 	}
 
 	add_action('acf/init', 'my_acf_init');
@@ -105,7 +105,9 @@
 		wp_localize_script('app', 'data', array(
 			'url' => get_stylesheet_directory_uri(),
 			'adminAjax' => admin_url( 'admin-ajax.php' ),
-			'userId' => ( is_user_logged_in() ) ? get_current_user_id() : false
+			'userId' => ( is_user_logged_in() ) ? get_current_user_id() : false,
+			'google_api_key' => get_field('google_api_key', 'option'),
+			'google_oauth_api' => get_field('google_oauth_api', 'option')
 		));
 		if ( is_singular() || is_tax() ) {
 			wp_localize_script('app', 'mapData', array(

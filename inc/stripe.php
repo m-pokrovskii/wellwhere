@@ -1,6 +1,6 @@
 <?php
   require_once( get_template_directory().'/vendor/autoload.php' );
-  
+
   $stripe = array(
     "secret_key"      => "sk_test_SvNhK8uzjHDcKV58Tbx72M1Y",
     "publishable_key" => "pk_test_G6LDMUdv0HThh4NSY4ZEY0fw"
@@ -84,13 +84,20 @@
           ));
           if ( $charge ) {
             $ticket_id = create_ticket( $user_id, $basket, $ticket_pass );
-            $pdf_filename = create_pdf(
-              $user_fullname,
-              $basket['basket_gym_title'],
-              $basket['basket_ticket_expire'],
-              $basket['basket_ticket_entries'],
-              $ticket_pass
-            );
+            try {
+              $pdf_filename = create_pdf(
+                $user_fullname,
+                $basket['basket_gym_title'],
+                $basket['basket_ticket_expire'],
+                $basket['basket_ticket_entries'],
+                $ticket_pass
+              );
+            } catch (Exception $e) {
+              wp_send_json_error( array(
+                'message' => $e->getMessage()
+              ) );
+            }
+
             assign_pdf_to_ticket($ticket_id, $pdf_filename);
             send_ticket_to_user( $user_id, $ticket_id );
             clear_basket( $user_id );
