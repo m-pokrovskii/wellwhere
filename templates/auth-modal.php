@@ -1,6 +1,6 @@
 <?php if ( is_user_logged_in() ): ?>
 <?php else: ?>
-<div class="ui modal">
+<div class="AuthModal ui modal">
   <i class="close icon"></i>
   <div class="content">
     <form action="" class="LoginForm ui form">

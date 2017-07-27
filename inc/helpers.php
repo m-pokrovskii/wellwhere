@@ -21,6 +21,17 @@
     return get_permalink($page_id);
   }
 
+  function page_by_file( $filename ) {
+    $page = new WP_Query(array(
+      'post_type' => 'page',
+      'meta_key' => '_wp_page_template',
+      'meta_value' => $filename,
+      'posts_per_page' => 1,
+      'fields' => 'ids'
+    ));
+    return $page->posts[0];
+  }
+
   function the_active_step( $filename = "", $post ) {
     if ( is_active_step( $filename, $post ) ) {
       echo "-active";

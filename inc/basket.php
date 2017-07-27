@@ -32,7 +32,10 @@
         wp_send_json_success();
       }
     } else {
-      wp_send_json_error( array('message' => 'Must be logged in') );
+      wp_send_json_error( array(
+        'is_user_logged_in' => false,
+        'message' => 'Must be logged in')
+      );
     }
   }
 

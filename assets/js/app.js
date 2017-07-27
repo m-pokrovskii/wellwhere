@@ -823,8 +823,8 @@ var AjaxGlobalHandlers = function () {
 
   function configure() {
     NProgress.configure({
-      trickleSpeed: 100,
-      showSpinner: false
+      trickleSpeed: 200,
+      showSpinner: true
     });
   }
 
@@ -872,6 +872,9 @@ var Basket = function () {
         NProgress.done();
         window.location = redirectUrl;
       } else {
+        if (r.data.is_user_logged_in == false) {
+          Auth.openModal();
+        }
         console.log(r.data.message);
       }
     }).fail(function () {
@@ -912,10 +915,11 @@ var Auth = function ($) {
   var facebookLogin = $('[data-login="facebook"]');
   var googleLogin = $('[data-login="google"]');
   var openModalLink = $('[data-open-modal-auth]');
+  var authModal = $('.AuthModal.ui.modal');
 
   function init() {
     validationsInit();
-    openModalLink.on('click', openModal);
+    openModalLink.on('click', openModalHandler);
     loginForm.on('submit', login);
     regForm.on('submit', register_user);
     forgotForm.on('submit', forgotPassword);
@@ -923,9 +927,13 @@ var Auth = function ($) {
     googleLogin.on('click', login_via_google_oauth);
   }
 
-  function openModal(e) {
+  function openModalHandler(e) {
     e.preventDefault();
-    $('.ui.modal').modal('show');
+    openModal();
+  }
+
+  function openModal() {
+    authModal.modal('show');
   }
 
   function validationsInit() {
@@ -1107,6 +1115,7 @@ var Auth = function ($) {
   }
 
   return {
+    openModal: openModal,
     init: init
   };
 }(jQuery);
