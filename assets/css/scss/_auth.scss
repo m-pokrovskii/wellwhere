@@ -61,12 +61,29 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+}
+
+.AuthModal__text-line.-after{
   &::after {
     content: "";
     display: inline-block;
     width: 100%;
     margin-right: -100%;
     margin-left: 10px;
+    height: 1px;
+    background: #E0E0E0;
+  }
+}
+
+
+.AuthModal__text-line.-before {
+  justify-content: flex-end;
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    margin-left: -100%;
+    margin-right: 10px;
     height: 1px;
     background: #E0E0E0;
   }

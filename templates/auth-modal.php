@@ -40,7 +40,7 @@
           </a>
         </div>
         <div class="field">
-          <div class="AuthModal__social-title AuthModal__small-text AuthModal__text-line -right">
+          <div class="AuthModal__social-title AuthModal__small-text AuthModal__text-line">
             <?php _e('ou continuez avec Facebook ou Google', 'wellwhere') ?>
           </div>
         </div>
@@ -61,7 +61,7 @@
           </button>
         </div>
         <div class="field">
-          <div class="AuthModal__register AuthModal__small-text AuthModal__text-line -left">
+          <div class="AuthModal__register AuthModal__small-text AuthModal__text-line -before">
             <div>
               <span><?php _e('Vous n’avez pas de compte ?', 'wellwhere') ?></span>
               <a data-switch-modal href="#RegForm" class="AuthModal__register-link">
