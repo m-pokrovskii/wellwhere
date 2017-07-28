@@ -916,6 +916,7 @@ var Auth = function ($) {
   var googleLogin = $('[data-login="google"]');
   var openModalLink = $('[data-open-modal-auth]');
   var authModal = $('.AuthModal.ui.modal');
+  var switchers = $('[data-switch-modal]');
 
   function init() {
     validationsInit();
@@ -925,6 +926,17 @@ var Auth = function ($) {
     forgotForm.on('submit', forgotPassword);
     facebookLogin.on('click', login_via_facebook);
     googleLogin.on('click', login_via_google_oauth);
+    switchers.on('click', switchForms);
+  }
+
+  function switchForms(e) {
+    e.preventDefault();
+    var switcher = $(this);
+    var destination = switcher.attr('href');
+    var destinationForm = $(destination);
+    var switcherForm = switcher.parents('form.ui.form');
+    switcherForm.hide();
+    destinationForm.show();
   }
 
   function openModalHandler(e) {
@@ -1018,7 +1030,7 @@ var Auth = function ($) {
       dataType: 'json',
       url: ajaxurl,
       data: {
-        'action': 'wpestate_ajax_register_user',
+        'action': 'ajax_register_user',
         'security_register': security_register,
         'user_first_name': user_first_name_register,
         'user_last_name': user_last_name_register,
@@ -1047,7 +1059,7 @@ var Auth = function ($) {
       type: 'POST',
       url: ajaxurl,
       data: {
-        'action': 'wpestate_ajax_facebook_login'
+        'action': 'ajax_facebook_login'
       },
       success: function success(r) {
         console.log(r);
@@ -1117,7 +1129,7 @@ var Auth = function ($) {
       type: 'POST',
       url: ajaxurl,
       data: {
-        'action': 'wpestate_ajax_forgot_pass',
+        'action': 'ajax_forgot_pass',
         'forgot_email': forgot_email,
         'security-forgot': securityforgot
       },

@@ -5,6 +5,10 @@
   user-select: none;
 }
 
+.hide {
+  display: none;
+}
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5,
 h6, p, blockquote, pre, a, abbr, acronym, address, big,
 cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small,
@@ -2768,12 +2772,74 @@ input::placeholder {
   background-color: #fefde5 !important;
 }
 
-.ui.modal h3 {
-  margin-bottom: 10px;
+.AuthModal.ui.modal {
+  width: 400px;
+  margin-left: -200px;
+  background: #fff;
 }
 
-.ui.modal form {
-  margin-bottom: 50px;
+.AuthModal.ui.modal .content {
+  padding: 18px 30px 30px 30px;
+}
+
+.AuthModal.ui.modal form {
+  font-size: 10px;
+}
+
+.AuthModal.ui.modal .field input[type='text'],
+.AuthModal.ui.modal .field input[type='password'] {
+  font-size: 14px;
+}
+
+.AuthModal.ui.modal .ui.message {
+  font-size: 12px;
+}
+
+.AuthModal.ui.modal button {
+  font-size: 14px;
+  border-right: 3px;
+}
+
+.AuthModal.ui.modal .LoginForm__button {
+  background: #FF4040;
+  color: #fff;
+}
+
+.AuthModal__title {
+  font: 20px "Avenir-Medium";
+  margin-bottom: 17px;
+}
+
+.AuthModal__social-buttons button {
+  display: block;
+  margin-bottom: 10px !important;
+}
+
+.AuthModal__small-text {
+  font-size: 10px;
+  color: #6E6868;
+}
+
+.AuthModal a {
+  color: #3BCEAC;
+}
+
+.AuthModal__text-line {
+  overflow: hidden;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.AuthModal__text-line::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  margin-right: -100%;
+  margin-left: 10px;
+  height: 1px;
+  background: #E0E0E0;
 }
 
 html {
@@ -4093,6 +4159,11 @@ html {
 
   .FaqPage {
     padding: 20px;
+  }
+
+  .AuthModal.ui.modal {
+    margin-left: -47.5%;
+    width: 95%;
   }
 
   .App.-payment {

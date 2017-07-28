@@ -153,7 +153,7 @@ function create_onetime_nonce($action = -1) {
     return $nonce . '-' . $time;
 }
 
-function estate_verify_onetime_nonce_login( $_nonce, $action = -1) {
+function verify_onetime_nonce_login( $_nonce, $action = -1) {
     $parts = explode( '-', $_nonce );
     $nonce = $toadd_nonce = $parts[0];
     $generated = $parts[1];

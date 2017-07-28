@@ -8,8 +8,11 @@
 					'message' => __('You are already logged in! redirecting...', 'wellwhere')
 				) );
 		}
-		if( !estate_verify_onetime_nonce_login($_POST['security_login'], 'login_ajax_nonce') ){
-			 wp_send_json_error( array('message' => 'You are hacker!') );
+
+		if ( !check_ajax_referer( 'login_ajax_nonce', 'security_login', false ) ) {
+			wp_send_json_error(array(
+				'message' => __("Your login was rejected for the security reason. Please refresh the page and try again ")
+			));
 		}
 
 		$allowed_html = array();
@@ -45,10 +48,10 @@
 
 
 
-	add_action( 'wp_ajax_nopriv_wpestate_ajax_facebook_login', 'wpestate_ajax_facebook_login' );
-	add_action( 'wp_ajax_wpestate_ajax_facebook_login', 'wpestate_ajax_facebook_login' );
+	add_action( 'wp_ajax_nopriv_ajax_facebook_login', 'ajax_facebook_login' );
+	add_action( 'wp_ajax_ajax_facebook_login', 'ajax_facebook_login' );
 
-	function wpestate_ajax_facebook_login(){
+	function ajax_facebook_login(){
 		session_start();
 		require_once 'facebook_sdk5/Facebook/autoload.php';
 		$facebook_api = esc_html ( get_field('facebook_app_id', 'option') );
@@ -109,10 +112,10 @@
 
 
 
-	add_action( 'wp_ajax_nopriv_wpestate_ajax_register_user', 'wpestate_ajax_register_user' );
-	add_action( 'wp_ajax_wpestate_ajax_register_user', 'wpestate_ajax_register_user' );
+	add_action( 'wp_ajax_nopriv_ajax_register_user', 'ajax_register_user' );
+	add_action( 'wp_ajax_ajax_register_user', 'ajax_register_user' );
 
-	function wpestate_ajax_register_user(){
+	function ajax_register_user(){
 		$allowed_html =   array();
 		$user_email = trim( sanitize_text_field(wp_kses( $_POST['user_email_register'] ,$allowed_html) ) );
 		$user_first_name = trim( sanitize_text_field(wp_kses( $_POST['user_first_name'] ,$allowed_html) ) );
@@ -176,10 +179,10 @@
 		wp_die();
 	}
 
-	add_action( 'wp_ajax_nopriv_wpestate_ajax_forgot_pass', 'wpestate_ajax_forgot_pass' );
-	add_action( 'wp_ajax_wpestate_ajax_forgot_pass', 'wpestate_ajax_forgot_pass' );
+	add_action( 'wp_ajax_nopriv_ajax_forgot_pass', 'ajax_forgot_pass' );
+	add_action( 'wp_ajax_ajax_forgot_pass', 'ajax_forgot_pass' );
 
-	function wpestate_ajax_forgot_pass(){
+	function ajax_forgot_pass(){
 	    global $wpdb;
       $allowed_html   =   array();
       $forgot_email   =   sanitize_text_field( wp_kses( $_POST['forgot_email'], $allowed_html ) );

@@ -1,8 +1,73 @@
-.ui.modal {
-  h3 {
-    margin-bottom: 10px;
+.AuthModal.ui.modal {
+  width: 400px;
+  margin-left: -200px;
+  background: #fff;
+  @include xs() {
+    margin-left: -47.5%;
+    width: 95%;
   }
+  .content {
+    padding: 18px 30px 30px 30px;
+  }
+
   form {
-    margin-bottom: 50px;
+    font-size: 10px;
+  }
+
+  .field input[type='text'],
+  .field input[type='password'] {
+    font-size: 14px;
+  }
+
+  .ui.message {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 14px;
+    border-right: 3px;
+  }
+  .LoginForm__button {
+    background: #FF4040;
+    color: #fff;
+  }
+}
+
+.AuthModal__title {
+  font: 20px "Avenir-Medium";
+  margin-bottom: 17px;
+}
+
+
+.AuthModal__social-buttons {
+  button {
+    display: block;
+    margin-bottom: 10px !important;
+  }
+}
+
+
+.AuthModal__small-text {
+  font-size: 10px;
+  color: #6E6868;
+}
+
+.AuthModal a{
+  color: #3BCEAC;
+}
+
+
+.AuthModal__text-line {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    margin-right: -100%;
+    margin-left: 10px;
+    height: 1px;
+    background: #E0E0E0;
   }
 }
