@@ -40,7 +40,7 @@
           </a>
         </div>
         <div class="field">
-          <div class="AuthModal__social-title AuthModal__small-text AuthModal__text-line">
+          <div class="AuthModal__social-title AuthModal__small-text AuthModal__text-line -after">
             <?php _e('ou continuez avec Facebook ou Google', 'wellwhere') ?>
           </div>
         </div>
