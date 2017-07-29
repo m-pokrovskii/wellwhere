@@ -917,6 +917,7 @@ var Auth = function ($) {
   var openModalLink = $('[data-open-modal-auth]');
   var authModal = $('.AuthModal.ui.modal');
   var switchers = $('[data-switch-modal]');
+  var mobileOpenModalLink = $('[data-mobile-modal]');
 
   function init() {
     validationsInit();
@@ -927,6 +928,7 @@ var Auth = function ($) {
     facebookLogin.on('click', login_via_facebook);
     googleLogin.on('click', login_via_google_oauth);
     switchers.on('click', switchForms);
+    mobileOpenModalLink.on('click', openModalMobileHandler);
   }
 
   function switchForms(e) {
@@ -934,7 +936,7 @@ var Auth = function ($) {
     var switcher = $(this);
     var destination = switcher.attr('href');
     var destinationForm = $(destination);
-    var switcherForm = switcher.parents('form.ui.form');
+    var switcherForm = authModal.find('form.ui.form');
     switcherForm.hide();
     destinationForm.show();
   }
@@ -942,6 +944,11 @@ var Auth = function ($) {
   function openModalHandler(e) {
     e.preventDefault();
     openModal();
+  }
+  function openModalMobileHandler(e) {
+    e.preventDefault();
+    openModal();
+    switchForms.call(this, e);
   }
 
   function openModal() {
@@ -1155,6 +1162,67 @@ var Auth = function ($) {
 }(jQuery);
 
 Auth.init();
+
+var Profile = function ($) {
+  var profileForm = $('[data-profile-update]');
+  var submitButton = $('[data-profile-submit]');
+  var canselButton = $('[data-profile-cancel]');
+  function init() {
+    validation();
+    profileForm.on('submit', profileUpdate);
+  }
+
+  function validation() {
+    profileForm.form({
+      on: 'blur',
+      fields: {
+        first_name: 'empty',
+        last_name: 'empty',
+        email: 'email'
+      }
+    });
+  }
+
+  function profileUpdate(e) {
+    e.preventDefault();
+    if (profileForm.form('is valid') === false) {
+      return false;
+    }
+
+    var profileFields = profileForm.serializeObject();
+
+    $.ajax({
+      type: 'POST',
+      url: data.adminAjax,
+      data: {
+        'action': 'update_user_profie',
+        'fields': profileFields,
+        'nonce': data.nonce
+      }
+    }).done(function (r) {
+      if (r.success) {
+        var successMessage = profileForm.find('.ui.success.message');
+        successMessage.show().html(r.data.message);
+        setTimeout(function () {
+          successMessage.hide();
+        }, 2000);
+      } else {
+        var errors = [];
+        $.each(r.data.errors, function (key, el) {
+          errors.push(el);
+        });
+        profileForm.form("add errors", errors);
+        profileForm.form("add errors", r.data.message);
+      }
+    }).fail(function (e) {
+      console.log(e);
+    });
+  }
+  return {
+    init: init
+  };
+}(jQuery);
+Profile.init();
 
 /***/ }),
 /* 6 */

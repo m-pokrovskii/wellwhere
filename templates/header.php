@@ -1,10 +1,16 @@
+<?php
+  if ( is_user_logged_in() ) {
+    $curruser = wp_get_current_user();
+    $avatar_url = get_avatar_url( $curruser->ID );
+  }
+ ?>
 <div class="HeaderWrap">
   <div class="Header -md">
     <a href="/" class="Header__logo"></a>
     <div class="Header__search ui right icon loading">
       <input
       class="Header__input-search prompt"
-      placeholder="Où voulez-vous vous entraîner?"
+      placeholder="<?php _e('Où voulez-vous vous entraîner?', 'wellwhere') ?>"
       type="text"
       name="headerSearch"
       id="headerSearch">
@@ -15,19 +21,15 @@
     <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="Header__ButtonPartner ButtonPartner">DEVENIR PARTENAIRE</a>
     <div class="Header__loginLink">
       <?php if ( is_user_logged_in() ): ?>
-        <?php
-          $curruser = wp_get_current_user();
-          $avtar_url = get_avatar_url( $curruser->ID );
-         ?>
         <div class="LoggedInUserDropdown ui text menu">
             <div class="ui dropdown item">
               <span class="LoggedInUserDropdown__user-name">
                 <?php echo "$curruser->first_name $curruser->last_name" ?>
               </span>
-              <img class="LoggedInUserDropdown__avatar ui avatar image" src=" <?php echo $avtar_url ?>  ">
+              <img class="LoggedInUserDropdown__avatar ui avatar image" src=" <?php echo $avatar_url ?>  ">
               <i class="dropdown icon"></i>
               <div class="menu">
-                <a href="#" class="item">Profil</a>
+                <a href="<?php echo get_author_posts_url( get_current_user_id() ) ?>" class="item">Profil</a>
                 <a href="#" class="item">Commentaires</a>
                 <a href="#" class="item">Pass</a>
                 <a href="#" class="item">Favorits</a>
@@ -50,17 +52,22 @@
       <span></span>
     </div>
     <div class="SmMenu">
-      <div class="SmMenu__user">
-        <div class="SmMenu__userAvatar" style="background-image: url('<?php echo get_stylesheet_directory_uri() ?>/assets/img/temp-mobile-avatar.png');"></div>
-        <div class="SmMenu__userContent">
-          <div class="SmMenu__userTitle">
-            Bonjour Marco !
-          </div>
-          <div class="SmMenu__userDesc">
-            Membre depuis le 23.04.2048
+      <?php if ( is_user_logged_in() ): ?>
+        <div class="SmMenu__user">
+          <div class="SmMenu__userAvatar" style="background-image: url('<?php echo $avatar_url ?>');"></div>
+          <div class="SmMenu__userContent">
+            <div class="SmMenu__userTitle">
+              <?php echo "$curruser->first_name $curruser->last_name" ?> !
+            </div>
+            <div class="SmMenu__userDesc">
+              <?php _e('Membre depuis le', 'wellwhere') ?>
+              <?php
+                echo date_format ( date_create( $curruser->user_registered ), "d.m.Y")
+               ?>
+            </div>
           </div>
         </div>
-      </div>
+      <?php endif; ?>
       <div class="SmMenu__search">
         <label class="SmMenu__searchLabel" for="SmMenu__searchField">Rechercher</label>
         <div class="SmMenu__searchForm">
@@ -71,12 +78,20 @@
           <div class="results"></div>
         </div>
       </div>
-      <ul class="SmMenu__menu1">
-        <li><a href="#">Profil</a></li>
-        <li><a href="#">Pass</a></li>
-        <li><a href="#">Commentaires</a></li>
-        <li><a href="#">Favorits</a></li>
-      </ul>
+      <?php if ( is_user_logged_in() ): ?>
+        <ul class="SmMenu__menu1 -logged-in">
+          <li><a href="#">Profil</a></li>
+          <li><a href="#">Pass</a></li>
+          <li><a href="#">Commentaires</a></li>
+          <li><a href="#">Favorits</a></li>
+        </ul>
+      <?php else: ?>
+        <ul class="SmMenu__menu1 -logged-in">
+          <li><a href="<?php echo esc_url( home_url() ) ?>"><?php _e('Accueil', 'wellwhere') ?></a></li>
+          <li><a data-mobile-modal href="#LoginForm"><?php _e('Connexion', 'wellwhere') ?></a></li>
+          <li><a data-mobile-modal href="#RegForm"><?php _e('Inscription', 'wellwhere') ?></a></li>
+        </ul>
+      <?php endif; ?>
       <ul class="SmMenu__menu2">
         <li><a href="#">A propos</a></li>
         <li><a href="#">FAQ</a></li>

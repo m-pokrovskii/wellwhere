@@ -1,6 +1,6 @@
 <?php
 	// TODO. Remove before production
-	#flush_rewrite_rules();
+	flush_rewrite_rules();
 
 	define( 'TICKETS_SITE_FOLDER', get_stylesheet_directory_uri() . '/tickets/' );
 	define( 'TICKETS_ABSOLUTE_FOLDER', get_template_directory() . '/tickets/' );
@@ -8,13 +8,15 @@
 	add_filter('rest_jsonp_enabled', '_return_false');
 
 	require_once 'inc/mPDF-v6.1.0/vendor/autoload.php';
-	require 'inc/search.php';
-	require 'inc/auth.php';
-	require 'post-types/post-types.php';
-	require 'taxonomies/taxonomies.php';
+	require_once 'inc/search.php';
+	require_once 'inc/auth.php';
+	require_once 'inc/update_user_profie.php';
+	require_once 'inc/author-rewrite-rules.php';
+	require_once 'post-types/post-types.php';
+	require_once 'taxonomies/taxonomies.php';
 	require_once 'inc/stripe.php';
 	require_once 'inc/basket.php';
-	require 'inc/helpers.php';
+	require_once 'inc/helpers.php';
 
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-thumbnails' );
@@ -105,15 +107,14 @@
 		wp_localize_script('app', 'data', array(
 			'url' => get_stylesheet_directory_uri(),
 			'adminAjax' => admin_url( 'admin-ajax.php' ),
+			'nonce' => wp_create_nonce('nonce'),
 			'userId' => ( is_user_logged_in() ) ? get_current_user_id() : false,
 			'google_api_key' => get_field('google_api_key', 'option'),
 			'google_oauth_api' => get_field('google_oauth_api', 'option')
 		));
-		if ( is_singular() || is_tax() ) {
-			wp_localize_script('app', 'mapData', array(
-				'styles' => get_field('map_styles', 'option'),
-			));
-		}
+		wp_localize_script('app', 'mapData', array(
+			'styles' => get_field('map_styles', 'option'),
+		));
 	}
 	add_action( 'wp_enqueue_scripts', 'wellwhere_scripts' );
 ?>

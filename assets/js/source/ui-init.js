@@ -545,6 +545,7 @@ const Auth = (function ($) {
   const openModalLink = $('[data-open-modal-auth]');
   const authModal = $('.AuthModal.ui.modal');
   const switchers = $('[data-switch-modal]');
+  const mobileOpenModalLink = $('[data-mobile-modal]');
 
   function init() {
     validationsInit();
@@ -555,14 +556,15 @@ const Auth = (function ($) {
     facebookLogin.on('click', login_via_facebook);
     googleLogin.on('click', login_via_google_oauth);
     switchers.on('click', switchForms);
+    mobileOpenModalLink.on('click', openModalMobileHandler)
   }
 
   function switchForms(e) {
     e.preventDefault();
     const switcher = $(this);
     const destination = switcher.attr('href');
-    const destinationForm = $(destination)
-    const switcherForm = switcher.parents('form.ui.form');
+    const destinationForm = $(destination);
+    const switcherForm = authModal.find('form.ui.form');
     switcherForm.hide();
     destinationForm.show();
   }
@@ -570,6 +572,12 @@ const Auth = (function ($) {
   function openModalHandler(e) {
     e.preventDefault();
     openModal();
+
+  }
+  function openModalMobileHandler(e) {
+    e.preventDefault();
+    openModal();
+    switchForms.call(this, e);
   }
 
   function openModal() {
@@ -787,3 +795,64 @@ const Auth = (function ($) {
 }(jQuery));
 
 Auth.init();
+
+const Profile = (function($) {
+  const profileForm = $('[data-profile-update]');
+  const submitButton = $('[data-profile-submit]');
+  const canselButton = $('[data-profile-cancel]');
+  function init() {
+    validation();
+    profileForm.on('submit', profileUpdate);
+  }
+
+  function validation() {
+    profileForm.form({
+      on: 'blur',
+      fields: {
+        first_name: 'empty',
+        last_name: 'empty',
+        email: 'email',
+      }
+    });
+  }
+
+  function profileUpdate(e) {
+    e.preventDefault();
+    if ( profileForm.form('is valid') === false ) {
+      return false;
+    }
+
+    const profileFields = profileForm.serializeObject();
+
+    $.ajax({
+      type: 'POST',
+      url: data.adminAjax,
+      data: {
+        'action': 'update_user_profie',
+        'fields': profileFields,
+        'nonce': data.nonce
+      },
+    })
+    .done(function(r) {
+      if (r.success) {
+        const successMessage = profileForm.find('.ui.success.message');
+        successMessage.show().html(r.data.message);
+        setTimeout( () => { successMessage.hide() }, 2000);
+      } else {
+        let errors = [];
+        $.each(r.data.errors, function(key, el){
+          errors.push(el);
+        });
+        profileForm.form("add errors", errors );
+        profileForm.form("add errors", r.data.message );
+      }
+    })
+    .fail(function(e) {
+      console.log(e);
+    });
+  }
+  return {
+    init: init
+  }
+}(jQuery));
+Profile.init();

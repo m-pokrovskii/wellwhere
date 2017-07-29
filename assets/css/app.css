@@ -476,6 +476,7 @@ input::placeholder {
   background-size: cover;
   background-position: 50% 50%;
   margin-right: 10px;
+  border-radius: 50%;
 }
 
 .SmMenu__userTitle {
@@ -1583,7 +1584,6 @@ input::placeholder {
 
 .ProfilePage {
   padding: 80px 57px;
-  overflow: hidden;
 }
 
 .ProfilePage__aside {
@@ -1592,7 +1592,7 @@ input::placeholder {
 }
 
 .ProfilePage__content {
-  margin-left: 290px;
+  display: inline-block;
 }
 
 .Profile__avatar {
@@ -1601,6 +1601,7 @@ input::placeholder {
   border-radius: 50%;
   background-position: 50% 50%;
   background-size: cover;
+  background-color: #eee;
   margin-bottom: 29px;
   overflow: hidden;
 }
@@ -1663,7 +1664,7 @@ input::placeholder {
 .ProfileProfile {
   width: 630px;
   border: solid 1px #E0E0E0;
-  padding: 28px 14px;
+  padding: 28px 14px 100px 14px;
 }
 
 .ProfileProfile__headline {
@@ -1671,18 +1672,19 @@ input::placeholder {
   margin-bottom: 10px;
 }
 
-.ProfileProfile__form fieldset {
+.ProfileProfile__form.ui.form fieldset.field {
   margin-bottom: 27px;
 }
 
-.ProfileProfile__form fieldset label {
+.ProfileProfile__form.ui.form fieldset.field label {
   display: block;
   float: left;
   width: 176px;
   font: 16px "Avenir-Medium";
+  margin-right: 0 !important;
 }
 
-.ProfileProfile__form fieldset .ui.input input {
+.ProfileProfile__form.ui.form fieldset.field input {
   width: 235px;
   font-size: 14px;
   color: #6E6868;
@@ -1698,8 +1700,7 @@ input::placeholder {
 
 .ProfileProfile__btn-cancel,
 .ProfileProfile__btn-accept {
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: inline-block;
   -ms-flex-pack: center;
   justify-content: center;
   -ms-flex-align: center;
@@ -3374,18 +3375,13 @@ html {
     width: 200px;
   }
 
-  .ProfilePage__content {
-    margin-left: 250px;
-  }
-
   .ProfileProfile {
     width: 100%;
   }
 
   .ProfileProfile__btn-cancel,
   .ProfileProfile__btn-accept {
-    display: -ms-flexbox;
-    display: flex;
+    display: block;
     margin-bottom: 10px;
   }
 
@@ -3866,28 +3862,17 @@ html {
     display: none;
   }
 
-  .ProfilePage__content {
-    margin-left: 0;
-  }
-
   .ProfileProfile {
     width: 100%;
     border: none;
   }
 
-  .ProfileProfile__form fieldset label {
+  .ProfileProfile__form.ui.form fieldset.field label {
     float: none;
     margin-bottom: 5px;
   }
 
-  .ProfileProfile__form fieldset .ui.input {
-    display: -ms-flexbox;
-    display: flex;
-  }
-
-  .ProfileProfile__form fieldset .ui.input input {
-    display: -ms-flexbox;
-    display: flex;
+  .ProfileProfile__form.ui.form fieldset.field input {
     width: 100%;
   }
 
