@@ -15,7 +15,17 @@
     }
 
 
-    // TODO. Check email, first and last name are exists;
+    if ( $fields['first_name'] == "" ) {
+      wp_send_json_error(array(
+        'message' => __("First name is required")
+      ));
+    }
+
+    if ( $fields['last_name'] == "" ) {
+      wp_send_json_error(array(
+        'message' => __("Last name is required")
+      ));
+    }
 
     $user = wp_update_user(array(
       'ID'         => get_current_user_id(),
@@ -49,23 +59,43 @@
   add_action( 'wp_ajax_nopriv_upload_avatar', 'upload_avatar' );
   add_action( 'wp_ajax_upload_avatar', 'upload_avatar' );
   function upload_avatar() {
+    $cuid = get_current_user_id();
     require_once( ABSPATH . 'wp-admin/includes/image.php' );
     require_once( ABSPATH . 'wp-admin/includes/file.php' );
     require_once( ABSPATH . 'wp-admin/includes/media.php' );
-    $attachment_id = media_handle_upload('profile_upload_avatar', 0);
-    if ( !isset( $FILES['profile_upload_avatar'] ) ) {
+    if ( !isset( $_FILES['profile_upload_avatar'] ) ) {
       wp_send_json_error(array(
-        'error' => 'No image is represented';
+        'error' => __("No image is represented")
       ));
     }
-    wp_send_json($_FILES);
+
+    $size_limit = 3 * (1024 * 1024);
+    $image = $_FILES['profile_upload_avatar'];
+    $image_type = exif_imagetype($image['tmp_name']);
+    if ( $image_type !== 2 && $image_type !== 3 ) {
+      wp_send_json_error(array(
+        'error' => __("Only jpg / png is allowed ")
+      ));
+    }
+    if ( $image['size'] > $size_limit  ) {
+      wp_send_json_error(array(
+        'error' => __("The image have to be less than 3mb")
+      ));
+    }
+
+    $attachment_id = media_handle_upload('profile_upload_avatar', 0);
     if ( is_wp_error( $attachment_id ) )  {
       wp_send_json_error( $attachment_id );
     }
     else {
-      wp_send_json_success( $attachment_id );
+      update_user_meta( $cuid, 'avatar_id', $attachment_id );
+      $user_avatar = wp_get_attachment_image_src( $attachment_id, 'user-avatar' );
+      wp_send_json_success( array(
+        'url' => $user_avatar[0],
+        'message' => 'Yor avatar has been succesefuly updated'
+      ) );
+
     }
-    wp_send_json();
   }
 
 ?>

@@ -2,6 +2,8 @@
   $curruser = wp_get_current_user();
   $avatar_url = get_avatar_url( $curruser->ID );
   $image_path = get_stylesheet_directory_uri() . "/assets";
+  $user_avatar_id = get_user_meta( $curruser->ID, 'avatar_id', true );
+  $user_avatar = wp_get_attachment_image_src( $user_avatar_id, 'user-avatar' );
  ?>
 <?php get_header(); ?>
 <div class="App">
@@ -9,7 +11,7 @@
   	<div class="ProfilePage">
   		<div class="ProfilePage__aside">
   			<div class="Profile__user-meta">
-  				<div class="Profile__avatar" style="background-image: url(<?php echo get_user_meta( $curruser->ID, 'wellwhere_avatar', true ) ?>);">
+  				<div class="Profile__avatar" style="background-image: url(<?php echo $user_avatar[0] ?>);">
   					<div class="Profile__avatar-hover">
               <a class="Profile__avatar-change" href="#">
                 <label for="ProfileUploadForm__image" class="ProfileUploadForm__image-label">

@@ -1234,9 +1234,9 @@ var ProfileAvatarUpload = function ($) {
     var fileList = this.files;
     var form = new FormData();
     var image = fileList[0];
+    var profileAvatar = $('.Profile__avatar');
     form.append('profile_upload_avatar', image);
     form.append('action', 'upload_avatar');
-    console.log(image);
     $.ajax({
       url: data.adminAjax,
       type: 'POST',
@@ -1244,6 +1244,12 @@ var ProfileAvatarUpload = function ($) {
       contentType: false,
       data: form
     }).done(function (r) {
+      // Display error
+      if (r.success) {
+        profileAvatar.css({
+          backgroundImage: 'url(' + r.data.url + ')'
+        });
+      }
       console.log(r);
     }).fail(function (e) {
       console.log(e);
