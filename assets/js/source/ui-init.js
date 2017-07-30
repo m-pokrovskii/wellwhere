@@ -864,10 +864,12 @@ const ProfileAvatarUpload = (function($) {
   }
 
   function upload(e) {
-    const fileList = this.files;
-    const form     = new FormData();
-    const image    = fileList[0];
+    const input         = $(this);
+    const fileList      = this.files;
+    const form          = new FormData();
+    const image         = fileList[0];
     const profileAvatar = $('.Profile__avatar');
+
     form.append('profile_upload_avatar', image);
     form.append('action', 'upload_avatar');
     $.ajax({
@@ -879,12 +881,13 @@ const ProfileAvatarUpload = (function($) {
     })
     .done(function(r) {
       // Display error
+      console.log(r);
       if (r.success) {
         profileAvatar.css({
           backgroundImage: 'url(' + r.data.url+ ')'
         })
+        input.val('');
       }
-      console.log(r);
     })
     .fail(function(e) {
       console.log(e);

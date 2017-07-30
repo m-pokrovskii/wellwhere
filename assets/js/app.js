@@ -1231,10 +1231,12 @@ var ProfileAvatarUpload = function ($) {
   }
 
   function upload(e) {
+    var input = $(this);
     var fileList = this.files;
     var form = new FormData();
     var image = fileList[0];
     var profileAvatar = $('.Profile__avatar');
+
     form.append('profile_upload_avatar', image);
     form.append('action', 'upload_avatar');
     $.ajax({
@@ -1245,12 +1247,13 @@ var ProfileAvatarUpload = function ($) {
       data: form
     }).done(function (r) {
       // Display error
+      console.log(r);
       if (r.success) {
         profileAvatar.css({
           backgroundImage: 'url(' + r.data.url + ')'
         });
+        input.val('');
       }
-      console.log(r);
     }).fail(function (e) {
       console.log(e);
     });
