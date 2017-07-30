@@ -1224,6 +1224,38 @@ var Profile = function ($) {
 }(jQuery);
 Profile.init();
 
+var ProfileAvatarUpload = function ($) {
+  var imageInput = $('#ProfileUploadForm__image');
+  function init() {
+    imageInput.on('change', upload);
+  }
+
+  function upload(e) {
+    var fileList = this.files;
+    var form = new FormData();
+    var image = fileList[0];
+    form.append('profile_upload_avatar', image);
+    form.append('action', 'upload_avatar');
+    console.log(image);
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      data: form
+    }).done(function (r) {
+      console.log(r);
+    }).fail(function (e) {
+      console.log(e);
+    });
+  }
+
+  return {
+    init: init
+  };
+}(jQuery);
+ProfileAvatarUpload.init();
+
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {

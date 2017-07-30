@@ -45,4 +45,27 @@
     ));
     wp_die();
   }
+
+  add_action( 'wp_ajax_nopriv_upload_avatar', 'upload_avatar' );
+  add_action( 'wp_ajax_upload_avatar', 'upload_avatar' );
+  function upload_avatar() {
+    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    require_once( ABSPATH . 'wp-admin/includes/media.php' );
+    $attachment_id = media_handle_upload('profile_upload_avatar', 0);
+    if ( !isset( $FILES['profile_upload_avatar'] ) ) {
+      wp_send_json_error(array(
+        'error' => 'No image is represented';
+      ));
+    }
+    wp_send_json($_FILES);
+    if ( is_wp_error( $attachment_id ) )  {
+      wp_send_json_error( $attachment_id );
+    }
+    else {
+      wp_send_json_success( $attachment_id );
+    }
+    wp_send_json();
+  }
+
 ?>

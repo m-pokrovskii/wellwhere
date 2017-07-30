@@ -856,3 +856,39 @@ const Profile = (function($) {
   }
 }(jQuery));
 Profile.init();
+
+const ProfileAvatarUpload = (function($) {
+  const imageInput = $('#ProfileUploadForm__image');
+  function init() {
+    imageInput.on('change', upload);
+  }
+
+  function upload(e) {
+    const fileList = this.files;
+    const form     = new FormData();
+    const image    = fileList[0];
+    form.append('profile_upload_avatar', image);
+    form.append('action', 'upload_avatar');
+    console.log(image);
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      processData: false,
+      contentType: false,
+      data: form
+    })
+    .done(function(r) {
+      console.log(r);
+    })
+    .fail(function(e) {
+      console.log(e);
+    })
+  }
+
+
+  return {
+    init: init
+  }
+
+}(jQuery));
+ProfileAvatarUpload.init();

@@ -3,21 +3,29 @@
   $avatar_url = get_avatar_url( $curruser->ID );
   $image_path = get_stylesheet_directory_uri() . "/assets";
  ?>
-<?php acf_form_head(); ?>
 <?php get_header(); ?>
 <div class="App">
 	<?php get_template_part('templates/header') ?>
   	<div class="ProfilePage">
   		<div class="ProfilePage__aside">
   			<div class="Profile__user-meta">
-  				<div class="Profile__avatar" style="background-image: url(<?php #echo $avatar_url ?>);">
+  				<div class="Profile__avatar" style="background-image: url(<?php echo get_user_meta( $curruser->ID, 'wellwhere_avatar', true ) ?>);">
   					<div class="Profile__avatar-hover">
-  						<a class="Profile__avatar-change" href="#">
-  							<img src="<?php echo $image_path ?>/img/icon-gear.png" alt="">
-  						</a>
-  						<a class="Profile__avatar-delete" href="#">
-  							<img src="<?php echo $image_path ?>/img/icon-trash.png" alt="">
-  						</a>
+              <a class="Profile__avatar-change" href="#">
+                <label for="ProfileUploadForm__image" class="ProfileUploadForm__image-label">
+                  <img src="<?php echo $image_path ?>/img/icon-gear.png" alt="">
+                  <input
+                    class="ProfileUploadForm__image"
+                    type="file"
+                    multiple=false
+                    id="ProfileUploadForm__image"
+                    accept= ".jpg, .jpeg, .png"
+                    name="profile_upload_avatar">
+                </label>
+              </a>
+              <a class="Profile__avatar-delete" href="#">
+                <img src="<?php echo $image_path ?>/img/icon-trash.png" alt="">
+              </a>
   					</div>
   				</div>
   				<div class="Profile__user-name">
@@ -276,7 +284,7 @@
   			<section id="favorites" class="ProfilePage__favorites-section ProfileFavorite">
   				<div class="FavoriteList">
   					<div class="FavoriteListItem">
-  						<div href="" class="FavoriteListItem__image" style="background-image: url(img/tmp-favorite-image.png)" >
+  						<div href="" class="FavoriteListItem__image" style="background-image: url(<?php echo $image_path ?>/img/tmp-favorite-image.png)" >
   							<div data-rating="1" data-max-rating="1" class="GymFavorite ui rating FavoriteListItem__favorite"></div>
   						</div>
   						<div class="FavoriteListItem__content">

@@ -1589,6 +1589,7 @@ input::placeholder {
 .ProfilePage__aside {
   width: 290px;
   float: left;
+  padding-right: 10px;
 }
 
 .ProfilePage__content {
@@ -1965,6 +1966,10 @@ input::placeholder {
   color: #6E6868;
   padding-right: 20px;
   background: url(../img/triangle-bottom.svg) no-repeat 100% 50%;
+}
+
+.ProfileUploadForm__image {
+  display: none;
 }
 
 .PaymentPage {
