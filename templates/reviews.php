@@ -1,4 +1,4 @@
-<?php comments_template() ?>
+<?php #comments_template() ?>
 <div class="SingleMainContent__comments Comments">
 	<div class="Comments__header">
 		<div class="Comments__comments-amount">21 Commentaires</div>
