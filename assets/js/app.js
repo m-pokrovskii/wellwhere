@@ -1253,7 +1253,9 @@ var ProfileAvatarUpload = function ($) {
         });
         input.val('');
       } else {
-        avatarMessage.show().html(r.data.error);
+        if (r.data.error) {
+          avatarMessage.show().html(r.data.error);
+        }
       }
     }).fail(function (e) {
       console.log(e);
