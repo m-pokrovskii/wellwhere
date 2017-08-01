@@ -119,6 +119,7 @@
   add_action( 'wp_ajax_nopriv_save_favorite_gym', 'save_favorite_gym' );
   add_action( 'wp_ajax_save_favorite_gym', 'save_favorite_gym' );
   function save_favorite_gym() {
+    if ( !is_user_logged_in() ) { wp_send_json_error(array('message' => 'Must be logged in')); }
     check_ajax_referer('nonce', 'nonce');
     $gym_id = $_POST['gym_id'];
     $cuid = get_current_user_id();

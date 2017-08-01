@@ -881,6 +881,7 @@ const ProfileAvatarUpload = (function($) {
         })
         input.val('');
       } else {
+        console.log(r);
         if ( r.data.error ) {
           avatarMessage.show().html(r.data.error);
         }
@@ -953,7 +954,9 @@ const Rating = (function () {
           },
         })
         .done(function(r) {
-          el.rating('set rating', r.data.rating);
+          if ( r.success ) {
+            el.rating('set rating', r.data.rating);
+          }
         })
         .fail(function(e) {
           console.log(e);
