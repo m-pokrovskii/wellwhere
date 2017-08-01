@@ -1,6 +1,6 @@
 <?php 
 	$cuid = get_current_user_id();
-	$favorited_gyms = get_user_meta( $cuid, 'favorited_gym_id' );
+	$favorited_gyms = ( get_user_meta( $cuid, 'favorited_gym_id' ) ) ? get_user_meta( $cuid, 'favorited_gym_id' ) : [];
 	$gym_id = $post->ID;
 	$is_favorited = in_array($gym_id, $favorited_gyms);
 ?>
