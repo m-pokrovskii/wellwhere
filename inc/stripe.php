@@ -52,7 +52,7 @@
   }
 
   function charge_source() {
-    if ( !isset( $_POST['card_id'] ) ) { return false; };
+    if ( !isset( $_POST['card_id'] ) ) { wp_die(); };
 
     $card_id = $_POST['card_id'];
     $user_id = get_current_user_id();
@@ -107,7 +107,7 @@
           }
 
         } catch (Exception $e) {
-            wp_send_json_error( $e->getJsonBody()['error'] );
+            wp_send_json_error( $e->getMessage() );
         }
       }
     }

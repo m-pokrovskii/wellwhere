@@ -1583,17 +1583,20 @@ input::placeholder {
 }
 
 .ProfilePage {
+  display: -ms-flexbox;
+  display: flex;
   padding: 80px 57px;
 }
 
 .ProfilePage__aside {
   width: 290px;
-  float: left;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
   padding-right: 10px;
 }
 
 .ProfilePage__content {
-  display: inline-block;
+  display: block;
 }
 
 .Profile__avatar {
@@ -1702,15 +1705,14 @@ input::placeholder {
 .ProfileProfile__btn-cancel,
 .ProfileProfile__btn-accept {
   display: inline-block;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -ms-flex-align: center;
-  align-items: center;
   font-size: 12px;
   border-radius: 5px;
   width: 170px;
   color: #fff;
   height: 38px;
+  text-align: center;
+  line-height: 38px;
+  white-space: nowrap;
 }
 
 .ProfileProfile__btn-cancel {
@@ -1914,10 +1916,6 @@ input::placeholder {
   border: solid 1px #E0E0E0;
 }
 
-.FavoriteListItem:last-child {
-  border: none;
-}
-
 .FavoriteListItem__image {
   position: relative;
   display: block;
@@ -1938,7 +1936,22 @@ input::placeholder {
 }
 
 .FavoriteListItem__title {
+  position: relative;
+  margin-right: 100px;
+  overflow: hidden;
+  white-space: nowrap;
   font: 20px "Avenir-Medium";
+}
+
+.FavoriteListItem__title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  height: 100%;
+  width: 30px;
+  background-image: linear-gradient(to left, #fff 30%, transparent);
 }
 
 .FavoriteListItem__title a {
@@ -1969,6 +1982,10 @@ input::placeholder {
 }
 
 .ProfileUploadForm__image {
+  display: none;
+}
+
+.ProfileAvatarMessage {
   display: none;
 }
 
@@ -3380,6 +3397,10 @@ html {
     width: 200px;
   }
 
+  .ProfilePage__content {
+    width: 100%;
+  }
+
   .ProfileProfile {
     width: 100%;
   }
@@ -3450,7 +3471,7 @@ html {
   }
 
   .ProfileComments__loadMore {
-    width: 615px;
+    width: auto;
   }
 
   .FavoriteList .FavoriteListItem {
@@ -3459,8 +3480,12 @@ html {
     margin-bottom: 20px;
   }
 
+  .FavoriteListItem__title {
+    margin-right: 0;
+  }
+
   .ProfileFavorite__loadMore {
-    width: 615px;
+    width: auto;
   }
 
   .PaymentPage {
@@ -3910,6 +3935,14 @@ html {
     border: none;
     border-bottom: solid 1px #E0E0E0;
     width: 100%;
+  }
+
+  .FavoriteListItem:last-child {
+    border: none;
+  }
+
+  .FavoriteListItem__title {
+    margin-right: 90px;
   }
 
   .PaymentPage {

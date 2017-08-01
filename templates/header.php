@@ -1,7 +1,7 @@
 <?php
   if ( is_user_logged_in() ) {
     $curruser = wp_get_current_user();
-    $avatar_url = get_avatar_url( $curruser->ID );
+    $avatar_url = wellwhere_avatar_url( $curruser->ID );
   }
  ?>
 <div class="HeaderWrap">
@@ -29,10 +29,10 @@
               <img class="LoggedInUserDropdown__avatar ui avatar image" src=" <?php echo $avatar_url ?>  ">
               <i class="dropdown icon"></i>
               <div class="menu">
-                <a href="<?php echo get_author_posts_url( get_current_user_id() ) ?>" class="item">Profil</a>
-                <a href="#" class="item">Commentaires</a>
-                <a href="#" class="item">Pass</a>
-                <a href="#" class="item">Favorits</a>
+                <a href="<?php echo get_author_posts_url( $curruser->ID ) ?>" class="item">Profil</a>
+                <a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#comments" class="item">Commentaires</a>
+                <a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#pass" class="item">Pass</a>
+                <a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#favorites" class="item">Favorits</a>
                 <a href="<?php echo wp_logout_url( get_home_url() ) ?>" class="item">
                   <?php echo __('Logout', 'wellwhere') ?>
                 </a>

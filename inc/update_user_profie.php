@@ -98,4 +98,45 @@
     }
   }
 
+  add_action( 'wp_ajax_nopriv_remove_avatar', 'remove_avatar' );
+  add_action( 'wp_ajax_remove_avatar', 'remove_avatar' );
+  function remove_avatar() {
+    $cuid = get_current_user_id();
+    $deleted =  delete_user_meta( $cuid, 'avatar_id' );
+    if ( $deleted ) {
+      wp_send_json_success( array(
+        'message' => 'Avatar has been removed'
+        ) );
+    } else {
+      wp_send_json_error( array(
+        'error' => "Can't remove avatar"
+      ) );
+    }
+    
+  }
+
+
+  add_action( 'wp_ajax_nopriv_save_favorite_gym', 'save_favorite_gym' );
+  add_action( 'wp_ajax_save_favorite_gym', 'save_favorite_gym' );
+  function save_favorite_gym() {
+    check_ajax_referer('nonce', 'nonce');
+    $gym_id = $_POST['gym_id'];
+    $cuid = get_current_user_id();
+
+    $favorited_gyms = get_user_meta( $cuid, 'favorited_gym_id', false );
+    if ( in_array( $gym_id, $favorited_gyms ) ) {
+      delete_user_meta( $cuid, 'favorited_gym_id', $gym_id );
+      wp_send_json_success( array(
+        'rating' => 0,
+        'message' => __('Gym has been removed')
+      ) );
+    } else {
+      add_user_meta( $cuid, 'favorited_gym_id', $gym_id );
+        wp_send_json_success( array(
+          'rating' => 1,
+          'message' => __('Gym has been saved')
+        ) );
+    }
+  }
+
 ?>

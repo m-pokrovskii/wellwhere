@@ -1,5 +1,6 @@
 const StripeModule = (function($) {
   const userId = data.userId;
+  let chargeInProcess = false;
   function stripeForm() {
     if ( $('#card-element').length === 0 ) {
       return false;
@@ -85,6 +86,8 @@ const StripeModule = (function($) {
 
   function chargeSource(e) {
     e.preventDefault();
+    if ( chargeInProcess === true ) { return }
+    chargeInProcess = true;
     const card_id = $("[data-card-id]").attr('data-card-id');
     const redirectUrl = $(this).attr('data-redirect');
     $.ajax({
@@ -100,12 +103,13 @@ const StripeModule = (function($) {
       console.log(r);
       if ( r.success ) {
         window.location.replace( redirectUrl + '?pdf_filename=' + r.data.pdf_filename );
-        NProgress.done();
       }
     })
     .fail(function(e) {
       console.error(e);
-      NProgress.done();
+    })
+    .always(function() {
+      chargeInProcess = false;
     })
   }
 

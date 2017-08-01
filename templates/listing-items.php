@@ -1,6 +1,14 @@
+<?php 
+  $cuid = get_current_user_id();
+  $favorited_gyms = get_user_meta( $cuid, 'favorited_gym_id' );
+?>
 <div class="ListingItems">
   <?php if ( have_posts() ): ?>
     <?php while( have_posts() ): the_post(); ?>
+      <?php 
+          $gym_id = $post->ID;
+          $is_favorited = in_array($gym_id, $favorited_gyms);
+       ?>
       <div class="ListingItem">
         <div class="ListingItem__preview"
           style="background-image: url(<?php echo get_the_post_thumbnail_url($post, 'listing') ?>);">
@@ -9,7 +17,11 @@
             <div class="GymRating -white ListingItem__previewRatingStars ui star rating" data-rating="4" data-max-rating="5"></div>
             <div class="ListingItem__previewRatingText">6 avis</div>
           </div>
-          <div class="GymFavorite ListingItem__favorite ui heart rating" data-rating="0" data-max-rating="1"></div>
+          <div 
+            class="GymFavorite ListingItem__favorite ui heart rating" 
+            data-gym-id="<?php echo $gym_id ?>" 
+            data-rating="<?php echo $is_favorited ?>" 
+            data-max-rating="1"></div>
         </div>
         <div class="ListingItem__title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></div>
         <div class="ListingItem__listEnrties">

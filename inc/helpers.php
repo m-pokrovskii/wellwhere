@@ -74,7 +74,7 @@
   function ticket_availability( $value ) {
   	$date = date_create();
   	date_add($date, date_interval_create_from_date_string( $value . ' days'));
-  	return date_format($date, 'd/m/Y');
+  	return date_format($date, 'Y-m-d');
   }
 
   function ticket_available_for( $value, $available_for, $period ) {
@@ -191,4 +191,20 @@ function verify_onetime_nonce_login( $_nonce, $action = -1) {
     }
     return true;
 }
+
+function wellwhere_avatar_url( $user_id ) {
+  $avatar_id = get_user_meta( $user_id, 'avatar_id', true );
+  $user_avatar = wp_get_attachment_image_src( $avatar_id, 'user-avatar' );
+  return $user_avatar[0];
+}
+
+
+function wellwhere_date( $d ) {
+  return date( "d/m/Y", strtotime( $d ) );
+}
+
+function get_ticket_pdf_url( $ticket_id ) {
+  return get_stylesheet_directory_uri() . '/tickets/' . get_post_meta( $ticket_id, 'pdf_filename', true);
+}
+
 ?>

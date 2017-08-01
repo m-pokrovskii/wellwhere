@@ -23,7 +23,7 @@
           'basket_ticket_entries' => $tickets[$ticket_id]['gym_ticket_title'],
           'basket_ticket_price' => $tickets[$ticket_id]['gym_ticket_price'],
           'basket_ticket_value' => $tickets[$ticket_id]['gym_ticket_value'],
-          'basket_ticket_period' => $tickets[$ticket_id]['gym_ticket_period'],
+          'basket_ticket_period' => $tickets[$ticket_id]['gym_ticket_period']['value'],
           'basket_ticket_available_for' => $tickets[$ticket_id]['gym_ticket_available_for'],
           'basket_ticket_expire' => $ticket_expire
         );

@@ -260,6 +260,7 @@ $('.SliderGyms').slick({
 
 var StripeModule = function ($) {
   var userId = data.userId;
+  var chargeInProcess = false;
   function stripeForm() {
     if ($('#card-element').length === 0) {
       return false;
@@ -343,6 +344,10 @@ var StripeModule = function ($) {
 
   function chargeSource(e) {
     e.preventDefault();
+    if (chargeInProcess === true) {
+      return;
+    }
+    chargeInProcess = true;
     var card_id = $("[data-card-id]").attr('data-card-id');
     var redirectUrl = $(this).attr('data-redirect');
     $.ajax({
@@ -357,11 +362,11 @@ var StripeModule = function ($) {
       console.log(r);
       if (r.success) {
         window.location.replace(redirectUrl + '?pdf_filename=' + r.data.pdf_filename);
-        NProgress.done();
       }
     }).fail(function (e) {
       console.error(e);
-      NProgress.done();
+    }).always(function () {
+      chargeInProcess = false;
     });
   }
 
@@ -486,15 +491,6 @@ var SinglePageFixed = function ($) {
   };
 }(jQuery);
 SinglePageFixed.init();
-
-$('.ui.rating').rating({
-  maxRating: 5,
-  interactive: false
-});
-
-$('.GymFavorite').rating({
-  interactive: true
-});
 
 $('.ui.dropdown').dropdown();
 
@@ -868,6 +864,7 @@ var Basket = function () {
       type: 'POST',
       data: basketData
     }).done(function (r) {
+      console.log(r);
       if (r.success) {
         NProgress.done();
         window.location = redirectUrl;
@@ -875,7 +872,7 @@ var Basket = function () {
         if (r.data.is_user_logged_in == false) {
           Auth.openModal();
         }
-        console.log(r.data.message);
+        console.log(r);
       }
     }).fail(function () {
       // console.log("error");
@@ -1226,8 +1223,12 @@ Profile.init();
 
 var ProfileAvatarUpload = function ($) {
   var imageInput = $('#ProfileUploadForm__image');
+  var avatarMessage = $('[data-profile-avatar-message');
+  var profileAvatar = $('.Profile__avatar');
+  var delteAvatar = $('[data-profile-avatar-delete]');
   function init() {
     imageInput.on('change', upload);
+    delteAvatar.on('click', remove);
   }
 
   function upload(e) {
@@ -1235,8 +1236,7 @@ var ProfileAvatarUpload = function ($) {
     var fileList = this.files;
     var form = new FormData();
     var image = fileList[0];
-    var profileAvatar = $('.Profile__avatar');
-
+    avatarMessage.hide();
     form.append('profile_upload_avatar', image);
     form.append('action', 'upload_avatar');
     $.ajax({
@@ -1246,13 +1246,36 @@ var ProfileAvatarUpload = function ($) {
       contentType: false,
       data: form
     }).done(function (r) {
-      // Display error
-      console.log(r);
+      input.val('');
       if (r.success) {
         profileAvatar.css({
           backgroundImage: 'url(' + r.data.url + ')'
         });
         input.val('');
+      } else {
+        avatarMessage.show().html(r.data.error);
+      }
+    }).fail(function (e) {
+      console.log(e);
+    });
+  }
+
+  function remove(e) {
+    e.preventDefault();
+    console.log('remove');
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'remove_avatar'
+      }
+    }).done(function (r) {
+      if (r.success) {
+        profileAvatar.css({
+          backgroundImage: ''
+        });
+      } else {
+        console.log(r.data.error);
       }
     }).fail(function (e) {
       console.log(e);
@@ -1264,6 +1287,54 @@ var ProfileAvatarUpload = function ($) {
   };
 }(jQuery);
 ProfileAvatarUpload.init();
+
+var Rating = function () {
+  var nonIteractiveRating = $('.ui.rating');
+  var favorite = $('.GymFavorite');
+  var inProcess = false;
+
+  function init() {
+    nonIteractiveRating.rating({
+      maxRating: 5,
+      interactive: false
+    });
+
+    favorite.rating({
+      interactive: true,
+      onRate: saveFavoriteGym
+    });
+  }
+
+  function saveFavoriteGym($v) {
+    var el = $(this);
+    var gymId = el.attr('data-gym-id');
+    if (inProcess) {
+      return;
+    } else {
+      inProcess = true;
+    };
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'save_favorite_gym',
+        nonce: data.nonce,
+        gym_id: gymId
+      }
+    }).done(function (r) {
+      el.rating('set rating', r.data.rating);
+    }).fail(function (e) {
+      console.log(e);
+    }).always(function () {
+      inProcess = false;
+    });
+  }
+
+  return {
+    init: init
+  };
+}();
+Rating.init();
 
 /***/ }),
 /* 6 */

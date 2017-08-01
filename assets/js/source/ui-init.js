@@ -73,16 +73,6 @@ const SinglePageFixed = (function ($) {
 }(jQuery));
 SinglePageFixed.init();
 
-
-$('.ui.rating').rating({
-  maxRating: 5,
-  interactive: false
-});
-
-$('.GymFavorite').rating({
-  interactive: true
-})
-
 $('.ui.dropdown').dropdown();
 
 
@@ -491,6 +481,7 @@ const Basket = (function () {
       data: basketData,
     })
       .done(function (r) {
+        console.log(r);
         if (r.success) {
           NProgress.done();
           window.location = redirectUrl;
@@ -498,7 +489,7 @@ const Basket = (function () {
           if (r.data.is_user_logged_in == false) {
             Auth.openModal();
           }
-          console.log(r.data.message);
+          console.log(r);
         }
 
       })
@@ -858,18 +849,21 @@ const Profile = (function($) {
 Profile.init();
 
 const ProfileAvatarUpload = (function($) {
-  const imageInput = $('#ProfileUploadForm__image');
+  const imageInput    = $('#ProfileUploadForm__image');
+  const avatarMessage = $('[data-profile-avatar-message');
+  const profileAvatar = $('.Profile__avatar');
+  const delteAvatar = $('[data-profile-avatar-delete]');
   function init() {
     imageInput.on('change', upload);
+    delteAvatar.on('click', remove);
   }
 
   function upload(e) {
-    const input         = $(this);
-    const fileList      = this.files;
-    const form          = new FormData();
-    const image         = fileList[0];
-    const profileAvatar = $('.Profile__avatar');
-
+    const input    = $(this);
+    const fileList = this.files;
+    const form     = new FormData();
+    const image    = fileList[0];
+    avatarMessage.hide();
     form.append('profile_upload_avatar', image);
     form.append('action', 'upload_avatar');
     $.ajax({
@@ -880,13 +874,14 @@ const ProfileAvatarUpload = (function($) {
       data: form
     })
     .done(function(r) {
-      // Display error
-      console.log(r);
+      input.val('');
       if (r.success) {
         profileAvatar.css({
           backgroundImage: 'url(' + r.data.url+ ')'
         })
         input.val('');
+      } else {
+        avatarMessage.show().html(r.data.error);
       }
     })
     .fail(function(e) {
@@ -894,6 +889,29 @@ const ProfileAvatarUpload = (function($) {
     })
   }
 
+  function remove(e) {
+    e.preventDefault();
+    console.log('remove');
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'remove_avatar'
+      }
+    })
+    .done(function(r) {
+      if (r.success) {
+        profileAvatar.css({
+          backgroundImage: ''
+        })
+      } else {
+        console.log( r.data.error );
+      }
+    })
+    .fail(function(e) {
+      console.log(e);
+    }) 
+  }
 
   return {
     init: init
@@ -901,3 +919,51 @@ const ProfileAvatarUpload = (function($) {
 
 }(jQuery));
 ProfileAvatarUpload.init();
+
+const Rating = (function () {
+    const nonIteractiveRating   = $('.ui.rating');
+    const favorite = $('.GymFavorite');
+    let inProcess = false;
+    
+    function init() {
+      nonIteractiveRating.rating({
+        maxRating: 5,
+        interactive: false,
+      });
+
+      favorite.rating({
+        interactive: true,
+        onRate: saveFavoriteGym
+      })
+    }
+
+    function saveFavoriteGym($v) {
+      const el = $(this);
+      const gymId = el.attr('data-gym-id');
+      if ( inProcess ) { return } else { inProcess = true };
+      $.ajax({
+          url: data.adminAjax,
+          type: 'POST',
+          data: {
+            action: 'save_favorite_gym',
+            nonce: data.nonce,
+            gym_id: gymId
+          },
+        })
+        .done(function(r) {
+          el.rating('set rating', r.data.rating);
+        })
+        .fail(function(e) {
+          console.log(e);
+        })
+        .always(function() {
+          inProcess = false;
+        });
+          
+    }
+
+    return {
+      init: init
+    }
+})();
+Rating.init();

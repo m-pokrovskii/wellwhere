@@ -1,4 +1,5 @@
 .ProfilePage
+  display: flex
   padding: 80px 57px
   +sm()
     padding: 50px 20px
@@ -7,7 +8,7 @@
 
 .ProfilePage__aside
   width: 290px
-  float: left
+  flex-shrink: 0
   padding-right: 10px
   +sm()
     width: 200px
@@ -15,7 +16,10 @@
     display: none
 
 .ProfilePage__content
-  display: inline-block
+  display: block
+  +sm()
+    width: 100% 
+    
 
 
 .Profile__avatar
@@ -116,13 +120,14 @@
 .ProfileProfile__btn-cancel,
 .ProfileProfile__btn-accept
   display: inline-block
-  justify-content: center
-  align-items: center
   font-size: 12px
   border-radius: 5px
   width: 170px
   color: #fff
   height: 38px
+  text-align: center
+  line-height: 38px 
+  white-space: nowrap
   +sm()
     display: block
     margin-bottom: 10px
@@ -302,7 +307,7 @@
   text-align: right
   width: 726px
   +sm()
-    width: 615px
+    width: auto
 
 .ProfileComments__loadMore-link
 	color: #6E6868
@@ -333,12 +338,13 @@
   width: 346px
   height: 300px
   border: solid 1px #E0E0E0
-  &:last-child
-    border: none
   +xs()
     border: none
     border-bottom: solid 1px #E0E0E0
     width: 100%
+    &:last-child
+      border: none
+
 
 
 
@@ -359,7 +365,24 @@
   color: #6E6868
 
 .FavoriteListItem__title
+  position: relative
+  margin-right: 100px
+  overflow: hidden
+  white-space: nowrap
   font: 20px "Avenir-Medium"
+  &::after
+    content: ""
+    position: absolute
+    top: 0 
+    right: 0 
+    display: block
+    height: 100%
+    width: 30px
+    background-image: linear-gradient( to left, #fff 30%, transparent )
+  +sm()
+    margin-right: 0
+  +xs()
+    margin-right: 90px
   a
     color: #000
 
@@ -379,7 +402,7 @@
   text-align: right
   width: 726px
   +sm()
-    width: 615px
+    width: auto
 
 .ProfileFavorite__loadMore-link
 	color: #6E6868
@@ -394,3 +417,6 @@
 
 
 .ProfileUploadForm__image-label
+
+.ProfileAvatarMessage
+  display: none
