@@ -1327,6 +1327,7 @@ var Rating = function () {
         gym_id: gymId
       }
     }).done(function (r) {
+      console.log(r);
       if (r.success) {
         el.rating('set rating', r.data.rating);
       }
