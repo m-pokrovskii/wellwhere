@@ -28,7 +28,9 @@
 								<?php echo $favorited_gym->post_title ?>
 							</a>
 						</div>
-						<div class="GymRating ui rating FavoriteListItem__rating"></div>
+						<div 
+							data-rating="<?php echo get_post_meta( $favorited_gym->ID, 'average_rating', true ) ?>"
+							class="GymRating ui rating FavoriteListItem__rating"></div>
 					</div>
 				</div>
 			<?php endforeach ?>
