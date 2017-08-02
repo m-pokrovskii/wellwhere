@@ -1,60 +1,70 @@
-<?php #comments_template() ?>
+<?php
+	$gym_id = $post->ID;
+	$cuid = get_current_user_id();
+	$posts_per_page = 10;
+	$reviews_query = new WP_Query(array(
+		'post_type' => 'review',
+		'posts_per_page' => $posts_per_page,
+		'meta_key' => 'gym_id',
+		'meta_value' => $gym_id
+	));
+	$reviews = $reviews_query->posts;
+	$count_reviews = count( $reviews );
+	$average_rating = get_post_meta( $gym_id, 'average_rating', true );
+ ?>
 <div class="SingleMainContent__comments Comments">
 	<div class="Comments__header">
-		<div class="Comments__comments-amount">21 Commentaires</div>
-		<div class="GymRating Comments__ratings ui rating star"></div>
+		<div class="Comments__comments-amount"><?php echo $count_reviews ?> <?php _e('Commentaires') ?></div>
+		<div 
+			data-rating = "<?php echo $average_rating ?>"
+			class="GymRating Comments__ratings ui rating star"></div>
 	</div>
 	<div class="Comments__body">
-		<div class="Comment Comments__item">
-			<div class="Comment__meta">
-				<div class="Comment__avatar" style="background-image: url(<?php echo get_stylesheet_directory_uri() ?>/assets/img/comment-avatar.png)"></div>
-				<div class="Comment__name">Marie M.</div>
-			</div>
-			<div class="Comment__body">
-				<div class="Comment__title">
-					Un Staff motivé et une bonne énérgie
-				</div>
-				<div data-show-more class="Comment__description">
-					<div class="Comment__description-short">
-						<p>Quam ob rem id primum videamus, si placet, quatenus amor in amicitia progredi debeat. Numne, si Coriolanus habuit amicos, ferre contra patriam arma illi cum Coriolano debuerunt? num Vecellinum amici regnum adpetentem, num Maelium debuerunt iuvare?</p>
-						<p>
-							Circa hos dies Lollianus primae lanuginis adulescens, Lampadi filius ex praefecto, exploratius causam Maximino spectante, convictus codicem noxiarum artium nondum per aetatem firmato consilio descripsisse, exulque mittendus, ut sperabatur, patris inpulsu provocavit ad principem, et iussus ad eius comitatum duci, de fumo, ut aiunt, in flammam traditus Phalangio Baeticae consulari cecidit funesti carnificis manu...
-							<a class="Comment__read-more" data-show-more-link href="#">Lire plus.</a>
-						</p>
-					</div>
-					<div class="Comment__description-long">
-						<p>Quam ob rem id primum videamus, si placet, quatenus amor in amicitia progredi debeat. Numne, si Coriolanus habuit amicos, ferre contra patriam arma illi cum Coriolano debuerunt? num Vecellinum amici regnum adpetentem, num Maelium debuerunt iuvare?</p>
-						<p>
-							Circa hos dies Lollianus primae lanuginis adulescens, Lampadi filius ex praefecto, exploratius causam Maximino spectante, convictus codicem noxiarum artium nondum per aetatem firmato consilio descripsisse, exulque mittendus, ut sperabatur, patris inpulsu provocavit ad principem, et iussus ad eius comitatum duci, de fumo, ut aiunt, in flammam traditus Phalangio Baeticae consulari cecidit funesti carnificis manu...
-						</p>
-						<p>
-							Circa hos dies Lollianus primae lanuginis adulescens, Lampadi filius ex praefecto, exploratius causam Maximino spectante, convictus codicem noxiarum artium nondum per aetatem firmato consilio descripsisse, exulque mittendus, ut sperabatur, patris inpulsu provocavit ad principem, et iussus ad eius comitatum duci, de fumo, ut aiunt, in flammam traditus Phalangio Baeticae consulari cecidit funesti carnificis manu...
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="Comment Comments__item">
-			<div class="Comment__meta">
-				<div class="Comment__avatar" style="background-image: url(<?php echo get_stylesheet_directory_uri() ?>/assets/img/comment-avatar.png)"></div>
-				<div class="Comment__name">Marie M.</div>
-			</div>
-			<div class="Comment__body">
-				<div class="Comment__title">
-					Un Staff motivé et une bonne énérgie
-				</div>
-				<div class="Comment__description">
-					<p>Quam ob rem id primum videamus, si placet, quatenus amor in amicitia progredi debeat. Numne, si Coriolanus habuit amicos, ferre contra patriam arma illi cum Coriolano debuerunt? num Vecellinum amici regnum adpetentem, num Maelium debuerunt iuvare?</p>
-
-					<p>
-						Circa hos dies Lollianus primae lanuginis adulescens, Lampadi filius ex praefecto, exploratius causam Maximino spectante, convictus codicem noxiarum artium nondum per aetatem firmato consilio descripsisse, exulque mittendus, ut sperabatur, patris inpulsu provocavit ad principem, et iussus ad eius comitatum duci, de fumo, ut aiunt, in flammam traditus Phalangio Baeticae consulari cecidit funesti carnificis manu...
-					</p>
-
-				</div>
-			</div>
-		</div>
+		<?php foreach ($reviews as $review): ?>
+			<?php 
+				review_template( $review );
+			?>
+		<?php endforeach ?>
 	</div>
-	<div class="Comments__load-more">
-		<span class="Comments__load-more-text">Plus anciens</span>
+	<?php if ( $reviews_query->max_num_pages > 1 ): ?>
+		<div class="Comments__load-more">
+		<span 
+			data-load-more-review 
+			data-review-per-page = <?php echo $posts_per_page ?>
+			data-gym-id = <?php echo $gym_id ?>
+			class="Comments__load-more-text">
+			Plus anciens
+		</span>
 	</div>
+	<?php endif ?>
 </div>
+<?php if ( is_user_logged_in() ): ?>
+	<?php if ( user_gym_tickets( $cuid, $gym_id ) ): ?>
+		<?php if ( !user_has_posted_review( $cuid, $gym_id ) ): ?>
+			<form data-review-form class="AddReview ui tiny form">
+				<div class="field">
+					<label for="subject">
+						<?php _e('Subject') ?>
+					</label>
+					<input type="text" name="subject" id="subject">
+				</div>
+				<div class="field">
+					<label for="review_textarea">
+						<?php _e('Review') ?>
+					</label>
+					<textarea name="review_textarea" id="review_textarea"></textarea>
+				</div>
+				<div class="field">
+					<label for="">Rating</label>
+					<input type="hidden" name="rating" id="rating" value="5">
+					<div 
+					data-review-rating 
+					class="AddReview__rating GymRating ui rating star"></div>
+				</div>
+				<input type="hidden" value="<?php echo $gym_id ?>" name="gym_id" id="gym_id">
+				<div class="ui error message"></div>
+				<div class="ui tiny submit button">Submit</div>
+			</form>			
+		<?php endif ?>
+	<?php endif ?>
+<?php endif ?>

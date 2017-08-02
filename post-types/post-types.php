@@ -1,6 +1,6 @@
 <?php
 
-function gym_init() {
+function types_init() {
 	register_post_type( 'gym', array(
 		'labels'            => array(
 			'name'                => __( 'Gyms', 'wellwhere' ),
@@ -82,8 +82,40 @@ function gym_init() {
 		),
 		'public'            => false,
 		'hierarchical'      => false,
-		'show_ui'           => false,
+		'show_ui'           => true,
 		'supports'          => array( 'title', 'custom-fields'),
+		'show_in_rest'      => false,
+		'capabilities' => array(
+				'edit_post'          => 'update_core',
+				'read_post'          => 'update_core',
+				'delete_post'        => 'update_core',
+				'edit_posts'         => 'update_core',
+				'edit_others_posts'  => 'update_core',
+				'delete_posts'       => 'update_core',
+				'publish_posts'      => 'update_core',
+				'read_private_posts' => 'update_core'
+		),
+	) );
+	register_post_type( 'review', array(
+		'labels'            => array(
+			'name'                => __( 'Reviews', 'wellwhere' ),
+			'singular_name'       => __( 'Review', 'wellwhere' ),
+			'all_items'           => __( 'All Reviews', 'wellwhere' ),
+			'new_item'            => __( 'New Review', 'wellwhere' ),
+			'add_new'             => __( 'Add New', 'wellwhere' ),
+			'add_new_item'        => __( 'Add New Review', 'wellwhere' ),
+			'edit_item'           => __( 'Edit Review', 'wellwhere' ),
+			'view_item'           => __( 'View Review', 'wellwhere' ),
+			'search_items'        => __( 'Search Reviews', 'wellwhere' ),
+			'not_found'           => __( 'No Reviews found', 'wellwhere' ),
+			'not_found_in_trash'  => __( 'No Reviews found in trash', 'wellwhere' ),
+			'parent_item_colon'   => __( 'Parent Review', 'wellwhere' ),
+			'menu_name'           => __( 'Reviews', 'wellwhere' ),
+		),
+		'public'            => false,
+		'hierarchical'      => false,
+		'show_ui'           => true,
+		'supports'          => array( 'title', 'editor', 'author', 'custom-fields'),
 		'show_in_rest'      => false,
 		'capabilities' => array(
 				'edit_post'          => 'update_core',
@@ -98,7 +130,7 @@ function gym_init() {
 	) );
 
 }
-add_action( 'init', 'gym_init' );
+add_action( 'init', 'types_init' );
 
 function gym_updated_messages( $messages ) {
 	global $post;

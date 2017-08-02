@@ -27,7 +27,9 @@
                 </a>
               </div>
               <div class="GymListigItem__rating">
-                <div class="ui star rating GymRating" data-rating="3"></div>
+                <div 
+                  class="ui star rating GymRating" 
+                  data-rating="<?php echo get_post_meta( $recommended_post->ID, 'average_rating', true ) ?>"></div>
               </div>
             </div>
           </div>

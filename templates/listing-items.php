@@ -8,14 +8,21 @@
       <?php 
           $gym_id = $post->ID;
           $is_favorited = in_array($gym_id, $favorited_gyms);
+          $average_rating = get_post_meta( $post->ID, 'average_rating', true );
        ?>
       <div class="ListingItem">
         <div class="ListingItem__preview"
           style="background-image: url(<?php echo get_the_post_thumbnail_url($post, 'listing') ?>);">
           <a class="ListingItem__preview-link" href="<?php the_permalink() ?>"></a>
           <div class="ListingItem__previewRating">
-            <div class="GymRating -white ListingItem__previewRatingStars ui star rating" data-rating="4" data-max-rating="5"></div>
-            <div class="ListingItem__previewRatingText">6 avis</div>
+            <div class="GymRating -white ListingItem__previewRatingStars ui star rating" 
+              data-rating="<?php echo $average_rating ?>" 
+              data-max-rating="5"></div>
+            <?php if ( $average_rating ): ?>
+              <div class="ListingItem__previewRatingText">
+                <?php echo $average_rating ?> <?php _e('avis') ?>
+              </div>              
+            <?php endif ?>
           </div>
           <div 
             class="GymFavorite ListingItem__favorite ui heart rating" 
