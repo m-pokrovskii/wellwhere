@@ -419,6 +419,8 @@ StripeModule.init();
 "use strict";
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 $.fn.serializeObject = function () {
   var o = {};
   var a = this.serializeArray();
@@ -720,7 +722,7 @@ var ShowMore = function () {
   var showMoreLink = $('[data-show-more-link]');
 
   function init() {
-    showMoreLink.on('click', function (e) {
+    $('body').on('click', '[data-show-more-link]', function (e) {
       e.preventDefault();
       var showMoreContainer = $(this).parents('[data-show-more]');
       var short = showMoreContainer.find('.Comment__description-short');
@@ -1340,6 +1342,114 @@ var Rating = function () {
   };
 }();
 Rating.init();
+
+var AddReview = function () {
+  var commentContainer = $('.Comments__body');
+  var reviewRating = $('[data-review-rating]');
+  var reviewForm = $('[data-review-form]');
+  var ratingInput = $('#rating');
+  var loadMoreReviewLink = $('[data-load-more-review]');
+
+  var inProcess = false;
+
+  function init() {
+    var _reviewRating$rating;
+
+    reviewForm.form({
+      on: 'blur',
+      fields: {
+        review_textarea: 'empty',
+        rating: ['integer[1..5]', 'empty']
+      }
+    });
+
+    reviewRating.rating((_reviewRating$rating = {
+      maxRating: 5,
+      interactive: true,
+      initialRating: 5
+    }, _defineProperty(_reviewRating$rating, 'maxRating', 5), _defineProperty(_reviewRating$rating, 'onRate', function onRate(val) {
+      ratingInput.val(val);
+    }), _reviewRating$rating));
+
+    reviewForm.on('submit', addReview);
+    loadMoreReviewLink.on('click', loadMoreReview);
+  }
+
+  function loadMoreReview(e) {
+    e.preventDefault();
+    if (inProcess === true) {
+      return false;
+    }
+    inProcess = true;
+
+    var review_per_page = loadMoreReviewLink.attr('data-review-per-page');
+    var gym_id = loadMoreReviewLink.attr('data-gym-id');
+    var offset = commentContainer.find('.Comment').length;
+
+    $.ajax({
+      url: data.adminAjax,
+      type: 'GET',
+      data: {
+        action: 'load_more_review',
+        review_per_page: review_per_page,
+        offset: offset,
+        gym_id: gym_id
+      }
+    }).done(function (r) {
+      commentContainer.append(r);
+      if (r.success === false) {
+        console.log(r.data.message);
+        loadMoreReviewLink.fadeOut();
+      }
+    }).fail(function (e) {
+      console.log(e);
+    }).always(function () {
+      inProcess = false;
+    });
+  }
+
+  function addReview(e) {
+    e.preventDefault();
+    if (reviewForm.form('is valid') === false) {
+      return;
+    }
+    if (inProcess === true) {
+      return false;
+    }
+    inProcess = true;
+
+    var reviewData = reviewForm.serializeObject();
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'add_review',
+        nonce: data.nonce,
+        subject: reviewData.subject,
+        review: reviewData.review_textarea,
+        rating: reviewData.rating,
+        gym_id: reviewData.gym_id
+
+      }
+    }).done(function (r) {
+      console.log(r);
+      if (r.success) {
+        window.location.reload();
+      } else {
+        reviewForm.form("add errors", [r.data.message]);
+      }
+    }).fail(function (e) {
+      console.log(e);
+    }).always(function () {
+      inProcess = false;
+    });
+  }
+
+  return {
+    init: init
+  };
+}();
+AddReview.init();
 
 /***/ }),
 /* 6 */

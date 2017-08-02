@@ -12,7 +12,10 @@
 					?>
 					<?php echo $zip->name ?>
 				</div>
-				<div class="GymRating SinglePage__headling-meta-rating ui rating" data-rating="4" data-max-rating="5"></div>
+				<div 
+					class="GymRating SinglePage__headling-meta-rating ui rating" 
+					data-rating=<?php echo get_post_meta( $post->ID, 'average_rating', true ) ?> 
+					data-max-rating="5"></div>
 			</div>
 		</div>
 		<div class="SignlePage__columns_container">

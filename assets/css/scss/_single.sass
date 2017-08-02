@@ -277,7 +277,9 @@
   +xs()
     flex-direction: column
   .Comment__meta
-    margin-right: 56px
+    margin-right: 25px
+    width: 110px
+    flex-shrink: 0
     +xs()
       display: flex
       align-items: center
@@ -289,6 +291,8 @@
     background-size: cover
     background-position: 50% 50%
     margin-bottom: 9px
+    border-radius: 50%
+    flex-shrink: 0 
     +xs()
       margin-bottom: 0
       margin-right: 20px
@@ -323,3 +327,6 @@
 
 .Comment__description.-show-more .Comment__read-more
   display: inline
+
+.AddReview
+  margin-bottom: 50px 

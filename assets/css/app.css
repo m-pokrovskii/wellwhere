@@ -1532,7 +1532,10 @@ input::placeholder {
 }
 
 .Comment .Comment__meta {
-  margin-right: 56px;
+  margin-right: 25px;
+  width: 110px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .Comment .Comment__avatar {
@@ -1541,6 +1544,9 @@ input::placeholder {
   background-size: cover;
   background-position: 50% 50%;
   margin-bottom: 9px;
+  border-radius: 50%;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .Comment .Comment__name {
@@ -1580,6 +1586,10 @@ input::placeholder {
 
 .Comment__description.-show-more .Comment__read-more {
   display: inline;
+}
+
+.AddReview {
+  margin-bottom: 50px;
 }
 
 .ProfilePage {
