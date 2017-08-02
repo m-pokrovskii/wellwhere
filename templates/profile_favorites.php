@@ -3,7 +3,7 @@
 	$favorited_gym_ids = get_user_meta( $cuid, 'favorited_gym_id' );
 	$favorited_gyms = get_posts(array(
 		'post_type' => 'gym',
-		'post__in' => $favorited_gym_ids,
+		'post__in' => ( $favorited_gym_ids ) ? $favorited_gym_ids : array(0),
 		'posts_per_page' => -1,
 	));
  ?>
