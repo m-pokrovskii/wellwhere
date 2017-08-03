@@ -335,4 +335,13 @@ function review_template( $review ) { ?>
 	</div>
 <?php }
 
+function get_gym_reviews_count( $gym_id ) {
+	$reviews = get_posts(array(
+		'post_type' => 'review',
+		'meta_key' => 'gym_id',
+		'meta_value' => $gym_id
+	));
+	return count($reviews);
+}
+
 ?>
