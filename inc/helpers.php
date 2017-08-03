@@ -341,7 +341,11 @@ function get_gym_reviews_count( $gym_id ) {
 		'meta_key' => 'gym_id',
 		'meta_value' => $gym_id
 	));
-	return count($reviews);
+	if ( count($reviews) > 0 ) {
+		return count($reviews);
+	} else {
+		return 0;
+	}
 }
 
 ?>

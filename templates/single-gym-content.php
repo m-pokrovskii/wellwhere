@@ -1,4 +1,5 @@
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+	<?php $review_count = get_gym_reviews_count( $post->ID ) ?>
 	<div class="SinglePage__content-container">
 		<div class="SignlePage__headline ui sticky">
 			<div class="SignlePage__headline-title">
@@ -25,7 +26,7 @@
 					<li><a href="#photos">Photos</a></li>
 					<li><a href="#details">Horaires</a></li>
 					<li><a href="#map">Plan</a></li>
-					<li><a href="#comments">Commentaires ( <?php echo get_gym_reviews_count( $post->ID ) ?> )</a></li>
+					<li><a href="#comments">Commentaires <?php if( $review_count ) : ?> ( <?php echo $review_count ?> ) <?php endif; ?></a></li>
 				</ul>
 			</div>
 			<div class="SignlePage__sidebar -center">
