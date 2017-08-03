@@ -61,22 +61,51 @@
   add_action( 'wp_ajax_nopriv_load_more_review', 'load_more_review' );
   add_action( 'wp_ajax_load_more_review', 'load_more_review' );
 
-	function load_more_review() {
-		if ( isset($_GET['review_per_page']) && isset($_GET['gym_id']) ) {
+  function load_more_review() {
+    if ( isset($_GET['review_per_page']) && isset($_GET['gym_id']) ) {
+      $review_per_page = $_GET['review_per_page'];
+      $offset          = $_GET['offset'];
+      $gym_id          = $_GET['gym_id'];
+
+      $reviews = get_posts(array(
+        'post_type' => "review",
+        'posts_per_page' => $review_per_page,
+        'offset' => $offset,
+        'meta_key' => 'gym_id',
+        'meat_value' => $gym_id
+      ));
+      if ( $reviews ) {
+        foreach ($reviews as $review) {
+          review_template( $review );
+        }
+      } else {
+        wp_send_json_error( array(
+          'message' => 'No reviews'
+        ) );
+      }
+    }
+    wp_die();
+  }  
+
+  add_action( 'wp_ajax_nopriv_load_more_profile_review', 'load_more_profile_review' );
+  add_action( 'wp_ajax_load_more_profile_review', 'load_more_profile_review' );
+
+	function load_more_profile_review() {
+		if ( isset( $_GET['review_per_page'] ) && isset( $_GET['offset'] ) ) {
 	  	$review_per_page = $_GET['review_per_page'];
 	  	$offset          = $_GET['offset'];
-	  	$gym_id          = $_GET['gym_id'];
+      $cuid = get_current_user_id();
 
 	  	$reviews = get_posts(array(
-	  		'post_type' => "review",
-	  		'posts_per_page' => $review_per_page,
-	  		'offset' => $offset,
-	  		'meta_key' => 'gym_id',
-	  		'meat_value' => $gym_id
-	  	));
+        'post_type' => 'review',
+        'posts_per_page' => $review_per_page,
+        'offset' => $offset,
+        'author' => $cuid
+      ));
+
 	  	if ( $reviews ) {
 	  		foreach ($reviews as $review) {
-	  			review_template( $review );
+	  			profile_review_template( $review );
 	  		}
 	  	} else {
 	  		wp_send_json_error( array(
@@ -86,5 +115,4 @@
 	  }
 	  wp_die();
 	}  
-
 ?>
