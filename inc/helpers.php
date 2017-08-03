@@ -269,13 +269,14 @@ function user_has_posted_review( $user_id, $gym_id ) {
 
 function profile_review_template( $review ) {
 	$rating = get_post_meta( $review->ID, 'rating', true );
+	$gym_id = get_post_meta( $review->ID, 'gym_id', true );
 	?>
 	<div class="ProfileComments__item">
 		<div class="ProfileComments__wrap-type-date">
 			<div class="ProfileComments__type">Salle</div>
 			<div class="ProfileComments__date"><?php echo get_the_date( "d/m/Y", $review->ID ) ?></div>
 		</div>
-		<div class="ProfileComments__title">Wellwhere Fit</div>
+		<div class="ProfileComments__title"><?php echo get_the_title( $gym_id ); ?></div>
 		<div class="ProfileComments__note">Note</div>
 		<div 
 			data-rating = <?php echo $rating ?>
