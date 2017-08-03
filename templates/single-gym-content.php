@@ -25,7 +25,7 @@
 					<li><a href="#photos">Photos</a></li>
 					<li><a href="#details">Horaires</a></li>
 					<li><a href="#map">Plan</a></li>
-					<li><a href="#comments">Commentaires (21)</a></li>
+					<li><a href="#comments">Commentaires ( <?php echo get_gym_reviews_count( $post->ID ) ?> )</a></li>
 				</ul>
 			</div>
 			<div class="SignlePage__sidebar -center">
@@ -63,7 +63,7 @@
 							<?php get_template_part('templates/single-map'); ?>
 						</div>
 						<div class="active title last">
-							Commentaires
+							<?php _e('Commentaires') ?>
 						</div>
 						<div id="comments" class="active content">
 							<?php get_template_part( 'templates/reviews' ); ?>
