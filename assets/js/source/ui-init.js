@@ -973,12 +973,14 @@ const Rating = (function () {
 })();
 Rating.init();
 
-const AddReview = (function () {
-  const commentContainer   = $('.Comments__body');
-  const reviewRating       = $('[data-review-rating]');
-  const reviewForm         = $('[data-review-form]');
-  const ratingInput        = $('#rating');
-  const loadMoreReviewLink = $('[data-load-more-review]')
+const Reviews = (function () {
+  const commentContainer          = $('.Comments__body');
+  const profileReviewContainer    = $('.ProfileComments__list');
+  const reviewRating              = $('[data-review-rating]');
+  const reviewForm                = $('[data-review-form]');
+  const ratingInput               = $('#rating');
+  const loadMoreReviewLink        = $('[data-load-more-review]')
+  const loadMoreProfileReviewLink = $('[data-load-more-profile-review]')
   
   let inProcess = false;
 
@@ -1003,6 +1005,39 @@ const AddReview = (function () {
 
     reviewForm.on('submit', addReview);
     loadMoreReviewLink.on('click', loadMoreReview)
+    loadMoreProfileReviewLink.on('click', loadMoreProfileReview)
+  }
+
+  function loadMoreProfileReview(e) {
+    e.preventDefault();
+    if ( inProcess === true ) { return false; }
+    inProcess = true;
+
+    const review_per_page = loadMoreProfileReviewLink.attr('data-review-per-page');
+    const offset          = profileReviewContainer.find('.ProfileComments__item').length;
+
+    $.ajax({
+      url: data.adminAjax,
+      type: 'GET',
+      data: {
+        action: 'load_more_profile_review',
+        review_per_page: review_per_page,
+        offset: offset,
+      },
+    })
+    .done(function(r) {
+      profileReviewContainer.append(r);
+      if (r.success === false) {
+        console.log( r.data.message );
+        loadMoreProfileReviewLink.fadeOut();
+      }
+    })
+    .fail(function(e) {
+      console.log(e);
+    })
+    .always(function() {
+      inProcess = false;
+    });
   }
 
   function loadMoreReview(e) {
@@ -1073,11 +1108,10 @@ const AddReview = (function () {
     .always(function() {
       inProcess = false;
     });
-    
   }
 
   return {
     init: init
   }
 })();
-AddReview.init();
+Reviews.init();

@@ -267,6 +267,33 @@ function user_has_posted_review( $user_id, $gym_id ) {
 	return $reviews;
 }
 
+function profile_review_template( $review ) {
+	$rating = get_post_meta( $review->ID, 'rating', true );
+	?>
+	<div class="ProfileComments__item">
+		<div class="ProfileComments__wrap-type-date">
+			<div class="ProfileComments__type">Salle</div>
+			<div class="ProfileComments__date"><?php echo get_the_date( "d/m/Y", $review->ID ) ?></div>
+		</div>
+		<div class="ProfileComments__title">Wellwhere Fit</div>
+		<div class="ProfileComments__note">Note</div>
+		<div 
+			data-rating = <?php echo $rating ?>
+			class="GymRating ProfileComments__rating ui rating"></div>
+		<div class="ProfileComments__commentaire">
+			Commentaire
+		</div>
+		<?php if ($review->post_title): ?>
+			<div class="ProfileComments__comment-title">
+				<?php echo $review->post_title ?>
+			</div>
+		<?php endif ?>
+		<div class="ProfileComments__comment-description">
+			<?php echo $review->post_content ?>
+		</div>
+	</div>			
+<?php }
+
 function review_template( $review ) { ?>
 	<div class="Comment Comments__item">
 		<div class="Comment__meta">

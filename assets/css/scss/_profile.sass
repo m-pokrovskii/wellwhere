@@ -4,7 +4,7 @@
   +sm()
     padding: 50px 20px
   +xs()
-    padding: 0 0
+    padding: 20px 0
 
 .ProfilePage__aside
   width: 290px
@@ -17,6 +17,7 @@
 
 .ProfilePage__content
   display: block
+  width: 100% 
   +sm()
     width: 100% 
     
@@ -247,16 +248,12 @@
 .ProfileComments__list
   display: flex
  	flex-wrap: wrap
+  flex-direction: column
 
 .ProfileComments__item
-  padding: 9px 10px 0 14px
-  width: 346px
-  height: 300px
+  padding: 9px 10px 10px 14px
   border: solid 1px #E0E0E0
-  margin-right: 34px
   margin-bottom: 50px
-  &:nth-child(2n)
-    margin-right: 0
   +sm()
     width: 100%
     margin-right: 0
@@ -265,10 +262,6 @@
     width: 100%
     margin-right: 0
     border: none
-    border-bottom: solid 1px #E0E0E0
-    &:last-child
-      border: none
-
 
 
 .ProfileComments__wrap-type-date
@@ -305,9 +298,10 @@
 
 .ProfileComments__loadMore
   text-align: right
-  width: 726px
   +sm()
     width: auto
+  +xs()
+    margin-right: 20px 
 
 .ProfileComments__loadMore-link
 	color: #6E6868

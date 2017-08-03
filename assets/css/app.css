@@ -1607,6 +1607,7 @@ input::placeholder {
 
 .ProfilePage__content {
   display: block;
+  width: 100%;
 }
 
 .Profile__avatar {
@@ -1832,19 +1833,14 @@ input::placeholder {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .ProfileComments__item {
-  padding: 9px 10px 0 14px;
-  width: 346px;
-  height: 300px;
+  padding: 9px 10px 10px 14px;
   border: solid 1px #E0E0E0;
-  margin-right: 34px;
   margin-bottom: 50px;
-}
-
-.ProfileComments__item:nth-child(2n) {
-  margin-right: 0;
 }
 
 .ProfileComments__wrap-type-date {
@@ -1890,7 +1886,6 @@ input::placeholder {
 
 .ProfileComments__loadMore {
   text-align: right;
-  width: 726px;
 }
 
 .ProfileComments__loadMore-link {
@@ -3895,7 +3890,7 @@ html {
   }
 
   .ProfilePage {
-    padding: 0 0;
+    padding: 20px 0;
   }
 
   .ProfilePage__aside {
@@ -3930,11 +3925,10 @@ html {
     width: 100%;
     margin-right: 0;
     border: none;
-    border-bottom: solid 1px #E0E0E0;
   }
 
-  .ProfileComments__item:last-child {
-    border: none;
+  .ProfileComments__loadMore {
+    margin-right: 20px;
   }
 
   .FavoriteList .FavoriteListItem {

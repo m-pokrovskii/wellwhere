@@ -1344,12 +1344,14 @@ var Rating = function () {
 }();
 Rating.init();
 
-var AddReview = function () {
+var Reviews = function () {
   var commentContainer = $('.Comments__body');
+  var profileReviewContainer = $('.ProfileComments__list');
   var reviewRating = $('[data-review-rating]');
   var reviewForm = $('[data-review-form]');
   var ratingInput = $('#rating');
   var loadMoreReviewLink = $('[data-load-more-review]');
+  var loadMoreProfileReviewLink = $('[data-load-more-profile-review]');
 
   var inProcess = false;
 
@@ -1374,6 +1376,38 @@ var AddReview = function () {
 
     reviewForm.on('submit', addReview);
     loadMoreReviewLink.on('click', loadMoreReview);
+    loadMoreProfileReviewLink.on('click', loadMoreProfileReview);
+  }
+
+  function loadMoreProfileReview(e) {
+    e.preventDefault();
+    if (inProcess === true) {
+      return false;
+    }
+    inProcess = true;
+
+    var review_per_page = loadMoreProfileReviewLink.attr('data-review-per-page');
+    var offset = profileReviewContainer.find('.ProfileComments__item').length;
+
+    $.ajax({
+      url: data.adminAjax,
+      type: 'GET',
+      data: {
+        action: 'load_more_profile_review',
+        review_per_page: review_per_page,
+        offset: offset
+      }
+    }).done(function (r) {
+      profileReviewContainer.append(r);
+      if (r.success === false) {
+        console.log(r.data.message);
+        loadMoreProfileReviewLink.fadeOut();
+      }
+    }).fail(function (e) {
+      console.log(e);
+    }).always(function () {
+      inProcess = false;
+    });
   }
 
   function loadMoreReview(e) {
@@ -1450,7 +1484,7 @@ var AddReview = function () {
     init: init
   };
 }();
-AddReview.init();
+Reviews.init();
 
 /***/ }),
 /* 6 */
