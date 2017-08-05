@@ -40,6 +40,7 @@
 				));
 			} else {
 				use_ticket( $ticket );
+				$entries_remain = get_post_meta( $ticket->ID, 'entries_available', true );
 				wp_send_json_success(array(
 					'type' => 'valid',
 					'holder' => $ticket_holder,
