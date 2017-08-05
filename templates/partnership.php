@@ -6,27 +6,65 @@
     <div class="PartnershipValidator__desc">
       entrez le code present sur le pass du client dans la barre ci-dessous:
     </div>
-    <form data-check-pass-form action="" class="PartnershipValidator__form">
-      <input
-        class="PartnershipValidator__input-text"
-        name="partnership-validator-pass"
-        id="partnership-validator-pass"
-        type="text"
-        placeholder="p.ex.:0K98jO387"
-      >
-      <input class="PartnershipValidator__input-submit" type="submit" value="Valider >">
+    <form data-check-pass-form action="" class="ui form PartnershipValidator__form">
+      <div class="ui inline field">
+        <div class="ui action input">
+          <input
+            class="PartnershipValidator__input-text"
+            name="partnership_validator_pass"
+            id="partnership-validator-pass"
+            type="password"
+            placeholder="p.ex.:0K98jO387"
+          >
+          <button class="ui button PartnershipValidator__input-submit" type="submit"><?php _e('Valider >') ?></button>
+        </div>
+      </div>
+      <div class="PartnershipValidator__form-message">
+        <div class="ui message mini error"></div>
+      </div>
     </form>
   </div>
-  <div data-check-pass-done class="PartnershipValidator -done">
+  <div data-check-pass-valid class="PartnershipValidator -valid">
     <div class="PartnershipValidator__title">
-      Pass validé !
+      Pass validé!
     </div>
     <div class="PartnershipValidator__info">
       <div class="PartnershipValidator__info-title">Informations:</div>
       <div class="PartnershipValidator__info-text">
-        <p class="PartnershipValidator__info-name">Nom: Marco Morin</p>
-        <p class="PartnershipValidator__info-entries">Entrées restantes: 4</p>
+        <p class="PartnershipValidator__info-name">Nom: 
+          <span class="PartnershipValidator__holder"></span>
+        </p>
+        <p class="PartnershipValidator__info-entries">Entrées restantes: 
+          <span class="PartnershipValidator__entries-remain"></span>
+        </p>
+        <p class="PartnershipValidator__info-expire-date">Date Expire: 
+          <span class="PartnershipValidator__expire-date"></span>
+        </p>
       </div>
+    </div>
+  </div>
+  <div data-check-pass-expire class="PartnershipValidator -expire">
+    <div class="PartnershipValidator__title">
+      Passe expirée!
+    </div>
+    <div class="PartnershipValidator__info">
+      <div class="PartnershipValidator__info-title">Informations:</div>
+      <div class="PartnershipValidator__info-text">
+        <p class="PartnershipValidator__info-name">Nom: 
+          <span class="PartnershipValidator__holder"></span>
+        </p>
+        <p class="PartnershipValidator__info-entries">Entrées restantes: 
+          <span class="PartnershipValidator__entries-remain"></span>
+        </p>
+        <p class="PartnershipValidator__info-expire-date">Date Expire: 
+          <span class="PartnershipValidator__expire-date"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div data-check-pass-no-found class="PartnershipValidator -no-found">
+    <div class="PartnershipValidator__title">
+      <?php _e('No found') ?>
     </div>
   </div>
   <div class="PartnershipPage__content">

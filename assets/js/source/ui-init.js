@@ -400,20 +400,78 @@ PaymentCard.init()
 
 
 const CheckPass = (function () {
-  const checkPass = $('[data-check-pass]');
-  const checkPassDone = $('[data-check-pass-done]');
-  const checkPassForm = $('[data-check-pass-form]');
+  const checkPass        = $('[data-check-pass]');
+  const checkPassValid   = $('[data-check-pass-valid]');
+  const checkPassExpire  = $('[data-check-pass-expire]');
+  const checkPassForm    = $('[data-check-pass-form]');
+  const checkPassNoFound = $('[data-check-pass-no-found]');
 
   function init() {
-    checkPassForm.on('submit', function (e) {
-      e.preventDefault();
-      checkPass.hide();
-      checkPassDone.show();
-      setTimeout(function () {
-        checkPass.show();
-        checkPassDone.hide();
-      }, 3000)
+    checkPassForm.form({
+      on: 'blur',
+      fields: {
+        password: {
+          identifier: 'partnership_validator_pass',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : "Please enter a ticket's password"
+            }
+          ]
+        }
+      }
+    });
+    checkPassForm.on('submit', validatePass)
+  }
+
+  function validatePass(e) {
+    e.preventDefault();
+    if ( !checkPassForm.form( 'is valid' ) ) { return false };
+    const checkPassFormData = checkPassForm.serializeObject();
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {        
+        action: 'check_pass',
+        pass: checkPassFormData.partnership_validator_pass,
+        nonce: data.nonce
+      },
     })
+    .done(function(r) {
+      console.log(r);
+      if (r.success) {
+        const name_el           = $('.PartnershipValidator__holder');
+        const entries_remain_el = $('.PartnershipValidator__entries-remain');
+        const expire_date_el    = $('.PartnershipValidator__expire-date');
+
+        name_el.html(r.data.holder);
+        entries_remain_el.html( (r.data.entries_remain) ? r.data.entries_remain : "–" );
+        expire_date_el.html(r.data.expire_date);
+
+        if (r.data.type === 'valid') {
+          checkPass.fadeOut(function() {
+            checkPassValid.fadeIn();
+          });
+        } else if (r.data.type === 'expire') {
+          checkPass.fadeOut(function() {
+            checkPassExpire.fadeIn();
+          });
+        } else if (r.data.type === 'no found') {
+          checkPass.fadeOut(function() {
+            checkPassNoFound.fadeIn();
+          });
+        }
+      } else if (r.error) {
+        checkPassForm.form("add errors", [r.data.message] );
+      }
+    })
+    .fail(function(e) {
+      console.error(e.statusText);
+      console.error(e.responseText);
+    })
+    .always(function() {
+      // console.log("complete");
+    });
   }
 
   return {

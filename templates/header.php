@@ -29,10 +29,10 @@
 							<img class="LoggedInUserDropdown__avatar ui avatar image" src=" <?php echo $avatar_url ?>  ">
 							<i class="dropdown icon"></i>
 							<div class="menu">
-								<a href="<?php echo get_author_posts_url( $curruser->ID ) ?>" class="item">Profil</a>
-								<a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#comments" class="item">Commentaires</a>
-								<a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#pass" class="item">Pass</a>
-								<a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#favorites" class="item">Favorits</a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>" class="item">Profil</a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>#comments" class="item">Commentaires</a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>#pass" class="item">Pass</a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>#favorites" class="item">Favorits</a>
 								<a href="<?php echo wp_logout_url( get_home_url() ) ?>" class="item">
 									<?php echo __('Logout', 'wellwhere') ?>
 								</a>

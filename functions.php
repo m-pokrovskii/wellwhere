@@ -17,6 +17,7 @@
 	require_once 'inc/stripe.php';
 	require_once 'inc/basket.php';
 	require_once 'inc/add_review.php';
+	require_once 'inc/check_ticket.php';
 	require_once 'inc/helpers.php';
 
 	add_theme_support( 'menus' );
