@@ -54,14 +54,16 @@ function clear_basket( $user_id ) {
 function create_ticket( $user_id, $basket, $ticket_pass ) {
 	$post_title = $basket['basket_gym_title'] ." ". $basket['basket_ticket_entries'];
 	$meta = array(
-		'gym_id' => $basket['basket_gym_id'],
-		'gym_title' => $basket['basket_gym_title'],
-		'user_id' => $user_id,
-		'expire' => $basket['basket_ticket_expire'],
-		'ticket_title' => $basket['basket_ticket_entries'],
-		'entries_available' => ( $basket['basket_ticket_period'] === 'entry' ) ? $basket['basket_ticket_value'] : false ,
-		'ticket_pass' => $ticket_pass,
-		'validated' => false
+		'gym_id'            => $basket['basket_gym_id'],
+		'gym_title'         => $basket['basket_gym_title'],
+		'user_id'           => $user_id,
+		'expire'            => $basket['basket_ticket_expire'],
+		'ticket_title'      => $basket['basket_ticket_entries'],
+		'entries_available' => ( $basket['basket_ticket_period'] === 'entry' ) ? $basket['basket_ticket_value'] : false,
+		'entries'           => ( $basket['basket_ticket_period'] === 'entry' ) ? $basket['basket_ticket_value'] : false,
+		'ticket_type'       => $basket['basket_ticket_period'],
+		'ticket_pass'       => $ticket_pass,
+		'is_expired'        => false,
 		);
 	return wp_insert_post(array(
 		'post_type' => 'ticket',
@@ -345,6 +347,37 @@ function get_gym_reviews_count( $gym_id ) {
 		return count($reviews);
 	} else {
 		return 0;
+	}
+}
+
+
+function is_ticket_expire( $ticket ) {
+	$ticket_type = get_post_meta( $ticket->ID, 'ticket_type', true );
+	$entries_available = get_post_meta( $ticket->ID, 'entries_available', true );
+	$expire_date = strtotime( get_post_meta( $ticket->ID, 'expire', true ) );
+	$now = strtotime('now');
+
+	if ( $ticket_type == 'entry' ) {
+		if ( $entries_available == 0 ) { 
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		if ( $now > $expire_date ) { 
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+
+function use_ticket( $ticket ) {
+	$entries_available = get_post_meta( $ticket->ID, 'entries_available', true);
+	if ( $entries_available > 0 ) {
+		$entries_available = (int) $entries_available - 1;
+		update_post_meta( $ticket->ID, 'entries_available', $entries_available );
 	}
 }
 

@@ -5,7 +5,7 @@
 	$reviews_query = new WP_Query(array(
 		'post_type' => 'review',
 		'posts_per_page' => $posts_per_page,
-		'author' => $cuid
+		'author__in' => array($cuid)
 	));
 	$reviews = $reviews_query->posts;
  ?>

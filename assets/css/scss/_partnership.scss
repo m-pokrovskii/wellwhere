@@ -35,31 +35,48 @@
 	}
 
 	.PartnershipValidator__form {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
+		.PartnershipValidator__form-message {
+			display: flex;
+			justify-content: center;
+		}
+		.ui.message.mini.error {
+			width: 428px;
+			text-align: center;
+			@include xs() {
+				width: auto;
+			}
+		}
   }
 
 	.PartnershipValidator__input-text {
     border: solid 1px #E0E0E0;
     font-size: 12px;
     padding: 7px 10px;
-    width: 338px;
+    width: 338px !important;
+    font-size: 12px !important;
+    border-radius: 0 !important;
     &::placeholder {
       color: #E0E0E0;
+      font-size: 12px;
+    }
+    @include xs() {
+			width: auto !important;
     }
   }
 
-	.PartnershipValidator__input-submit {
+	.ui.button.PartnershipValidator__input-submit {
+		border-radius: 0 !important;
+		justify-content: center;
     width: 90px;
-    text-align: center;
+    font-size: 12px !important;
     background: #540D6E;
     padding: 7px 10px;
     color: #fff;
   }
 
 
-.PartnershipValidator.-done {
+.PartnershipValidator.-valid,
+.PartnershipValidator.-expire {
 	display: none;
 	background: #9CE5D4;
 	border: solid 1px #3BCEAC;
@@ -85,6 +102,23 @@
 		color: #6E6868;
 	}
 }
+
+.PartnershipValidator.-no-found {
+	display: none;
+	border: solid 1px #c9ba9b;
+	background: #fffaf3;
+	color: #573a08;
+	} 
+
+.PartnershipValidator.-expire {
+	background: #fff6f6;
+	border: solid 1px #e0b4b4;
+	color: #9f3a38;
+	.PartnershipValidator__title {
+		background: none;
+		padding: 0;
+		}
+	}
 
 
 .PartnershipPage__content {

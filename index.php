@@ -1,3 +1,1 @@
-<?php # get_header(); ?>
-	index.php
-<?php # get_footer();
+<?php wp_redirect( home_url() ); ?>

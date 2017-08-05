@@ -86,8 +86,7 @@
     }
     wp_die();
   }  
-
-  add_action( 'wp_ajax_nopriv_load_more_profile_review', 'load_more_profile_review' );
+  
   add_action( 'wp_ajax_load_more_profile_review', 'load_more_profile_review' );
 
 	function load_more_profile_review() {
