@@ -36,8 +36,8 @@
 
 	.PartnershipValidator__form {
 		.PartnershipValidator__form-message {
-			display: flex;
-			justify-content: center;
+			margin-left: auto;
+			margin-right: auto;
 		}
 		.ui.message.mini.error {
 			width: 428px;
@@ -60,18 +60,21 @@
       font-size: 12px;
     }
     @include xs() {
-			width: auto !important;
+			width: 100% !important;
     }
   }
 
 	.ui.button.PartnershipValidator__input-submit {
 		border-radius: 0 !important;
 		justify-content: center;
-    width: 90px;
+    width: 200px;
     font-size: 12px !important;
     background: #540D6E;
-    padding: 7px 10px;
+    padding: 10px 10px;
     color: #fff;
+		@include xs() {
+			width: 100% !important;
+		}
   }
 
 

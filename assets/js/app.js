@@ -795,15 +795,24 @@ var CheckPass = function () {
   var checkPassForm = $('[data-check-pass-form]');
   var checkPassNoFound = $('[data-check-pass-no-found]');
 
+  var inProcess = false;
+
   function init() {
     checkPassForm.form({
       on: 'blur',
       fields: {
-        password: {
+        password_ticket: {
           identifier: 'partnership_validator_pass',
           rules: [{
             type: 'empty',
             prompt: "Please enter a ticket's password"
+          }]
+        },
+        password_gym: {
+          identifier: 'partnership_gym_pass',
+          rules: [{
+            type: 'empty',
+            prompt: "Please enter a gym's password"
           }]
         }
       }
@@ -817,12 +826,18 @@ var CheckPass = function () {
       return false;
     };
     var checkPassFormData = checkPassForm.serializeObject();
+    if (inProcess) {
+      return;
+    } else {
+      inProcess = true;
+    };
     $.ajax({
       url: data.adminAjax,
       type: 'POST',
       data: {
         action: 'check_pass',
         pass: checkPassFormData.partnership_validator_pass,
+        gym_pass: checkPassFormData.partnership_gym_pass,
         nonce: data.nonce
       }
     }).done(function (r) {
@@ -849,14 +864,14 @@ var CheckPass = function () {
             checkPassNoFound.fadeIn();
           });
         }
-      } else if (r.error) {
+      } else if (r.success == false) {
         checkPassForm.form("add errors", [r.data.message]);
       }
     }).fail(function (e) {
       console.error(e.statusText);
       console.error(e.responseText);
     }).always(function () {
-      // console.log("complete");
+      inProcess = false;
     });
   }
 

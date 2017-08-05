@@ -406,11 +406,13 @@ const CheckPass = (function () {
   const checkPassForm    = $('[data-check-pass-form]');
   const checkPassNoFound = $('[data-check-pass-no-found]');
 
+  let inProcess = false;
+
   function init() {
     checkPassForm.form({
       on: 'blur',
       fields: {
-        password: {
+        password_ticket: {
           identifier: 'partnership_validator_pass',
           rules: [
             {
@@ -418,7 +420,16 @@ const CheckPass = (function () {
               prompt : "Please enter a ticket's password"
             }
           ]
-        }
+        },
+        password_gym: {
+          identifier: 'partnership_gym_pass',
+          rules: [
+            {
+              type   : 'empty',
+              prompt : "Please enter a gym's password"
+            }
+          ]
+        },
       }
     });
     checkPassForm.on('submit', validatePass)
@@ -428,18 +439,20 @@ const CheckPass = (function () {
     e.preventDefault();
     if ( !checkPassForm.form( 'is valid' ) ) { return false };
     const checkPassFormData = checkPassForm.serializeObject();
+    if ( inProcess ) { return } else { inProcess = true };
     $.ajax({
       url: data.adminAjax,
       type: 'POST',
       data: {        
         action: 'check_pass',
         pass: checkPassFormData.partnership_validator_pass,
+        gym_pass: checkPassFormData.partnership_gym_pass,
         nonce: data.nonce
       },
     })
     .done(function(r) {
       console.log(r);
-      if (r.success) {
+      if ( r.success ) {
         const name_el           = $('.PartnershipValidator__holder');
         const entries_remain_el = $('.PartnershipValidator__entries-remain');
         const expire_date_el    = $('.PartnershipValidator__expire-date');
@@ -461,7 +474,7 @@ const CheckPass = (function () {
             checkPassNoFound.fadeIn();
           });
         }
-      } else if (r.error) {
+      } else if ( r.success == false ) {
         checkPassForm.form("add errors", [r.data.message] );
       }
     })
@@ -470,7 +483,7 @@ const CheckPass = (function () {
       console.error(e.responseText);
     })
     .always(function() {
-      // console.log("complete");
+      inProcess = false;
     });
   }
 

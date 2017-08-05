@@ -381,4 +381,23 @@ function use_ticket( $ticket ) {
 	}
 }
 
+
+function is_valid_gym_pass( $pass ) {
+	$gyms = new WP_Query(array(
+		'post_type'  => 'gym',
+		'meta_query' => array(
+		  array(
+		    'key'   => 'gym_password',
+		    'value' => $pass,
+		    'compare' => "="
+		  )
+		)
+	));
+	if ( $gyms->found_posts > 0 ) {
+		return $gyms->posts[0]->ID;
+	} else {
+		return false;
+	}
+}
+
 ?>

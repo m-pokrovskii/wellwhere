@@ -2534,10 +2534,8 @@ input::placeholder {
 }
 
 .PartnershipValidator__form .PartnershipValidator__form-message {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .PartnershipValidator__form .ui.message.mini.error {
@@ -2578,10 +2576,10 @@ input::placeholder {
   border-radius: 0 !important;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 90px;
+  width: 200px;
   font-size: 12px !important;
   background: #540D6E;
-  padding: 7px 10px;
+  padding: 10px 10px;
   color: #fff;
 }
 
@@ -4191,7 +4189,11 @@ html {
   }
 
   .PartnershipValidator__input-text {
-    width: auto !important;
+    width: 100% !important;
+  }
+
+  .ui.button.PartnershipValidator__input-submit {
+    width: 100% !important;
   }
 
   .PartnershipHelp,
