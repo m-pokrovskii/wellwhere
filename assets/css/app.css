@@ -425,7 +425,7 @@ input::placeholder {
   position: absolute;
   top: 60px;
   z-index: 2;
-  width: 320px;
+  width: 100%;
   background: #fff;
   padding: 20px 53px 16px 16px;
   border: solid 1px #EFEFEF;
@@ -512,7 +512,7 @@ input::placeholder {
 .SmMenu__searchField {
   border: solid 1px #EFEFEF;
   height: 31px;
-  width: 210px;
+  width: 100%;
   border-right: none;
   padding-left: 7px;
   color: #6E6868;
@@ -2534,10 +2534,8 @@ input::placeholder {
 }
 
 .PartnershipValidator__form .PartnershipValidator__form-message {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .PartnershipValidator__form .ui.message.mini.error {
@@ -2578,10 +2576,10 @@ input::placeholder {
   border-radius: 0 !important;
   -ms-flex-pack: center;
   justify-content: center;
-  width: 90px;
+  width: 200px;
   font-size: 12px !important;
   background: #540D6E;
-  padding: 7px 10px;
+  padding: 10px 10px;
   color: #fff;
 }
 
@@ -4191,7 +4189,11 @@ html {
   }
 
   .PartnershipValidator__input-text {
-    width: auto !important;
+    width: 100% !important;
+  }
+
+  .ui.button.PartnershipValidator__input-submit {
+    width: 100% !important;
   }
 
   .PartnershipHelp,

@@ -1,27 +1,34 @@
 <div class="PartnershipPage">
   <div data-check-pass class="PartnershipValidator">
     <div class="PartnershipValidator__title">
-      Valider le Pass
+      <?php _e('Valider le Pass') ?>
     </div>
     <div class="PartnershipValidator__desc">
-      entrez le code present sur le pass du client dans la barre ci-dessous:
+      <?php _e('entrez le code present sur le pass du client dans la barre ci-dessous:') ?>
     </div>
     <form data-check-pass-form action="" class="ui form PartnershipValidator__form">
-      <div class="ui inline field">
-        <div class="ui action input">
-          <input
-            class="PartnershipValidator__input-text"
-            name="partnership_validator_pass"
-            id="partnership-validator-pass"
-            type="password"
-            placeholder="p.ex.:0K98jO387"
-          >
-          <button class="ui button PartnershipValidator__input-submit" type="submit"><?php _e('Valider >') ?></button>
-        </div>
+      <div class="ui field">
+        <label for=""><?php _e('Ticket Pass') ?></label>
+        <input
+          class="PartnershipValidator__input-text"
+          name="partnership_validator_pass"
+          id="partnership-validator-pass"
+          type="password"
+          placeholder="p.ex.:0K98jO387"
+        >
       </div>
-      <div class="PartnershipValidator__form-message">
-        <div class="ui message mini error"></div>
+      <div class="ui field">
+        <label for=""><?php _e('Gym Pass') ?></label>
+        <input
+          class="PartnershipValidator__input-text"
+          name="partnership_gym_pass"
+          id="partnership-gym-pass"
+          type="password"
+          placeholder="<?php _e('Gym Password') ?>"
+        >
       </div>
+      <div class="PartnershipValidator__form-message ui message mini error"></div>
+      <button class="ui button PartnershipValidator__input-submit" type="submit"><?php _e('Valider >') ?></button>
     </form>
   </div>
   <div data-check-pass-valid class="PartnershipValidator -valid">
