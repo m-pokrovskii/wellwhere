@@ -91,7 +91,7 @@ $card = $card[0];
 						data-redirect="<?php echo page_link_by_file('page-payment-step-4.php') ?>"
 						data-card-id = <?php echo $card->ID ?>
 						class="PaymentTotal__button">
-						Confirmer paiement
+						<?php _e('Confirmer paiement') ?>
 					</div>
 				</div>
 			</div>

@@ -288,11 +288,6 @@ input::placeholder {
   font-size: 14px;
 }
 
-.Header__sm-opener {
-  position: absolute;
-  left: 10px;
-}
-
 .Header__logo {
   width: 288px;
   height: 71px;
@@ -365,10 +360,12 @@ input::placeholder {
 .SmOpener {
   width: 25px;
   height: 17px;
-  position: relative;
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
+  position: absolute;
+  -ms-transform: rotate(0deg) translateY(-50%);
+  transform: rotate(0deg) translateY(-50%);
   transition: .5s ease-in-out;
+  left: 10px;
+  top: 50%;
   cursor: pointer;
 }
 
@@ -1400,12 +1397,6 @@ input::placeholder {
   height: 35px;
   font-size: 14px;
   background: #FF4040;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   border-radius: 5px;
   color: #fff;
 }
@@ -2191,7 +2182,13 @@ input::placeholder {
   height: 50px;
   border-radius: 3px;
   color: #fff;
-  font: 20px "Avenir-Black";
+  font: 20px "Avenir-Medium";
+}
+
+.PaymentCardsItem__button.-remove {
+  border: solid 1px #FF4040;
+  background: #fff;
+  color: #FF4040;
 }
 
 .PaymentAddCard {
@@ -2454,7 +2451,7 @@ input::placeholder {
 }
 
 .PaymentTotal__button {
-  font: 20px "Avenir-Black";
+  font: 20px "Avenir-Medium";
   background: #FF4040;
   color: #fff;
   display: -ms-flexbox;

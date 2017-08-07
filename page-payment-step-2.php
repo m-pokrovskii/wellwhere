@@ -41,14 +41,14 @@
 							<form class="PaymentCardsItem__button-form" action="<?php echo page_link_by_file('page-payment-step-3.php') ?>" method="post">
 								<input type="hidden" name="card_id" value="<?php echo $card->ID ?>">
 								<button type="submit" class="PaymentCardsItem__button -select">
-									séléctionner
+									<?php _e('séléctionner') ?>
 								</button>
 							</form>
 							<button
 								data-card-remove
 								href="#"
 								class="PaymentCardsItem__button -remove">
-								remove
+								<?php _e('remove') ?>
 							</button>
 	    			</div>
 	    		</li>

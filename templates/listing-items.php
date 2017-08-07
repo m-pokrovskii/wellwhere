@@ -1,6 +1,6 @@
 <?php 
   $cuid = get_current_user_id();
-  $favorited_gyms = get_user_meta( $cuid, 'favorited_gym_id' );
+  $favorited_gyms = get_user_meta( $cuid, 'favorited_gym_id' ) ?: array();
 ?>
 <div class="ListingItems">
   <?php if ( have_posts() ): ?>

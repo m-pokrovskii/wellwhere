@@ -1295,7 +1295,7 @@ Profile.init();
 
 var ProfileAvatarUpload = function ($) {
   var imageInput = $('#ProfileUploadForm__image');
-  var avatarMessage = $('[data-profile-avatar-message');
+  var avatarMessage = $('[data-profile-avatar-message]');
   var profileAvatar = $('.Profile__avatar');
   var delteAvatar = $('[data-profile-avatar-delete]');
   function init() {

@@ -920,7 +920,7 @@ Profile.init();
 
 const ProfileAvatarUpload = (function($) {
   const imageInput    = $('#ProfileUploadForm__image');
-  const avatarMessage = $('[data-profile-avatar-message');
+  const avatarMessage = $('[data-profile-avatar-message]');
   const profileAvatar = $('.Profile__avatar');
   const delteAvatar = $('[data-profile-avatar-delete]');
   function init() {
