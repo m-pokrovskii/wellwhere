@@ -107,8 +107,7 @@ if (typeof $.fn.fancybox !== 'undefined') {
 
 $('.PriceBlock__row').on('click', function () {
   let radio = $(this).find('input[type=radio]');
-  let radioCurrentValue = radio.prop("checked");
-  radio.prop('checked', !radioCurrentValue);
+  radio.prop('checked', 'checked');
 });
 
 

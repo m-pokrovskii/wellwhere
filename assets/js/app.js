@@ -522,8 +522,7 @@ if (typeof $.fn.fancybox !== 'undefined') {
 
 $('.PriceBlock__row').on('click', function () {
   var radio = $(this).find('input[type=radio]');
-  var radioCurrentValue = radio.prop("checked");
-  radio.prop('checked', !radioCurrentValue);
+  radio.prop('checked', 'checked');
 });
 
 var ScrollMagic = function () {
