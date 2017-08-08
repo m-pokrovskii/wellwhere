@@ -121,8 +121,8 @@ const ScrollMagic = (function () {
   const scrollPos = $(document).scrollTop();
   const menuLinks = $('.ContentMenu li a');
   const activiClassName = 'current';
-  const offset = 700;
-  const headOffset = 100
+  const offset = 600;
+  const headOffset = 173
 
   function init() {
     doc.on("scroll", onScroll);
