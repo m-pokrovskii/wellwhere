@@ -72,9 +72,13 @@
 								<img src="<?php echo $image_path ?>/img/search-mini-icon.svg" alt="">
 							</a>
 						</div>
-						<div class="PassRow__title"><?php echo $gym->post_title ?></div>
+						<div class="PassRow__title">
+							<a href="<?php echo get_permalink( $gym_id ); ?>">
+								<?php echo $gym->post_title ?>
+							</a>
+						</div>
 						<div class="PassRow__date"><?php echo wellwhere_date($ticket_expire) ?></div>
-						<div class="PassRow__entries"><?php echo $ticlet_title ?></div>
+						<div class="PassRow__entries"><?php $ticket_title ?></div>
 						<div class="PassRow__available-entries"><?php echo ($entries_available) ? $entries_available : "–" ?></div>
 					</div>
 				<?php endwhile; ?>

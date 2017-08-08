@@ -1787,6 +1787,14 @@ input::placeholder {
   width: 144px;
 }
 
+.PassRow .PassRow__title a {
+  color: #000;
+}
+
+.PassRow .PassRow__title a:hover {
+  text-decoration: underline;
+}
+
 .PassRow .PassRow__date {
   width: 116px;
 }
@@ -1851,6 +1859,14 @@ input::placeholder {
 .ProfileComments__title {
   font: 20px "Avenir-Medium";
   margin-bottom: 7px;
+}
+
+.ProfileComments__title a {
+  color: #000;
+}
+
+.ProfileComments__title a:hover {
+  text-decoration: underline;
 }
 
 .ProfileComments__note {

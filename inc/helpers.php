@@ -275,16 +275,20 @@ function profile_review_template( $review ) {
 	?>
 	<div class="ProfileComments__item">
 		<div class="ProfileComments__wrap-type-date">
-			<div class="ProfileComments__type">Salle</div>
+			<div class="ProfileComments__type"><?php _e("Salle") ?></div>
 			<div class="ProfileComments__date"><?php echo get_the_date( "d/m/Y", $review->ID ) ?></div>
 		</div>
-		<div class="ProfileComments__title"><?php echo get_the_title( $gym_id ); ?></div>
-		<div class="ProfileComments__note">Note</div>
+		<div class="ProfileComments__title">
+			<a href="<?php echo get_permalink( $gym_id ); ?>">
+				<?php echo get_the_title( $gym_id ); ?>
+			</a>
+		</div>
+		<div class="ProfileComments__note"><?php _e("Note") ?></div>
 		<div 
 			data-rating = <?php echo $rating ?>
 			class="GymRating ProfileComments__rating ui rating"></div>
 		<div class="ProfileComments__commentaire">
-			Commentaire
+			<?php _e("Commentaire") ?>
 		</div>
 		<?php if ($review->post_title): ?>
 			<div class="ProfileComments__comment-title">
