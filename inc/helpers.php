@@ -214,6 +214,11 @@ function user_full_name( $user_id ) {
 	return "$user->first_name $user->last_name";
 }
 
+function user_review_name( $user_id ) {
+	$user = get_user_by('ID', $user_id);
+	return $user->first_name . " " . substr( $user->last_name, 0, 1) . ".";
+}
+
 function average_rating( $gym_id ) {
 
 	$reviews = get_posts(array(
@@ -308,7 +313,7 @@ function review_template( $review ) { ?>
 			class="Comment__avatar" 
 			style="background-image: url(<?php echo wellwhere_avatar_url( $review->post_author ) ?>)"></div>
 			<div class="Comment__name">
-				<?php echo user_full_name( $review->post_author ) ?>
+				<?php echo user_review_name( $review->post_author ) ?>
 			</div>
 		</div>
 		<div class="Comment__body">
