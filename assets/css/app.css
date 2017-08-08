@@ -577,7 +577,7 @@ input::placeholder {
   right: 0;
   margin: 0 auto;
   color: #fff;
-  font: 48px / 1.375 'Avenir-Heavy';
+  font: 48px / 1.375 'Avenir-Medium';
   text-align: center;
 }
 
@@ -795,7 +795,7 @@ input::placeholder {
   bottom: 0;
   text-transform: uppercase;
   color: #fff;
-  font: 28px 'Avenir-Heavy';
+  font: 28px 'Avenir-Medium';
 }
 
 .ReviewsList {

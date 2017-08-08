@@ -21,13 +21,13 @@
   </ul>
 </div>
 <div class="HomeSection -partnerships">
-  <h2 class="HomeSection__headline">DEVENIR PARTENAIRE</h2>
+  <h2 class="HomeSection__headline"><?php _e("DEVENIR PARTENAIRE") ?></h2>
   <div class="HomePartnershipBlock">
     <div class="HomePartnershipBlock__desc">
-      Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste.
+      <?php _e("Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste.") ?>
     </div>
     <div class="HomePartnershipBlock__button">
-      <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="ButtonPartner">ESPACE PARTENAIRE</a>
+      <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="ButtonPartner"><?php _e("ESPACE PARTENAIRE") ?></a>
     </div>
   </div>
 </div>
@@ -43,9 +43,9 @@
   </ul>
   <div class="MiscNewsletter">
     <label class="MiscNewsletter__emailFieldLabel" for="newsletterEmailField">
-      INSCRIVEZ-VOUS A NOTRE NEWSLETTER
+      <?php _e("INSCRIVEZ-VOUS A NOTRE NEWSLETTER") ?>
     </label>
     <input type="text" class="MiscNewsletter__emailField" name="newsletterEmailField">
-    <button class="MiscNewsletter__button">S’inscrire ></button>
+    <button class="MiscNewsletter__button"><?php _e("S’inscrire >") ?></button>
   </div>
 </div>
