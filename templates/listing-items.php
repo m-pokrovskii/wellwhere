@@ -8,7 +8,8 @@
       <?php 
           $gym_id = $post->ID;
           $is_favorited = in_array($gym_id, $favorited_gyms);
-          $average_rating = get_post_meta( $post->ID, 'average_rating', true );
+          $average_rating = get_post_meta( $gym_id, 'average_rating', true );
+          $number_of_reviews = get_review_count( $gym_id );
        ?>
       <div class="ListingItem">
         <div class="ListingItem__preview"
@@ -18,9 +19,9 @@
             <div class="GymRating -white ListingItem__previewRatingStars ui star rating" 
               data-rating="<?php echo $average_rating ?>" 
               data-max-rating="5"></div>
-            <?php if ( $average_rating ): ?>
+            <?php if ( $number_of_reviews ): ?>
               <div class="ListingItem__previewRatingText">
-                <?php echo $average_rating ?> <?php _e('avis') ?>
+                <?php echo $number_of_reviews ?> <?php _e('avis') ?>
               </div>              
             <?php endif ?>
           </div>

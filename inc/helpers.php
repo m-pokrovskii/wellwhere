@@ -219,6 +219,15 @@ function user_review_name( $user_id ) {
 	return $user->first_name . " " . substr( $user->last_name, 0, 1) . ".";
 }
 
+function get_review_count( $gym_id ) {
+	$reviews = new WP_Query(array(
+		'post_type'      => 'review',
+		'meta_key'       => 'gym_id',
+		'meta_value'     => $gym_id,
+	));	
+	return $reviews->found_posts;
+}
+
 function average_rating( $gym_id ) {
 
 	$reviews = get_posts(array(
