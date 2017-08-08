@@ -69,14 +69,14 @@
 
 
     if ( $card ) {
-      $source_id = get_post_meta( $card->ID, 'id', true );
-      $customer_id = get_user_meta($user_id, 'customer_id', true);
-      $basket = get_user_meta($user_id, '_basket', true);
+      $source_id   = get_post_meta( $card->ID, 'id', true );
+      $customer_id = get_user_meta( $user_id, 'customer_id', true );
+      $basket      = get_user_meta( $user_id, '_basket', true );
       $ticket_pass = wp_generate_password( 7, false, false );
       if ( $customer_id & $source_id ) {
         try {
           $charge = \Stripe\Charge::create(array(
-            "amount" => (int) $basket['basket_ticket_price'] * 100,
+            "amount" => $basket['basket_ticket_price'] * 100,
             "currency" => "chf",
             "customer" => $customer_id,
             "source" => $source_id,

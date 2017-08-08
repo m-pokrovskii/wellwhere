@@ -52,14 +52,14 @@ $card = $card[0];
 								<?php echo wellwhere_date( $basket['basket_ticket_expire'] ) ?>
 							</div>
 						</div>
-						<div class="PaymentBasketListItem__price">CHF <?php echo $basket['basket_ticket_price'] ?>.-</div>
+						<div class="PaymentBasketListItem__price"><?php _e("CHF") ?> <?php echo $basket['basket_ticket_price'] ?></div>
 						<div class="PaymentBasketListItem__remove -xs">
-							Remove
+							<?php _e("Remove") ?>
 						</div>
 					</div>
 				<?php else: ?>
 					<div class="PaymentBasketEmpty">
-						Empty
+						<?php _e("Empty") ?>
 					</div>
 				<?php endif; ?>
 			</div>
@@ -78,11 +78,15 @@ $card = $card[0];
 					</div>
 					<div class="PaymentTotal__container-price">
 						<div class="PaymentTotal__price-text">
-							<div class="PaymentTotal__total-text">TOTAL</div>
-							<div class="PaymentTotal__tva-text">(TVA inclus.)</div>
+							<div class="PaymentTotal__total-text">
+								<?php _e("TOTAL") ?>
+							</div>
+							<div class="PaymentTotal__tva-text">
+								<?php _e("(TVA inclus.)") ?>
+							</div>
 						</div>
 						<div class="PaymentTotal__price">
-							CHF <?php echo $basket['basket_ticket_price'] ?>.-
+							<?php _e("CHF") ?> <?php echo $basket['basket_ticket_price'] ?>
 						</div>
 					</div>
 					<div class="PaymentTotal__buttonBlock">

@@ -2404,6 +2404,7 @@ input::placeholder {
   right: 23px;
   display: block;
   background: url("../img/icon-error.svg") no-repeat;
+  background-size: contain;
   width: 39px;
   height: 39px;
 }
