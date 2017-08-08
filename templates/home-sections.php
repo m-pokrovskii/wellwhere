@@ -6,7 +6,9 @@
  ?>
 <?php get_template_part('templates/home-slider') ?>
 <div class="HomeSection -activites">
-  <h2 class="HomeSection__headline">Vos activités préférées</h2>
+  <h2 class="HomeSection__headline">
+    <?php _e("Vos activités préférées") ?>
+  </h2>
   <ul class="ActivitesList">
       <?php foreach ($activites as $activity): ?>
         <?php

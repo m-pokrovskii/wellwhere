@@ -750,6 +750,21 @@ input::placeholder {
   color: #000;
 }
 
+.GymListigItem__rating {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.GymListigItem__rating .GymRating {
+  margin-right: 10px;
+}
+
+.GymListigItem__rating .GymListigItem__rating-text {
+  padding-top: 3px;
+}
+
 .ActivitesList {
   display: -ms-flexbox;
   display: flex;
