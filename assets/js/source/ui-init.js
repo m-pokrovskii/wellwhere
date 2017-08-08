@@ -1003,10 +1003,17 @@ const Rating = (function () {
         interactive: false,
       });
 
-      favorite.rating({
-        interactive: true,
-        onRate: saveFavoriteGym
-      })
+        favorite.rating({
+          interactive: true,
+          onRate: function() {
+            if ( data.userId ) {
+              saveFavoriteGym  
+            }
+            else {
+              Auth.openModal();
+            }
+          }
+        })
     }
 
     function saveFavoriteGym($v) {

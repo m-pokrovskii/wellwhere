@@ -1375,7 +1375,13 @@ var Rating = function () {
 
     favorite.rating({
       interactive: true,
-      onRate: saveFavoriteGym
+      onRate: function onRate() {
+        if (data.userId) {
+          saveFavoriteGym;
+        } else {
+          Auth.openModal();
+        }
+      }
     });
   }
 
