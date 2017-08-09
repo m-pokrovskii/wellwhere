@@ -1007,7 +1007,7 @@ const Rating = (function () {
           interactive: true,
           onRate: function() {
             if ( data.userId ) {
-              saveFavoriteGym  
+              saveFavoriteGym();
             }
             else {
               Auth.openModal();
