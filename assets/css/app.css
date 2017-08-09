@@ -698,6 +698,10 @@ input::placeholder {
   position: relative;
 }
 
+.SliderContainer .slick-arrow.slick-disabled {
+  display: none !important;
+}
+
 .WrapSliderGyms {
   position: relative;
   overflow: hidden;
@@ -1319,6 +1323,15 @@ input::placeholder {
   font-size: 25px !important;
   color: #FFF;
   margin-right: 0 !important;
+}
+
+.ListingMaps img[src="http://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif"] {
+  position: absolute;
+  top: 10px !important;
+  right: 10px !important;
+  width: 25px !important;
+  height: 25px !important;
+  content: url("../img/icon-svg-error.svg") !important;
 }
 
 .SignlePage__hero {
