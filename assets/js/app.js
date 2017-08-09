@@ -110,6 +110,7 @@ $('.HeroSearch__field, .Header__search, .SmMenu__search').search({
 
 var GM = function ($) {
   var map = void 0;
+  var infowindow = void 0;
   var singleMap = $('.wellwhere-map');
   var clusterIcon = singleMap.attr('data-cluster-icon');
   var mapStyles = JSON.parse(mapData.styles);
@@ -152,7 +153,6 @@ var GM = function ($) {
   }
 
   function add_marker($marker, map) {
-
     var latlng = new google.maps.LatLng($marker.attr('data-lat'), $marker.attr('data-lng'));
     var pin = $marker.attr('data-icon');
 
@@ -169,14 +169,20 @@ var GM = function ($) {
 
     // if marker contains HTML, add it to an infoWindow
     if ($marker.html()) {
-      // create info window
-      var infowindow = new google.maps.InfoWindow({
-        content: $marker.html()
-      });
-
       // show info window when marker is clicked
       google.maps.event.addListener(marker, 'click', function () {
-
+        if (infowindow) {
+          infowindow.close();
+        }
+        infowindow = new InfoBubble({
+          padding: 0,
+          shadowStyle: 0,
+          borderRadius: 0,
+          borderColor: '#E0E0E0',
+          disableAnimation: true,
+          hideCloseButton: false,
+          content: $marker.html()
+        });
         infowindow.open(map, marker);
       });
     }

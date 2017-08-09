@@ -13,10 +13,13 @@
         $location = get_field('gym_map', $post->ID);
        ?>
       <div
+        style="display: none;"
         class="marker"
         data-lat="<?php echo $location['lat']; ?>"
         data-lng="<?php echo $location['lng']; ?>"
         data-icon="<?php echo $pin_icon['url'] ?>"
+      >
+        <?php get_template_part( 'templates/gym_map_preview' ); ?>
       </div>
       <?php endwhile  ?>
     <?php endif ?>

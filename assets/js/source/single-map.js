@@ -1,5 +1,6 @@
 const GM = (function($) {
   let map;
+  let infowindow;
   const singleMap = $('.wellwhere-map');
   const clusterIcon = singleMap.attr('data-cluster-icon');
   const mapStyles = JSON.parse(mapData.styles);
@@ -47,9 +48,9 @@ const GM = (function($) {
   }
 
   function add_marker( $marker, map ) {
-
     let latlng = new google.maps.LatLng( $marker.attr('data-lat'), $marker.attr('data-lng') );
-    const pin =  $marker.attr('data-icon');
+    const pin =  $marker.attr('data-icon');    
+
 
     // create marker
     let marker = new google.maps.Marker({
@@ -63,18 +64,20 @@ const GM = (function($) {
     map.markers.push( marker );
 
     // if marker contains HTML, add it to an infoWindow
-    if( $marker.html() )
-    {
-      // create info window
-      let infowindow = new google.maps.InfoWindow({
-        content		: $marker.html()
-      });
-
+    if( $marker.html() ) {
       // show info window when marker is clicked
       google.maps.event.addListener(marker, 'click', function() {
-
+        if ( infowindow ) { infowindow.close() }
+        infowindow = new InfoBubble({
+          padding: 0,
+          shadowStyle: 0,
+          borderRadius: 0,
+          borderColor: '#E0E0E0',
+          disableAnimation: true,
+          hideCloseButton: false,
+          content:  $marker.html(),
+        });
         infowindow.open( map, marker );
-
       });
     }
 

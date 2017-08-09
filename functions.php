@@ -80,6 +80,8 @@
 		{
 			wp_enqueue_script( 'gmaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAtItTsEwFHGmNjVyjR-HMFLjTLZW-jGv8', array(), false, false );
 			wp_enqueue_script( 'markerclusterer', get_theme_file_uri('/assets/lib/markerclusterer.js'), array(), false, false );
+			wp_enqueue_script( 'infobubble-compiled', get_theme_file_uri('/assets/lib/infobubble-compiled.js'), array(), false, false );
+			// wp_enqueue_script( 'infobox_packed', get_theme_file_uri('/assets/lib/infobox_packed.js'), array(), false, false );
 		}
 
 		if ( $post && $post->post_parent == 89 && is_user_logged_in() ) {

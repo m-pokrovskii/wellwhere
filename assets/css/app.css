@@ -1298,6 +1298,29 @@ input::placeholder {
   border-color: #000;
 }
 
+.GymMapPreview {
+  position: relative;
+}
+
+.GymMapPreview__title {
+  padding: 5px 10px 8px 10px;
+  font: 16px "Avenir-Medium";
+  color: #000;
+}
+
+.GymMapPreview__title a {
+  color: #000;
+}
+
+.GymMapPreview__close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 25px !important;
+  color: #FFF;
+  margin-right: 0 !important;
+}
+
 .SignlePage__hero {
   position: relative;
   width: 100%;
