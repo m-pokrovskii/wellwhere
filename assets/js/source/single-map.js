@@ -3,6 +3,7 @@ const GM = (function($) {
   const singleMap = $('.wellwhere-map');
   const clusterIcon = singleMap.attr('data-cluster-icon');
   const mapStyles = JSON.parse(mapData.styles);
+  
   function init() {
       singleMap.each(function(){
         map = new_map( $(this) );
@@ -11,11 +12,12 @@ const GM = (function($) {
 
   function new_map( $el ) {
     let $markers = $el.find('.marker');
+    const scrollwheel = $el.attr('data-scrollwheel') || false;
     let args = {
       zoom		: 16,
       center		: new google.maps.LatLng(0, 0),
       mapTypeId	: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: false,
+      scrollwheel: scrollwheel,
       streetViewControl: false,
       mapTypeControl: false,
       styles: mapStyles
@@ -32,15 +34,12 @@ const GM = (function($) {
 
     // add markers
     $markers.each(function(){
-
         add_marker( $(this), map );
-
     });
 
 
     // center map
     center_map( map );
-
 
     // return
     return map;

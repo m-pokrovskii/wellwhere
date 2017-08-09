@@ -5,6 +5,7 @@
 <div class="ListingMaps">
   <div
     data-cluster-icon="<?php echo $cluster_icon ?>"
+    data-scrollwheel = true
     class="wellwhere-map ListingMaps__m">
     <?php if ( have_posts() ): ?>
       <?php while( have_posts() ): the_post(); ?>
