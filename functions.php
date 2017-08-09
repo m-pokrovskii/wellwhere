@@ -67,8 +67,8 @@
 
 	// Scripts
 	function wellwhere_scripts() {
-		// TODO. Make conditions
 		global $post;
+		$modifyed = WP_DEBUG ? filemtime( get_theme_file_path('/assets/css/app.css') ) : false;
 
 		// Libs
 		wp_deregister_script( 'jquery' );
@@ -101,7 +101,7 @@
 
 		// App Css
 		wp_enqueue_style( 'fonts', get_theme_file_uri( '/assets/css/fonts.css' ), array(), null );
-		wp_enqueue_style( 'app', get_theme_file_uri('/assets/css/app.css') );
+		wp_enqueue_style( 'app', get_theme_file_uri('/assets/css/app.css'), array(), $modifyed);
 
 		// App JS
 		wp_enqueue_script( 'app', get_theme_file_uri( '/assets/js/app.js' ), array(), false, true );

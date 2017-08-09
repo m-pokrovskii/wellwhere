@@ -1,13 +1,15 @@
 .Footer
-	position: relative
-	border-top: solid 1px #eee
+	position: absolute
+	bottom: 0 
 	display: flex
+	width: 100% 
+	border-top: solid 1px #eee
 	padding: 0 57px
 	align-items: center
-	height: 78px
+	height: $footer-height
 	+sm()
 		flex-direction: column
-		height: 108px
+		height: $footer-height-sm
 	.Footer__socials
 		margin-right: auto
 		+sm()

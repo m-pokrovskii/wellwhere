@@ -2979,18 +2979,18 @@ html {
   max-width: 1440px;
   margin: 0 auto;
   margin-top: 71px;
-}
-
-.App.-payment {
   padding-bottom: 78px;
-  min-height: calc(100vh - 71px);
+  min-height: calc(100vh - 71px) !important;
+  height: auto !important;
 }
 
 .Footer {
-  position: relative;
-  border-top: solid 1px #eee;
+  position: absolute;
+  bottom: 0;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  border-top: solid 1px #eee;
   padding: 0 57px;
   -ms-flex-align: center;
   align-items: center;
@@ -3724,14 +3724,15 @@ html {
     width: auto;
   }
 
-  .App.-payment {
-    margin-top: 71px;
-  }
-
   .App {
     width: auto;
     max-width: 1024px;
     margin-top: 60px;
+    padding-bottom: 108px;
+  }
+
+  .App.-payment {
+    margin-top: 71px;
   }
 
   .Footer {
@@ -4305,8 +4306,7 @@ html {
     width: 95%;
   }
 
-  .App.-payment {
-    min-height: calc(100vh - 71px);
+  .App {
     padding-bottom: 108px;
   }
 

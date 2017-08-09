@@ -1,21 +1,27 @@
+$header-height: 71px
+$header-height-sm: 60px
+$footer-height: 78px
+$footer-height-sm: 108px
+
 html
 	height: 100%
 .App
 	position: relative
 	max-width: 1440px
 	margin: 0 auto
-	margin-top: 71px
-	&.-payment
-		padding-bottom: 78px
-		min-height: calc(100vh - 71px)
-		+sm()
-			margin-top: 71px
-		+xs()
-			min-height: calc(100vh - 71px)
-			padding-bottom: 108px
-			// border: solid 1px red
+	margin-top: $header-height
+	padding-bottom: $footer-height
+	min-height: calc(100vh - #{$header-height} ) !important
+	height: auto !important 
 	+sm()
 		width: auto
 		max-width: 1024px
-		margin-top: 60px
+		margin-top: $header-height-sm
+		padding-bottom: $footer-height-sm
 	+xs()
+		padding-bottom: $footer-height-sm
+	+xs()
+
+.App.-payment
+	+sm()
+		margin-top: 71px 
