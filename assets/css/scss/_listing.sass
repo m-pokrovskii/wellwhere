@@ -16,18 +16,27 @@
     padding: 0 21px 0 15px
 
   .ListingFilter__trigger
+    display: flex
+    height: 100%
+    align-items: center
     font-size: 16px
     line-height: 1
     padding-right: 17px
     color: #000
     cursor: pointer
     margin-right: 20px
-    background: url('../img/arrow-bottom.svg') no-repeat 100% 60%
+    background: url('../img/arrow-bottom.svg') no-repeat 100% 50%
     +xs()
       font-size: 14px
       margin-right: auto
     &.-open
-      background: url('../img/arrow-top.svg') no-repeat 100% 60%
+      background: url('../img/arrow-top.svg') no-repeat 100% 50%
+      
+  .ListingFilter__trigger
+    &:hover
+      background: url('../img/arrow-top.svg') no-repeat 100% 50%
+      .ListingFilter__menu
+        display: block
 
   .ListingFilter__trigger-map
     display: none
@@ -217,11 +226,12 @@
   float: left
   width: calc(100% - 139px)
 
-.ListingFilter__menuReset
+.ListingFilter__show-more-activites
   display: inline-block
   margin-top: 10px
   margin-bottom: 30px
   color: #3BCEAC
+  font-size: 14px 
 
 .ListingFilter__menuFooter
   clear: both

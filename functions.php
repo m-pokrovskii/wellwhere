@@ -68,7 +68,8 @@
 	// Scripts
 	function wellwhere_scripts() {
 		global $post;
-		$modifyed = WP_DEBUG ? filemtime( get_theme_file_path('/assets/css/app.css') ) : false;
+		$modifyed_css = WP_DEBUG ? filemtime( get_theme_file_path('/assets/css/app.css') ) : false;
+		$modifyed_js = WP_DEBUG ? filemtime( get_theme_file_path('/assets/css/app.css') ) : false;
 
 		// Libs
 		wp_deregister_script( 'jquery' );
@@ -103,10 +104,10 @@
 
 		// App Css
 		wp_enqueue_style( 'fonts', get_theme_file_uri( '/assets/css/fonts.css' ), array(), null );
-		wp_enqueue_style( 'app', get_theme_file_uri('/assets/css/app.css'), array(), $modifyed);
+		wp_enqueue_style( 'app', get_theme_file_uri('/assets/css/app.css'), array(), $modifyed_css);
 
 		// App JS
-		wp_enqueue_script( 'app', get_theme_file_uri( '/assets/js/app.js' ), array(), false, true );
+		wp_enqueue_script( 'app', get_theme_file_uri( '/assets/js/app.js' ), array(), $modifyed_js, true );
 		wp_localize_script('app', 'data', array(
 			'url' => get_stylesheet_directory_uri(),
 			'adminAjax' => admin_url( 'admin-ajax.php' ),
