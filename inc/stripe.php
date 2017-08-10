@@ -53,7 +53,7 @@
 
   function charge_source() {
     if ( !isset( $_POST['card_id'] ) ) { wp_die(); };
-
+    if ( !is_user_logged_in() ) { wp_die(); }
     $card_id = $_POST['card_id'];
     $user_id = get_current_user_id();
     $user_fullname = get_user_fullname( $user_id );

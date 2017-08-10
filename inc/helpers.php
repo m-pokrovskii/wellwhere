@@ -98,11 +98,16 @@ function get_card_image( $brand ) {
 
 function create_pdf( $user_name, $gym_name, $expire, $entries, $ticket_pass ) {
 	$uniq_filename = uniqid();
+	$pdf_bg = get_field('pdf_background', 'option');
+	$pdf_bg_url = "/wp-content/themes/wellwhere/assets/img/pdf-background.jpg";
+	if ( $pdf_bg ) {
+		$pdf_bg_url =  $pdf_bg['url'];
+	}
 	$mpdf = new mPDF('utf-8', 'A4');
 	ob_start();
 	include( __DIR__ . '/../templates/pass-pdf-template.php' );
 	$template = ob_get_clean();
-	$mpdf->WriteHTML($template);
+	@$mpdf->WriteHTML($template);
 	$mpdf->Output( __DIR__. '/../tickets/' . $uniq_filename . '.pdf','F' );
 	return $uniq_filename;
 }

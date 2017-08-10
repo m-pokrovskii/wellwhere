@@ -47,6 +47,12 @@
 		));
 
 		acf_add_options_sub_page(array(
+			'page_title' 	=> 'General Settings',
+			'menu_title'	=> 'General Settings',
+			'parent_slug'	=> 'theme-general-settings',
+		));
+
+		acf_add_options_sub_page(array(
 			'page_title' 	=> 'API Settings',
 			'menu_title'	=> 'API Settings',
 			'parent_slug'	=> 'theme-general-settings',
@@ -57,6 +63,7 @@
 			'menu_title'	=> 'Google Map Settings',
 			'parent_slug'	=> 'theme-general-settings',
 		));
+
 	}
 
 	function acf_google_api() {
