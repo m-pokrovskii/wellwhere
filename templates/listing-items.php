@@ -41,7 +41,7 @@
                ?>
               <div class="ListingItem__entry">
                 <div class="ListingItem__entryTitle"><?php echo $ticket_title ?></div>
-                <div class="ListingItem__entryPrice">CHF <?php echo $ticket_price ?>-</div>
+                <div class="ListingItem__entryPrice">CHF <?php echo $ticket_price ?></div>
               </div>
             <?php endwhile; ?>
           <?php endif; ?>
