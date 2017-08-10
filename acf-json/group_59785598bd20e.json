@@ -1,0 +1,157 @@
+{
+    "key": "group_59785598bd20e",
+    "title": "All API Settings",
+    "fields": [
+        {
+            "key": "field_597855b4746c7",
+            "label": "Facebook App ID",
+            "name": "facebook_app_id",
+            "type": "text",
+            "instructions": "Facebook App ID is required for Facebook login",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_597856b4746c8",
+            "label": "Facebook Secret",
+            "name": "facebook_secret",
+            "type": "text",
+            "instructions": "Facebook Secret is required for Facebook login.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_597856e4746c9",
+            "label": "Google Oauth API",
+            "name": "google_oauth_api",
+            "type": "text",
+            "instructions": "Google Oauth API is required for Google Login",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_597856f9746ca",
+            "label": "Google Oauth Client Secret",
+            "name": "google_oauth_client_secret",
+            "type": "text",
+            "instructions": "Google Oauth Client Secret is required for Google Login",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5978570e746cb",
+            "label": "Google API key",
+            "name": "google_api_key",
+            "type": "text",
+            "instructions": "Google API Key is required for Google Login",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_59785835e8c82",
+            "label": "Stripe Secret Key",
+            "name": "stripe_secret_key",
+            "type": "text",
+            "instructions": "Info is taken from your account at https:\/\/dashboard.stripe.com\/login",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_59785843e8c83",
+            "label": "Stripe Publishable Key",
+            "name": "stripe_publishable_key",
+            "type": "text",
+            "instructions": "Info is taken from your account at https:\/\/dashboard.stripe.com\/login",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-api-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1502359412
+}
