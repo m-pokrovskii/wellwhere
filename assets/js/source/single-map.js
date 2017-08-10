@@ -68,14 +68,21 @@ const GM = (function($) {
       // show info window when marker is clicked
       google.maps.event.addListener(marker, 'click', function() {
         if ( infowindow ) { infowindow.close() }
-        infowindow = new InfoBubble({
-          padding: 0,
-          shadowStyle: 0,
-          borderRadius: 0,
-          borderColor: '#E0E0E0',
-          disableAnimation: true,
-          hideCloseButton: false,
-          content:  $marker.html(),
+        // infowindow = new InfoBubble({
+        //   padding: 0,
+        //   shadowStyle: 0,
+        //   borderRadius: 0,
+        //   borderColor: '#E0E0E0',
+        //   disableAnimation: true,
+        //   hideCloseButton: false,
+        //   content:  $marker.html(),
+        // });
+        infowindow = new InfoBox({
+          alignBottom: true,
+          maxWidth: 343,
+          pixelOffset: new google.maps.Size(-171, -80),
+          closeBoxURL: data.url + "/assets/img/icon-svg-error.svg",
+          content: $marker.html()
         });
         infowindow.open( map, marker );
       });

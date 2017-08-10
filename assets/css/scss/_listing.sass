@@ -263,6 +263,9 @@
 
 .GymMapPreview
   position: relative
+  background: #FFF
+  max-width: 343px
+  border: solid 1px #E0E0E0;
 .GymMapPreview__title
   padding: 5px 10px 8px 10px 
   font: 16px "Avenir-Medium"
@@ -279,11 +282,12 @@
   color: #FFF
   margin-right: 0 !important  
 
-.ListingMaps
-  img[src="http://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif"]
-    position: absolute
+.ListingMaps 
+  .infoBox > img[src$="icon-svg-error.svg"]
+    position: absolute !important
     top: 10px !important
     right: 10px !important
     width: 25px !important
     height: 25px !important
-    content: url('../img/icon-svg-error.svg') !important
+    z-index: 2 !important
+    margin: 0 !important 

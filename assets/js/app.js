@@ -174,13 +174,20 @@ var GM = function ($) {
         if (infowindow) {
           infowindow.close();
         }
-        infowindow = new InfoBubble({
-          padding: 0,
-          shadowStyle: 0,
-          borderRadius: 0,
-          borderColor: '#E0E0E0',
-          disableAnimation: true,
-          hideCloseButton: false,
+        // infowindow = new InfoBubble({
+        //   padding: 0,
+        //   shadowStyle: 0,
+        //   borderRadius: 0,
+        //   borderColor: '#E0E0E0',
+        //   disableAnimation: true,
+        //   hideCloseButton: false,
+        //   content:  $marker.html(),
+        // });
+        infowindow = new InfoBox({
+          alignBottom: true,
+          maxWidth: 343,
+          pixelOffset: new google.maps.Size(-171, -80),
+          closeBoxURL: data.url + "/assets/img/icon-svg-error.svg",
           content: $marker.html()
         });
         infowindow.open(map, marker);
