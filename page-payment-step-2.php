@@ -56,7 +56,7 @@
     	</ul>
 			<div class="PaymentAddCard">
 				<div class="PaymentAddCard__activator">
-					+ Ajouter un mode de paiement
+					<?php _e("+ Ajouter un mode de paiement") ?>
 				</div>
 				<div class="PaymentAddNewCardForm -hide -show">
 					<div class="PaymentAddNewCardForm__headline">

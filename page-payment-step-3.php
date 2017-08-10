@@ -65,7 +65,7 @@ $card = $card[0];
 			</div>
 			<?php if ( $basket ): ?>
 				<div class="PaymentTotal">
-					<div class="PaymentTotal__title">Mode de paiement</div>
+					<div class="PaymentTotal__title"><?php _e("Mode de paiement") ?></div>
 					<div class="PaymentTotal__card">
 						<div class="PaymentTotal__card-image">
 							<?php
