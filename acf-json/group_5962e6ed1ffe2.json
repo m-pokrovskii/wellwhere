@@ -154,63 +154,6 @@
             ]
         },
         {
-            "key": "field_5962ea15c789c",
-            "label": "Monday-Friday",
-            "name": "gym_date_monday_friday",
-            "type": "text",
-            "instructions": "Example: 08:00 - 19:00",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5962eb5a3e1e9",
-            "label": "Saturday",
-            "name": "gym_date_saturday",
-            "type": "text",
-            "instructions": "Example: 08:00 - 19:00",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5962eb843e1ea",
-            "label": "Sunday",
-            "name": "gym_date_sunday",
-            "type": "text",
-            "instructions": "Example: 08:00 - 19:00",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_5962ebe6b0714",
             "label": "Map",
             "name": "",
@@ -414,5 +357,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1502359360
+    "modified": 1502359615
 }
