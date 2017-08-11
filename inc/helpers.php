@@ -127,28 +127,45 @@ function send_ticket_to_user( $user_id, $ticket_id ) {
 	$pdf = get_post_meta( $ticket_id, 'pdf_filename', true );
 	$pdf_site_url = TICKETS_SITE_FOLDER . $pdf;
 	$pdf_absolute_url = TICKETS_ABSOLUTE_FOLDER . $pdf;
-	// TODO. Fields in admin
 	$to = $user_email;
-	$subject = "Ticket from " . get_bloginfo('name');
-	$message = "Your ticket " . $pdf_site_url;
+	$subject = string_templates(array(
+		'site_name' => get_bloginfo('name')
+	), get_field('ticket_subject', 'option'));
+
+
+	$message = string_templates(array(
+		'ticket_link' => $pdf_site_url
+	), get_field('ticket_message', 'option'));
+
 	$attachments = array( $pdf_absolute_url );
-	$headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
+	$headers = array(
+		'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>',
+		'Content-Type: text/html; charset=UTF-8'
+	);
 
 	$send =  @wp_mail($to, $subject, $message, $headers, $attachments);
 }
 
 function send_user_credentials( $user_id, $user_password ) {
-	$user = new WP_User( $user_id );
+	$user     = new WP_User( $user_id );
 	$sitename = get_bloginfo('name');
-	$siteurl = get_bloginfo('url');
+	$siteurl  = get_bloginfo('url');
 
 	$to = stripslashes( $user->user_email );
-	$subject = "[ $sitename ] Your password info";
-	$message .= "Greetings " . $user->first_name . " " . $user->last_name .".\r\n";
-	$message .= "Thanks for registration." . "\r\n";
-	$message .= "Your password is: " . $user_password . "\r\n";
-	$message .= "$siteurl \r\n";
-	$headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
+	$headers = array(
+		'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>',
+		'Content-Type: text/html; charset=UTF-8'
+	);
+
+	$subject = string_templates(array(
+		'site_name' => $sitename
+	), get_field('credentials_subject', 'option'));
+
+	$message = string_templates(array(
+		'user_name' => $user->first_name . " " . $user->last_name,
+		'user_new_password' => $user_password,
+		'site_url' => siteurl
+	), get_field('credentials_message', 'option'));
 
 	$send =  @wp_mail($to, $subject, $message, $headers);
 }
@@ -421,6 +438,13 @@ function is_valid_gym_pass( $pass ) {
 	} else {
 		return false;
 	}
+}
+
+function string_templates( $strings, $topic ){
+	foreach ($strings as $key => $value) {
+		$topic = str_replace('{{'.$key .'}}', $value, $topic);
+	}
+	return $topic;
 }
 
 ?>

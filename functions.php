@@ -64,6 +64,12 @@
 			'parent_slug'	=> 'theme-general-settings',
 		));
 
+		acf_add_options_sub_page(array(
+			'page_title' 	=> 'Email Settings',
+			'menu_title'	=> 'Email Settings',
+			'parent_slug'	=> 'theme-general-settings',
+		));
+
 	}
 
 	function acf_google_api() {

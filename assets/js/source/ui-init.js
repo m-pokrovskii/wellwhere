@@ -76,10 +76,10 @@ SinglePageFixed.init();
 $('.ui.dropdown').dropdown();
 
 
-// $('.ListingFilter__trigger').on('click', function () {
-//   $(this).toggleClass('-open')
-//   $('.ListingFilter__menu').toggle();
-// })
+$('.ListingFilter__trigger').on('click', function () {
+  $(this).toggleClass('-open')
+  $('.ListingFilter__menu').toggle();
+})
 
 
 $('[data-action=listing-switch-map]').on('click', function () {

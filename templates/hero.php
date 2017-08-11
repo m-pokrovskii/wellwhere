@@ -1,6 +1,11 @@
-<div class="Hero">
+<?php 
+  global $post;
+  $image  = get_field('hero_image', $post->ID);
+  $slogan = get_field('hero_title', $post->ID);
+?>
+<div class="Hero" style="background: url(<?php echo $image; ?>) no-repeat 50% 50%">
   <div class="Hero__slogan">
-    <?php _e("Trouves une activite sportive a proximite de chez vous !") ?>
+    <?php echo $slogan ?>
   </div>
   <div class="Hero__search HeroSearch">
     <div class="HeroSearch__field">

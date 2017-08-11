@@ -1,4 +1,5 @@
 <?php
+  global $post;
   $recommended_posts = get_posts(array(
     'post_type' => 'gym',
     'meta_key' => 'gym_recommended',
@@ -7,7 +8,9 @@
  ?>
 
 <div class="HomeSection -recomended">
-  <h2 class="HomeSection__headline"><?php _e("Recommandé") ?></h2>
+  <h2 class="HomeSection__headline">
+    <?php echo get_field('recommended_section_title', $post->ID); ?>
+  </h2>
   <div class="SliderContainer">
     <div class="WrapSliderGyms">
       <div class="HomeSection__slider SliderGyms">

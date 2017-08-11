@@ -1,5 +1,5 @@
 <?php
-	// Template Name: Home Pag
+	// Template Name: Home Page
 ?>
 <?php get_header(); ?>
 <div class="App">

@@ -565,7 +565,6 @@ input::placeholder {
 .Hero {
   position: relative;
   height: 588px;
-  background: url("../img/hero-image.png") no-repeat 50% 50%;
   background-size: cover;
 }
 
@@ -1044,14 +1043,6 @@ input::placeholder {
 
 .ListingFilter .ListingFilter__trigger.-open {
   background: url("../img/arrow-top.svg") no-repeat 100% 50%;
-}
-
-.ListingFilter .ListingFilter__trigger:hover {
-  background: url("../img/arrow-top.svg") no-repeat 100% 50%;
-}
-
-.ListingFilter .ListingFilter__trigger:hover .ListingFilter__menu {
-  display: block;
 }
 
 .ListingFilter .ListingFilter__trigger-map {

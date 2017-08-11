@@ -1,16 +1,16 @@
 <div class="Footer -home">
-  <ul class="Footer__socials">
-    <li class="Footer__socialsItem">
-      <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-facebook-sm.png" alt=""></a>
-    </li>
-    <li class="Footer__socialsItem">
-      <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-instagram-sm.png" alt=""></a>
-    </li>
-    <li class="Footer__socialsItem">
-      <a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-orange-sm.png" alt=""></a>
-    </li>
-  </ul>
-  <div class="Footer__copyright">
-    &copy; 2017 Wellwhere Tous droits reservés.
-  </div>
+	<?php if ( have_rows('social_links', 'option') ): ?>
+		<ul class="Footer__socials">
+			<?php while ( have_rows('social_links', 'option') ): the_row(); ?>
+				<li class="Footer__socialsItem">
+					<a href="<?php the_sub_field('url') ?>">
+						<img src="<?php the_sub_field('icon') ?>" alt="">
+					</a>
+				</li>
+			<?php endwhile; ?>
+		</ul>
+	<?php endif; ?>
+	<div class="Footer__copyright">
+		<?php echo get_field('copyright', 'option') ?>
+	</div>
 </div>

@@ -223,17 +223,18 @@ function ajax_forgot_pass(){
 		return $key;
 	}
 
-	$headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
+	$headers = array(
+		'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>',
+		'Content-Type: text/html; charset=UTF-8'
+	);
 
 	$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 	$title = sprintf( __('[%s] Password Reset'), $blogname );
-
-	$message  = __('Someone has requested a password reset for the following account:') . "\r\n\r\n";
-	$message .= network_home_url( '/' ) . "\r\n\r\n";
-	$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
-	$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
-	$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
+	$message = string_templates(array(
+		"site_url" => network_home_url( '/' ),
+		"user_login" => $user_login,
+		"reset_link" => network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login')
+	), get_field('password_reset_message', 'option'));
 
 	$send =  wp_mail($user_email, wp_specialchars_decode( $title ), $message, $headers);
 

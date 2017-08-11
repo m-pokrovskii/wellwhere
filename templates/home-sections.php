@@ -1,4 +1,5 @@
 <?php
+  global $post;
   $activites = get_terms('activity', array(
     'hide_empty' => false
   ));
@@ -7,7 +8,7 @@
 <?php get_template_part('templates/home-slider') ?>
 <div class="HomeSection -activites">
   <h2 class="HomeSection__headline">
-    <?php _e("Vos activités préférées") ?>
+    <?php echo get_field('activity_section_title', $post->ID); ?>
   </h2>
   <ul class="ActivitesList">
       <?php foreach ($activites as $activity): ?>
@@ -23,13 +24,17 @@
   </ul>
 </div>
 <div class="HomeSection -partnerships">
-  <h2 class="HomeSection__headline"><?php _e("DEVENIR PARTENAIRE") ?></h2>
+  <h2 class="HomeSection__headline">
+    <?php echo get_field('partner_section_title', $post->ID); ?>  
+  </h2>
   <div class="HomePartnershipBlock">
     <div class="HomePartnershipBlock__desc">
-      <?php _e("Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste.") ?>
+      <?php echo get_field('partner_section_description', $post->ID); ?>  
     </div>
     <div class="HomePartnershipBlock__button">
-      <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="ButtonPartner"><?php _e("ESPACE PARTENAIRE") ?></a>
+      <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="ButtonPartner">
+        <?php echo get_field('partner_section_button_title', $post->ID); ?>  
+      </a>
     </div>
   </div>
 </div>
