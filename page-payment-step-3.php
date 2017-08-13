@@ -53,9 +53,9 @@ $card = $card[0];
 							</div>
 						</div>
 						<div class="PaymentBasketListItem__price"><?php _e("CHF") ?> <?php echo $basket['basket_ticket_price'] ?></div>
-						<div class="PaymentBasketListItem__remove -xs">
-							<?php _e("Remove") ?>
-						</div>
+						<!-- <div class="PaymentBasketListItem__remove -xs">
+							<?php #_e("Remove") ?>
+						</div> -->
 					</div>
 				<?php else: ?>
 					<div class="PaymentBasketEmpty">
