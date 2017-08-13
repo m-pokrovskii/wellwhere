@@ -1393,7 +1393,7 @@ var Rating = function () {
       interactive: true,
       onRate: function onRate() {
         if (data.userId) {
-          saveFavoriteGym();
+          saveFavoriteGym.call(this);
         } else {
           Auth.openModal();
         }
@@ -1401,7 +1401,7 @@ var Rating = function () {
     });
   }
 
-  function saveFavoriteGym($v) {
+  function saveFavoriteGym() {
     var el = $(this);
     var gymId = el.attr('data-gym-id');
     if (inProcess) {

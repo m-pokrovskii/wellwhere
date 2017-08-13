@@ -1013,7 +1013,7 @@ const Rating = (function () {
           interactive: true,
           onRate: function() {
             if ( data.userId ) {
-              saveFavoriteGym();
+              saveFavoriteGym.call(this);
             }
             else {
               Auth.openModal();
@@ -1022,7 +1022,7 @@ const Rating = (function () {
         })
     }
 
-    function saveFavoriteGym($v) {
+    function saveFavoriteGym() {
       const el = $(this);
       const gymId = el.attr('data-gym-id');
       if ( inProcess ) { return } else { inProcess = true };

@@ -126,13 +126,13 @@
 
     $favorited_gyms = get_user_meta( $cuid, 'favorited_gym_id', false );
     if ( in_array( $gym_id, $favorited_gyms ) ) {
-      delete_user_meta( $cuid, 'favorited_gym_id', $gym_id );
+      $id = delete_user_meta( $cuid, 'favorited_gym_id', $gym_id );
       wp_send_json_success( array(
         'rating' => 0,
         'message' => __('Gym has been removed')
       ) );
     } else {
-      add_user_meta( $cuid, 'favorited_gym_id', $gym_id );
+      $id = add_user_meta( $cuid, 'favorited_gym_id', $gym_id );
         wp_send_json_success( array(
           'rating' => 1,
           'message' => __('Gym has been saved')
