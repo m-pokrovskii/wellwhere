@@ -122,6 +122,9 @@
     border-right: solid 1px #E0E0E0
     &:last-child
       border-right: none
+    +xs()
+      padding-left: 10px  
+      padding-right: 10px 
 
 
   .ListingItem__entryTitle
@@ -131,6 +134,9 @@
 
   .ListingItem__entryPrice
     font: 14px 'Avenir-Heavy'
+    +xs()
+      font-size: 13px
+      white-space: nowrap 
 
 
 .ListingMaps
@@ -285,6 +291,10 @@
   font-size: 25px !important 
   color: #FFF
   margin-right: 0 !important  
+
+.GymMapPreview__image
+  img
+    width: 100% 
 
 .ListingMaps 
   .infoBox > img[src$="icon-svg-error.svg"]

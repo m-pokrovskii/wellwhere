@@ -269,15 +269,15 @@ const ProfileSwitch = (function ($) {
 
   function onLoad() {
     if (!location.hash || !location.hash == "#") { return };
-
     activateLink();
-    activateSection();
+    setTimeout(function() {
+      activateSection();
+    }, 300)
   }
 
 
   function activate() {
     if (!location.hash || !location.hash == "#") { return };
-
     activateSection()
     activateLink()
     activateMobileLink()

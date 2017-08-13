@@ -5,7 +5,7 @@
 <div class="App -payment">
 	<?php get_template_part('templates/payment-header') ?>
 	<div class="PaymentPage">
-		<div class="PaymentTitle"><?php the_title() ?></div>
+		<div class="PaymentTitle"></div>
 		<div class="PaymentComplete">
       <div class="PaymentCompleteContent">
         <img class="PaymentComplete__icon-done" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/icon-done.png" alt="">

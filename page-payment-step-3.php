@@ -32,13 +32,13 @@ $card = $card[0];
 <div class="App -payment">
 	<?php get_template_part('templates/payment-header') ?>
 	<div class="PaymentPage">
-		<div class="PaymentTitle"><?php the_title() ?></div>
+		<div class="PaymentTitle"></div>
 		<?php get_template_part( 'templates/payment-steps' ); ?>
 		<div class="PaymentBasket">
 			<div class="PaymentBasketList">
 				<?php if ( $basket ): ?>
 					<div class="PaymentBasketListItem">
-						<i data-remove-basket class="PaymentBasketListItem__close"></i>
+						<!-- <i data-remove-basket class="PaymentBasketListItem__close"></i> -->
 						<div class="PaymentBasketListItem__image">
 							<a href="<?php echo get_permalink( $basket['basket_gym_id'] ) ?>">
 								<img src="<?php echo get_the_post_thumbnail_url($basket['basket_gym_id'], 'single-preview') ?>" alt="">

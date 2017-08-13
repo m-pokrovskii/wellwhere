@@ -510,7 +510,6 @@ input::placeholder {
   border: solid 1px #EFEFEF;
   height: 31px;
   width: 100%;
-  border-right: none;
   padding-left: 7px;
   color: #6E6868;
   font-size: 11px;
@@ -1333,6 +1332,10 @@ input::placeholder {
   margin-right: 0 !important;
 }
 
+.GymMapPreview__image img {
+  width: 100%;
+}
+
 .ListingMaps .infoBox > img[src$="icon-svg-error.svg"] {
   position: absolute !important;
   top: 10px !important;
@@ -1632,6 +1635,7 @@ input::placeholder {
 .Comment .Comment__description {
   color: #6E6868;
   font-size: 14px;
+  text-align: justify;
 }
 
 .Comment .Comment__description p {
@@ -3015,6 +3019,10 @@ input::placeholder {
   background: #E0E0E0;
 }
 
+.AuthModal__register {
+  font-size: 14px;
+}
+
 html {
   height: 100%;
 }
@@ -3023,7 +3031,7 @@ html {
   position: relative;
   max-width: 1440px;
   margin: 0 auto;
-  margin-top: 71px;
+  padding-top: 71px;
   padding-bottom: 78px;
   min-height: calc(100vh - 71px) !important;
   height: auto !important;
@@ -3772,12 +3780,12 @@ html {
   .App {
     width: auto;
     max-width: 1024px;
-    margin-top: 60px;
+    padding-top: 60px;
     padding-bottom: 108px;
   }
 
   .App.-payment {
-    margin-top: 71px;
+    padding-top: 71px;
   }
 
   .Footer {
@@ -3846,6 +3854,7 @@ html {
     -ms-flex-direction: column;
     flex-direction: column;
     height: auto;
+    margin-bottom: 22px;
   }
 
   .HeroFeatures__item {
@@ -3943,6 +3952,16 @@ html {
   .ListingItem:nth-child(1n) {
     margin-right: 0;
     margin-left: auto;
+  }
+
+  .ListingItem__listEnrties .ListingItem__entry {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .ListingItem__listEnrties .ListingItem__entryPrice {
+    font-size: 13px;
+    white-space: nowrap;
   }
 
   .ListingMaps__m {
@@ -4162,6 +4181,10 @@ html {
     margin-top: 27px;
     width: 100%;
     text-align: right;
+  }
+
+  .PaymentCardsItem__button {
+    width: 120px;
   }
 
   .PaymentAddCard {

@@ -11,16 +11,16 @@
     <?php echo get_field('activity_section_title', $post->ID); ?>
   </h2>
   <ul class="ActivitesList">
-      <?php foreach ($activites as $activity): ?>
-        <?php
-          $image = get_field('activity_image', $activity);
-        ?>
-        <li class="ActivitesList__item" style="background-image: url(<?php echo $image['sizes']['activity'] ?>);">
-          <a class="ActivitesList__itemTitle" href="<?php echo get_term_link($activity, 'activity') ?>">
-            <span><?php echo $activity->name ?></span>
-          </a>
-        </li>
-      <?php endforeach; ?>
+    <?php foreach ($activites as $activity): ?>
+      <?php
+        $image = get_field('activity_image', $activity);
+      ?>
+      <li class="ActivitesList__item" style="background-image: url(<?php echo $image['sizes']['activity'] ?>);">
+        <a class="ActivitesList__itemTitle" href="<?php echo get_term_link($activity, 'activity') ?>">
+          <span><?php echo $activity->name ?></span>
+        </a>
+      </li>
+    <?php endforeach; ?>
   </ul>
 </div>
 <div class="HomeSection -partnerships">

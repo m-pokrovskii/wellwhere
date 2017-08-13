@@ -10,7 +10,7 @@
 <div class="App -payment">
 	<?php get_template_part('templates/payment-header') ?>
 	<div class="PaymentPage">
-		<div class="PaymentTitle"><?php the_title() ?></div>
+		<div class="PaymentTitle"></div>
 		<?php get_template_part( 'templates/payment-steps' ); ?>
 		<div class="PaymentCards">
 			<!-- TODO. Ajax -->
@@ -46,7 +46,6 @@
 							</form>
 							<button
 								data-card-remove
-								href="#"
 								class="PaymentCardsItem__button -remove">
 								<?php _e('remove') ?>
 							</button>

@@ -9,14 +9,14 @@ html
 	position: relative
 	max-width: 1440px
 	margin: 0 auto
-	margin-top: $header-height
+	padding-top: $header-height
 	padding-bottom: $footer-height
 	min-height: calc(100vh - #{$header-height} ) !important
 	height: auto !important 
 	+sm()
 		width: auto
 		max-width: 1024px
-		margin-top: $header-height-sm
+		padding-top: $header-height-sm
 		padding-bottom: $footer-height-sm
 	+xs()
 		padding-bottom: $footer-height-sm
@@ -24,4 +24,4 @@ html
 
 .App.-payment
 	+sm()
-		margin-top: 71px 
+		padding-top: $header-height

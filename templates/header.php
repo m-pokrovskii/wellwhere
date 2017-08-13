@@ -29,10 +29,10 @@
 							<img class="LoggedInUserDropdown__avatar ui avatar image" src=" <?php echo $avatar_url ?>  ">
 							<i class="dropdown icon"></i>
 							<div class="menu">
-								<a href="<?php echo page_link_by_file('page-profile.php') ?>" class="item">Profil</a>
-								<a href="<?php echo page_link_by_file('page-profile.php') ?>#comments" class="item">Commentaires</a>
-								<a href="<?php echo page_link_by_file('page-profile.php') ?>#pass" class="item">Pass</a>
-								<a href="<?php echo page_link_by_file('page-profile.php') ?>#favorites" class="item">Favorits</a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>" class="item"><?php _e("Profil") ?></a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>#comments" class="item"><?php _e("Commentaires") ?></a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>#pass" class="item"><?php _e("Pass") ?></a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>#favorites" class="item"><?php _e("Favorits") ?></a>
 								<a href="<?php echo wp_logout_url( get_home_url() ) ?>" class="item">
 									<?php echo __('Logout', 'wellwhere') ?>
 								</a>
@@ -69,34 +69,29 @@
 				</div>
 			<?php endif; ?>
 			<div class="SmMenu__search">
-				<label class="SmMenu__searchLabel" for="SmMenu__searchField">Rechercher</label>
+				<label class="SmMenu__searchLabel" for="SmMenu__searchField"><?php _e("Rechercher") ?></label>
 				<div class="SmMenu__searchForm">
 					<input class="SmMenu__searchField prompt"  placeholder="Où voulez-vous vous entrainer ?" type="text" name="SmMenu__searchField" value="">
-					<button type="button" class="SmMenu__searchButton" name="SmMenu__searchButton"></button>
 				</div>
 				<div class="ui fluid loading search">
 					<div class="results"></div>
 				</div>
 			</div>
 			<?php if ( is_user_logged_in() ): ?>
-				<ul class="SmMenu__menu1 -logged-in">
-					<li>
-						<a href="<?php echo get_author_posts_url( $curruser->ID ) ?>" class="item">Profil</a>
-					</li>
-					<li>
-						<a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#comments" class="item">Commentaires</a>
-					</li>
-					<li>
-						<a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#pass" class="item">Pass</a>
-					</li>
-					<li>
-						<a href="<?php echo get_author_posts_url( $curruser->ID ) ?>#favorites" class="item">Favorits</a>
-					</li>
+				<ul class="SmMenu__menu1 -logged-in">					
+					<?php 
+					  $mobile_user_profile_menu = wp_get_nav_menu_items('Mobile User Profile Logged In');
+					?>
+					<?php foreach ($mobile_user_profile_menu as $item): ?>
+					 <li>
+					   <a href="<?php echo $item->url ?>" class="item">
+					     <?php echo $item->title ?>
+					   </a>
+					 </li> 
+					<?php endforeach ?>
 					<li>
 						<a href="<?php echo wp_logout_url( get_home_url() ) ?>" class="item">
-					</li>
-					<li><?php echo __('Logout', 'wellwhere') ?></li>
-					<li>
+							<?php echo __('Logout', 'wellwhere') ?>
 						</a>
 					</li>
 				</ul>
@@ -108,21 +103,28 @@
 				</ul>
 			<?php endif; ?>
 			<ul class="SmMenu__menu2">
-				<li><a href="#">A propos</a></li>
-				<li><a href="#">FAQ</a></li>
-				<li><a href="#">Conditions générales</a></li>
+				<?php 
+					$mobile_menu_pages = wp_get_nav_menu_items('Mobile Menu Pages');
+				?>
+				<?php foreach ($mobile_menu_pages as $page_item): ?>
+					<li>
+						<a href="<?php echo $page_item->url ?>">
+							<?php echo $page_item->title ?>
+						</a>
+					</li>
+				<?php endforeach ?>
 			</ul>
-			<ul class="SmMenu__socials">
-				<li class="SmMenu__socialsItem">
-					<a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-facebook.png" alt=""></a>
-				</li>
-				<li class="SmMenu__socialsItem">
-					<a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-instagram.png" alt=""></a>
-				</li>
-				<li class="SmMenu__socialsItem">
-					<a href="#"><img src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-orange.png" alt=""></a>
-				</li>
-			</ul>
+			<?php if ( have_rows('social_links', 'option') ): ?>
+				<ul class="SmMenu__socials">
+					<?php while ( have_rows('social_links', 'option') ): the_row(); ?>
+						<li class="SmMenu__socialsItem">
+							<a href="<?php the_sub_field('url') ?>">
+								<img src="<?php the_sub_field('icon') ?>" alt="">
+							</a>
+						</li>
+					<?php endwhile; ?>
+				</ul>
+			<?php endif; ?>
 		</div>
 		<a href="/" class="Header__logo"></a>
 	</div>

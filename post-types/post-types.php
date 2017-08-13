@@ -82,7 +82,7 @@ function types_init() {
 		),
 		'public'            => false,
 		'hierarchical'      => false,
-		'show_ui'           => false,
+		'show_ui'           => true,
 		'supports'          => array( 'title', 'custom-fields'),
 		'show_in_rest'      => false,
 		'capabilities' => array(

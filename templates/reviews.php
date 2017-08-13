@@ -44,19 +44,19 @@
 			<form data-review-form class="AddReview ui tiny form">
 				<div class="field">
 					<label for="subject">
-						<?php _e('Subject') ?>
+						<?php _e('Titre') ?>
 					</label>
 					<input type="text" name="subject" id="subject">
 				</div>
 				<div class="field">
 					<label for="review_textarea">
-						<?php _e('Review') ?>
+						<?php _e('Votre commentaire') ?>
 					</label>
 					<textarea name="review_textarea" id="review_textarea"></textarea>
 				</div>
 				<div class="field">
 					<label for="">
-						<?php _e("Rating") ?>
+						<?php _e("Note") ?>
 					</label>
 					<input type="hidden" name="rating" id="rating" value="5">
 					<div 
@@ -66,7 +66,7 @@
 				<input type="hidden" value="<?php echo $gym_id ?>" name="gym_id" id="gym_id">
 				<div class="ui error message"></div>
 				<div class="ui tiny submit button">
-					<?php _e("Submit") ?>
+					<?php _e("Envoyer") ?>
 				</div>
 			</form>			
 		<?php endif ?>

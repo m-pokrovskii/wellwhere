@@ -54,7 +54,7 @@
 		} else {
 			$ticket         = $tickets->posts[0];
 			$ticket_user_id = get_post_meta( $ticket->ID, 'user_id', true );
-			$expire_date    = get_post_meta( $ticket->ID, 'expire', true );
+			$expire_date    = date( "d.m.Y", strtotime( get_post_meta( $ticket->ID, 'expire', true ) ) );
 			$ticket_holder  = get_user_fullname( $ticket_user_id );
 			$entries_remain = get_post_meta( $ticket->ID, 'entries_available', true );
 			
