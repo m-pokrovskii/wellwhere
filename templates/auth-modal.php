@@ -135,13 +135,13 @@
             type="sybmit"
             class="ForgotPassForm__submit ui fluid button"
             name="forgot">
-            <?php _e('Reset Password','wellwhere');?>
+            <?php _e('Réinitialiser votre mot de passe','wellwhere');?>
           </button>
         </div>
         <div class="ui small success message"></div>
         <div class="ui small error message"></div>
         <div class="field">
-          <a data-switch-modal href="#LoginForm"><?php _e('Return to Login','wellwhere');?></a>
+          <a data-switch-modal href="#LoginForm"><?php _e('Revenir au log in','wellwhere');?></a>
         </div>
       </form>
     </div>
