@@ -54,10 +54,13 @@
 				<?php endforeach; ?>
     	</ul>
 			<div class="PaymentAddCard">
+				<?php 
+					$is_open = ( empty( $cards ) ) ? "" : "-hide";
+				 ?>
 				<div class="PaymentAddCard__activator">
 					<?php _e("+ Ajouter un mode de paiement") ?>
 				</div>
-				<div class="PaymentAddNewCardForm -hide -show">
+				<div class="PaymentAddNewCardForm <?php echo $is_open ?>">
 					<div class="PaymentAddNewCardForm__headline">
 						<img class="PaymentAddNewCardForm__cards-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-cards.png" alt="">
 						<div class="PaymentAddNewCardForm__title">Carte de crédit</div>
