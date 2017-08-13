@@ -1306,6 +1306,8 @@ var ProfileAvatarUpload = function ($) {
   var imageInput = $('#ProfileUploadForm__image');
   var avatarMessage = $('[data-profile-avatar-message]');
   var profileAvatar = $('.Profile__avatar');
+  var headerAvatar = $('.LoggedInUserDropdown__avatar');
+  var mobileMenuAvatar = $('.SmMenu__userAvatar');
   var delteAvatar = $('[data-profile-avatar-delete]');
   function init() {
     imageInput.on('change', upload);
@@ -1332,6 +1334,10 @@ var ProfileAvatarUpload = function ($) {
         profileAvatar.css({
           backgroundImage: 'url(' + r.data.url + ')'
         });
+        mobileMenuAvatar.css({
+          backgroundImage: 'url(' + r.data.url + ')'
+        });
+        headerAvatar.attr('src', r.data.url);
         input.val('');
       } else {
         console.log(r);

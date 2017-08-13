@@ -918,10 +918,12 @@ const Profile = (function($) {
 Profile.init();
 
 const ProfileAvatarUpload = (function($) {
-  const imageInput    = $('#ProfileUploadForm__image');
-  const avatarMessage = $('[data-profile-avatar-message]');
-  const profileAvatar = $('.Profile__avatar');
-  const delteAvatar = $('[data-profile-avatar-delete]');
+  const imageInput       = $('#ProfileUploadForm__image');
+  const avatarMessage    = $('[data-profile-avatar-message]');
+  const profileAvatar    = $('.Profile__avatar');
+  const headerAvatar     = $('.LoggedInUserDropdown__avatar');
+  const mobileMenuAvatar = $('.SmMenu__userAvatar');
+  const delteAvatar      = $('[data-profile-avatar-delete]');
   function init() {
     imageInput.on('change', upload);
     delteAvatar.on('click', remove);
@@ -947,7 +949,11 @@ const ProfileAvatarUpload = (function($) {
       if (r.success) {
         profileAvatar.css({
           backgroundImage: 'url(' + r.data.url+ ')'
-        })
+        });
+        mobileMenuAvatar.css({
+          backgroundImage: 'url(' + r.data.url+ ')'
+        });
+        headerAvatar.attr('src', r.data.url);
         input.val('');
       } else {
         console.log(r);
