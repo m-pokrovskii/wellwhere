@@ -249,6 +249,9 @@ Sticky.init();
 const ProfileSwitch = (function ($) {
   const menu = $('.ProfileMenu');
   const links = $('.ProfileMenu a');
+  const mobileMenu = $('.SmMenu__menu1');
+  const mobileMenuLinks = $('.SmMenu__menu1 > li > a');
+  const SmMenu = $('.SmMenu');
   let sections;
 
   function init() {
@@ -263,13 +266,20 @@ const ProfileSwitch = (function ($) {
       location.hash = this.hash
     });
 
+    mobileMenuLinks.on('click', handleMobileLinks);
+
     $(window).on('hashchange', activate);
+  }
+
+  function handleMobileLinks(e) {
+    SmMenu.hide();
   }
 
 
   function onLoad() {
     if (!location.hash || !location.hash == "#") { return };
     activateLink();
+    activateMobileLink();
     setTimeout(function() {
       activateSection();
     }, 300)
@@ -285,9 +295,7 @@ const ProfileSwitch = (function ($) {
 
 
   function activateMobileLink() {
-    const mobileMenu = $('.SmMenu__menu1');
-    const mobileMenuLinks = $('.SmMenu__menu1 > li > a');
-    let curent = mobileMenu.find("[href='" + location.hash + "']");
+    let curent = mobileMenu.find("[href$='" + location.hash + "']");
 
     mobileMenuLinks.removeClass('active');
     curent.addClass('active');

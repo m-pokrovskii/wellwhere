@@ -7,7 +7,7 @@
             "label": "Password Reset Message",
             "name": "password_reset_message",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "{{site_url}}, {{user_login}}, {{reset_link}}",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -26,7 +26,7 @@
             "label": "Ticket Subject",
             "name": "ticket_subject",
             "type": "text",
-            "instructions": "",
+            "instructions": "{{site_name}}",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -45,7 +45,7 @@
             "label": "Ticket Message",
             "name": "ticket_message",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "{{ticket_link}}",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -64,7 +64,7 @@
             "label": "Credentials Subject",
             "name": "credentials_subject",
             "type": "text",
-            "instructions": "",
+            "instructions": "{{site_name}}",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -83,7 +83,7 @@
             "label": "Credentials Message",
             "name": "credentials_message",
             "type": "textarea",
-            "instructions": "",
+            "instructions": "{{user_name}}, {{user_new_password}}, {{site_name}}",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -115,5 +115,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1502441881
+    "modified": 1502707017
 }

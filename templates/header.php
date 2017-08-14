@@ -29,7 +29,7 @@
 							<img class="LoggedInUserDropdown__avatar ui avatar image" src=" <?php echo $avatar_url ?>  ">
 							<i class="dropdown icon"></i>
 							<div class="menu">
-								<a href="<?php echo page_link_by_file('page-profile.php') ?>" class="item"><?php _e("Profil") ?></a>
+								<a href="<?php echo page_link_by_file('page-profile.php') ?>#profile" class="item"><?php _e("Profil") ?></a>
 								<a href="<?php echo page_link_by_file('page-profile.php') ?>#comments" class="item"><?php _e("Commentaires") ?></a>
 								<a href="<?php echo page_link_by_file('page-profile.php') ?>#pass" class="item"><?php _e("Pass") ?></a>
 								<a href="<?php echo page_link_by_file('page-profile.php') ?>#favorites" class="item"><?php _e("Favorits") ?></a>
