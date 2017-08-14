@@ -4371,6 +4371,23 @@ html {
     padding: 20px;
   }
 
+  .StripeForm__fields {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .StripeForm__element {
+    margin-right: 0;
+  }
+
+  .StripeForm__button {
+    width: 100%;
+  }
+
+  .StripeForm .StripeElement {
+    width: 100%;
+  }
+
   .AuthModal.ui.modal {
     margin-left: -47.5%;
     width: 95%;
