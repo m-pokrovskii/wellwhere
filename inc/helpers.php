@@ -162,9 +162,10 @@ function send_user_credentials( $user_id, $user_password ) {
 	), get_field('credentials_subject', 'option'));
 
 	$message = string_templates(array(
-		'user_name' => $user->first_name . " " . $user->last_name,
+		'user_name'         => $user->first_name . " " . $user->last_name,
 		'user_new_password' => $user_password,
-		'site_url' => siteurl
+		'site_url'          => $siteurl,
+		'site_name'         => $sitename
 	), get_field('credentials_message', 'option'));
 
 	$send =  @wp_mail($to, $subject, $message, $headers);

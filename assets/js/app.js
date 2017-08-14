@@ -1047,7 +1047,8 @@ var Auth = function ($) {
       fields: {
         user_first_name: 'empty',
         user_last_name: 'empty',
-        user_email_register: 'email'
+        user_email_register: 'email',
+        user_password_register: 'empty'
       }
     });
 
@@ -1107,6 +1108,7 @@ var Auth = function ($) {
     var user_first_name_register = regFields.user_first_name_register;
     var user_last_name_register = regFields.user_last_name_register;
     var user_email_register = regFields.user_email_register;
+    var user_password_register = regFields.user_password_register;
     var ajaxurl = data.adminAjax;
     var security_register = regFields.security_register;
 
@@ -1119,7 +1121,8 @@ var Auth = function ($) {
         'security_register': security_register,
         'user_first_name': user_first_name_register,
         'user_last_name': user_last_name_register,
-        'user_email_register': user_email_register
+        'user_email_register': user_email_register,
+        'user_password_register': user_password_register
       },
       success: function success(r) {
         if (r.success) {

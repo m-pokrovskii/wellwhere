@@ -659,6 +659,7 @@ const Auth = (function ($) {
         user_first_name: 'empty',
         user_last_name: 'empty',
         user_email_register: 'email',
+        user_password_register: 'empty',
       }
     });
 
@@ -716,10 +717,11 @@ const Auth = (function ($) {
     const regFields =  regForm.serializeObject();
 
     const user_first_name_register = regFields.user_first_name_register;
-    const user_last_name_register = regFields.user_last_name_register;
-    const user_email_register = regFields.user_email_register;
-    const ajaxurl = data.adminAjax;
-    const security_register = regFields.security_register;
+    const user_last_name_register  = regFields.user_last_name_register;
+    const user_email_register      = regFields.user_email_register;
+    const user_password_register   = regFields.user_password_register;
+    const ajaxurl                  = data.adminAjax;
+    const security_register        = regFields.security_register;
 
     $.ajax({
       type: 'POST',
@@ -730,7 +732,8 @@ const Auth = (function ($) {
         'security_register': security_register,
         'user_first_name': user_first_name_register,
         'user_last_name': user_last_name_register,
-        'user_email_register': user_email_register
+        'user_email_register': user_email_register,
+        'user_password_register': user_password_register
       },
       success: function (r) {
         if (r.success) {

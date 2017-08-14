@@ -98,6 +98,14 @@
             placeholder="<?php _e('Adresse Mail','wellwhere');?>"  />
         </div>
 
+        <div class="field">
+          <input
+            type="password"
+            name="user_password_register"
+            id="user_password_register"
+            placeholder="<?php _e('Mot de passe','wellwhere');?>"  />
+        </div>
+
         <input
           type="hidden"
           id="security_register"
@@ -115,7 +123,7 @@
         </div>
 
         <div class="field">
-          <a data-switch-modal href="#LoginForm" id="widget_login"><?php _e('Se connecter','wellwhere');?></a>
+          <a class="AuthModal__text-line -after" data-switch-modal href="#LoginForm" id="widget_login"><?php _e('Se connecter','wellwhere');?></a>
         </div>
       </form>
       <form id="ForgotPassForm" action="" class="ForgotPassForm ui form hide">
@@ -141,7 +149,7 @@
         <div class="ui small success message"></div>
         <div class="ui small error message"></div>
         <div class="field">
-          <a data-switch-modal href="#LoginForm"><?php _e('Revenir au log in','wellwhere');?></a>
+          <a class="AuthModal__text-line -after" data-switch-modal href="#LoginForm"><?php _e('Revenir au log in','wellwhere');?></a>
         </div>
       </form>
     </div>

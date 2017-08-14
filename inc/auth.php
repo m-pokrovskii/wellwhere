@@ -116,14 +116,21 @@ add_action( 'wp_ajax_nopriv_ajax_register_user', 'ajax_register_user' );
 add_action( 'wp_ajax_ajax_register_user', 'ajax_register_user' );
 
 function ajax_register_user(){
-	$allowed_html =   array();
-	$user_email = trim( sanitize_text_field(wp_kses( $_POST['user_email_register'] ,$allowed_html) ) );
+	$allowed_html    = array();
+	$user_email      = trim( sanitize_text_field(wp_kses( $_POST['user_email_register'] ,$allowed_html) ) );
+	$user_password   = trim($_POST['user_password_register']);
 	$user_first_name = trim( sanitize_text_field(wp_kses( $_POST['user_first_name'] ,$allowed_html) ) );
-	$user_last_name = trim( sanitize_text_field(wp_kses( $_POST['user_last_name'] ,$allowed_html) ) );
+	$user_last_name  = trim( sanitize_text_field(wp_kses( $_POST['user_last_name'] ,$allowed_html) ) );
 
 	if ( $user_email == "" ){
 		wp_send_json_error( array(
 			'message' => __( 'Email field is empty!','wellwhere')
+			) );
+	}
+
+	if ( $user_password == "" ){
+		wp_send_json_error( array(
+			'message' => __( 'Password field is empty!','wellwhere')
 			) );
 	}
 
@@ -155,13 +162,13 @@ function ajax_register_user(){
 	}
 
 	if ( email_exists( $user_email ) == false ) {
-		$user_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+		// $user_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
 		$user_id = wp_insert_user( array(
 			'user_login' => $user_email,
-			'user_pass' => $user_password,
+			'user_pass'  => $user_password,
 			'user_email' => $user_email,
 			'first_name' => $user_first_name,
-			'last_name' => $user_last_name
+			'last_name'  => $user_last_name
 			));
 		if ( is_wp_error( $user_id ) ){
 			wp_send_json_error( $user_id );
