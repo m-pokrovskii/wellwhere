@@ -1198,3 +1198,52 @@ const Reviews = (function () {
   }
 })();
 Reviews.init();
+
+
+const Favorites = (function () {
+  const loadMoreFavoritesLink = $('[data-load-more-favorites]');
+  const profileFavoritesContainer = $('.FavoriteList');
+  let inProcess = false;
+  
+  function init() {
+    loadMoreFavoritesLink.on('click', loadMoreFavorites)
+  }
+
+  function loadMoreFavorites(e) {
+    e.preventDefault();
+    if ( inProcess === true ) { return false; }
+    inProcess = true;
+
+    const favorites_per_page = loadMoreFavoritesLink.attr('data-favorites-per-page');
+    const offset = profileFavoritesContainer.find('.FavoriteListItem').length;
+
+    $.ajax({
+      url: data.adminAjax,
+      type: 'GET',
+      data: {
+        action: 'load_more_favorites',
+        favorites_per_page: favorites_per_page,
+        offset: offset
+      },
+    })
+    .done(function(r) {
+      profileFavoritesContainer.append(r);
+      if (r.success === false) {
+        console.log( r );
+        loadMoreFavoritesLink.fadeOut();
+      }
+    })
+    .fail(function(e) {
+      console.log(e);
+    })
+    .always(function() {
+      inProcess = false;
+    });
+  }
+
+  return {
+    init: init
+  }
+})();
+
+Favorites.init();

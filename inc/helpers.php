@@ -447,4 +447,32 @@ function string_templates( $strings, $topic ){
 	return $topic;
 }
 
+function profile_favorites_template( $favorited_gym ) { ?>
+	<div class="FavoriteListItem">
+		<div 
+			class="FavoriteListItem__image" 
+			style="background-image: url( <?php echo get_the_post_thumbnail_url($favorited_gym, 'listing') ?> )" >
+			<div 
+				data-rating="1" 
+				data-max-rating="1"
+				data-gym-id="<?php echo $favorited_gym->ID ?>"
+				class="GymFavorite ui rating FavoriteListItem__favorite"></div>
+		</div>
+		<div class="FavoriteListItem__content">
+			<div class="FavoriteListItem__category">Salle</div>
+			<div class="FavoriteListItem__title">
+				<a href="<?php echo get_permalink( $favorited_gym->ID ); ?>">
+					<?php echo $favorited_gym->post_title ?>
+				</a>
+			</div>
+			<div 
+				data-rating="<?php echo get_post_meta( $favorited_gym->ID, 'average_rating', true ) ?>"
+				class="GymRating ui rating FavoriteListItem__rating"></div>
+		</div>
+	</div>
+	
+<?php }
+
+
+
 ?>

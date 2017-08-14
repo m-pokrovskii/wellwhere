@@ -1577,6 +1577,53 @@ var Reviews = function () {
 }();
 Reviews.init();
 
+var Favorites = function () {
+  var loadMoreFavoritesLink = $('[data-load-more-favorites]');
+  var profileFavoritesContainer = $('.FavoriteList');
+  var inProcess = false;
+
+  function init() {
+    loadMoreFavoritesLink.on('click', loadMoreFavorites);
+  }
+
+  function loadMoreFavorites(e) {
+    e.preventDefault();
+    if (inProcess === true) {
+      return false;
+    }
+    inProcess = true;
+
+    var favorites_per_page = loadMoreFavoritesLink.attr('data-favorites-per-page');
+    var offset = profileFavoritesContainer.find('.FavoriteListItem').length;
+
+    $.ajax({
+      url: data.adminAjax,
+      type: 'GET',
+      data: {
+        action: 'load_more_favorites',
+        favorites_per_page: favorites_per_page,
+        offset: offset
+      }
+    }).done(function (r) {
+      profileFavoritesContainer.append(r);
+      if (r.success === false) {
+        console.log(r);
+        loadMoreFavoritesLink.fadeOut();
+      }
+    }).fail(function (e) {
+      console.log(e);
+    }).always(function () {
+      inProcess = false;
+    });
+  }
+
+  return {
+    init: init
+  };
+}();
+
+Favorites.init();
+
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
