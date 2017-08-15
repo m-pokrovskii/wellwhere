@@ -131,7 +131,9 @@ var GM = function ($) {
       scrollwheel: scrollwheel,
       streetViewControl: false,
       mapTypeControl: false,
-      styles: mapStyles
+      styles: mapStyles,
+      // TODO. Probably remove
+      gestureHandling: "greedy"
     };
 
     // create map

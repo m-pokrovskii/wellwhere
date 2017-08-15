@@ -7,6 +7,13 @@
 	add_filter('rest_enabled', '_return_false');
 	add_filter('rest_jsonp_enabled', '_return_false');
 
+	function acf_google_api() {
+		acf_update_setting('google_api_key', get_field('google_api_key', 'option'));
+	}
+
+	add_action('acf/init', 'acf_google_api');
+
+
 	require_once 'inc/mPDF-v6.1.0/vendor/autoload.php';
 	require_once 'inc/search.php';
 	require_once 'inc/auth.php';
@@ -14,11 +21,11 @@
 	require_once 'inc/author-rewrite-rules.php';
 	require_once 'post-types/post-types.php';
 	require_once 'taxonomies/taxonomies.php';
-	require_once 'inc/stripe.php';
 	require_once 'inc/basket.php';
 	require_once 'inc/add_review.php';
 	require_once 'inc/check_ticket.php';
 	require_once 'inc/helpers.php';
+	require_once 'inc/stripe.php';
 
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-thumbnails' );
@@ -72,12 +79,6 @@
 
 	}
 
-	function acf_google_api() {
-		acf_update_setting('google_api_key', get_field('google_api_key', 'option'));
-	}
-
-	add_action('acf/init', 'acf_google_api');
-
 	// Scripts
 	function wellwhere_scripts() {
 		global $post;
@@ -92,7 +93,7 @@
 		// Google Maps
 		if ( is_singular() || is_tax() )
 		{
-			wp_enqueue_script( 'gmaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAtItTsEwFHGmNjVyjR-HMFLjTLZW-jGv8', array(), false, false );
+			wp_enqueue_script( 'gmaps', 'https://maps.googleapis.com/maps/api/js?key='.get_field('google_api_key', 'option'), array(), false, false );
 			wp_enqueue_script( 'markerclusterer', get_theme_file_uri('/assets/lib/markerclusterer.js'), array(), false, false );
 			wp_enqueue_script( 'infobubble-compiled', get_theme_file_uri('/assets/lib/infobubble-compiled.js'), array(), false, false );
 			wp_enqueue_script( 'infobox_packed', get_theme_file_uri('/assets/lib/infobox_packed.js'), array(), false, false );
