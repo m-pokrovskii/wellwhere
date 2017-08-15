@@ -176,7 +176,7 @@ function ajax_register_user(){
 			send_user_credentials( $user_id, $user_password );
 			wp_send_json_success( array(
 				'message' => __('An email with the generated password was sent!','wellwhere')
-				) );
+			) );
 		}
 	} else {
 		wp_send_json_error( array(

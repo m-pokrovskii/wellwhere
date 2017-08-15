@@ -747,6 +747,10 @@ const Auth = (function ($) {
         if (r.success) {
           regForm.find('.ui.small.info.message').hide();
           regForm.find('.ui.small.success.message').html(r.data.message);
+          setTimeout(() => {
+            $('form.ui.form').hide();
+            $('#LoginForm').show();
+          }, 3000)
         } else {
           regForm.form("add errors", [r.data.message] );
         }
