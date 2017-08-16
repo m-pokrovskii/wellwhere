@@ -118,6 +118,9 @@ var GM = function ($) {
   function init() {
     singleMap.each(function () {
       map = new_map($(this));
+      google.maps.event.addListener(map, 'bounds_changed', function () {
+        console.log('bound changed');
+      });
     });
   }
 
