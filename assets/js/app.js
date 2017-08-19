@@ -73,366 +73,9 @@
 "use strict";
 
 
-$('.SmOpener').on('click', toggleMobileMenu);
-
-function toggleMobileMenu(e) {
-  $('.SmOpener').toggleClass('open');
-  $('.SmMenu').toggle();
-}
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var url = data.adminAjax + '?action=search&q={query}';
-$('.HeroSearch__field, .Header__search, .SmMenu__search').search({
-  apiSettings: {
-    action: 'search',
-    cache: false,
-    url: url
-  },
-  fields: {
-    actionURL: 'url'
-  },
-  searchFullText: false,
-  searchFields: ['title']
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var GM = function ($) {
-  var map = void 0;
-  var infowindow = void 0;
-  var singleMap = $('.wellwhere-map');
-  var clusterIcon = singleMap.attr('data-cluster-icon');
-  var mapStyles = JSON.parse(mapData.styles);
-
-  function init() {
-    singleMap.each(function () {
-      map = new_map($(this));
-      google.maps.event.addListener(map, 'bounds_changed', function () {
-        console.log('bound changed');
-      });
-    });
-  }
-
-  function new_map($el) {
-    var $markers = $el.find('.marker');
-    var scrollwheel = $el.attr('data-scrollwheel') || false;
-    var args = {
-      zoom: 16,
-      center: new google.maps.LatLng(0, 0),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: scrollwheel,
-      streetViewControl: false,
-      mapTypeControl: false,
-      styles: mapStyles,
-      // TODO. Probably remove
-      gestureHandling: "greedy"
-    };
-
-    // create map
-    var map = new google.maps.Map($el[0], args);
-
-    // add a markers reference
-    map.markers = [];
-
-    // add markers
-    $markers.each(function () {
-      add_marker($(this), map);
-    });
-
-    // center map
-    center_map(map);
-
-    // return
-    return map;
-  }
-
-  function add_marker($marker, map) {
-    var latlng = new google.maps.LatLng($marker.attr('data-lat'), $marker.attr('data-lng'));
-    var pin = $marker.attr('data-icon');
-
-    // create marker
-    var marker = new google.maps.Marker({
-      position: latlng,
-      animation: google.maps.Animation.DROP,
-      map: map,
-      icon: pin
-    });
-
-    // add to array
-    map.markers.push(marker);
-
-    // if marker contains HTML, add it to an infoWindow
-    if ($marker.html()) {
-      // show info window when marker is clicked
-      google.maps.event.addListener(marker, 'click', function () {
-        if (infowindow) {
-          infowindow.close();
-        }
-        // infowindow = new InfoBubble({
-        //   padding: 0,
-        //   shadowStyle: 0,
-        //   borderRadius: 0,
-        //   borderColor: '#E0E0E0',
-        //   disableAnimation: true,
-        //   hideCloseButton: false,
-        //   content:  $marker.html(),
-        // });
-        infowindow = new InfoBox({
-          alignBottom: true,
-          maxWidth: 343,
-          pixelOffset: new google.maps.Size(-171, -80),
-          closeBoxURL: data.url + "/assets/img/icon-svg-error.svg",
-          content: $marker.html()
-        });
-        infowindow.open(map, marker);
-      });
-    }
-  }
-
-  function center_map(map) {
-    var bounds = new google.maps.LatLngBounds();
-
-    // loop through all markers and create bounds
-    $.each(map.markers, function (i, marker) {
-
-      var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
-
-      bounds.extend(latlng);
-    });
-
-    // only 1 marker?
-    if (map.markers.length == 1) {
-      // set center of map
-      map.setCenter(bounds.getCenter());
-      map.setZoom(16);
-    } else {
-      // fit to bounds
-      map.fitBounds(bounds);
-      var markerCluster = new MarkerClusterer(map, map.markers, {
-        styles: [{
-          url: 'http://wellwhere.lm/wp-content/themes/wellwhere/assets/img/map-marker-red-round.png',
-          height: 50,
-          width: 50,
-          textColor: "#fff",
-          textSize: 14
-        }]
-      });
-    }
-  }
-
-  return {
-    init: init
-  };
-}(jQuery);
-GM.init();
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-$('.SliderGyms').slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  infinite: false,
-  appendArrows: $('.SliderContainer'),
-  nextArrow: '<img class="SliderGyms__nextArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
-  prevArrow: '<img class="SliderGyms__prevArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
-  responsive: [{
-    breakpoint: 1025,
-    settings: {
-      arrows: false,
-      slidesToShow: 2.5
-    }
-  }, {
-    breakpoint: 768,
-    settings: {
-      arrows: false,
-      slidesToShow: 1.5
-    }
-  }]
-});
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var StripeModule = function ($) {
-  var userId = data.userId;
-  var chargeInProcess = false;
-  function stripeForm() {
-    if ($('#card-element').length === 0) {
-      return false;
-    }
-    // Create a Stripe client
-    var stripe = Stripe('pk_test_G6LDMUdv0HThh4NSY4ZEY0fw');
-
-    // Create an instance of Elements
-    var elements = stripe.elements();
-
-    // Custom styling can be passed to options when creating an Element.
-    // (Note that this demo uses a wider set of styles than the guide below.)
-    var style = {
-      base: {
-        color: '#32325d',
-        lineHeight: '24px',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-          color: '#aab7c4'
-        }
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a'
-      }
-    };
-
-    // Create an instance of the card Element
-    var card = elements.create('card', { style: style, hidePostalCode: true });
-
-    // Add an instance of the card Element into the `card-element` <div>
-    card.mount('#card-element');
-
-    // Handle real-time validation errors from the card Element.
-    card.addEventListener('change', function (event) {
-      var displayError = document.getElementById('card-errors');
-      if (event.error) {
-        displayError.textContent = event.error.message;
-      } else {
-        displayError.textContent = '';
-      }
-    });
-
-    // Handle form submission
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      stripe.createToken(card).then(function (result) {
-        if (result.error) {
-          // Inform the user if there was an error
-          var errorElement = document.getElementById('card-errors');
-          errorElement.textContent = result.error.message;
-        } else {
-          // Send the token to your server
-          saveToken(result.token);
-        }
-      });
-    });
-  }
-
-  function saveToken(token) {
-    $.ajax({
-      url: data.adminAjax,
-      type: 'POST',
-      data: {
-        action: 'save_card',
-        stripe_token: token,
-        user_id: userId
-      }
-    }).done(function (result) {
-      NProgress.done();
-      window.location.reload();
-    }).fail(function (e) {
-      console.error(e);
-      NProgress.done();
-    });
-  }
-
-  function chargeSource(e) {
-    e.preventDefault();
-    if (chargeInProcess === true) {
-      return;
-    }
-    chargeInProcess = true;
-    var card_id = $("[data-card-id]").attr('data-card-id');
-    var redirectUrl = $(this).attr('data-redirect');
-    $.ajax({
-      url: data.adminAjax,
-      type: 'POST',
-      data: {
-        action: 'charge_source',
-        card_id: card_id,
-        user_id: userId
-      }
-    }).done(function (r) {
-      console.log(r);
-      if (r.success) {
-        window.location.replace(redirectUrl + '?pdf_filename=' + r.data.pdf_filename);
-      }
-    }).fail(function (e) {
-      console.error(e);
-    }).always(function () {
-      chargeInProcess = false;
-    });
-  }
-
-  function removeCard(e) {
-    e.preventDefault();
-    var card_id = $(this).parents('[data-card-id]').attr('data-card-id');
-    $.ajax({
-      url: data.adminAjax,
-      type: 'POST',
-      data: {
-        action: 'remove_card',
-        card_id: card_id
-      }
-    }).done(function (result) {
-      if (result.success) {
-        console.log(result);
-        window.location.reload();
-        NProgress.done();
-      } else {
-        console.log(result);
-        NProgress.done();
-      }
-    }).fail(function (e) {
-      console.error(e);
-      NProgress.done();
-    });
-  }
-
-  function handlers() {
-    $('body').on('click', '[data-charge]', chargeSource);
-    $('body').on('click', '[data-card-remove]', removeCard);
-  }
-
-  function init() {
-    stripeForm();
-    handlers();
-  }
-
-  return {
-    init: init
-  };
-}(jQuery);
-
-StripeModule.init();
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -690,6 +333,11 @@ var ProfileSwitch = function ($) {
     if (!location.hash || !location.hash == "#") {
       return;
     };
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateLink();
     activateMobileLink();
     setTimeout(function () {
@@ -701,6 +349,11 @@ var ProfileSwitch = function ($) {
     if (!location.hash || !location.hash == "#") {
       return;
     };
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateSection();
     activateLink();
     activateMobileLink();
@@ -1398,12 +1051,17 @@ var ProfileAvatarUpload = function ($) {
 }(jQuery);
 ProfileAvatarUpload.init();
 
-var Rating = function () {
-  var nonIteractiveRating = $('.ui.rating');
-  var favorite = $('.GymFavorite');
-  var inProcess = false;
+var Rating = exports.Rating = function () {
+  var nonIteractiveRating = void 0;
+  var favorite = void 0;
+  var inProcess = void 0;
 
   function init() {
+
+    nonIteractiveRating = $('.ui.rating');
+    favorite = $('.GymFavorite');
+    inProcess = false;
+
     nonIteractiveRating.rating({
       maxRating: 5,
       interactive: false
@@ -1645,23 +1303,460 @@ var Favorites = function () {
 Favorites.init();
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+$('.SmOpener').on('click', toggleMobileMenu);
+
+function toggleMobileMenu(e) {
+  $('.SmOpener').toggleClass('open');
+  $('.SmMenu').toggle();
+}
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var url = data.adminAjax + '?action=search&q={query}';
+$('.HeroSearch__field, .Header__search, .SmMenu__search').search({
+  apiSettings: {
+    action: 'search',
+    cache: false,
+    url: url
+  },
+  fields: {
+    actionURL: 'url'
+  },
+  searchFullText: false,
+  searchFields: ['title']
+});
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _uiInit = __webpack_require__(0);
+
+var GM = function ($) {
+	var map = void 0;
+	var infowindow = void 0;
+	var mapcluster = void 0;
+	var is_fit_bounds = false;
+	var inProcess = false;
+	var singleMap = $('.wellwhere-map');
+	var clusterIcon = singleMap.attr('data-cluster-icon');
+	var mapStyles = JSON.parse(mapData.styles);
+	var listingItemsContainer = $('.ContainerListingItems');
+
+	function init() {
+		$(window).on('hashchange', handleHashChange);
+		singleMap.each(function () {
+			map = new_map($(this));
+			if ($(this).is('[data-listing-map]')) {
+				handleMapMovement(map);
+			}
+		});
+	}
+
+	function handleHashChange(e) {
+		console.log(e);
+		return false;
+	}
+
+	function handleMapMovement(map) {
+		google.maps.event.addListener(map, 'bounds_changed', mapMovement);
+		// google.maps.event.addListener(map, 'dragend', mapMovement);
+		// google.maps.event.addListener(map, 'zoom_changed', mapMovement);
+	}
+
+	function clearAllMarkers() {
+		while (map.markers.length) {
+			map.markers.pop().setMap(null);
+		}
+	}
+
+	function dealListingItems(listingItems) {
+		listingItemsContainer.html("");
+		$.each(listingItems, function (index, item) {
+			listingItemsContainer.append(item.listingItem);
+		});
+		_uiInit.Rating.init();
+	}
+
+	function mapMovement() {
+		var bounds = {};
+		if (is_fit_bounds) {
+			return;
+		}
+		if (inProcess) {
+			return;
+		} else {
+			inProcess = true;
+		};
+		bounds.lat_TR = map.getBounds().getNorthEast().lat();
+		bounds.lng_TR = map.getBounds().getNorthEast().lng();
+		bounds.lat_BL = map.getBounds().getSouthWest().lat();
+		bounds.lng_BL = map.getBounds().getSouthWest().lng();
+		$.ajax({
+			url: data.adminAjax,
+			type: 'GET',
+			data: {
+				action: 'get_gyms_by_bounds',
+				bounds: bounds
+			}
+		}).done(function (r) {
+			console.log(r);
+			dealListingItems(r.data.markers);
+
+			clearAllMarkers();
+			$.each(r.data.markers, function (index, el) {
+				add_marker(el.lat, el.lng, el.pin, el.html, map);
+			});
+			mapcluster = cluster(map, map.markers);
+		}).fail(function (e) {
+			console.log(e.statusText);
+		}).always(function () {
+			inProcess = false;
+		});
+	}
+
+	function new_map($el) {
+		var $markers = $el.find('.marker');
+		var scrollwheel = $el.attr('data-scrollwheel') || false;
+		var args = {
+			zoom: 16,
+			center: new google.maps.LatLng(0, 0),
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			scrollwheel: scrollwheel,
+			streetViewControl: false,
+			mapTypeControl: false,
+			styles: mapStyles,
+			// TODO. Probably need to remove
+			gestureHandling: "greedy"
+		};
+
+		// create map
+		map = new google.maps.Map($el[0], args);
+
+		// add a markers reference
+		map.markers = [];
+
+		// add markers
+		$markers.each(function () {
+			var lat = $(this).attr('data-lat');
+			var lng = $(this).attr('data-lng');
+			var pin = $(this).attr('data-icon');
+			var markerHtml = $(this).html();
+			// map.markers
+			add_marker(lat, lng, pin, markerHtml, map);
+		});
+
+		center_map(map);
+		return map;
+	}
+
+	function add_marker(lat, lng, pin, markerHtml, map) {
+		var latlng = new google.maps.LatLng(lat, lng);
+
+		// create marker
+		var marker = new google.maps.Marker({
+			position: latlng,
+			// animation: google.maps.Animation.DROP,
+			map: map,
+			icon: pin
+		});
+
+		// add to array
+		map.markers.push(marker);
+
+		// if marker contains HTML, add it to an infoWindow
+		if (markerHtml) {
+			// show info window when marker is clicked
+			google.maps.event.addListener(marker, 'click', function () {
+				if (infowindow) {
+					infowindow.close();
+				}
+				infowindow = new InfoBox({
+					alignBottom: true,
+					maxWidth: 343,
+					pixelOffset: new google.maps.Size(-171, -80),
+					closeBoxURL: data.url + "/assets/img/icon-svg-error.svg",
+					content: markerHtml
+				});
+				infowindow.open(map, marker);
+			});
+		}
+	}
+
+	function center_map(map) {
+		var bounds = new google.maps.LatLngBounds();
+		// loop through all markers and create bounds
+		$.each(map.markers, function (i, marker) {
+
+			var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+
+			bounds.extend(latlng);
+		});
+
+		wellwhereFitBounds(bounds);
+	}
+
+	function cluster(map, markers) {
+		return new MarkerClusterer(map, markers, {
+			styles: [{
+				url: 'http://wellwhere.lm/wp-content/themes/wellwhere/assets/img/map-marker-red-round.png',
+				height: 50,
+				width: 50,
+				textColor: "#fff",
+				textSize: 14
+			}]
+		});
+	}
+
+	function wellwhereFitBounds(bounds) {
+		is_fit_bounds = true;
+
+		if (map.markers.length == 1) {
+			// set center of map
+			map.setCenter(bounds.getCenter());
+			map.setZoom(16);
+
+			google.maps.event.addListenerOnce(map, 'idle', function () {
+				is_fit_bounds = false;
+			});
+		} else {
+			map.fitBounds(bounds);
+			mapcluster = cluster(map, map.markers);
+
+			google.maps.event.addListenerOnce(map, 'idle', function () {
+				is_fit_bounds = false;
+			});
+		}
+	}
+
+	return {
+		init: init
+	};
+}(jQuery);
+GM.init();
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+$('.SliderGyms').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  infinite: false,
+  appendArrows: $('.SliderContainer'),
+  nextArrow: '<img class="SliderGyms__nextArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
+  prevArrow: '<img class="SliderGyms__prevArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
+  responsive: [{
+    breakpoint: 1025,
+    settings: {
+      arrows: false,
+      slidesToShow: 2.5
+    }
+  }, {
+    breakpoint: 768,
+    settings: {
+      arrows: false,
+      slidesToShow: 1.5
+    }
+  }]
+});
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var StripeModule = function ($) {
+  var userId = data.userId;
+  var chargeInProcess = false;
+  function stripeForm() {
+    if ($('#card-element').length === 0) {
+      return false;
+    }
+    // Create a Stripe client
+    var stripe = Stripe('pk_test_G6LDMUdv0HThh4NSY4ZEY0fw');
+
+    // Create an instance of Elements
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    // Create an instance of the card Element
+    var card = elements.create('card', { style: style, hidePostalCode: true });
+
+    // Add an instance of the card Element into the `card-element` <div>
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener('change', function (event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    // Handle form submission
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function (result) {
+        if (result.error) {
+          // Inform the user if there was an error
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server
+          saveToken(result.token);
+        }
+      });
+    });
+  }
+
+  function saveToken(token) {
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'save_card',
+        stripe_token: token,
+        user_id: userId
+      }
+    }).done(function (result) {
+      NProgress.done();
+      window.location.reload();
+    }).fail(function (e) {
+      console.error(e);
+      NProgress.done();
+    });
+  }
+
+  function chargeSource(e) {
+    e.preventDefault();
+    if (chargeInProcess === true) {
+      return;
+    }
+    chargeInProcess = true;
+    var card_id = $("[data-card-id]").attr('data-card-id');
+    var redirectUrl = $(this).attr('data-redirect');
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'charge_source',
+        card_id: card_id,
+        user_id: userId
+      }
+    }).done(function (r) {
+      console.log(r);
+      if (r.success) {
+        window.location.replace(redirectUrl + '?pdf_filename=' + r.data.pdf_filename);
+      }
+    }).fail(function (e) {
+      console.error(e);
+    }).always(function () {
+      chargeInProcess = false;
+    });
+  }
+
+  function removeCard(e) {
+    e.preventDefault();
+    var card_id = $(this).parents('[data-card-id]').attr('data-card-id');
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'remove_card',
+        card_id: card_id
+      }
+    }).done(function (result) {
+      if (result.success) {
+        console.log(result);
+        window.location.reload();
+        NProgress.done();
+      } else {
+        console.log(result);
+        NProgress.done();
+      }
+    }).fail(function (e) {
+      console.error(e);
+      NProgress.done();
+    });
+  }
+
+  function handlers() {
+    $('body').on('click', '[data-charge]', chargeSource);
+    $('body').on('click', '[data-card-remove]', removeCard);
+  }
+
+  function init() {
+    stripeForm();
+    handlers();
+  }
+
+  return {
+    init: init
+  };
+}(jQuery);
+
+StripeModule.init();
+
+/***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(1);
-
-__webpack_require__(5);
-
-__webpack_require__(3);
-
 __webpack_require__(2);
+
+__webpack_require__(0);
 
 __webpack_require__(4);
 
-__webpack_require__(0);
+__webpack_require__(3);
+
+__webpack_require__(5);
+
+__webpack_require__(1);
 
 /***/ })
 /******/ ]);

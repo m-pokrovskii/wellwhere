@@ -1063,18 +1063,21 @@ input::placeholder {
 .ListingContent {
   display: -ms-flexbox;
   display: flex;
-  margin-top: 121px;
+  margin-top: 50px;
 }
 
 .ListingItems {
   padding: 35px 60px 15px 27px;
+  width: 809px;
+}
+
+.ContainerListingItems {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  width: 809px;
 }
 
 .ListingItem {
@@ -1164,7 +1167,7 @@ input::placeholder {
   position: absolute;
   right: 0;
   width: 634px;
-  height: 100%;
+  height: auto;
 }
 
 .ListingMaps__m {

@@ -21,7 +21,7 @@ function types_init() {
 		'hierarchical'      => false,
 		'show_ui'           => true,
 		'show_in_nav_menus' => true,
-		'supports'          => array( 'title', 'editor', 'thumbnail', 'comments' ),
+		'supports'          => array( 'title', 'editor', 'thumbnail', 'custom-fields' ),
 		'has_archive'       => true,
 		'rewrite'           => true,
 		'query_var'         => true,
@@ -82,7 +82,7 @@ function types_init() {
 		),
 		'public'            => false,
 		'hierarchical'      => false,
-		'show_ui'           => true,
+		'show_ui'           => false,
 		'supports'          => array( 'title', 'custom-fields'),
 		'show_in_rest'      => false,
 		'capabilities' => array(

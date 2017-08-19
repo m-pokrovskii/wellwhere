@@ -278,6 +278,11 @@ const ProfileSwitch = (function ($) {
 
   function onLoad() {
     if (!location.hash || !location.hash == "#") { return };
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateLink();
     activateMobileLink();
     setTimeout(function() {
@@ -288,6 +293,11 @@ const ProfileSwitch = (function ($) {
 
   function activate() {
     if (!location.hash || !location.hash == "#") { return };
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateSection()
     activateLink()
     activateMobileLink()
@@ -1013,28 +1023,33 @@ const ProfileAvatarUpload = (function($) {
 }(jQuery));
 ProfileAvatarUpload.init();
 
-const Rating = (function () {
-    const nonIteractiveRating   = $('.ui.rating');
-    const favorite = $('.GymFavorite');
-    let inProcess = false;
+export const Rating = (function () {
+    let nonIteractiveRating;
+    let favorite;
+    let inProcess;
     
     function init() {
+
+      nonIteractiveRating = $('.ui.rating');
+      favorite            = $('.GymFavorite');
+      inProcess           = false;
+      
       nonIteractiveRating.rating({
         maxRating: 5,
         interactive: false,
       });
 
-        favorite.rating({
-          interactive: true,
-          onRate: function() {
-            if ( data.userId ) {
-              saveFavoriteGym.call(this);
-            }
-            else {
-              Auth.openModal();
-            }
+      favorite.rating({
+        interactive: true,
+        onRate: function() {
+          if ( data.userId ) {
+            saveFavoriteGym.call(this);
           }
-        })
+          else {
+            Auth.openModal();
+          }
+        }
+      })
     }
 
     function saveFavoriteGym() {

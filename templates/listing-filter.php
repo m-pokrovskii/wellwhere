@@ -38,18 +38,6 @@
       </div>
       <div class="ListingFilter__column2">
         <div class="ListingFilter__fieldset">
-          <div class="ListingFilter__fieldsetTitle"><?php _e("Rayon") ?></div>
-          <div class="ui selection dropdown">
-            <input type="hidden" name="gender">
-            <img class="dropdown icon" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/arrow-bottom.svg" alt="">
-            <div class="default text"><?php _e("5km") ?></div>
-            <div class="menu">
-              <div class="item" data-value="1"><?php _e("5km") ?></div>
-              <div class="item" data-value="0"><?php _e("10km") ?></div>
-            </div>
-          </div>
-        </div>
-        <div class="ListingFilter__fieldset">
           <div class="ListingFilter__fieldsetTitle"><?php _e("Note minimale") ?></div>
           <div class="ui selection dropdown">
             <input type="hidden" name="gender">
@@ -62,7 +50,7 @@
               <div class="item" data-value="4"><?php _e("4 étoile") ?></div>
               <div class="item" data-value="5"><?php _e("5 étoile") ?></div>
             </div>
-          </div>
+          </div>          
         </div>
       </div>
       <div class="ListingFilter__menuFooter">

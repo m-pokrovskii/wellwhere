@@ -9,6 +9,17 @@ function dump( $v ) {
 	echo '</pre>';
 }
 
+
+add_action('acf/update_value', 'wellwhere_update_lng_and_lat', 99, 3 ); 
+
+function wellwhere_update_lng_and_lat( $value, $post_id, $field ) {
+	if(	'google_map' === $field['type'] && 'gym_map' === $field['name'] ) {	
+		update_post_meta( $post_id, 'lat', $value['lat'] );
+		update_post_meta( $post_id, 'lng', $value['lng'] );
+	}
+	return $value;
+}
+
 function page_link_by_file( $filename ) {
 	$page = new WP_Query(array(
 		'post_type' => 'page',
@@ -474,6 +485,70 @@ function profile_favorites_template( $favorited_gym ) { ?>
 	
 <?php }
 
+add_action( 'wp_ajax_nopriv_get_gyms_by_bounds', 'get_gyms_by_bounds' );
+add_action( 'wp_ajax_get_gyms_by_bounds', 'get_gyms_by_bounds' );
 
+function get_precision($s) {
+	return strlen($s);
+}
+
+function get_scale($s, $symbol = ".") {
+	return strlen(substr(strrchr($lat, $symbol), 1));
+}
+
+function get_template_part_content( $template ) {
+	ob_start();
+	get_template_part( $template );
+	$content = ob_get_contents();
+	ob_end_clean();
+	return $content;
+}
+
+function get_gyms_by_bounds( $bounds = array() ) {
+	global $post;
+	$markers = [];
+	$bounds  = ( $bounds ) ? $bounds : $_GET['bounds'];
+
+	$gyms = new WP_Query(array(
+		'post_type' => 'gym',
+		'posts_per_page' => -1,
+		'meta_query' => array(
+			'relation' => 'AND',
+			array(
+				'key'   => 'lat',
+				'value' => array( $bounds['lat_BL'], $bounds['lat_TR'] ),
+				'compare' => 'BETWEEN',
+				'type' => 'decimal(18, 15)',
+			),
+			array(
+				'key'   => 'lng',
+				'value' => array( $bounds['lng_BL'], $bounds['lng_TR'] ),
+				'compare' => 'BETWEEN',
+				'type' => 'decimal(18, 15)',
+			),
+		)
+	));
+	if ( $gyms->have_posts() ) {
+		while( $gyms->have_posts() ): 
+		$gyms->the_post();
+		$marker = array(
+			'lat'  => get_post_meta( $post->ID, 'lat', true ),
+			'lng'  => get_post_meta( $post->ID, 'lng', true ),
+			'pin'  => get_field('google_map_pin', 'option')['url'],
+			'html' => get_template_part_content('templates/gym_map_preview'),
+			'listingItem' => get_template_part_content('templates/listing-item')
+		);
+		$markers[] = $marker;
+		endwhile;
+	}
+	if ( $markers ) {
+		wp_send_json_success( array(
+			'markers' => $markers
+		) );
+	} else {
+		wp_send_json_error( array('message' => 'No markers found') );
+	}
+	wp_die();
+}
 
 ?>
