@@ -27,14 +27,23 @@
 					</div>
 				</div>
 				<?php
+					$max_activities = 3;
+					$i = 0;
 					$activity = get_terms('activity', array(
 						'hide_empty' => false
 					));
+					foreach($activity as $key => $val){
+						if( $val->term_id == get_queried_object_id() ) {
+							unset( $activity[$key] );
+							array_unshift( $activity, $val);
+						}
+					}
 				?>
 				<div class="ListingFilter__fieldset">
 					<div class="ListingFilter__fieldsetTitle" for=""><?php _e("Activités") ?></div>
 					<?php foreach ($activity as $key => $activity_tax): ?>
-						<div class="ui checkbox ListingFilter__activity-field">
+						<?php $i++; ?>
+						<div <?php echo ($i > $max_activities) ? 'data-hide': '' ; ?> class="ui checkbox ListingFilter__activity-field">
 							<input
 								type="checkbox"
 								name="activity"
@@ -48,7 +57,9 @@
 							</label>
 						</div>
 					<?php endforeach ?>
-					<a href="#" class="ListingFilter__show-more-activites"><?php _e("Toutes les activités >") ?></a>
+					<?php if ( count($activity) > $max_activities ): ?>
+						<a data-show-more-activities href="#" class="ListingFilter__show-more-activites"><?php _e("Toutes les activités >") ?></a>
+					<?php endif ?>
 				</div>
 			</div>
 			<div class="ListingFilter__column2">

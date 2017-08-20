@@ -1294,10 +1294,11 @@ export const Uri = (function () {
 
 
 const Filter = (function () {
-  const filterTrigger   = $('.ListingFilter__trigger');
-  const filterMenu      = $('.ListingFilter__menu');
-  const filterMapButton = $('[data-map-filter-button]');
-  const filterMapForm   = $('[data-filter-map-form]');
+  const filterTrigger      = $('.ListingFilter__trigger');
+  const filterMenu         = $('.ListingFilter__menu');
+  const filterMapButton    = $('[data-map-filter-button]');
+  const filterMapForm      = $('[data-filter-map-form]');
+  const showMoreActivitiesLink = $('[data-show-more-activities]');
   function init() {
     events();
   }
@@ -1308,6 +1309,13 @@ const Filter = (function () {
       filterMenu.toggle();
     })
     filterMapButton.on('click', updateFilterUri);
+    showMoreActivitiesLink.on('click', showMoreActivities);
+  }
+
+  function showMoreActivities(e) {
+    e.preventDefault();
+    $('[data-hide]').toggle();
+    // showMoreActivitiesLink.hide();
   }
 
   function updateFilterUri(e) {

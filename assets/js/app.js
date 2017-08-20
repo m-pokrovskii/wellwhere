@@ -1322,6 +1322,7 @@ var Filter = function () {
   var filterMenu = $('.ListingFilter__menu');
   var filterMapButton = $('[data-map-filter-button]');
   var filterMapForm = $('[data-filter-map-form]');
+  var showMoreActivitiesLink = $('[data-show-more-activities]');
   function init() {
     events();
   }
@@ -1332,6 +1333,13 @@ var Filter = function () {
       filterMenu.toggle();
     });
     filterMapButton.on('click', updateFilterUri);
+    showMoreActivitiesLink.on('click', showMoreActivities);
+  }
+
+  function showMoreActivities(e) {
+    e.preventDefault();
+    $('[data-hide]').toggle();
+    // showMoreActivitiesLink.hide();
   }
 
   function updateFilterUri(e) {
