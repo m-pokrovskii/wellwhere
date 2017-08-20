@@ -1492,7 +1492,7 @@ var GM = function ($) {
 					$.each(r.data.markers, function (index, el) {
 						add_marker(el.lat, el.lng, el.pin, el.html, map);
 					});
-					if (uriMap.type == 'filter' || uriMap.type == 'pagination' || isfirstTimeLoaded == true) {
+					if ((uriMap.type == 'filter' || uriMap.type == 'pagination') && isfirstTimeLoaded == true) {
 						wellwhereFitBounds();
 					}
 					if (mapcluster) {
