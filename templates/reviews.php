@@ -33,7 +33,7 @@
 			data-review-per-page = <?php echo $posts_per_page ?>
 			data-gym-id = <?php echo $gym_id ?>
 			class="Comments__load-more-text">
-			Plus anciens
+			<?php _e("Plus anciens") ?>
 		</span>
 	</div>
 	<?php endif ?>
@@ -44,18 +44,20 @@
 			<form data-review-form class="AddReview ui tiny form">
 				<div class="field">
 					<label for="subject">
-						<?php _e('Subject') ?>
+						<?php _e('Titre') ?>
 					</label>
 					<input type="text" name="subject" id="subject">
 				</div>
 				<div class="field">
 					<label for="review_textarea">
-						<?php _e('Review') ?>
+						<?php _e('Votre commentaire') ?>
 					</label>
 					<textarea name="review_textarea" id="review_textarea"></textarea>
 				</div>
 				<div class="field">
-					<label for="">Rating</label>
+					<label for="">
+						<?php _e("Note") ?>
+					</label>
 					<input type="hidden" name="rating" id="rating" value="5">
 					<div 
 					data-review-rating 
@@ -63,7 +65,9 @@
 				</div>
 				<input type="hidden" value="<?php echo $gym_id ?>" name="gym_id" id="gym_id">
 				<div class="ui error message"></div>
-				<div class="ui tiny submit button">Submit</div>
+				<div class="ui tiny submit button">
+					<?php _e("Envoyer") ?>
+				</div>
 			</form>			
 		<?php endif ?>
 	<?php endif ?>

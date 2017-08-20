@@ -1,4 +1,5 @@
 <?php
+  global $post;
   $recommended_posts = get_posts(array(
     'post_type' => 'gym',
     'meta_key' => 'gym_recommended',
@@ -7,11 +8,16 @@
  ?>
 
 <div class="HomeSection -recomended">
-  <h2 class="HomeSection__headline">Recommandé</h2>
+  <h2 class="HomeSection__headline">
+    <?php echo get_field('recommended_section_title', $post->ID); ?>
+  </h2>
   <div class="SliderContainer">
     <div class="WrapSliderGyms">
       <div class="HomeSection__slider SliderGyms">
         <?php foreach ($recommended_posts as $recommended_post): ?>
+          <?php 
+            $number_of_reviews = get_review_count( $recommended_post->ID );
+           ?>
           <div class="SliderGyms__slide">
             <div class="GymListigItem">
               <div class="GymListigItem__image">
@@ -29,7 +35,13 @@
               <div class="GymListigItem__rating">
                 <div 
                   class="ui star rating GymRating" 
-                  data-rating="<?php echo get_post_meta( $recommended_post->ID, 'average_rating', true ) ?>"></div>
+                  data-rating="<?php echo get_post_meta( $recommended_post->ID, 'average_rating', true ) ?>">
+                </div>
+                <?php if ($number_of_reviews): ?>
+                  <div class="GymListigItem__rating-text">
+                    <?php echo $number_of_reviews ?> <?php _e('avis') ?>
+                  </div>                  
+                <?php endif ?>
               </div>
             </div>
           </div>

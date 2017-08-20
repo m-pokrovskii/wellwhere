@@ -9,6 +9,17 @@ function dump( $v ) {
 	echo '</pre>';
 }
 
+
+add_action('acf/update_value', 'wellwhere_update_lng_and_lat', 99, 3 ); 
+
+function wellwhere_update_lng_and_lat( $value, $post_id, $field ) {
+	if(	'google_map' === $field['type'] && 'gym_map' === $field['name'] ) {	
+		update_post_meta( $post_id, 'lat', $value['lat'] );
+		update_post_meta( $post_id, 'lng', $value['lng'] );
+	}
+	return $value;
+}
+
 function page_link_by_file( $filename ) {
 	$page = new WP_Query(array(
 		'post_type' => 'page',
@@ -98,11 +109,16 @@ function get_card_image( $brand ) {
 
 function create_pdf( $user_name, $gym_name, $expire, $entries, $ticket_pass ) {
 	$uniq_filename = uniqid();
+	$pdf_bg = get_field('pdf_background', 'option');
+	$pdf_bg_url = "/wp-content/themes/wellwhere/assets/img/pdf-background.jpg";
+	if ( $pdf_bg ) {
+		$pdf_bg_url =  $pdf_bg['url'];
+	}
 	$mpdf = new mPDF('utf-8', 'A4');
 	ob_start();
 	include( __DIR__ . '/../templates/pass-pdf-template.php' );
 	$template = ob_get_clean();
-	$mpdf->WriteHTML($template);
+	@$mpdf->WriteHTML($template);
 	$mpdf->Output( __DIR__. '/../tickets/' . $uniq_filename . '.pdf','F' );
 	return $uniq_filename;
 }
@@ -122,28 +138,46 @@ function send_ticket_to_user( $user_id, $ticket_id ) {
 	$pdf = get_post_meta( $ticket_id, 'pdf_filename', true );
 	$pdf_site_url = TICKETS_SITE_FOLDER . $pdf;
 	$pdf_absolute_url = TICKETS_ABSOLUTE_FOLDER . $pdf;
-	// TODO. Fields in admin
 	$to = $user_email;
-	$subject = "Ticket from " . get_bloginfo('name');
-	$message = "Your ticket " . $pdf_site_url;
+	$subject = string_templates(array(
+		'site_name' => get_bloginfo('name')
+	), get_field('ticket_subject', 'option'));
+
+
+	$message = string_templates(array(
+		'ticket_link' => $pdf_site_url
+	), get_field('ticket_message', 'option'));
+
 	$attachments = array( $pdf_absolute_url );
-	$headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
+	$headers = array(
+		'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>',
+		'Content-Type: text/html; charset=UTF-8'
+	);
 
 	$send =  @wp_mail($to, $subject, $message, $headers, $attachments);
 }
 
 function send_user_credentials( $user_id, $user_password ) {
-	$user = new WP_User( $user_id );
+	$user     = new WP_User( $user_id );
 	$sitename = get_bloginfo('name');
-	$siteurl = get_bloginfo('url');
+	$siteurl  = get_bloginfo('url');
 
 	$to = stripslashes( $user->user_email );
-	$subject = "[ $sitename ] Your password info";
-	$message .= "Greetings " . $user->first_name . " " . $user->last_name .".\r\n";
-	$message .= "Thanks for registration." . "\r\n";
-	$message .= "Your password is: " . $user_password . "\r\n";
-	$message .= "$siteurl \r\n";
-	$headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
+	$headers = array(
+		'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>',
+		'Content-Type: text/html; charset=UTF-8'
+	);
+
+	$subject = string_templates(array(
+		'site_name' => $sitename
+	), get_field('credentials_subject', 'option'));
+
+	$message = string_templates(array(
+		'user_name'         => $user->first_name . " " . $user->last_name,
+		'user_new_password' => $user_password,
+		'site_url'          => $siteurl,
+		'site_name'         => $sitename
+	), get_field('credentials_message', 'option'));
 
 	$send =  @wp_mail($to, $subject, $message, $headers);
 }
@@ -214,6 +248,20 @@ function user_full_name( $user_id ) {
 	return "$user->first_name $user->last_name";
 }
 
+function user_review_name( $user_id ) {
+	$user = get_user_by('ID', $user_id);
+	return $user->first_name . " " . substr( $user->last_name, 0, 1) . ".";
+}
+
+function get_review_count( $gym_id ) {
+	$reviews = new WP_Query(array(
+		'post_type'      => 'review',
+		'meta_key'       => 'gym_id',
+		'meta_value'     => $gym_id,
+	));	
+	return $reviews->found_posts;
+}
+
 function average_rating( $gym_id ) {
 
 	$reviews = get_posts(array(
@@ -275,16 +323,20 @@ function profile_review_template( $review ) {
 	?>
 	<div class="ProfileComments__item">
 		<div class="ProfileComments__wrap-type-date">
-			<div class="ProfileComments__type">Salle</div>
+			<div class="ProfileComments__type"><?php _e("Salle") ?></div>
 			<div class="ProfileComments__date"><?php echo get_the_date( "d/m/Y", $review->ID ) ?></div>
 		</div>
-		<div class="ProfileComments__title"><?php echo get_the_title( $gym_id ); ?></div>
-		<div class="ProfileComments__note">Note</div>
+		<div class="ProfileComments__title">
+			<a href="<?php echo get_permalink( $gym_id ); ?>">
+				<?php echo get_the_title( $gym_id ); ?>
+			</a>
+		</div>
+		<div class="ProfileComments__note"><?php _e("Note") ?></div>
 		<div 
 			data-rating = <?php echo $rating ?>
 			class="GymRating ProfileComments__rating ui rating"></div>
 		<div class="ProfileComments__commentaire">
-			Commentaire
+			<?php _e("Commentaire") ?>
 		</div>
 		<?php if ($review->post_title): ?>
 			<div class="ProfileComments__comment-title">
@@ -304,7 +356,7 @@ function review_template( $review ) { ?>
 			class="Comment__avatar" 
 			style="background-image: url(<?php echo wellwhere_avatar_url( $review->post_author ) ?>)"></div>
 			<div class="Comment__name">
-				<?php echo user_full_name( $review->post_author ) ?>
+				<?php echo user_review_name( $review->post_author ) ?>
 			</div>
 		</div>
 		<div class="Comment__body">
@@ -399,5 +451,39 @@ function is_valid_gym_pass( $pass ) {
 		return false;
 	}
 }
+
+function string_templates( $strings, $topic ){
+	foreach ($strings as $key => $value) {
+		$topic = str_replace('{{'.$key .'}}', $value, $topic);
+	}
+	return $topic;
+}
+
+function profile_favorites_template( $favorited_gym ) { ?>
+	<div class="FavoriteListItem">
+		<div 
+			class="FavoriteListItem__image" 
+			style="background-image: url( <?php echo get_the_post_thumbnail_url($favorited_gym, 'listing') ?> )" >
+			<div 
+				data-rating="1" 
+				data-max-rating="1"
+				data-gym-id="<?php echo $favorited_gym->ID ?>"
+				class="GymFavorite ui rating FavoriteListItem__favorite"></div>
+		</div>
+		<div class="FavoriteListItem__content">
+			<div class="FavoriteListItem__category">Salle</div>
+			<div class="FavoriteListItem__title">
+				<a href="<?php echo get_permalink( $favorited_gym->ID ); ?>">
+					<?php echo $favorited_gym->post_title ?>
+				</a>
+			</div>
+			<div 
+				data-rating="<?php echo get_post_meta( $favorited_gym->ID, 'average_rating', true ) ?>"
+				class="GymRating ui rating FavoriteListItem__rating"></div>
+		</div>
+	</div>
+	
+<?php }
+
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+  global $post;
   $activites = get_terms('activity', array(
     'hide_empty' => false
   ));
@@ -6,28 +7,34 @@
  ?>
 <?php get_template_part('templates/home-slider') ?>
 <div class="HomeSection -activites">
-  <h2 class="HomeSection__headline">Vos activités préférées</h2>
+  <h2 class="HomeSection__headline">
+    <?php echo get_field('activity_section_title', $post->ID); ?>
+  </h2>
   <ul class="ActivitesList">
-      <?php foreach ($activites as $activity): ?>
-        <?php
-          $image = get_field('activity_image', $activity);
-        ?>
-        <li class="ActivitesList__item" style="background-image: url(<?php echo $image['sizes']['activity'] ?>);">
-          <a class="ActivitesList__itemTitle" href="<?php echo get_term_link($activity, 'activity') ?>">
-            <span><?php echo $activity->name ?></span>
-          </a>
-        </li>
-      <?php endforeach; ?>
+    <?php foreach ($activites as $activity): ?>
+      <?php
+        $image = get_field('activity_image', $activity);
+      ?>
+      <li class="ActivitesList__item" style="background-image: url(<?php echo $image['sizes']['activity'] ?>);">
+        <a class="ActivitesList__itemTitle" href="<?php echo get_term_link($activity, 'activity') ?>#!activity=<?php echo $activity->term_id ?>">
+          <span><?php echo $activity->name ?></span>
+        </a>
+      </li>
+    <?php endforeach; ?>
   </ul>
 </div>
 <div class="HomeSection -partnerships">
-  <h2 class="HomeSection__headline">DEVENIR PARTENAIRE</h2>
+  <h2 class="HomeSection__headline">
+    <?php echo get_field('partner_section_title', $post->ID); ?>  
+  </h2>
   <div class="HomePartnershipBlock">
     <div class="HomePartnershipBlock__desc">
-      Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste. Nec piget dicere avide magis hanc insulam populum Romanum invasisse quam iuste.
+      <?php echo get_field('partner_section_description', $post->ID); ?>  
     </div>
     <div class="HomePartnershipBlock__button">
-      <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="ButtonPartner">ESPACE PARTENAIRE</a>
+      <a href="<?php echo page_link_by_file('page-partnership.php') ?>" class="ButtonPartner">
+        <?php echo get_field('partner_section_button_title', $post->ID); ?>  
+      </a>
     </div>
   </div>
 </div>
@@ -43,9 +50,9 @@
   </ul>
   <div class="MiscNewsletter">
     <label class="MiscNewsletter__emailFieldLabel" for="newsletterEmailField">
-      INSCRIVEZ-VOUS A NOTRE NEWSLETTER
+      <?php _e("INSCRIVEZ-VOUS A NOTRE NEWSLETTER") ?>
     </label>
     <input type="text" class="MiscNewsletter__emailField" name="newsletterEmailField">
-    <button class="MiscNewsletter__button">S’inscrire ></button>
+    <button class="MiscNewsletter__button"><?php _e("S’inscrire >") ?></button>
   </div>
 </div>

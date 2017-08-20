@@ -13,6 +13,6 @@
     <?php endforeach; ?>
   </ul>
   <div class="Footer__copyright">
-    &copy; 2017 Wellwhere Tous droits reservés.
+    <?php echo get_field('copyright', 'option') ?>
   </div>
 </div>

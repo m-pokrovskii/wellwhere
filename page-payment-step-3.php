@@ -32,13 +32,13 @@ $card = $card[0];
 <div class="App -payment">
 	<?php get_template_part('templates/payment-header') ?>
 	<div class="PaymentPage">
-		<div class="PaymentTitle"><?php the_title() ?></div>
+		<div class="PaymentTitle"></div>
 		<?php get_template_part( 'templates/payment-steps' ); ?>
 		<div class="PaymentBasket">
 			<div class="PaymentBasketList">
 				<?php if ( $basket ): ?>
 					<div class="PaymentBasketListItem">
-						<i data-remove-basket class="PaymentBasketListItem__close"></i>
+						<!-- <i data-remove-basket class="PaymentBasketListItem__close"></i> -->
 						<div class="PaymentBasketListItem__image">
 							<a href="<?php echo get_permalink( $basket['basket_gym_id'] ) ?>">
 								<img src="<?php echo get_the_post_thumbnail_url($basket['basket_gym_id'], 'single-preview') ?>" alt="">
@@ -52,20 +52,20 @@ $card = $card[0];
 								<?php echo wellwhere_date( $basket['basket_ticket_expire'] ) ?>
 							</div>
 						</div>
-						<div class="PaymentBasketListItem__price">CHF <?php echo $basket['basket_ticket_price'] ?>.-</div>
-						<div class="PaymentBasketListItem__remove -xs">
-							Remove
-						</div>
+						<div class="PaymentBasketListItem__price"><?php _e("CHF") ?> <?php echo $basket['basket_ticket_price'] ?></div>
+						<!-- <div class="PaymentBasketListItem__remove -xs">
+							<?php #_e("Remove") ?>
+						</div> -->
 					</div>
 				<?php else: ?>
 					<div class="PaymentBasketEmpty">
-						Empty
+						<?php _e("Empty") ?>
 					</div>
 				<?php endif; ?>
 			</div>
 			<?php if ( $basket ): ?>
 				<div class="PaymentTotal">
-					<div class="PaymentTotal__title">Mode de paiement</div>
+					<div class="PaymentTotal__title"><?php _e("Mode de paiement") ?></div>
 					<div class="PaymentTotal__card">
 						<div class="PaymentTotal__card-image">
 							<?php
@@ -78,11 +78,15 @@ $card = $card[0];
 					</div>
 					<div class="PaymentTotal__container-price">
 						<div class="PaymentTotal__price-text">
-							<div class="PaymentTotal__total-text">TOTAL</div>
-							<div class="PaymentTotal__tva-text">(TVA inclus.)</div>
+							<div class="PaymentTotal__total-text">
+								<?php _e("TOTAL") ?>
+							</div>
+							<div class="PaymentTotal__tva-text">
+								<?php _e("(TVA inclus.)") ?>
+							</div>
 						</div>
 						<div class="PaymentTotal__price">
-							CHF <?php echo $basket['basket_ticket_price'] ?>.-
+							<?php _e("CHF") ?> <?php echo $basket['basket_ticket_price'] ?>
 						</div>
 					</div>
 					<div class="PaymentTotal__buttonBlock">
@@ -91,7 +95,7 @@ $card = $card[0];
 						data-redirect="<?php echo page_link_by_file('page-payment-step-4.php') ?>"
 						data-card-id = <?php echo $card->ID ?>
 						class="PaymentTotal__button">
-						Confirmer paiement
+						<?php _e('Confirmer paiement') ?>
 					</div>
 				</div>
 			</div>

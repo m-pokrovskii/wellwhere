@@ -76,12 +76,6 @@ SinglePageFixed.init();
 $('.ui.dropdown').dropdown();
 
 
-$('.ListingFilter__trigger').on('click', function () {
-  $(this).toggleClass('-open')
-  $('.ListingFilter__menu').toggle();
-})
-
-
 $('[data-action=listing-switch-map]').on('click', function () {
   $('.ListingMaps').toggleClass('-visible')
 })
@@ -107,8 +101,7 @@ if (typeof $.fn.fancybox !== 'undefined') {
 
 $('.PriceBlock__row').on('click', function () {
   let radio = $(this).find('input[type=radio]');
-  let radioCurrentValue = radio.prop("checked");
-  radio.prop('checked', !radioCurrentValue);
+  radio.prop('checked', 'checked');
 });
 
 
@@ -121,8 +114,8 @@ const ScrollMagic = (function () {
   const scrollPos = $(document).scrollTop();
   const menuLinks = $('.ContentMenu li a');
   const activiClassName = 'current';
-  const offset = 700;
-  const headOffset = 100
+  const offset = 600;
+  const headOffset = 173
 
   function init() {
     doc.on("scroll", onScroll);
@@ -250,6 +243,9 @@ Sticky.init();
 const ProfileSwitch = (function ($) {
   const menu = $('.ProfileMenu');
   const links = $('.ProfileMenu a');
+  const mobileMenu = $('.SmMenu__menu1');
+  const mobileMenuLinks = $('.SmMenu__menu1 > li > a');
+  const SmMenu = $('.SmMenu');
   let sections;
 
   function init() {
@@ -264,21 +260,38 @@ const ProfileSwitch = (function ($) {
       location.hash = this.hash
     });
 
+    mobileMenuLinks.on('click', handleMobileLinks);
+
     $(window).on('hashchange', activate);
+  }
+
+  function handleMobileLinks(e) {
+    SmMenu.hide();
   }
 
 
   function onLoad() {
     if (!location.hash || !location.hash == "#") { return };
-
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateLink();
-    activateSection();
+    activateMobileLink();
+    setTimeout(function() {
+      activateSection();
+    }, 300)
   }
 
 
   function activate() {
     if (!location.hash || !location.hash == "#") { return };
-
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateSection()
     activateLink()
     activateMobileLink()
@@ -286,9 +299,7 @@ const ProfileSwitch = (function ($) {
 
 
   function activateMobileLink() {
-    const mobileMenu = $('.SmMenu__menu1');
-    const mobileMenuLinks = $('.SmMenu__menu1 > li > a');
-    let curent = mobileMenu.find("[href='" + location.hash + "']");
+    let curent = mobileMenu.find("[href$='" + location.hash + "']");
 
     mobileMenuLinks.removeClass('active');
     curent.addClass('active');
@@ -660,6 +671,7 @@ const Auth = (function ($) {
         user_first_name: 'empty',
         user_last_name: 'empty',
         user_email_register: 'email',
+        user_password_register: 'empty',
       }
     });
 
@@ -717,10 +729,11 @@ const Auth = (function ($) {
     const regFields =  regForm.serializeObject();
 
     const user_first_name_register = regFields.user_first_name_register;
-    const user_last_name_register = regFields.user_last_name_register;
-    const user_email_register = regFields.user_email_register;
-    const ajaxurl = data.adminAjax;
-    const security_register = regFields.security_register;
+    const user_last_name_register  = regFields.user_last_name_register;
+    const user_email_register      = regFields.user_email_register;
+    const user_password_register   = regFields.user_password_register;
+    const ajaxurl                  = data.adminAjax;
+    const security_register        = regFields.security_register;
 
     $.ajax({
       type: 'POST',
@@ -731,12 +744,17 @@ const Auth = (function ($) {
         'security_register': security_register,
         'user_first_name': user_first_name_register,
         'user_last_name': user_last_name_register,
-        'user_email_register': user_email_register
+        'user_email_register': user_email_register,
+        'user_password_register': user_password_register
       },
       success: function (r) {
         if (r.success) {
           regForm.find('.ui.small.info.message').hide();
           regForm.find('.ui.small.success.message').html(r.data.message);
+          setTimeout(() => {
+            $('form.ui.form').hide();
+            $('#LoginForm').show();
+          }, 3000)
         } else {
           regForm.form("add errors", [r.data.message] );
         }
@@ -919,10 +937,12 @@ const Profile = (function($) {
 Profile.init();
 
 const ProfileAvatarUpload = (function($) {
-  const imageInput    = $('#ProfileUploadForm__image');
-  const avatarMessage = $('[data-profile-avatar-message');
-  const profileAvatar = $('.Profile__avatar');
-  const delteAvatar = $('[data-profile-avatar-delete]');
+  const imageInput       = $('#ProfileUploadForm__image');
+  const avatarMessage    = $('[data-profile-avatar-message]');
+  const profileAvatar    = $('.Profile__avatar');
+  const headerAvatar     = $('.LoggedInUserDropdown__avatar');
+  const mobileMenuAvatar = $('.SmMenu__userAvatar');
+  const delteAvatar      = $('[data-profile-avatar-delete]');
   function init() {
     imageInput.on('change', upload);
     delteAvatar.on('click', remove);
@@ -948,7 +968,11 @@ const ProfileAvatarUpload = (function($) {
       if (r.success) {
         profileAvatar.css({
           backgroundImage: 'url(' + r.data.url+ ')'
-        })
+        });
+        mobileMenuAvatar.css({
+          backgroundImage: 'url(' + r.data.url+ ')'
+        });
+        headerAvatar.attr('src', r.data.url);
         input.val('');
       } else {
         console.log(r);
@@ -993,12 +1017,17 @@ const ProfileAvatarUpload = (function($) {
 }(jQuery));
 ProfileAvatarUpload.init();
 
-const Rating = (function () {
-    const nonIteractiveRating   = $('.ui.rating');
-    const favorite = $('.GymFavorite');
-    let inProcess = false;
+export const Rating = (function () {
+    let nonIteractiveRating;
+    let favorite;
+    let inProcess;
     
     function init() {
+
+      nonIteractiveRating = $('.ui.rating');
+      favorite            = $('.GymFavorite');
+      inProcess           = false;
+      
       nonIteractiveRating.rating({
         maxRating: 5,
         interactive: false,
@@ -1006,11 +1035,18 @@ const Rating = (function () {
 
       favorite.rating({
         interactive: true,
-        onRate: saveFavoriteGym
+        onRate: function() {
+          if ( data.userId ) {
+            saveFavoriteGym.call(this);
+          }
+          else {
+            Auth.openModal();
+          }
+        }
       })
     }
 
-    function saveFavoriteGym($v) {
+    function saveFavoriteGym() {
       const el = $(this);
       const gymId = el.attr('data-gym-id');
       if ( inProcess ) { return } else { inProcess = true };
@@ -1186,3 +1222,132 @@ const Reviews = (function () {
   }
 })();
 Reviews.init();
+
+
+const Favorites = (function () {
+  const loadMoreFavoritesLink = $('[data-load-more-favorites]');
+  const profileFavoritesContainer = $('.FavoriteList');
+  let inProcess = false;
+  
+  function init() {
+    loadMoreFavoritesLink.on('click', loadMoreFavorites)
+  }
+
+  function loadMoreFavorites(e) {
+    e.preventDefault();
+    if ( inProcess === true ) { return false; }
+    inProcess = true;
+
+    const favorites_per_page = loadMoreFavoritesLink.attr('data-favorites-per-page');
+    const offset = profileFavoritesContainer.find('.FavoriteListItem').length;
+
+    $.ajax({
+      url: data.adminAjax,
+      type: 'GET',
+      data: {
+        action: 'load_more_favorites',
+        favorites_per_page: favorites_per_page,
+        offset: offset
+      },
+    })
+    .done(function(r) {
+      profileFavoritesContainer.append(r);
+      if (r.success === false) {
+        console.log( r );
+        loadMoreFavoritesLink.fadeOut();
+      }
+    })
+    .fail(function(e) {
+      console.log(e);
+    })
+    .always(function() {
+      inProcess = false;
+    });
+  }
+
+  return {
+    init: init
+  }
+})();
+
+Favorites.init();
+
+export const Uri = (function () {
+
+  function extend( extendObj ) {
+    let uri = path( extendObj );
+    $.uriAnchor.setAnchor( uri );
+  }
+    
+  function path( extendObj ) {
+    let uri   = $.uriAnchor.makeAnchorMap();
+    extendObj = extendObj || {};
+    $.extend( true, uri, extendObj );
+    return uri;
+  }
+
+  return {
+    extend: extend,
+    path: path
+  }
+})();
+
+
+const Filter = (function () {
+  const filterTrigger      = $('.ListingFilter__trigger');
+  const filterMenu         = $('.ListingFilter__menu');
+  const filterMapButton    = $('[data-map-filter-button]');
+  const filterMapForm      = $('[data-filter-map-form]');
+  const showMoreActivitiesLink = $('[data-show-more-activities]');
+  function init() {
+    events();
+  }
+
+  function events() {
+    filterTrigger.on('click', function () {
+      $(this).toggleClass('-open')
+      filterMenu.toggle();
+    })
+    filterMapButton.on('click', updateFilterUri);
+    showMoreActivitiesLink.on('click', showMoreActivities);
+  }
+
+  function showMoreActivities(e) {
+    e.preventDefault();
+    $('[data-hide]').toggle();
+    // showMoreActivitiesLink.hide();
+  }
+
+  function updateFilterUri(e) {
+    e.preventDefault();
+    // let filterData = filterMapForm.serializeObject();
+    let filterData = filterMapForm.serializeObject();
+    filterData.type = 'filter';
+    filterData.page = '1';
+    // Workarround if no checkbox selected
+    filterData.activity = filterData.activity || "";
+    Uri.extend(filterData);
+  }
+
+  return {
+    init: init
+  }
+})();
+Filter.init();
+
+const ListingPagination = (function () {
+    function init() {
+      $('body').on('click', '.ListingPagination a.page-numbers', function(e) {
+        e.preventDefault();
+        const pageNumber = $(this).html();
+        Uri.extend({
+          type: 'pagination',
+          page: pageNumber
+        })
+      })
+    }
+    return {
+      init: init
+    }
+})();
+ListingPagination.init();

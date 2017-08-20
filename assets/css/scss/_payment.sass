@@ -204,11 +204,17 @@
     height: 50px
     border-radius: 3px
     color: #fff
-    font: 20px "Avenir-Black"
+    font: 20px "Avenir-Medium"
+    &.-remove
+       border: solid 1px #FF4040
+       background: #fff
+       color: #FF4040  
     +sm()
       width: 140px
       height: 30px
       font-size: 14px
+    +xs()
+      width: 120px 
 
 
 .PaymentAddCard
@@ -416,6 +422,7 @@
   right: 23px
   display: block
   background: url('../img/icon-error.svg') no-repeat
+  background-size: contain 
   width: 39px
   height: 39px
   +sm()
@@ -492,7 +499,7 @@
 
 
 .PaymentTotal__button
-  font: 20px "Avenir-Black"
+  font: 20px "Avenir-Medium"
   background: #FF4040
   color: #fff
   display: flex

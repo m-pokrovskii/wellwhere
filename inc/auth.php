@@ -116,14 +116,21 @@ add_action( 'wp_ajax_nopriv_ajax_register_user', 'ajax_register_user' );
 add_action( 'wp_ajax_ajax_register_user', 'ajax_register_user' );
 
 function ajax_register_user(){
-	$allowed_html =   array();
-	$user_email = trim( sanitize_text_field(wp_kses( $_POST['user_email_register'] ,$allowed_html) ) );
+	$allowed_html    = array();
+	$user_email      = trim( sanitize_text_field(wp_kses( $_POST['user_email_register'] ,$allowed_html) ) );
+	$user_password   = trim($_POST['user_password_register']);
 	$user_first_name = trim( sanitize_text_field(wp_kses( $_POST['user_first_name'] ,$allowed_html) ) );
-	$user_last_name = trim( sanitize_text_field(wp_kses( $_POST['user_last_name'] ,$allowed_html) ) );
+	$user_last_name  = trim( sanitize_text_field(wp_kses( $_POST['user_last_name'] ,$allowed_html) ) );
 
 	if ( $user_email == "" ){
 		wp_send_json_error( array(
 			'message' => __( 'Email field is empty!','wellwhere')
+			) );
+	}
+
+	if ( $user_password == "" ){
+		wp_send_json_error( array(
+			'message' => __( 'Password field is empty!','wellwhere')
 			) );
 	}
 
@@ -155,13 +162,13 @@ function ajax_register_user(){
 	}
 
 	if ( email_exists( $user_email ) == false ) {
-		$user_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+		// $user_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
 		$user_id = wp_insert_user( array(
 			'user_login' => $user_email,
-			'user_pass' => $user_password,
+			'user_pass'  => $user_password,
 			'user_email' => $user_email,
 			'first_name' => $user_first_name,
-			'last_name' => $user_last_name
+			'last_name'  => $user_last_name
 			));
 		if ( is_wp_error( $user_id ) ){
 			wp_send_json_error( $user_id );
@@ -169,7 +176,7 @@ function ajax_register_user(){
 			send_user_credentials( $user_id, $user_password );
 			wp_send_json_success( array(
 				'message' => __('An email with the generated password was sent!','wellwhere')
-				) );
+			) );
 		}
 	} else {
 		wp_send_json_error( array(
@@ -223,17 +230,18 @@ function ajax_forgot_pass(){
 		return $key;
 	}
 
-	$headers = 'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>' . "\r\n";
+	$headers = array(
+		'From: No Reply <noreply@'.$_SERVER['HTTP_HOST'].'>',
+		'Content-Type: text/html; charset=UTF-8'
+	);
 
 	$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 	$title = sprintf( __('[%s] Password Reset'), $blogname );
-
-	$message  = __('Someone has requested a password reset for the following account:') . "\r\n\r\n";
-	$message .= network_home_url( '/' ) . "\r\n\r\n";
-	$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
-	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
-	$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
-	$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
+	$message = string_templates(array(
+		"site_url" => network_home_url( '/' ),
+		"user_login" => $user_login,
+		"reset_link" => network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login')
+	), get_field('password_reset_message', 'option'));
 
 	$send =  wp_mail($user_email, wp_specialchars_decode( $title ), $message, $headers);
 
@@ -266,8 +274,7 @@ function facebook_login( $get_vars ){
 	         // When Graph returns an error
 		echo 'Graph returned an error: ' . $e->getMessage();
 		exit;
-	} catch(Facebook\Exceptions\FacebookSDKException 
-		$e) {
+	} catch(Facebook\Exceptions\FacebookSDKException $e) {
 	        // When validation fails or other local issues
 		echo 'Facebook SDK returned an error: ' . $e->getMessage();
 		exit;

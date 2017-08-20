@@ -1,10 +1,10 @@
 <style>
   body {
     position: absolute;
-    background-image: url('/wp-content/themes/wellwhere/assets/img/pdf-background.jpg');
+    background-image: url("<?php echo $pdf_bg_url ?>");
     background-image-resize: 6;
-    margin: 0;
-    padding: 0;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
     width: 100%;
     height: 100%;
   }

@@ -73,351 +73,9 @@
 "use strict";
 
 
-$('.SmOpener').on('click', toggleMobileMenu);
-
-function toggleMobileMenu(e) {
-  $('.SmOpener').toggleClass('open');
-  $('.SmMenu').toggle();
-}
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var url = data.adminAjax + '?action=search&q={query}';
-$('.HeroSearch__field, .Header__search, .SmMenu__search').search({
-  apiSettings: {
-    action: 'search',
-    cache: false,
-    url: url
-  },
-  fields: {
-    actionURL: 'url'
-  },
-  searchFullText: false,
-  searchFields: ['title']
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var GM = function ($) {
-  var map = void 0;
-  var singleMap = $('.wellwhere-map');
-  var clusterIcon = singleMap.attr('data-cluster-icon');
-  var mapStyles = JSON.parse(mapData.styles);
-  function init() {
-    singleMap.each(function () {
-      map = new_map($(this));
-    });
-  }
-
-  function new_map($el) {
-    var $markers = $el.find('.marker');
-    var args = {
-      zoom: 16,
-      center: new google.maps.LatLng(0, 0),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: false,
-      streetViewControl: false,
-      mapTypeControl: false,
-      styles: mapStyles
-    };
-
-    // create map
-    var map = new google.maps.Map($el[0], args);
-
-    // add a markers reference
-    map.markers = [];
-
-    // add markers
-    $markers.each(function () {
-
-      add_marker($(this), map);
-    });
-
-    // center map
-    center_map(map);
-
-    // return
-    return map;
-  }
-
-  function add_marker($marker, map) {
-
-    var latlng = new google.maps.LatLng($marker.attr('data-lat'), $marker.attr('data-lng'));
-    var pin = $marker.attr('data-icon');
-
-    // create marker
-    var marker = new google.maps.Marker({
-      position: latlng,
-      animation: google.maps.Animation.DROP,
-      map: map,
-      icon: pin
-    });
-
-    // add to array
-    map.markers.push(marker);
-
-    // if marker contains HTML, add it to an infoWindow
-    if ($marker.html()) {
-      // create info window
-      var infowindow = new google.maps.InfoWindow({
-        content: $marker.html()
-      });
-
-      // show info window when marker is clicked
-      google.maps.event.addListener(marker, 'click', function () {
-
-        infowindow.open(map, marker);
-      });
-    }
-  }
-
-  function center_map(map) {
-    var bounds = new google.maps.LatLngBounds();
-
-    // loop through all markers and create bounds
-    $.each(map.markers, function (i, marker) {
-
-      var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
-
-      bounds.extend(latlng);
-    });
-
-    // only 1 marker?
-    if (map.markers.length == 1) {
-      // set center of map
-      map.setCenter(bounds.getCenter());
-      map.setZoom(16);
-    } else {
-      // fit to bounds
-      map.fitBounds(bounds);
-      var markerCluster = new MarkerClusterer(map, map.markers, {
-        styles: [{
-          url: 'http://wellwhere.lm/wp-content/themes/wellwhere/assets/img/map-marker-red-round.png',
-          height: 50,
-          width: 50,
-          textColor: "#fff",
-          textSize: 14
-        }]
-      });
-    }
-  }
-
-  return {
-    init: init
-  };
-}(jQuery);
-GM.init();
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-$('.SliderGyms').slick({
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  infinite: true,
-  appendArrows: $('.SliderContainer'),
-  nextArrow: '<img class="SliderGyms__nextArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
-  prevArrow: '<img class="SliderGyms__prevArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
-  responsive: [{
-    breakpoint: 1025,
-    settings: {
-      arrows: false,
-      centerMode: true,
-      centerPadding: '40px',
-      slidesToShow: 2
-    }
-  }, {
-    breakpoint: 768,
-    settings: {
-      arrows: false,
-      centerMode: true,
-      centerPadding: '40px',
-      slidesToShow: 1
-    }
-  }]
-});
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var StripeModule = function ($) {
-  var userId = data.userId;
-  var chargeInProcess = false;
-  function stripeForm() {
-    if ($('#card-element').length === 0) {
-      return false;
-    }
-    // Create a Stripe client
-    var stripe = Stripe('pk_test_G6LDMUdv0HThh4NSY4ZEY0fw');
-
-    // Create an instance of Elements
-    var elements = stripe.elements();
-
-    // Custom styling can be passed to options when creating an Element.
-    // (Note that this demo uses a wider set of styles than the guide below.)
-    var style = {
-      base: {
-        color: '#32325d',
-        lineHeight: '24px',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-          color: '#aab7c4'
-        }
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a'
-      }
-    };
-
-    // Create an instance of the card Element
-    var card = elements.create('card', { style: style, hidePostalCode: true });
-
-    // Add an instance of the card Element into the `card-element` <div>
-    card.mount('#card-element');
-
-    // Handle real-time validation errors from the card Element.
-    card.addEventListener('change', function (event) {
-      var displayError = document.getElementById('card-errors');
-      if (event.error) {
-        displayError.textContent = event.error.message;
-      } else {
-        displayError.textContent = '';
-      }
-    });
-
-    // Handle form submission
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      stripe.createToken(card).then(function (result) {
-        if (result.error) {
-          // Inform the user if there was an error
-          var errorElement = document.getElementById('card-errors');
-          errorElement.textContent = result.error.message;
-        } else {
-          // Send the token to your server
-          saveToken(result.token);
-        }
-      });
-    });
-  }
-
-  function saveToken(token) {
-    $.ajax({
-      url: data.adminAjax,
-      type: 'POST',
-      data: {
-        action: 'save_card',
-        stripe_token: token,
-        user_id: userId
-      }
-    }).done(function (result) {
-      NProgress.done();
-      window.location.reload();
-    }).fail(function (e) {
-      console.error(e);
-      NProgress.done();
-    });
-  }
-
-  function chargeSource(e) {
-    e.preventDefault();
-    if (chargeInProcess === true) {
-      return;
-    }
-    chargeInProcess = true;
-    var card_id = $("[data-card-id]").attr('data-card-id');
-    var redirectUrl = $(this).attr('data-redirect');
-    $.ajax({
-      url: data.adminAjax,
-      type: 'POST',
-      data: {
-        action: 'charge_source',
-        card_id: card_id,
-        user_id: userId
-      }
-    }).done(function (r) {
-      console.log(r);
-      if (r.success) {
-        window.location.replace(redirectUrl + '?pdf_filename=' + r.data.pdf_filename);
-      }
-    }).fail(function (e) {
-      console.error(e);
-    }).always(function () {
-      chargeInProcess = false;
-    });
-  }
-
-  function removeCard(e) {
-    e.preventDefault();
-    var card_id = $(this).parents('[data-card-id]').attr('data-card-id');
-    $.ajax({
-      url: data.adminAjax,
-      type: 'POST',
-      data: {
-        action: 'remove_card',
-        card_id: card_id
-      }
-    }).done(function (result) {
-      if (result.success) {
-        console.log(result);
-        window.location.reload();
-        NProgress.done();
-      } else {
-        console.log(result);
-        NProgress.done();
-      }
-    }).fail(function (e) {
-      console.error(e);
-      NProgress.done();
-    });
-  }
-
-  function handlers() {
-    $('body').on('click', '[data-charge]', chargeSource);
-    $('body').on('click', '[data-card-remove]', removeCard);
-  }
-
-  function init() {
-    stripeForm();
-    handlers();
-  }
-
-  return {
-    init: init
-  };
-}(jQuery);
-
-StripeModule.init();
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -496,11 +154,6 @@ SinglePageFixed.init();
 
 $('.ui.dropdown').dropdown();
 
-$('.ListingFilter__trigger').on('click', function () {
-  $(this).toggleClass('-open');
-  $('.ListingFilter__menu').toggle();
-});
-
 $('[data-action=listing-switch-map]').on('click', function () {
   $('.ListingMaps').toggleClass('-visible');
 });
@@ -522,8 +175,7 @@ if (typeof $.fn.fancybox !== 'undefined') {
 
 $('.PriceBlock__row').on('click', function () {
   var radio = $(this).find('input[type=radio]');
-  var radioCurrentValue = radio.prop("checked");
-  radio.prop('checked', !radioCurrentValue);
+  radio.prop('checked', 'checked');
 });
 
 var ScrollMagic = function () {
@@ -532,8 +184,8 @@ var ScrollMagic = function () {
   var scrollPos = $(document).scrollTop();
   var menuLinks = $('.ContentMenu li a');
   var activiClassName = 'current';
-  var offset = 700;
-  var headOffset = 100;
+  var offset = 600;
+  var headOffset = 173;
 
   function init() {
     doc.on("scroll", onScroll);
@@ -646,6 +298,9 @@ Sticky.init();
 var ProfileSwitch = function ($) {
   var menu = $('.ProfileMenu');
   var links = $('.ProfileMenu a');
+  var mobileMenu = $('.SmMenu__menu1');
+  var mobileMenuLinks = $('.SmMenu__menu1 > li > a');
+  var SmMenu = $('.SmMenu');
   var sections = void 0;
 
   function init() {
@@ -660,32 +315,47 @@ var ProfileSwitch = function ($) {
       location.hash = this.hash;
     });
 
+    mobileMenuLinks.on('click', handleMobileLinks);
+
     $(window).on('hashchange', activate);
+  }
+
+  function handleMobileLinks(e) {
+    SmMenu.hide();
   }
 
   function onLoad() {
     if (!location.hash || !location.hash == "#") {
       return;
     };
-
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateLink();
-    activateSection();
+    activateMobileLink();
+    setTimeout(function () {
+      activateSection();
+    }, 300);
   }
 
   function activate() {
     if (!location.hash || !location.hash == "#") {
       return;
     };
-
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateSection();
     activateLink();
     activateMobileLink();
   }
 
   function activateMobileLink() {
-    var mobileMenu = $('.SmMenu__menu1');
-    var mobileMenuLinks = $('.SmMenu__menu1 > li > a');
-    var curent = mobileMenu.find("[href='" + location.hash + "']");
+    var curent = mobileMenu.find("[href$='" + location.hash + "']");
 
     mobileMenuLinks.removeClass('active');
     curent.addClass('active');
@@ -1038,7 +708,8 @@ var Auth = function ($) {
       fields: {
         user_first_name: 'empty',
         user_last_name: 'empty',
-        user_email_register: 'email'
+        user_email_register: 'email',
+        user_password_register: 'empty'
       }
     });
 
@@ -1098,6 +769,7 @@ var Auth = function ($) {
     var user_first_name_register = regFields.user_first_name_register;
     var user_last_name_register = regFields.user_last_name_register;
     var user_email_register = regFields.user_email_register;
+    var user_password_register = regFields.user_password_register;
     var ajaxurl = data.adminAjax;
     var security_register = regFields.security_register;
 
@@ -1110,12 +782,17 @@ var Auth = function ($) {
         'security_register': security_register,
         'user_first_name': user_first_name_register,
         'user_last_name': user_last_name_register,
-        'user_email_register': user_email_register
+        'user_email_register': user_email_register,
+        'user_password_register': user_password_register
       },
       success: function success(r) {
         if (r.success) {
           regForm.find('.ui.small.info.message').hide();
           regForm.find('.ui.small.success.message').html(r.data.message);
+          setTimeout(function () {
+            $('form.ui.form').hide();
+            $('#LoginForm').show();
+          }, 3000);
         } else {
           regForm.form("add errors", [r.data.message]);
         }
@@ -1295,8 +972,10 @@ Profile.init();
 
 var ProfileAvatarUpload = function ($) {
   var imageInput = $('#ProfileUploadForm__image');
-  var avatarMessage = $('[data-profile-avatar-message');
+  var avatarMessage = $('[data-profile-avatar-message]');
   var profileAvatar = $('.Profile__avatar');
+  var headerAvatar = $('.LoggedInUserDropdown__avatar');
+  var mobileMenuAvatar = $('.SmMenu__userAvatar');
   var delteAvatar = $('[data-profile-avatar-delete]');
   function init() {
     imageInput.on('change', upload);
@@ -1323,6 +1002,10 @@ var ProfileAvatarUpload = function ($) {
         profileAvatar.css({
           backgroundImage: 'url(' + r.data.url + ')'
         });
+        mobileMenuAvatar.css({
+          backgroundImage: 'url(' + r.data.url + ')'
+        });
+        headerAvatar.attr('src', r.data.url);
         input.val('');
       } else {
         console.log(r);
@@ -1363,12 +1046,17 @@ var ProfileAvatarUpload = function ($) {
 }(jQuery);
 ProfileAvatarUpload.init();
 
-var Rating = function () {
-  var nonIteractiveRating = $('.ui.rating');
-  var favorite = $('.GymFavorite');
-  var inProcess = false;
+var Rating = exports.Rating = function () {
+  var nonIteractiveRating = void 0;
+  var favorite = void 0;
+  var inProcess = void 0;
 
   function init() {
+
+    nonIteractiveRating = $('.ui.rating');
+    favorite = $('.GymFavorite');
+    inProcess = false;
+
     nonIteractiveRating.rating({
       maxRating: 5,
       interactive: false
@@ -1376,11 +1064,17 @@ var Rating = function () {
 
     favorite.rating({
       interactive: true,
-      onRate: saveFavoriteGym
+      onRate: function onRate() {
+        if (data.userId) {
+          saveFavoriteGym.call(this);
+        } else {
+          Auth.openModal();
+        }
+      }
     });
   }
 
-  function saveFavoriteGym($v) {
+  function saveFavoriteGym() {
     var el = $(this);
     var gymId = el.attr('data-gym-id');
     if (inProcess) {
@@ -1556,6 +1250,637 @@ var Reviews = function () {
 }();
 Reviews.init();
 
+var Favorites = function () {
+  var loadMoreFavoritesLink = $('[data-load-more-favorites]');
+  var profileFavoritesContainer = $('.FavoriteList');
+  var inProcess = false;
+
+  function init() {
+    loadMoreFavoritesLink.on('click', loadMoreFavorites);
+  }
+
+  function loadMoreFavorites(e) {
+    e.preventDefault();
+    if (inProcess === true) {
+      return false;
+    }
+    inProcess = true;
+
+    var favorites_per_page = loadMoreFavoritesLink.attr('data-favorites-per-page');
+    var offset = profileFavoritesContainer.find('.FavoriteListItem').length;
+
+    $.ajax({
+      url: data.adminAjax,
+      type: 'GET',
+      data: {
+        action: 'load_more_favorites',
+        favorites_per_page: favorites_per_page,
+        offset: offset
+      }
+    }).done(function (r) {
+      profileFavoritesContainer.append(r);
+      if (r.success === false) {
+        console.log(r);
+        loadMoreFavoritesLink.fadeOut();
+      }
+    }).fail(function (e) {
+      console.log(e);
+    }).always(function () {
+      inProcess = false;
+    });
+  }
+
+  return {
+    init: init
+  };
+}();
+
+Favorites.init();
+
+var Uri = exports.Uri = function () {
+
+  function extend(extendObj) {
+    var uri = path(extendObj);
+    $.uriAnchor.setAnchor(uri);
+  }
+
+  function path(extendObj) {
+    var uri = $.uriAnchor.makeAnchorMap();
+    extendObj = extendObj || {};
+    $.extend(true, uri, extendObj);
+    return uri;
+  }
+
+  return {
+    extend: extend,
+    path: path
+  };
+}();
+
+var Filter = function () {
+  var filterTrigger = $('.ListingFilter__trigger');
+  var filterMenu = $('.ListingFilter__menu');
+  var filterMapButton = $('[data-map-filter-button]');
+  var filterMapForm = $('[data-filter-map-form]');
+  var showMoreActivitiesLink = $('[data-show-more-activities]');
+  function init() {
+    events();
+  }
+
+  function events() {
+    filterTrigger.on('click', function () {
+      $(this).toggleClass('-open');
+      filterMenu.toggle();
+    });
+    filterMapButton.on('click', updateFilterUri);
+    showMoreActivitiesLink.on('click', showMoreActivities);
+  }
+
+  function showMoreActivities(e) {
+    e.preventDefault();
+    $('[data-hide]').toggle();
+    // showMoreActivitiesLink.hide();
+  }
+
+  function updateFilterUri(e) {
+    e.preventDefault();
+    // let filterData = filterMapForm.serializeObject();
+    var filterData = filterMapForm.serializeObject();
+    filterData.type = 'filter';
+    filterData.page = '1';
+    // Workarround if no checkbox selected
+    filterData.activity = filterData.activity || "";
+    Uri.extend(filterData);
+  }
+
+  return {
+    init: init
+  };
+}();
+Filter.init();
+
+var ListingPagination = function () {
+  function init() {
+    $('body').on('click', '.ListingPagination a.page-numbers', function (e) {
+      e.preventDefault();
+      var pageNumber = $(this).html();
+      Uri.extend({
+        type: 'pagination',
+        page: pageNumber
+      });
+    });
+  }
+  return {
+    init: init
+  };
+}();
+ListingPagination.init();
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+$('.SmOpener').on('click', toggleMobileMenu);
+
+function toggleMobileMenu(e) {
+  $('.SmOpener').toggleClass('open');
+  $('.SmMenu').toggle();
+}
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var url = data.adminAjax + '?action=search&q={query}';
+$('.HeroSearch__field, .Header__search, .SmMenu__search').search({
+  apiSettings: {
+    action: 'search',
+    cache: false,
+    url: url
+  },
+  fields: {
+    actionURL: 'url'
+  },
+  searchFullText: false,
+  searchFields: ['title']
+});
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _uiInit = __webpack_require__(0);
+
+var GM = function ($) {
+	var map = void 0;
+	var infowindow = void 0;
+	var mapcluster = void 0;
+	var is_fit_bounds = false;
+	var inProcess = false;
+	var isfirstTimeLoaded = void 0;
+
+	var singleMap = $('.wellwhere-map');
+	var clusterIcon = singleMap.attr('data-cluster-icon');
+	var mapStyles = JSON.parse(mapData.styles);
+	var listingItemsContainer = $('.ContainerListingItems');
+	var listingsContainer = $('.ListingItems');
+
+	function init() {
+		$(window).on('hashchange', handleHashChange);
+		firstTimeLoad();
+
+		singleMap.each(function () {
+			map = new_map($(this));
+			if ($(this).is('[data-listing-map]')) {
+				handleMapMovement(map);
+			}
+		});
+	}
+
+	function firstTimeLoad() {
+		$(document).ready(function () {
+			var uriMap = $.uriAnchor.makeAnchorMap();
+			isfirstTimeLoaded = true;
+			handleHashChange();
+			// console.log(uriMap);
+			if (uriMap.rating) {
+				$('.ListingFilter__rating-field').dropdown('set selected', uriMap.rating);
+			}
+			if (uriMap.gender) {
+				$('.ListingFilter__gender-field').dropdown('set selected', uriMap.gender);
+			}
+			if (uriMap.activity) {
+				var activityArray = uriMap.activity.split(',');
+				$('.ListingFilter__activity-field').checkbox('uncheck');
+				$.each(activityArray, function (index, val) {
+					var checkbox = $('input[name="activity"][value="' + val + '"]');
+					checkbox.parent('.ListingFilter__activity-field').checkbox('check');
+				});
+			}
+		});
+	}
+
+	function handleHashChange(e) {
+		var uriMap = $.uriAnchor.makeAnchorMap();
+		if (uriMap.type == 'map' || uriMap.type == 'filter' || uriMap.type == 'pagination') {
+			listingsContainer.dimmer('show');
+			// if ( inProcess ) { return } else { inProcess = true };
+			$.ajax({
+				url: data.adminAjax,
+				type: 'GET',
+				data: {
+					action: 'get_gyms_by_uri',
+					uri: uriMap
+				}
+			}).done(function (r) {
+				console.log(r);
+				if (r.success) {
+					dealListingItems(r.data.markers, r.data.pagination);
+					clearAllMarkers();
+					if (mapcluster) {
+						mapcluster.clearMarkers();
+					}
+					$.each(r.data.markers, function (index, el) {
+						add_marker(el.lat, el.lng, el.pin, el.html, map);
+					});
+					if (uriMap.type == 'filter' || uriMap.type == 'pagination' || isfirstTimeLoaded == true) {
+						wellwhereFitBounds();
+					}
+					if (mapcluster) {
+						mapcluster.clearMarkers();
+						mapcluster.addMarkers(map.markers);
+					} else {
+						if (map.markers.length > 1) {
+							mapcluster = cluster(map, map.markers);
+						}
+					}
+				} else {
+					removeListingItems();
+					clearAllMarkers();
+				}
+			}).fail(function (e) {
+				console.log(e.statusText);
+			}).always(function () {
+				isfirstTimeLoaded = false;
+				inProcess = false;
+			});
+		};
+	}
+
+	function handleMapMovement(map) {
+		google.maps.event.addListener(map, 'bounds_changed', mapMovement);
+		// google.maps.event.addListener(map, 'dragend', mapMovement);
+		// google.maps.event.addListener(map, 'zoom_changed', mapMovement);
+	}
+
+	function clearAllMarkers() {
+		while (map.markers.length) {
+			map.markers.pop().setMap(null);
+		}
+	}
+
+	function dealListingItems(listingItems, $pagination) {
+		listingItemsContainer.html("");
+		$.each(listingItems, function (index, item) {
+			listingItemsContainer.append(item.listingItem);
+		});
+		_uiInit.Rating.init();
+		if ($pagination) {
+			listingItemsContainer.append($pagination);
+		}
+		listingsContainer.dimmer('hide');
+	}
+
+	function removeListingItems() {
+		listingItemsContainer.html("");
+	}
+
+	function mapMovement() {
+		var bounds = {};
+		if (is_fit_bounds) {
+			return;
+		}
+		bounds.lat_TR = map.getBounds().getNorthEast().lat();
+		bounds.lng_TR = map.getBounds().getNorthEast().lng();
+		bounds.lat_BL = map.getBounds().getSouthWest().lat();
+		bounds.lng_BL = map.getBounds().getSouthWest().lng();
+
+		var mapUri = {
+			type: 'map',
+			map: 'listing',
+			page: 1,
+			_map: bounds
+		};
+
+		_uiInit.Uri.extend(mapUri);
+	}
+
+	function new_map($el) {
+		var $markers = $el.find('.marker');
+		var scrollwheel = $el.attr('data-scrollwheel') || false;
+		var args = {
+			zoom: 16,
+			center: new google.maps.LatLng(0, 0),
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			scrollwheel: scrollwheel,
+			streetViewControl: false,
+			mapTypeControl: false,
+			styles: mapStyles,
+			// TODO. Probably need to remove
+			gestureHandling: "greedy"
+		};
+
+		// create map
+		map = new google.maps.Map($el[0], args);
+
+		// add a markers reference
+		map.markers = [];
+
+		// add markers
+		$markers.each(function () {
+			var lat = $(this).attr('data-lat');
+			var lng = $(this).attr('data-lng');
+			var pin = $(this).attr('data-icon');
+			var markerHtml = $(this).html();
+			// map.markers
+			add_marker(lat, lng, pin, markerHtml, map);
+		});
+
+		wellwhereFitBounds();
+		return map;
+	}
+
+	function add_marker(lat, lng, pin, markerHtml, map) {
+		var latlng = new google.maps.LatLng(lat, lng);
+
+		// create marker
+		var marker = new google.maps.Marker({
+			position: latlng,
+			// animation: google.maps.Animation.DROP,
+			map: map,
+			icon: pin
+		});
+
+		// add to array
+		map.markers.push(marker);
+
+		// if marker contains HTML, add it to an infoWindow
+		if (markerHtml) {
+			// show info window when marker is clicked
+			google.maps.event.addListener(marker, 'click', function () {
+				if (infowindow) {
+					infowindow.close();
+				}
+				infowindow = new InfoBox({
+					alignBottom: true,
+					maxWidth: 343,
+					pixelOffset: new google.maps.Size(-171, -80),
+					closeBoxURL: data.url + "/assets/img/icon-svg-error.svg",
+					content: markerHtml
+				});
+				infowindow.open(map, marker);
+			});
+		}
+	}
+
+	// function center_map( map ) {
+	// 	let bounds = new google.maps.LatLngBounds();
+	// 	// loop through all markers and create bounds
+	// 	$.each( map.markers, function( i, marker ){
+
+	// 		let latlng = new google.maps.LatLng( marker.position.lat(), marker.position.lng() );
+
+	// 		bounds.extend( latlng );
+
+	// 	});
+
+	// 	wellwhereFitBounds();
+	// }
+
+	function cluster(map, markers) {
+		return new MarkerClusterer(map, markers, {
+			styles: [{
+				url: 'http://wellwhere.lm/wp-content/themes/wellwhere/assets/img/map-marker-red-round.png',
+				height: 50,
+				width: 50,
+				textColor: "#fff",
+				textSize: 14
+			}]
+		});
+	}
+
+	function wellwhereFitBounds() {
+		is_fit_bounds = true;
+		var bounds = new google.maps.LatLngBounds();
+		// loop through all markers and create bounds
+		$.each(map.markers, function (i, marker) {
+			var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+			bounds.extend(latlng);
+		});
+
+		if (map.markers.length == 1) {
+			// set center of map
+			map.setCenter(bounds.getCenter());
+			map.setZoom(16);
+
+			google.maps.event.addListenerOnce(map, 'idle', function () {
+				is_fit_bounds = false;
+			});
+		} else {
+			map.fitBounds(bounds);
+			mapcluster = cluster(map, map.markers);
+
+			google.maps.event.addListenerOnce(map, 'idle', function () {
+				is_fit_bounds = false;
+			});
+		}
+	}
+
+	return {
+		init: init
+	};
+}(jQuery);
+GM.init();
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+$('.SliderGyms').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  infinite: false,
+  appendArrows: $('.SliderContainer'),
+  nextArrow: '<img class="SliderGyms__nextArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
+  prevArrow: '<img class="SliderGyms__prevArrow" src="' + data.url + '/assets/img/arrow.svg" alt="">',
+  responsive: [{
+    breakpoint: 1025,
+    settings: {
+      arrows: false,
+      slidesToShow: 2.5
+    }
+  }, {
+    breakpoint: 768,
+    settings: {
+      arrows: false,
+      slidesToShow: 1.5
+    }
+  }]
+});
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var StripeModule = function ($) {
+  var userId = data.userId;
+  var chargeInProcess = false;
+  function stripeForm() {
+    if ($('#card-element').length === 0) {
+      return false;
+    }
+    // Create a Stripe client
+    var stripe = Stripe('pk_test_G6LDMUdv0HThh4NSY4ZEY0fw');
+
+    // Create an instance of Elements
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    var style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    // Create an instance of the card Element
+    var card = elements.create('card', { style: style, hidePostalCode: true });
+
+    // Add an instance of the card Element into the `card-element` <div>
+    card.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element.
+    card.addEventListener('change', function (event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    // Handle form submission
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function (result) {
+        if (result.error) {
+          // Inform the user if there was an error
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server
+          saveToken(result.token);
+        }
+      });
+    });
+  }
+
+  function saveToken(token) {
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'save_card',
+        stripe_token: token,
+        user_id: userId
+      }
+    }).done(function (result) {
+      NProgress.done();
+      window.location.reload();
+    }).fail(function (e) {
+      console.error(e);
+      NProgress.done();
+    });
+  }
+
+  function chargeSource(e) {
+    e.preventDefault();
+    if (chargeInProcess === true) {
+      return;
+    }
+    chargeInProcess = true;
+    var card_id = $("[data-card-id]").attr('data-card-id');
+    var redirectUrl = $(this).attr('data-redirect');
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'charge_source',
+        card_id: card_id,
+        user_id: userId
+      }
+    }).done(function (r) {
+      console.log(r);
+      if (r.success) {
+        window.location.replace(redirectUrl + '?pdf_filename=' + r.data.pdf_filename);
+      }
+    }).fail(function (e) {
+      console.error(e);
+    }).always(function () {
+      chargeInProcess = false;
+    });
+  }
+
+  function removeCard(e) {
+    e.preventDefault();
+    var card_id = $(this).parents('[data-card-id]').attr('data-card-id');
+    $.ajax({
+      url: data.adminAjax,
+      type: 'POST',
+      data: {
+        action: 'remove_card',
+        card_id: card_id
+      }
+    }).done(function (result) {
+      if (result.success) {
+        console.log(result);
+        window.location.reload();
+        NProgress.done();
+      } else {
+        console.log(result);
+        NProgress.done();
+      }
+    }).fail(function (e) {
+      console.error(e);
+      NProgress.done();
+    });
+  }
+
+  function handlers() {
+    $('body').on('click', '[data-charge]', chargeSource);
+    $('body').on('click', '[data-card-remove]', removeCard);
+  }
+
+  function init() {
+    stripeForm();
+    handlers();
+  }
+
+  return {
+    init: init
+  };
+}(jQuery);
+
+StripeModule.init();
+
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1563,17 +1888,17 @@ Reviews.init();
 "use strict";
 
 
-__webpack_require__(1);
-
-__webpack_require__(5);
-
-__webpack_require__(3);
-
 __webpack_require__(2);
+
+__webpack_require__(0);
 
 __webpack_require__(4);
 
-__webpack_require__(0);
+__webpack_require__(3);
+
+__webpack_require__(5);
+
+__webpack_require__(1);
 
 /***/ })
 /******/ ]);

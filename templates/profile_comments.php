@@ -21,7 +21,7 @@
 				data-load-more-profile-review
 				data-review-per-page = <?php echo $posts_per_page ?>
 				href="#" 
-				class="ProfileComments__loadMore-link">plus anciens</a>
+				class="ProfileComments__loadMore-link"><?php _e("plus anciens") ?></a>
 		</div>		
 	<?php endif ?>
 </section>

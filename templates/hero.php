@@ -1,11 +1,16 @@
-<div class="Hero">
+<?php 
+  global $post;
+  $image  = get_field('hero_image', $post->ID);
+  $slogan = get_field('hero_title', $post->ID);
+?>
+<div class="Hero" style="background: url(<?php echo $image; ?>) no-repeat 50% 50%">
   <div class="Hero__slogan">
-    Trouves une activite sportive a proximite de chez vous !
+    <?php echo $slogan ?>
   </div>
   <div class="Hero__search HeroSearch">
     <div class="HeroSearch__field">
       <input
-      placeholder="Où voulez-vous vous entraîner?"
+      placeholder="<?php _e("Où voulez-vous vous entraîner?") ?>"
       class="HeroSearch__input prompt"
       type="text"
       name="heroSearch">
@@ -14,7 +19,7 @@
       </div>
     </div>
     <div class="HeroSearch__helper hide-sm">
-      Pressez ‘Enter’ pour chercherEnter
+      <?php _e("Pressez ‘Enter’ pour chercherEnter") ?>
     </div>
   </div>
 </div>

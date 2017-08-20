@@ -10,7 +10,7 @@
 <div class="App -payment">
 	<?php get_template_part('templates/payment-header') ?>
 	<div class="PaymentPage">
-		<div class="PaymentTitle"><?php the_title() ?></div>
+		<div class="PaymentTitle"></div>
 		<?php get_template_part( 'templates/payment-steps' ); ?>
 		<div class="PaymentCards">
 			<!-- TODO. Ajax -->
@@ -41,24 +41,26 @@
 							<form class="PaymentCardsItem__button-form" action="<?php echo page_link_by_file('page-payment-step-3.php') ?>" method="post">
 								<input type="hidden" name="card_id" value="<?php echo $card->ID ?>">
 								<button type="submit" class="PaymentCardsItem__button -select">
-									séléctionner
+									<?php _e('séléctionner') ?>
 								</button>
 							</form>
 							<button
 								data-card-remove
-								href="#"
 								class="PaymentCardsItem__button -remove">
-								remove
+								<?php _e('remove') ?>
 							</button>
 	    			</div>
 	    		</li>
 				<?php endforeach; ?>
     	</ul>
 			<div class="PaymentAddCard">
+				<?php 
+					$is_open = ( empty( $cards ) ) ? "" : "-hide";
+				 ?>
 				<div class="PaymentAddCard__activator">
-					+ Ajouter un mode de paiement
+					<?php _e("+ Ajouter un mode de paiement") ?>
 				</div>
-				<div class="PaymentAddNewCardForm -hide -show">
+				<div class="PaymentAddNewCardForm <?php echo $is_open ?>">
 					<div class="PaymentAddNewCardForm__headline">
 						<img class="PaymentAddNewCardForm__cards-image" src="<?php echo get_stylesheet_directory_uri() ?>/assets/img/logo-cards.png" alt="">
 						<div class="PaymentAddNewCardForm__title">Carte de crédit</div>

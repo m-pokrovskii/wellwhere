@@ -36,7 +36,7 @@
               </label>
             </div>
             <div class="PriceBlock__price">
-              CHF <?php echo $ticket_price; ?>.-
+              <?php _e("CHF") ?> <?php echo $ticket_price; ?>
             </div>
           </div>
           <?php $i++ ?>

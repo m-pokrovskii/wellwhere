@@ -49,18 +49,18 @@
               id="facebooklogin"
               data-login="facebook">
               <i class="facebook icon"></i>
-              <?php echo __('Login with Facebook','wellwhere'); ?>
+              <?php echo __('Connexion par Facebook','wellwhere'); ?>
            </button>
             <button
               class="LoginForm__google-login ui fluid button google plus"
               id="googlelogin"
               data-login="google">
               <i class="google plus icon"></i>
-              <?php echo __('Login with Google','wellwhere'); ?>
+              <?php echo __('Connexion par Google','wellwhere'); ?>
             </button>
           </div>
           <div class="field">
-            <div class="AuthModal__register AuthModal__small-text AuthModal__text-line -before">
+            <div class="AuthModal__register AuthModal__text-line -before">
               <div>
                 <span><?php _e('Vous n’avez pas de compte ?', 'wellwhere') ?></span>
                 <a data-switch-modal href="#RegForm" class="AuthModal__register-link">
@@ -72,14 +72,14 @@
       </form>
       <form id="RegForm" action="" class="RegForm ui form hide">
         <h3 class="AuthModal__title">
-          <?php _e('Register','wellwhere');?>
+          <?php _e('Inscription','wellwhere');?>
         </h3>
         <div class="field">
           <input
             type="text"
             name="user_first_name_register"
             id="user_first_name"
-            placeholder="<?php _e('First Name','wellwhere');?>"/>
+            placeholder="<?php _e('Prénom','wellwhere');?>"/>
         </div>
 
         <div class="field">
@@ -87,7 +87,7 @@
             type="text"
             name="user_last_name_register"
             id="user_last_name"
-            placeholder="<?php _e('Last Name','wellwhere');?>"/>
+            placeholder="<?php _e('Nom de famille','wellwhere');?>"/>
         </div>
 
         <div class="field">
@@ -95,7 +95,15 @@
             type="text"
             name="user_email_register"
             id="user_email_register"
-            placeholder="<?php _e('Email','wellwhere');?>"  />
+            placeholder="<?php _e('Adresse Mail','wellwhere');?>"  />
+        </div>
+
+        <div class="field">
+          <input
+            type="password"
+            name="user_password_register"
+            id="user_password_register"
+            placeholder="<?php _e('Mot de passe','wellwhere');?>"  />
         </div>
 
         <input
@@ -115,7 +123,7 @@
         </div>
 
         <div class="field">
-          <a data-switch-modal href="#LoginForm" id="widget_login"><?php _e('Back to Login','wellwhere');?></a>
+          <a class="AuthModal__text-line -after" data-switch-modal href="#LoginForm" id="widget_login"><?php _e('Se connecter','wellwhere');?></a>
         </div>
       </form>
       <form id="ForgotPassForm" action="" class="ForgotPassForm ui form hide">
@@ -127,7 +135,7 @@
             type="text"
             name="forgot_email"
             id="forgot_email"
-            placeholder="<?php _e('Enter your email address','wellwhere');?>" >
+            placeholder="<?php _e('Adresse mail','wellwhere');?>" >
           <?php echo wp_nonce_field( 'forgot_ajax_nonce', 'security_forgot',true,false ); ?>
         </div>
         <div class="field">
@@ -135,13 +143,13 @@
             type="sybmit"
             class="ForgotPassForm__submit ui fluid button"
             name="forgot">
-            <?php _e('Reset Password','wellwhere');?>
+            <?php _e('Réinitialiser votre mot de passe','wellwhere');?>
           </button>
         </div>
         <div class="ui small success message"></div>
         <div class="ui small error message"></div>
         <div class="field">
-          <a data-switch-modal href="#LoginForm"><?php _e('Return to Login','wellwhere');?></a>
+          <a class="AuthModal__text-line -after" data-switch-modal href="#LoginForm"><?php _e('Revenir au log in','wellwhere');?></a>
         </div>
       </form>
     </div>

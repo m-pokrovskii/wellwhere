@@ -6,7 +6,7 @@
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5,
@@ -288,11 +288,6 @@ input::placeholder {
   font-size: 14px;
 }
 
-.Header__sm-opener {
-  position: absolute;
-  left: 10px;
-}
-
 .Header__logo {
   width: 288px;
   height: 71px;
@@ -365,10 +360,12 @@ input::placeholder {
 .SmOpener {
   width: 25px;
   height: 17px;
-  position: relative;
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
+  position: absolute;
+  -ms-transform: rotate(0deg) translateY(-50%);
+  transform: rotate(0deg) translateY(-50%);
   transition: .5s ease-in-out;
+  left: 10px;
+  top: 50%;
   cursor: pointer;
 }
 
@@ -513,7 +510,6 @@ input::placeholder {
   border: solid 1px #EFEFEF;
   height: 31px;
   width: 100%;
-  border-right: none;
   padding-left: 7px;
   color: #6E6868;
   font-size: 11px;
@@ -568,7 +564,6 @@ input::placeholder {
 .Hero {
   position: relative;
   height: 588px;
-  background: url("../img/hero-image.png") no-repeat 50% 50%;
   background-size: cover;
 }
 
@@ -580,7 +575,7 @@ input::placeholder {
   right: 0;
   margin: 0 auto;
   color: #fff;
-  font: 48px / 1.375 'Avenir-Heavy';
+  font: 48px / 1.375 'Avenir-Medium';
   text-align: center;
 }
 
@@ -701,6 +696,10 @@ input::placeholder {
   position: relative;
 }
 
+.SliderContainer .slick-arrow.slick-disabled {
+  display: none !important;
+}
+
 .WrapSliderGyms {
   position: relative;
   overflow: hidden;
@@ -753,6 +752,21 @@ input::placeholder {
   color: #000;
 }
 
+.GymListigItem__rating {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.GymListigItem__rating .GymRating {
+  margin-right: 10px;
+}
+
+.GymListigItem__rating .GymListigItem__rating-text {
+  padding-top: 3px;
+}
+
 .ActivitesList {
   display: -ms-flexbox;
   display: flex;
@@ -786,6 +800,27 @@ input::placeholder {
   margin-left: auto;
 }
 
+.ActivitesList__item:nth-child(4) {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(100% * 2/3 - (55px - 55px * 2/3));
+  width: calc(100% * 2/3 - (55px - 55px * 2/3));
+}
+
+.ActivitesList__item:nth-child(4):nth-child(1n) {
+  margin-right: 55px;
+  margin-left: 0;
+}
+
+.ActivitesList__item:nth-child(4):last-child {
+  margin-right: 0;
+}
+
+.ActivitesList__item:nth-child(4):nth-child(0n) {
+  margin-right: 0;
+  margin-left: auto;
+}
+
 .ActivitesList__itemTitle {
   position: absolute;
   height: 100%;
@@ -798,7 +833,7 @@ input::placeholder {
   bottom: 0;
   text-transform: uppercase;
   color: #fff;
-  font: 28px 'Avenir-Heavy';
+  font: 28px 'Avenir-Medium';
 }
 
 .ReviewsList {
@@ -896,6 +931,7 @@ input::placeholder {
   width: 437px;
   height: 46px;
   border: solid 1px #E0E0E0;
+  border-radius: 0;
   float: left;
   padding: 0 10px;
 }
@@ -991,17 +1027,22 @@ input::placeholder {
 }
 
 .ListingFilter .ListingFilter__trigger {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -ms-flex-align: center;
+  align-items: center;
   font-size: 16px;
   line-height: 1;
   padding-right: 17px;
   color: #000;
   cursor: pointer;
   margin-right: 20px;
-  background: url("../img/arrow-bottom.svg") no-repeat 100% 60%;
+  background: url("../img/arrow-bottom.svg") no-repeat 100% 50%;
 }
 
 .ListingFilter .ListingFilter__trigger.-open {
-  background: url("../img/arrow-top.svg") no-repeat 100% 60%;
+  background: url("../img/arrow-top.svg") no-repeat 100% 50%;
 }
 
 .ListingFilter .ListingFilter__trigger-map {
@@ -1022,18 +1063,21 @@ input::placeholder {
 .ListingContent {
   display: -ms-flexbox;
   display: flex;
-  margin-top: 121px;
+  margin-top: 50px;
 }
 
 .ListingItems {
   padding: 35px 60px 15px 27px;
+  width: 809px;
+}
+
+.ContainerListingItems {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  width: 809px;
 }
 
 .ListingItem {
@@ -1123,7 +1167,7 @@ input::placeholder {
   position: absolute;
   right: 0;
   width: 634px;
-  height: 100%;
+  height: auto;
 }
 
 .ListingMaps__m {
@@ -1202,6 +1246,15 @@ input::placeholder {
   margin-bottom: 10px;
 }
 
+.ListingFilter__activity-field {
+  display: block;
+  width: 100%;
+}
+
+.ListingFilter__activity-field[data-hide] {
+  display: none;
+}
+
 .ListingFilter__column1 {
   float: left;
   width: 139px;
@@ -1212,11 +1265,12 @@ input::placeholder {
   width: calc(100% - 139px);
 }
 
-.ListingFilter__menuReset {
+.ListingFilter__show-more-activites {
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 30px;
   color: #3BCEAC;
+  font-size: 14px;
 }
 
 .ListingFilter__menuFooter {
@@ -1263,6 +1317,46 @@ input::placeholder {
 .ListingFilter .ui.selection.active.dropdown:hover .menu,
 .ListingFilter .ui.selection.active.dropdown .menu {
   border-color: #000;
+}
+
+.GymMapPreview {
+  position: relative;
+  background: #FFF;
+  max-width: 343px;
+  border: solid 1px #E0E0E0;
+}
+
+.GymMapPreview__title {
+  padding: 5px 10px 8px 10px;
+  font: 16px "Avenir-Medium";
+  color: #000;
+}
+
+.GymMapPreview__title a {
+  color: #000;
+}
+
+.GymMapPreview__close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 25px !important;
+  color: #FFF;
+  margin-right: 0 !important;
+}
+
+.GymMapPreview__image img {
+  width: 100%;
+}
+
+.ListingMaps .infoBox > img[src$="icon-svg-error.svg"] {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  width: 25px !important;
+  height: 25px !important;
+  z-index: 2 !important;
+  margin: 0 !important;
 }
 
 .SignlePage__hero {
@@ -1400,12 +1494,6 @@ input::placeholder {
   height: 35px;
   font-size: 14px;
   background: #FF4040;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   border-radius: 5px;
   color: #fff;
 }
@@ -1560,6 +1648,7 @@ input::placeholder {
 .Comment .Comment__description {
   color: #6E6868;
   font-size: 14px;
+  text-align: justify;
 }
 
 .Comment .Comment__description p {
@@ -1796,6 +1885,14 @@ input::placeholder {
   width: 144px;
 }
 
+.PassRow .PassRow__title a {
+  color: #000;
+}
+
+.PassRow .PassRow__title a:hover {
+  text-decoration: underline;
+}
+
 .PassRow .PassRow__date {
   width: 116px;
 }
@@ -1862,6 +1959,14 @@ input::placeholder {
   margin-bottom: 7px;
 }
 
+.ProfileComments__title a {
+  color: #000;
+}
+
+.ProfileComments__title a:hover {
+  text-decoration: underline;
+}
+
 .ProfileComments__note {
   color: #6E6868;
   margin-bottom: 6px;
@@ -1882,6 +1987,7 @@ input::placeholder {
 
 .ProfileComments__comment-description {
   color: #6E6868;
+  text-align: justify;
 }
 
 .ProfileComments__loadMore {
@@ -2191,7 +2297,13 @@ input::placeholder {
   height: 50px;
   border-radius: 3px;
   color: #fff;
-  font: 20px "Avenir-Black";
+  font: 20px "Avenir-Medium";
+}
+
+.PaymentCardsItem__button.-remove {
+  border: solid 1px #FF4040;
+  background: #fff;
+  color: #FF4040;
 }
 
 .PaymentAddCard {
@@ -2391,6 +2503,7 @@ input::placeholder {
   right: 23px;
   display: block;
   background: url("../img/icon-error.svg") no-repeat;
+  background-size: contain;
   width: 39px;
   height: 39px;
 }
@@ -2454,7 +2567,7 @@ input::placeholder {
 }
 
 .PaymentTotal__button {
-  font: 20px "Avenir-Black";
+  font: 20px "Avenir-Medium";
   background: #FF4040;
   color: #fff;
   display: -ms-flexbox;
@@ -2920,6 +3033,10 @@ input::placeholder {
   background: #E0E0E0;
 }
 
+.AuthModal__register {
+  font-size: 14px;
+}
+
 html {
   height: 100%;
 }
@@ -2928,19 +3045,19 @@ html {
   position: relative;
   max-width: 1440px;
   margin: 0 auto;
-  margin-top: 71px;
-}
-
-.App.-payment {
+  padding-top: 71px;
   padding-bottom: 78px;
-  min-height: calc(100vh - 71px);
+  min-height: calc(100vh - 71px) !important;
+  height: auto !important;
 }
 
 .Footer {
-  position: relative;
-  border-top: solid 1px #eee;
+  position: absolute;
+  bottom: 0;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  border-top: solid 1px #eee;
   padding: 0 57px;
   -ms-flex-align: center;
   align-items: center;
@@ -3215,23 +3332,23 @@ html {
     margin-bottom: 0;
   }
 
-  .ActivitesList__item.-long {
+  .ActivitesList__item:nth-child(4) {
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: calc(100% * 1/1);
     width: calc(100% * 1/1);
   }
 
-  .ActivitesList__item.-long:nth-child(1n) {
+  .ActivitesList__item:nth-child(4):nth-child(1n) {
     margin-right: 0;
     margin-left: 0;
   }
 
-  .ActivitesList__item.-long:last-child {
+  .ActivitesList__item:nth-child(4):last-child {
     margin-right: 0;
   }
 
-  .ActivitesList__item.-long:nth-child(0n) {
+  .ActivitesList__item:nth-child(4):nth-child(0n) {
     margin-right: 0;
     margin-left: auto;
   }
@@ -3674,14 +3791,15 @@ html {
     width: auto;
   }
 
-  .App.-payment {
-    margin-top: 71px;
-  }
-
   .App {
     width: auto;
     max-width: 1024px;
-    margin-top: 60px;
+    padding-top: 60px;
+    padding-bottom: 108px;
+  }
+
+  .App.-payment {
+    padding-top: 71px;
   }
 
   .Footer {
@@ -3750,6 +3868,7 @@ html {
     -ms-flex-direction: column;
     flex-direction: column;
     height: auto;
+    margin-bottom: 22px;
   }
 
   .HeroFeatures__item {
@@ -3847,6 +3966,16 @@ html {
   .ListingItem:nth-child(1n) {
     margin-right: 0;
     margin-left: auto;
+  }
+
+  .ListingItem__listEnrties .ListingItem__entry {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .ListingItem__listEnrties .ListingItem__entryPrice {
+    font-size: 13px;
+    white-space: nowrap;
   }
 
   .ListingMaps__m {
@@ -4068,6 +4197,10 @@ html {
     text-align: right;
   }
 
+  .PaymentCardsItem__button {
+    width: 120px;
+  }
+
   .PaymentAddCard {
     padding: 30px 10px 30px 14px;
   }
@@ -4250,13 +4383,29 @@ html {
     padding: 20px;
   }
 
+  .StripeForm__fields {
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .StripeForm__element {
+    margin-right: 0;
+  }
+
+  .StripeForm__button {
+    width: 100%;
+  }
+
+  .StripeForm .StripeElement {
+    width: 100%;
+  }
+
   .AuthModal.ui.modal {
     margin-left: -47.5%;
     width: 95%;
   }
 
-  .App.-payment {
-    min-height: calc(100vh - 71px);
+  .App {
     padding-bottom: 108px;
   }
 

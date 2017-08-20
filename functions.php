@@ -7,6 +7,13 @@
 	add_filter('rest_enabled', '_return_false');
 	add_filter('rest_jsonp_enabled', '_return_false');
 
+	function acf_google_api() {
+		acf_update_setting('google_api_key', get_field('google_api_key', 'option'));
+	}
+
+	add_action('acf/init', 'acf_google_api');
+
+
 	require_once 'inc/mPDF-v6.1.0/vendor/autoload.php';
 	require_once 'inc/search.php';
 	require_once 'inc/auth.php';
@@ -14,11 +21,12 @@
 	require_once 'inc/author-rewrite-rules.php';
 	require_once 'post-types/post-types.php';
 	require_once 'taxonomies/taxonomies.php';
-	require_once 'inc/stripe.php';
 	require_once 'inc/basket.php';
 	require_once 'inc/add_review.php';
 	require_once 'inc/check_ticket.php';
+	require_once 'inc/listing_map.php';
 	require_once 'inc/helpers.php';
+	require_once 'inc/stripe.php';
 
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-thumbnails' );
@@ -47,6 +55,12 @@
 		));
 
 		acf_add_options_sub_page(array(
+			'page_title' 	=> 'General Settings',
+			'menu_title'	=> 'General Settings',
+			'parent_slug'	=> 'theme-general-settings',
+		));
+
+		acf_add_options_sub_page(array(
 			'page_title' 	=> 'API Settings',
 			'menu_title'	=> 'API Settings',
 			'parent_slug'	=> 'theme-general-settings',
@@ -57,29 +71,35 @@
 			'menu_title'	=> 'Google Map Settings',
 			'parent_slug'	=> 'theme-general-settings',
 		));
-	}
 
-	function acf_google_api() {
-		acf_update_setting('google_api_key', get_field('google_api_key', 'option'));
-	}
+		acf_add_options_sub_page(array(
+			'page_title' 	=> 'Email Settings',
+			'menu_title'	=> 'Email Settings',
+			'parent_slug'	=> 'theme-general-settings',
+		));
 
-	add_action('acf/init', 'acf_google_api');
+	}
 
 	// Scripts
 	function wellwhere_scripts() {
-		// TODO. Make conditions
 		global $post;
+		$modifyed_css = WP_DEBUG ? filemtime( get_theme_file_path('/assets/css/app.css') ) : false;
+		$modifyed_js = WP_DEBUG ? filemtime( get_theme_file_path('/assets/css/app.css') ) : false;
 
 		// Libs
 		wp_deregister_script( 'jquery' );
 		wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), false, false );
 		// wp_enqueue_script( 'jquery', get_theme_file_uri('/assets/lib/jquery.min.js'), array(), false, false );
 
+		wp_enqueue_script( 'urianchor', get_theme_file_uri( '/assets/lib/urianchor/jquery.uriAnchor.js' ), array('jquery'), false, false );
+
 		// Google Maps
 		if ( is_singular() || is_tax() )
 		{
-			wp_enqueue_script( 'gmaps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAtItTsEwFHGmNjVyjR-HMFLjTLZW-jGv8', array(), false, false );
+			wp_enqueue_script( 'gmaps', 'https://maps.googleapis.com/maps/api/js?key='.get_field('google_api_key', 'option'), array(), false, false );
 			wp_enqueue_script( 'markerclusterer', get_theme_file_uri('/assets/lib/markerclusterer.js'), array(), false, false );
+			wp_enqueue_script( 'infobubble-compiled', get_theme_file_uri('/assets/lib/infobubble-compiled.js'), array(), false, false );
+			wp_enqueue_script( 'infobox_packed', get_theme_file_uri('/assets/lib/infobox_packed.js'), array(), false, false );
 		}
 
 		if ( $post && $post->post_parent == 89 && is_user_logged_in() ) {
@@ -101,10 +121,10 @@
 
 		// App Css
 		wp_enqueue_style( 'fonts', get_theme_file_uri( '/assets/css/fonts.css' ), array(), null );
-		wp_enqueue_style( 'app', get_theme_file_uri('/assets/css/app.css') );
+		wp_enqueue_style( 'app', get_theme_file_uri('/assets/css/app.css'), array(), $modifyed_css);
 
 		// App JS
-		wp_enqueue_script( 'app', get_theme_file_uri( '/assets/js/app.js' ), array(), false, true );
+		wp_enqueue_script( 'app', get_theme_file_uri( '/assets/js/app.js' ), array(), $modifyed_js, true );
 		wp_localize_script('app', 'data', array(
 			'url' => get_stylesheet_directory_uri(),
 			'adminAjax' => admin_url( 'admin-ajax.php' ),
@@ -118,4 +138,13 @@
 		));
 	}
 	add_action( 'wp_enqueue_scripts', 'wellwhere_scripts' );
+
+	function modify_main_listing_query( $query ) {
+		if ( $query->is_tax(array('activity', 'city', 'zip', 'canton')) && $query->is_main_query() ) {
+			$query->set('posts_per_page', -1);
+		}
+	}
+	// Hook my above function to the pre_get_posts action
+	add_action( 'pre_get_posts', 'modify_main_listing_query' );
+
 ?>

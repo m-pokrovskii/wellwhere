@@ -52,9 +52,14 @@
 						</div>
 						<div id="details" class="active content">
 							<div class="SingleMainContent__additional-details">
-								<p>Lundi-Vendredi: <?php echo get_field('gym_date_monday_friday') ?></p>
-								<p>Samedi: <?php echo get_field('gym_date_saturday') ?></p>
-								<p>Dimanche: <?php echo get_field('gym_date_sunday') ?></p>
+								<?php if( have_rows('gym_hours_of_work') ): ?>
+									<?php while( have_rows('gym_hours_of_work') ) : the_row(); ?>
+										<p>
+											<?php the_sub_field('day'); ?>: 
+											<?php the_sub_field('hours') ?>
+										</p>
+									<?php endwhile; ?>
+								<?php endif ?>
 							</div>
 						</div>
 						<div class="active title">

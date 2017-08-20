@@ -1,16 +1,17 @@
 <?php 
 	$cuid = get_current_user_id();
 	$favorited_gym_ids = get_user_meta( $cuid, 'favorited_gym_id' );
-	$favorited_gyms = get_posts(array(
+	$posts_per_page = 4;
+	$favorited_gyms = new WP_Query(array(
 		'post_type' => 'gym',
 		'post__in' => ( $favorited_gym_ids ) ? $favorited_gym_ids : array(0),
-		'posts_per_page' => -1,
+		'posts_per_page' => $posts_per_page,
 	));
  ?>
 <section id="favorites" class="ProfilePage__favorites-section ProfileFavorite">
 	<div class="FavoriteList">
-		<?php if ( $favorited_gyms ): ?>
-			<?php foreach ($favorited_gyms as $favorited_gym): ?>
+		<?php if ( $favorited_gyms->posts ): ?>
+			<?php foreach ($favorited_gyms->posts as $favorited_gym): ?>
 				<div class="FavoriteListItem">
 					<div 
 						class="FavoriteListItem__image" 
@@ -36,9 +37,15 @@
 			<?php endforeach ?>
 		<?php endif ?>
 	</div>
+	<?php if ($favorited_gyms->max_num_pages > 1): ?>
 	<div class="ProfileFavorite__loadMore">
-		<a data-load-more-favorites href="" class="ProfileFavorite__loadMore-link">
+		<a 
+			data-load-more-favorites 
+			data-favorites-per-page = <?php echo $posts_per_page ?>
+			href="" 
+			class="ProfileFavorite__loadMore-link">
 			<?php _e('plus anciens') ?>
 		</a>
 	</div>
+	<?php endif ?>
 </section>

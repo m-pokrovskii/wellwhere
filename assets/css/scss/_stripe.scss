@@ -1,10 +1,16 @@
 .StripeForm {}
 .StripeForm__fields {
   display: flex;
+  @include xs() {
+    flex-direction: column;
+    }
 }
 .StripeForm__element {
   margin-right: 20px;
   position: relative;
+  @include xs() {
+    margin-right: 0;
+    }
 }
 
 .StripeForm__button-block {
@@ -23,6 +29,9 @@
   height: 42px;
   white-space: nowrap;
   border-radius: 3px;
+  @include xs() {
+    width: 100%;
+  }
 }
 
 .StripeForm__errors {
@@ -40,6 +49,9 @@
 
   .StripeForm .StripeElement {
     width: 354px;
+    @include xs() {
+      width: 100%;
+    }
   }
 
 .StripeElement--focus {

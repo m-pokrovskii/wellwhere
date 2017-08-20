@@ -4,7 +4,7 @@
 <div class="Footer -payment">
 	<div class="Footer__phone">
 		<div class="Footer__phone-text">
-			Lun-Ven / 10h-19h +41 21 34 33
+			<?php get_field('payment_footer_string', 'option') ?>
 		</div>
 	</div>
 	<ul class="Footer__payment-links">

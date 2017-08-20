@@ -16,19 +16,22 @@
     padding: 0 21px 0 15px
 
   .ListingFilter__trigger
+    display: flex
+    height: 100%
+    align-items: center
     font-size: 16px
     line-height: 1
     padding-right: 17px
     color: #000
     cursor: pointer
     margin-right: 20px
-    background: url('../img/arrow-bottom.svg') no-repeat 100% 60%
+    background: url('../img/arrow-bottom.svg') no-repeat 100% 50%
     +xs()
       font-size: 14px
       margin-right: auto
     &.-open
-      background: url('../img/arrow-top.svg') no-repeat 100% 60%
-
+      background: url('../img/arrow-top.svg') no-repeat 100% 50%
+      
   .ListingFilter__trigger-map
     display: none
     align-items: center
@@ -42,19 +45,21 @@
 
 .ListingContent
   display: flex
-  margin-top: 121px
+  margin-top: 50px
 
 .ListingItems
   padding: 35px 60px 15px 27px
-  display: flex
-  flex-wrap: wrap
-  justify-content: space-between
   width: 809px
   +sm()
     width: 100%
     padding: 23px
   +xs()
     padding: 14px
+
+.ContainerListingItems
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between  
 
 .ListingItem
   width: 345px
@@ -119,6 +124,9 @@
     border-right: solid 1px #E0E0E0
     &:last-child
       border-right: none
+    +xs()
+      padding-left: 10px  
+      padding-right: 10px 
 
 
   .ListingItem__entryTitle
@@ -128,13 +136,16 @@
 
   .ListingItem__entryPrice
     font: 14px 'Avenir-Heavy'
+    +xs()
+      font-size: 13px
+      white-space: nowrap 
 
 
 .ListingMaps
   position: absolute
   right: 0
   width: 634px
-  height: 100%
+  height: auto
   +sm()
     visibility: hidden
 
@@ -209,6 +220,13 @@
   font: 14px 'Avenir-Medium'
   margin-bottom: 10px
 
+.ListingFilter__activity-field
+  display: block
+  width: 100% 
+
+.ListingFilter__activity-field[data-hide]
+  display: none
+
 .ListingFilter__column1
   float: left
   width: 139px
@@ -217,11 +235,12 @@
   float: left
   width: calc(100% - 139px)
 
-.ListingFilter__menuReset
+.ListingFilter__show-more-activites
   display: inline-block
   margin-top: 10px
   margin-bottom: 30px
   color: #3BCEAC
+  font-size: 14px 
 
 .ListingFilter__menuFooter
   clear: both
@@ -259,3 +278,39 @@
   .ui.selection.active.dropdown:hover .menu,
   .ui.selection.active.dropdown .menu
     border-color: #000
+
+
+.GymMapPreview
+  position: relative
+  background: #FFF
+  max-width: 343px
+  border: solid 1px #E0E0E0;
+.GymMapPreview__title
+  padding: 5px 10px 8px 10px 
+  font: 16px "Avenir-Medium"
+  color: #000 
+  a
+    color: #000 
+
+
+.GymMapPreview__close
+  position: absolute
+  top: 5px
+  right: 5px
+  font-size: 25px !important 
+  color: #FFF
+  margin-right: 0 !important  
+
+.GymMapPreview__image
+  img
+    width: 100% 
+
+.ListingMaps 
+  .infoBox > img[src$="icon-svg-error.svg"]
+    position: absolute !important
+    top: 10px !important
+    right: 10px !important
+    width: 25px !important
+    height: 25px !important
+    z-index: 2 !important
+    margin: 0 !important 
