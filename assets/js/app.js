@@ -73,6 +73,10 @@
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 $.fn.serializeObject = function () {
@@ -149,11 +153,6 @@ var SinglePageFixed = function ($) {
 SinglePageFixed.init();
 
 $('.ui.dropdown').dropdown();
-
-$('.ListingFilter__trigger').on('click', function () {
-  $(this).toggleClass('-open');
-  $('.ListingFilter__menu').toggle();
-});
 
 $('[data-action=listing-switch-map]').on('click', function () {
   $('.ListingMaps').toggleClass('-visible');
@@ -329,6 +328,11 @@ var ProfileSwitch = function ($) {
     if (!location.hash || !location.hash == "#") {
       return;
     };
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateLink();
     activateMobileLink();
     setTimeout(function () {
@@ -340,6 +344,11 @@ var ProfileSwitch = function ($) {
     if (!location.hash || !location.hash == "#") {
       return;
     };
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateSection();
     activateLink();
     activateMobileLink();
@@ -1037,12 +1046,17 @@ var ProfileAvatarUpload = function ($) {
 }(jQuery);
 ProfileAvatarUpload.init();
 
-var Rating = function () {
-  var nonIteractiveRating = $('.ui.rating');
-  var favorite = $('.GymFavorite');
-  var inProcess = false;
+var Rating = exports.Rating = function () {
+  var nonIteractiveRating = void 0;
+  var favorite = void 0;
+  var inProcess = void 0;
 
   function init() {
+
+    nonIteractiveRating = $('.ui.rating');
+    favorite = $('.GymFavorite');
+    inProcess = false;
+
     nonIteractiveRating.rating({
       maxRating: 5,
       interactive: false
@@ -1283,6 +1297,85 @@ var Favorites = function () {
 
 Favorites.init();
 
+var Uri = exports.Uri = function () {
+
+  function extend(extendObj) {
+    var uri = path(extendObj);
+    $.uriAnchor.setAnchor(uri);
+  }
+
+  function path(extendObj) {
+    var uri = $.uriAnchor.makeAnchorMap();
+    extendObj = extendObj || {};
+    $.extend(true, uri, extendObj);
+    return uri;
+  }
+
+  return {
+    extend: extend,
+    path: path
+  };
+}();
+
+var Filter = function () {
+  var filterTrigger = $('.ListingFilter__trigger');
+  var filterMenu = $('.ListingFilter__menu');
+  var filterMapButton = $('[data-map-filter-button]');
+  var filterMapForm = $('[data-filter-map-form]');
+  var showMoreActivitiesLink = $('[data-show-more-activities]');
+  function init() {
+    events();
+  }
+
+  function events() {
+    filterTrigger.on('click', function () {
+      $(this).toggleClass('-open');
+      filterMenu.toggle();
+    });
+    filterMapButton.on('click', updateFilterUri);
+    showMoreActivitiesLink.on('click', showMoreActivities);
+  }
+
+  function showMoreActivities(e) {
+    e.preventDefault();
+    $('[data-hide]').toggle();
+    // showMoreActivitiesLink.hide();
+  }
+
+  function updateFilterUri(e) {
+    e.preventDefault();
+    // let filterData = filterMapForm.serializeObject();
+    var filterData = filterMapForm.serializeObject();
+    filterData.type = 'filter';
+    filterData.page = '1';
+    // Workarround if no checkbox selected
+    filterData.activity = filterData.activity || "";
+    Uri.extend(filterData);
+  }
+
+  return {
+    init: init
+  };
+}();
+Filter.init();
+
+var ListingPagination = function () {
+  function init() {
+    $('body').on('click', '.ListingPagination a.page-numbers', function (e) {
+      e.preventDefault();
+      var pageNumber = $(this).html();
+      Uri.extend({
+        type: 'pagination',
+        page: pageNumber
+      });
+    });
+  }
+  return {
+    init: init
+  };
+}();
+ListingPagination.init();
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1325,132 +1418,274 @@ $('.HeroSearch__field, .Header__search, .SmMenu__search').search({
 "use strict";
 
 
+var _uiInit = __webpack_require__(0);
+
 var GM = function ($) {
-  var map = void 0;
-  var infowindow = void 0;
-  var singleMap = $('.wellwhere-map');
-  var clusterIcon = singleMap.attr('data-cluster-icon');
-  var mapStyles = JSON.parse(mapData.styles);
+	var map = void 0;
+	var infowindow = void 0;
+	var mapcluster = void 0;
+	var is_fit_bounds = false;
+	var inProcess = false;
+	var isfirstTimeLoaded = void 0;
 
-  function init() {
-    singleMap.each(function () {
-      map = new_map($(this));
-      google.maps.event.addListener(map, 'bounds_changed', function () {
-        console.log('bound changed');
-      });
-    });
-  }
+	var singleMap = $('.wellwhere-map');
+	var clusterIcon = singleMap.attr('data-cluster-icon');
+	var mapStyles = JSON.parse(mapData.styles);
+	var listingItemsContainer = $('.ContainerListingItems');
+	var listingsContainer = $('.ListingItems');
 
-  function new_map($el) {
-    var $markers = $el.find('.marker');
-    var scrollwheel = $el.attr('data-scrollwheel') || false;
-    var args = {
-      zoom: 16,
-      center: new google.maps.LatLng(0, 0),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      scrollwheel: scrollwheel,
-      streetViewControl: false,
-      mapTypeControl: false,
-      styles: mapStyles,
-      // TODO. Probably remove
-      gestureHandling: "greedy"
-    };
+	function init() {
+		$(window).on('hashchange', handleHashChange);
+		firstTimeLoad();
 
-    // create map
-    var map = new google.maps.Map($el[0], args);
+		singleMap.each(function () {
+			map = new_map($(this));
+			if ($(this).is('[data-listing-map]')) {
+				handleMapMovement(map);
+			}
+		});
+	}
 
-    // add a markers reference
-    map.markers = [];
+	function firstTimeLoad() {
+		$(document).ready(function () {
+			var uriMap = $.uriAnchor.makeAnchorMap();
+			isfirstTimeLoaded = true;
+			handleHashChange();
+			// console.log(uriMap);
+			if (uriMap.rating) {
+				$('.ListingFilter__rating-field').dropdown('set selected', uriMap.rating);
+			}
+			if (uriMap.gender) {
+				$('.ListingFilter__gender-field').dropdown('set selected', uriMap.gender);
+			}
+			if (uriMap.activity) {
+				var activityArray = uriMap.activity.split(',');
+				$('.ListingFilter__activity-field').checkbox('uncheck');
+				$.each(activityArray, function (index, val) {
+					var checkbox = $('input[name="activity"][value="' + val + '"]');
+					checkbox.parent('.ListingFilter__activity-field').checkbox('check');
+				});
+			}
+		});
+	}
 
-    // add markers
-    $markers.each(function () {
-      add_marker($(this), map);
-    });
+	function handleHashChange(e) {
+		var uriMap = $.uriAnchor.makeAnchorMap();
+		if (uriMap.type == 'map' || uriMap.type == 'filter' || uriMap.type == 'pagination') {
+			listingsContainer.dimmer('show');
+			// if ( inProcess ) { return } else { inProcess = true };
+			$.ajax({
+				url: data.adminAjax,
+				type: 'GET',
+				data: {
+					action: 'get_gyms_by_uri',
+					uri: uriMap
+				}
+			}).done(function (r) {
+				console.log(r);
+				if (r.success) {
+					dealListingItems(r.data.markers, r.data.pagination);
+					clearAllMarkers();
+					$.each(r.data.markers, function (index, el) {
+						add_marker(el.lat, el.lng, el.pin, el.html, map);
+					});
 
-    // center map
-    center_map(map);
+					if (uriMap.type == 'filter' || uriMap.type == 'pagination' || isfirstTimeLoaded == true) {
+						wellwhereFitBounds();
+					}
+					if (mapcluster) {
+						mapcluster.clearMarkers();
+						mapcluster.addMarkers(map.markers);
+					} else {
+						if (map.markers.length > 1) {
+							mapcluster = cluster(map, map.markers);
+						}
+					}
+				} else {
+					removeListingItems();
+					clearAllMarkers();
+				}
+			}).fail(function (e) {
+				console.log(e.statusText);
+			}).always(function () {
+				isfirstTimeLoaded = false;
+				inProcess = false;
+			});
+		};
+	}
 
-    // return
-    return map;
-  }
+	function handleMapMovement(map) {
+		google.maps.event.addListener(map, 'bounds_changed', mapMovement);
+		// google.maps.event.addListener(map, 'dragend', mapMovement);
+		// google.maps.event.addListener(map, 'zoom_changed', mapMovement);
+	}
 
-  function add_marker($marker, map) {
-    var latlng = new google.maps.LatLng($marker.attr('data-lat'), $marker.attr('data-lng'));
-    var pin = $marker.attr('data-icon');
+	function clearAllMarkers() {
+		while (map.markers.length) {
+			map.markers.pop().setMap(null);
+		}
+	}
 
-    // create marker
-    var marker = new google.maps.Marker({
-      position: latlng,
-      animation: google.maps.Animation.DROP,
-      map: map,
-      icon: pin
-    });
+	function dealListingItems(listingItems, $pagination) {
+		listingItemsContainer.html("");
+		$.each(listingItems, function (index, item) {
+			listingItemsContainer.append(item.listingItem);
+		});
+		_uiInit.Rating.init();
+		if ($pagination) {
+			listingItemsContainer.append($pagination);
+		}
+		listingsContainer.dimmer('hide');
+	}
 
-    // add to array
-    map.markers.push(marker);
+	function removeListingItems() {
+		listingItemsContainer.html("");
+	}
 
-    // if marker contains HTML, add it to an infoWindow
-    if ($marker.html()) {
-      // show info window when marker is clicked
-      google.maps.event.addListener(marker, 'click', function () {
-        if (infowindow) {
-          infowindow.close();
-        }
-        // infowindow = new InfoBubble({
-        //   padding: 0,
-        //   shadowStyle: 0,
-        //   borderRadius: 0,
-        //   borderColor: '#E0E0E0',
-        //   disableAnimation: true,
-        //   hideCloseButton: false,
-        //   content:  $marker.html(),
-        // });
-        infowindow = new InfoBox({
-          alignBottom: true,
-          maxWidth: 343,
-          pixelOffset: new google.maps.Size(-171, -80),
-          closeBoxURL: data.url + "/assets/img/icon-svg-error.svg",
-          content: $marker.html()
-        });
-        infowindow.open(map, marker);
-      });
-    }
-  }
+	function mapMovement() {
+		var bounds = {};
+		if (is_fit_bounds) {
+			return;
+		}
+		bounds.lat_TR = map.getBounds().getNorthEast().lat();
+		bounds.lng_TR = map.getBounds().getNorthEast().lng();
+		bounds.lat_BL = map.getBounds().getSouthWest().lat();
+		bounds.lng_BL = map.getBounds().getSouthWest().lng();
 
-  function center_map(map) {
-    var bounds = new google.maps.LatLngBounds();
+		var mapUri = {
+			type: 'map',
+			map: 'listing',
+			page: 1,
+			_map: bounds
+		};
 
-    // loop through all markers and create bounds
-    $.each(map.markers, function (i, marker) {
+		_uiInit.Uri.extend(mapUri);
+	}
 
-      var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+	function new_map($el) {
+		var $markers = $el.find('.marker');
+		var scrollwheel = $el.attr('data-scrollwheel') || false;
+		var args = {
+			zoom: 16,
+			center: new google.maps.LatLng(0, 0),
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			scrollwheel: scrollwheel,
+			streetViewControl: false,
+			mapTypeControl: false,
+			styles: mapStyles,
+			// TODO. Probably need to remove
+			gestureHandling: "greedy"
+		};
 
-      bounds.extend(latlng);
-    });
+		// create map
+		map = new google.maps.Map($el[0], args);
 
-    // only 1 marker?
-    if (map.markers.length == 1) {
-      // set center of map
-      map.setCenter(bounds.getCenter());
-      map.setZoom(16);
-    } else {
-      // fit to bounds
-      map.fitBounds(bounds);
-      var markerCluster = new MarkerClusterer(map, map.markers, {
-        styles: [{
-          url: 'http://wellwhere.lm/wp-content/themes/wellwhere/assets/img/map-marker-red-round.png',
-          height: 50,
-          width: 50,
-          textColor: "#fff",
-          textSize: 14
-        }]
-      });
-    }
-  }
+		// add a markers reference
+		map.markers = [];
 
-  return {
-    init: init
-  };
+		// add markers
+		$markers.each(function () {
+			var lat = $(this).attr('data-lat');
+			var lng = $(this).attr('data-lng');
+			var pin = $(this).attr('data-icon');
+			var markerHtml = $(this).html();
+			// map.markers
+			add_marker(lat, lng, pin, markerHtml, map);
+		});
+
+		wellwhereFitBounds();
+		return map;
+	}
+
+	function add_marker(lat, lng, pin, markerHtml, map) {
+		var latlng = new google.maps.LatLng(lat, lng);
+
+		// create marker
+		var marker = new google.maps.Marker({
+			position: latlng,
+			// animation: google.maps.Animation.DROP,
+			map: map,
+			icon: pin
+		});
+
+		// add to array
+		map.markers.push(marker);
+
+		// if marker contains HTML, add it to an infoWindow
+		if (markerHtml) {
+			// show info window when marker is clicked
+			google.maps.event.addListener(marker, 'click', function () {
+				if (infowindow) {
+					infowindow.close();
+				}
+				infowindow = new InfoBox({
+					alignBottom: true,
+					maxWidth: 343,
+					pixelOffset: new google.maps.Size(-171, -80),
+					closeBoxURL: data.url + "/assets/img/icon-svg-error.svg",
+					content: markerHtml
+				});
+				infowindow.open(map, marker);
+			});
+		}
+	}
+
+	// function center_map( map ) {
+	// 	let bounds = new google.maps.LatLngBounds();
+	// 	// loop through all markers and create bounds
+	// 	$.each( map.markers, function( i, marker ){
+
+	// 		let latlng = new google.maps.LatLng( marker.position.lat(), marker.position.lng() );
+
+	// 		bounds.extend( latlng );
+
+	// 	});
+
+	// 	wellwhereFitBounds();
+	// }
+
+	function cluster(map, markers) {
+		return new MarkerClusterer(map, markers, {
+			styles: [{
+				url: 'http://wellwhere.lm/wp-content/themes/wellwhere/assets/img/map-marker-red-round.png',
+				height: 50,
+				width: 50,
+				textColor: "#fff",
+				textSize: 14
+			}]
+		});
+	}
+
+	function wellwhereFitBounds() {
+		is_fit_bounds = true;
+		var bounds = new google.maps.LatLngBounds();
+		// loop through all markers and create bounds
+		$.each(map.markers, function (i, marker) {
+			var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+			bounds.extend(latlng);
+		});
+
+		if (map.markers.length == 1) {
+			// set center of map
+			map.setCenter(bounds.getCenter());
+			map.setZoom(16);
+
+			google.maps.event.addListenerOnce(map, 'idle', function () {
+				is_fit_bounds = false;
+			});
+		} else {
+			map.fitBounds(bounds);
+			mapcluster = cluster(map, map.markers);
+
+			google.maps.event.addListenerOnce(map, 'idle', function () {
+				is_fit_bounds = false;
+			});
+		}
+	}
+
+	return {
+		init: init
+	};
 }(jQuery);
 GM.init();
 

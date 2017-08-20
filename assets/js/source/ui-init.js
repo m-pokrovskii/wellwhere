@@ -76,12 +76,6 @@ SinglePageFixed.init();
 $('.ui.dropdown').dropdown();
 
 
-$('.ListingFilter__trigger').on('click', function () {
-  $(this).toggleClass('-open')
-  $('.ListingFilter__menu').toggle();
-})
-
-
 $('[data-action=listing-switch-map]').on('click', function () {
   $('.ListingMaps').toggleClass('-visible')
 })
@@ -278,6 +272,11 @@ const ProfileSwitch = (function ($) {
 
   function onLoad() {
     if (!location.hash || !location.hash == "#") { return };
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateLink();
     activateMobileLink();
     setTimeout(function() {
@@ -288,6 +287,11 @@ const ProfileSwitch = (function ($) {
 
   function activate() {
     if (!location.hash || !location.hash == "#") { return };
+    try {
+      $(location.hash);
+    } catch (e) {
+      return;
+    }
     activateSection()
     activateLink()
     activateMobileLink()
@@ -1013,28 +1017,33 @@ const ProfileAvatarUpload = (function($) {
 }(jQuery));
 ProfileAvatarUpload.init();
 
-const Rating = (function () {
-    const nonIteractiveRating   = $('.ui.rating');
-    const favorite = $('.GymFavorite');
-    let inProcess = false;
+export const Rating = (function () {
+    let nonIteractiveRating;
+    let favorite;
+    let inProcess;
     
     function init() {
+
+      nonIteractiveRating = $('.ui.rating');
+      favorite            = $('.GymFavorite');
+      inProcess           = false;
+      
       nonIteractiveRating.rating({
         maxRating: 5,
         interactive: false,
       });
 
-        favorite.rating({
-          interactive: true,
-          onRate: function() {
-            if ( data.userId ) {
-              saveFavoriteGym.call(this);
-            }
-            else {
-              Auth.openModal();
-            }
+      favorite.rating({
+        interactive: true,
+        onRate: function() {
+          if ( data.userId ) {
+            saveFavoriteGym.call(this);
           }
-        })
+          else {
+            Auth.openModal();
+          }
+        }
+      })
     }
 
     function saveFavoriteGym() {
@@ -1262,3 +1271,83 @@ const Favorites = (function () {
 })();
 
 Favorites.init();
+
+export const Uri = (function () {
+
+  function extend( extendObj ) {
+    let uri = path( extendObj );
+    $.uriAnchor.setAnchor( uri );
+  }
+    
+  function path( extendObj ) {
+    let uri   = $.uriAnchor.makeAnchorMap();
+    extendObj = extendObj || {};
+    $.extend( true, uri, extendObj );
+    return uri;
+  }
+
+  return {
+    extend: extend,
+    path: path
+  }
+})();
+
+
+const Filter = (function () {
+  const filterTrigger      = $('.ListingFilter__trigger');
+  const filterMenu         = $('.ListingFilter__menu');
+  const filterMapButton    = $('[data-map-filter-button]');
+  const filterMapForm      = $('[data-filter-map-form]');
+  const showMoreActivitiesLink = $('[data-show-more-activities]');
+  function init() {
+    events();
+  }
+
+  function events() {
+    filterTrigger.on('click', function () {
+      $(this).toggleClass('-open')
+      filterMenu.toggle();
+    })
+    filterMapButton.on('click', updateFilterUri);
+    showMoreActivitiesLink.on('click', showMoreActivities);
+  }
+
+  function showMoreActivities(e) {
+    e.preventDefault();
+    $('[data-hide]').toggle();
+    // showMoreActivitiesLink.hide();
+  }
+
+  function updateFilterUri(e) {
+    e.preventDefault();
+    // let filterData = filterMapForm.serializeObject();
+    let filterData = filterMapForm.serializeObject();
+    filterData.type = 'filter';
+    filterData.page = '1';
+    // Workarround if no checkbox selected
+    filterData.activity = filterData.activity || "";
+    Uri.extend(filterData);
+  }
+
+  return {
+    init: init
+  }
+})();
+Filter.init();
+
+const ListingPagination = (function () {
+    function init() {
+      $('body').on('click', '.ListingPagination a.page-numbers', function(e) {
+        e.preventDefault();
+        const pageNumber = $(this).html();
+        Uri.extend({
+          type: 'pagination',
+          page: pageNumber
+        })
+      })
+    }
+    return {
+      init: init
+    }
+})();
+ListingPagination.init();

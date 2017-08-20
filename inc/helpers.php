@@ -9,6 +9,17 @@ function dump( $v ) {
 	echo '</pre>';
 }
 
+
+add_action('acf/update_value', 'wellwhere_update_lng_and_lat', 99, 3 ); 
+
+function wellwhere_update_lng_and_lat( $value, $post_id, $field ) {
+	if(	'google_map' === $field['type'] && 'gym_map' === $field['name'] ) {	
+		update_post_meta( $post_id, 'lat', $value['lat'] );
+		update_post_meta( $post_id, 'lng', $value['lng'] );
+	}
+	return $value;
+}
+
 function page_link_by_file( $filename ) {
 	$page = new WP_Query(array(
 		'post_type' => 'page',
@@ -473,7 +484,6 @@ function profile_favorites_template( $favorited_gym ) { ?>
 	</div>
 	
 <?php }
-
 
 
 ?>

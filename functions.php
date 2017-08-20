@@ -24,6 +24,7 @@
 	require_once 'inc/basket.php';
 	require_once 'inc/add_review.php';
 	require_once 'inc/check_ticket.php';
+	require_once 'inc/listing_map.php';
 	require_once 'inc/helpers.php';
 	require_once 'inc/stripe.php';
 
@@ -90,6 +91,8 @@
 		wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), false, false );
 		// wp_enqueue_script( 'jquery', get_theme_file_uri('/assets/lib/jquery.min.js'), array(), false, false );
 
+		wp_enqueue_script( 'urianchor', get_theme_file_uri( '/assets/lib/urianchor/jquery.uriAnchor.js' ), array('jquery'), false, false );
+
 		// Google Maps
 		if ( is_singular() || is_tax() )
 		{
@@ -135,4 +138,13 @@
 		));
 	}
 	add_action( 'wp_enqueue_scripts', 'wellwhere_scripts' );
+
+	function modify_main_listing_query( $query ) {
+		if ( $query->is_tax(array('activity', 'city', 'zip', 'canton')) && $query->is_main_query() ) {
+			$query->set('posts_per_page', -1);
+		}
+	}
+	// Hook my above function to the pre_get_posts action
+	add_action( 'pre_get_posts', 'modify_main_listing_query' );
+
 ?>
