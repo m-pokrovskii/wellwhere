@@ -154,11 +154,6 @@ SinglePageFixed.init();
 
 $('.ui.dropdown').dropdown();
 
-$('.ListingFilter__trigger').on('click', function () {
-  $(this).toggleClass('-open');
-  $('.ListingFilter__menu').toggle();
-});
-
 $('[data-action=listing-switch-map]').on('click', function () {
   $('.ListingMaps').toggleClass('-visible');
 });
@@ -1302,6 +1297,77 @@ var Favorites = function () {
 
 Favorites.init();
 
+var Uri = exports.Uri = function () {
+
+  function extend(extendObj) {
+    var uri = path(extendObj);
+    $.uriAnchor.setAnchor(uri);
+  }
+
+  function path(extendObj) {
+    var uri = $.uriAnchor.makeAnchorMap();
+    extendObj = extendObj || {};
+    $.extend(true, uri, extendObj);
+    return uri;
+  }
+
+  return {
+    extend: extend,
+    path: path
+  };
+}();
+
+var Filter = function () {
+  var filterTrigger = $('.ListingFilter__trigger');
+  var filterMenu = $('.ListingFilter__menu');
+  var filterMapButton = $('[data-map-filter-button]');
+  var filterMapForm = $('[data-filter-map-form]');
+  function init() {
+    events();
+  }
+
+  function events() {
+    filterTrigger.on('click', function () {
+      $(this).toggleClass('-open');
+      filterMenu.toggle();
+    });
+    filterMapButton.on('click', updateFilterUri);
+  }
+
+  function updateFilterUri(e) {
+    e.preventDefault();
+    // let filterData = filterMapForm.serializeObject();
+    var filterData = filterMapForm.serializeObject();
+    filterData.type = 'filter';
+    filterData.page = '1';
+    // Workarround if no checkbox selected
+    filterData.activity = filterData.activity || "";
+    Uri.extend(filterData);
+  }
+
+  return {
+    init: init
+  };
+}();
+Filter.init();
+
+var ListingPagination = function () {
+  function init() {
+    $('body').on('click', '.ListingPagination a.page-numbers', function (e) {
+      e.preventDefault();
+      var pageNumber = $(this).html();
+      Uri.extend({
+        type: 'pagination',
+        page: pageNumber
+      });
+    });
+  }
+  return {
+    init: init
+  };
+}();
+ListingPagination.init();
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1352,13 +1418,18 @@ var GM = function ($) {
 	var mapcluster = void 0;
 	var is_fit_bounds = false;
 	var inProcess = false;
+	var isfirstTimeLoaded = void 0;
+
 	var singleMap = $('.wellwhere-map');
 	var clusterIcon = singleMap.attr('data-cluster-icon');
 	var mapStyles = JSON.parse(mapData.styles);
 	var listingItemsContainer = $('.ContainerListingItems');
+	var listingsContainer = $('.ListingItems');
 
 	function init() {
 		$(window).on('hashchange', handleHashChange);
+		firstTimeLoad();
+
 		singleMap.each(function () {
 			map = new_map($(this));
 			if ($(this).is('[data-listing-map]')) {
@@ -1367,9 +1438,72 @@ var GM = function ($) {
 		});
 	}
 
+	function firstTimeLoad() {
+		$(document).ready(function () {
+			var uriMap = $.uriAnchor.makeAnchorMap();
+			isfirstTimeLoaded = true;
+			handleHashChange();
+			// console.log(uriMap);
+			if (uriMap.rating) {
+				$('.ListingFilter__rating-field').dropdown('set selected', uriMap.rating);
+			}
+			if (uriMap.gender) {
+				$('.ListingFilter__gender-field').dropdown('set selected', uriMap.gender);
+			}
+			if (uriMap.activity) {
+				var activityArray = uriMap.activity.split(',');
+				$('.ListingFilter__activity-field').checkbox('uncheck');
+				$.each(activityArray, function (index, val) {
+					var checkbox = $('input[name="activity"][value="' + val + '"]');
+					checkbox.parent('.ListingFilter__activity-field').checkbox('check');
+				});
+			}
+		});
+	}
+
 	function handleHashChange(e) {
-		console.log(e);
-		return false;
+		var uriMap = $.uriAnchor.makeAnchorMap();
+		if (uriMap.type == 'map' || uriMap.type == 'filter' || uriMap.type == 'pagination') {
+			listingsContainer.dimmer('show');
+			// if ( inProcess ) { return } else { inProcess = true };
+			$.ajax({
+				url: data.adminAjax,
+				type: 'GET',
+				data: {
+					action: 'get_gyms_by_uri',
+					uri: uriMap
+				}
+			}).done(function (r) {
+				console.log(r);
+				if (r.success) {
+					dealListingItems(r.data.markers, r.data.pagination);
+					clearAllMarkers();
+					$.each(r.data.markers, function (index, el) {
+						add_marker(el.lat, el.lng, el.pin, el.html, map);
+					});
+
+					if (uriMap.type == 'filter' || uriMap.type == 'pagination' || isfirstTimeLoaded == true) {
+						wellwhereFitBounds();
+					}
+					if (mapcluster) {
+						mapcluster.clearMarkers();
+						mapcluster.addMarkers(map.markers);
+					} else {
+						if (map.markers.length > 1) {
+							mapcluster = cluster(map, map.markers);
+						}
+					}
+				} else {
+					removeListingItems();
+					clearAllMarkers();
+				}
+			}).fail(function (e) {
+				console.log(e.statusText);
+			}).always(function () {
+				isfirstTimeLoaded = false;
+				inProcess = false;
+			});
+		};
 	}
 
 	function handleMapMovement(map) {
@@ -1384,12 +1518,20 @@ var GM = function ($) {
 		}
 	}
 
-	function dealListingItems(listingItems) {
+	function dealListingItems(listingItems, $pagination) {
 		listingItemsContainer.html("");
 		$.each(listingItems, function (index, item) {
 			listingItemsContainer.append(item.listingItem);
 		});
 		_uiInit.Rating.init();
+		if ($pagination) {
+			listingItemsContainer.append($pagination);
+		}
+		listingsContainer.dimmer('hide');
+	}
+
+	function removeListingItems() {
+		listingItemsContainer.html("");
 	}
 
 	function mapMovement() {
@@ -1397,36 +1539,19 @@ var GM = function ($) {
 		if (is_fit_bounds) {
 			return;
 		}
-		if (inProcess) {
-			return;
-		} else {
-			inProcess = true;
-		};
 		bounds.lat_TR = map.getBounds().getNorthEast().lat();
 		bounds.lng_TR = map.getBounds().getNorthEast().lng();
 		bounds.lat_BL = map.getBounds().getSouthWest().lat();
 		bounds.lng_BL = map.getBounds().getSouthWest().lng();
-		$.ajax({
-			url: data.adminAjax,
-			type: 'GET',
-			data: {
-				action: 'get_gyms_by_bounds',
-				bounds: bounds
-			}
-		}).done(function (r) {
-			console.log(r);
-			dealListingItems(r.data.markers);
 
-			clearAllMarkers();
-			$.each(r.data.markers, function (index, el) {
-				add_marker(el.lat, el.lng, el.pin, el.html, map);
-			});
-			mapcluster = cluster(map, map.markers);
-		}).fail(function (e) {
-			console.log(e.statusText);
-		}).always(function () {
-			inProcess = false;
-		});
+		var mapUri = {
+			type: 'map',
+			map: 'listing',
+			page: 1,
+			_map: bounds
+		};
+
+		_uiInit.Uri.extend(mapUri);
 	}
 
 	function new_map($el) {
@@ -1460,7 +1585,7 @@ var GM = function ($) {
 			add_marker(lat, lng, pin, markerHtml, map);
 		});
 
-		center_map(map);
+		wellwhereFitBounds();
 		return map;
 	}
 
@@ -1497,18 +1622,19 @@ var GM = function ($) {
 		}
 	}
 
-	function center_map(map) {
-		var bounds = new google.maps.LatLngBounds();
-		// loop through all markers and create bounds
-		$.each(map.markers, function (i, marker) {
+	// function center_map( map ) {
+	// 	let bounds = new google.maps.LatLngBounds();
+	// 	// loop through all markers and create bounds
+	// 	$.each( map.markers, function( i, marker ){
 
-			var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+	// 		let latlng = new google.maps.LatLng( marker.position.lat(), marker.position.lng() );
 
-			bounds.extend(latlng);
-		});
+	// 		bounds.extend( latlng );
 
-		wellwhereFitBounds(bounds);
-	}
+	// 	});
+
+	// 	wellwhereFitBounds();
+	// }
 
 	function cluster(map, markers) {
 		return new MarkerClusterer(map, markers, {
@@ -1522,8 +1648,14 @@ var GM = function ($) {
 		});
 	}
 
-	function wellwhereFitBounds(bounds) {
+	function wellwhereFitBounds() {
 		is_fit_bounds = true;
+		var bounds = new google.maps.LatLngBounds();
+		// loop through all markers and create bounds
+		$.each(map.markers, function (i, marker) {
+			var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+			bounds.extend(latlng);
+		});
 
 		if (map.markers.length == 1) {
 			// set center of map

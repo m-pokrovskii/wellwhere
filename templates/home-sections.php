@@ -16,7 +16,7 @@
         $image = get_field('activity_image', $activity);
       ?>
       <li class="ActivitesList__item" style="background-image: url(<?php echo $image['sizes']['activity'] ?>);">
-        <a class="ActivitesList__itemTitle" href="<?php echo get_term_link($activity, 'activity') ?>">
+        <a class="ActivitesList__itemTitle" href="<?php echo get_term_link($activity, 'activity') ?>#!activity=<?php echo $activity->term_id ?>">
           <span><?php echo $activity->name ?></span>
         </a>
       </li>

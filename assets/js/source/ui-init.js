@@ -76,12 +76,6 @@ SinglePageFixed.init();
 $('.ui.dropdown').dropdown();
 
 
-$('.ListingFilter__trigger').on('click', function () {
-  $(this).toggleClass('-open')
-  $('.ListingFilter__menu').toggle();
-})
-
-
 $('[data-action=listing-switch-map]').on('click', function () {
   $('.ListingMaps').toggleClass('-visible')
 })
@@ -1277,3 +1271,75 @@ const Favorites = (function () {
 })();
 
 Favorites.init();
+
+export const Uri = (function () {
+
+  function extend( extendObj ) {
+    let uri = path( extendObj );
+    $.uriAnchor.setAnchor( uri );
+  }
+    
+  function path( extendObj ) {
+    let uri   = $.uriAnchor.makeAnchorMap();
+    extendObj = extendObj || {};
+    $.extend( true, uri, extendObj );
+    return uri;
+  }
+
+  return {
+    extend: extend,
+    path: path
+  }
+})();
+
+
+const Filter = (function () {
+  const filterTrigger   = $('.ListingFilter__trigger');
+  const filterMenu      = $('.ListingFilter__menu');
+  const filterMapButton = $('[data-map-filter-button]');
+  const filterMapForm   = $('[data-filter-map-form]');
+  function init() {
+    events();
+  }
+
+  function events() {
+    filterTrigger.on('click', function () {
+      $(this).toggleClass('-open')
+      filterMenu.toggle();
+    })
+    filterMapButton.on('click', updateFilterUri);
+  }
+
+  function updateFilterUri(e) {
+    e.preventDefault();
+    // let filterData = filterMapForm.serializeObject();
+    let filterData = filterMapForm.serializeObject();
+    filterData.type = 'filter';
+    filterData.page = '1';
+    // Workarround if no checkbox selected
+    filterData.activity = filterData.activity || "";
+    Uri.extend(filterData);
+  }
+
+  return {
+    init: init
+  }
+})();
+Filter.init();
+
+const ListingPagination = (function () {
+    function init() {
+      $('body').on('click', '.ListingPagination a.page-numbers', function(e) {
+        e.preventDefault();
+        const pageNumber = $(this).html();
+        Uri.extend({
+          type: 'pagination',
+          page: pageNumber
+        })
+      })
+    }
+    return {
+      init: init
+    }
+})();
+ListingPagination.init();
