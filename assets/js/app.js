@@ -1486,10 +1486,12 @@ var GM = function ($) {
 				if (r.success) {
 					dealListingItems(r.data.markers, r.data.pagination);
 					clearAllMarkers();
+					if (mapcluster) {
+						mapcluster.clearMarkers();
+					}
 					$.each(r.data.markers, function (index, el) {
 						add_marker(el.lat, el.lng, el.pin, el.html, map);
 					});
-
 					if (uriMap.type == 'filter' || uriMap.type == 'pagination' || isfirstTimeLoaded == true) {
 						wellwhereFitBounds();
 					}
