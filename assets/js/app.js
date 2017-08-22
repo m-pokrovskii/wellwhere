@@ -1492,7 +1492,7 @@ var GM = function ($) {
 					$.each(r.data.markers, function (index, el) {
 						add_marker(el.lat, el.lng, el.pin, el.html, map);
 					});
-					if (uriMap.type == 'filter' || uriMap.type == 'pagination' || isfirstTimeLoaded == true) {
+					if ((uriMap.type == 'filter' || uriMap.type == 'pagination') && isfirstTimeLoaded == true) {
 						wellwhereFitBounds();
 					}
 					if (mapcluster) {
@@ -1649,7 +1649,7 @@ var GM = function ($) {
 	function cluster(map, markers) {
 		return new MarkerClusterer(map, markers, {
 			styles: [{
-				url: 'http://wellwhere.lm/wp-content/themes/wellwhere/assets/img/map-marker-red-round.png',
+				url: clusterIcon,
 				height: 50,
 				width: 50,
 				textColor: "#fff",
