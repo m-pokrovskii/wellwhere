@@ -436,7 +436,7 @@ var PaymentCard = function ($) {
 
   function init() {
     activator.on('click', function () {
-      addNewCard.toggle();
+      addNewCard.slideToggle();
     });
 
     // form.on('submit', function(e) {
@@ -1330,7 +1330,7 @@ var Filter = function () {
   function events() {
     filterTrigger.on('click', function () {
       $(this).toggleClass('-open');
-      filterMenu.toggle();
+      filterMenu.slideToggle();
     });
     filterMapButton.on('click', updateFilterUri);
     showMoreActivitiesLink.on('click', showMoreActivities);
@@ -1387,7 +1387,7 @@ $('.SmOpener').on('click', toggleMobileMenu);
 
 function toggleMobileMenu(e) {
   $('.SmOpener').toggleClass('open');
-  $('.SmMenu').toggle();
+  $('.SmMenu').slideToggle();
 }
 
 /***/ }),
