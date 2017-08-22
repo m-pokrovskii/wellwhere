@@ -64,7 +64,7 @@
 							data-show-more-activities 
 							href="#" 
 							class="ListingFilter__show-more-activites">
-							<?php _e("Plus d'activités >") ?>
+							<?php _e("Plus d'activités") ?>
 						</a>
 					<?php endif ?>
 				</div>
