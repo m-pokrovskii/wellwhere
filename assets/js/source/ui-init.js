@@ -1315,12 +1315,21 @@ const Filter = (function () {
   function showMoreActivities(e) {
     e.preventDefault();
     $('[data-hide]').toggle();
-    // showMoreActivitiesLink.hide();
+    if ( $('[data-hide]').is(':hidden') ) {
+      showMoreActivitiesLink.html(showMoreActivitiesLink.attr('data-is-hidden-text'));
+    } else {
+      showMoreActivitiesLink.html(showMoreActivitiesLink.attr('data-is-visible-text'));
+    }
+  }
+
+  function closeFilter() {
+    console.log('close menu');
+    filterMenu.slideToggle();
   }
 
   function updateFilterUri(e) {
     e.preventDefault();
-    // let filterData = filterMapForm.serializeObject();
+    closeFilter();
     let filterData = filterMapForm.serializeObject();
     filterData.type = 'filter';
     filterData.page = '1';
