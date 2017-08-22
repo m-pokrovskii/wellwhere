@@ -232,7 +232,7 @@ const GM = (function($) {
 	function cluster(map, markers) {
 		return new MarkerClusterer(map, markers, {
 			styles: [{
-				url: 'http://wellwhere.lm/wp-content/themes/wellwhere/assets/img/map-marker-red-round.png',
+				url: clusterIcon,
 				height: 50,
 				width: 50,
 				textColor: "#fff",
