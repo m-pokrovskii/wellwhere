@@ -58,7 +58,14 @@
 						</div>
 					<?php endforeach ?>
 					<?php if ( count($activity) > $max_activities ): ?>
-						<a data-show-more-activities href="#" class="ListingFilter__show-more-activites"><?php _e("Toutes les activités >") ?></a>
+						<a 
+							data-is-hidden-text = "<?php _e("Plus d'activités") ?>"
+							data-is-visible-text = "<?php _e("Moins d'activité") ?>"
+							data-show-more-activities 
+							href="#" 
+							class="ListingFilter__show-more-activites">
+							<?php _e("Plus d'activités >") ?>
+						</a>
 					<?php endif ?>
 				</div>
 			</div>
