@@ -289,7 +289,7 @@ input::placeholder {
 }
 
 .Header__logo {
-  width: 288px;
+  width: 175px;
   height: 71px;
   background: url("../img/logo.svg") no-repeat 40px 50%;
 }
@@ -3178,7 +3178,7 @@ html {
 
   .Header__logo {
     margin: 0 auto;
-    width: 180px;
+    width: 95px;
     height: 36px;
     background: url("../img/logo.svg") no-repeat 0 0;
   }
@@ -3195,7 +3195,7 @@ html {
   .App.-payment .Header.-md .Header__logo,
   .App.-partnership .Header.-md .Header__logo {
     margin: 0;
-    width: 288px;
+    width: 175px;
     height: 71px;
     background: url("../img/logo.svg") no-repeat 40px 50%;
   }
@@ -3835,6 +3835,7 @@ html {
   .Footer__logo {
     display: block;
     margin-top: 24px;
+    margin-bottom: 5px;
   }
 
   .Footer__pages {
